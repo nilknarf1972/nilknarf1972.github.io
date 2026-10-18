@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Scanning Dashboard - PrimoIT Tech</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#1b1b1b",
+                        "on-surface": "#0b1c30",
+                        "primary-fixed": "#cce5ff",
+                        "surface-container-low": "#eff4ff",
+                        "tertiary": "#5a5c5e",
+                        "error-container": "#ffdad6",
+                        "outline-variant": "#c1c7cf",
+                        "surface-tint": "#2d638a",
+                        "tertiary-container": "#737576",
+                        "surface-container-high": "#dce9ff",
+                        "on-tertiary-container": "#fcfcfe",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-tertiary-fixed": "#1a1c1d",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#001d31",
+                        "surface-container": "#e5eeff",
+                        "on-background": "#0b1c30",
+                        "on-primary-container": "#fdfcff",
+                        "outline": "#72787f",
+                        "primary": "#2a6087",
+                        "tertiary-fixed-dim": "#c6c6c8",
+                        "primary-container": "#4679a2",
+                        "inverse-surface": "#213145",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed-dim": "#c6c6c6",
+                        "tertiary-fixed": "#e2e2e4",
+                        "secondary-fixed": "#e2e2e2",
+                        "on-tertiary-fixed-variant": "#454749",
+                        "on-surface-variant": "#41474e",
+                        "on-primary-fixed-variant": "#0a4b71",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-variant": "#d3e4fe",
+                        "primary-fixed-dim": "#9accf8",
+                        "on-secondary-fixed-variant": "#474747",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-dim": "#cbdbf5",
+                        "surface-bright": "#f8f9ff",
+                        "secondary-container": "#e2e2e2",
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "surface": "#f8f9ff",
+                        "background": "#f8f9ff",
+                        "secondary": "#5e5e5e",
+                        "on-secondary-container": "#646464",
+                        "inverse-primary": "#9accf8",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "xl": "48px",
+                        "unit": "4px",
+                        "container-margin": "32px",
+                        "lg": "24px",
+                        "gutter": "16px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "data-mono": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "title-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "data-mono": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "title-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .scanner-frame {
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 0 4000px rgba(0, 0, 0, 0.5);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .status-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .5; }
+        }
+    </style>
+</head>
+<body class="bg-background font-body-md text-on-background overflow-hidden">
+<!-- SideNavBar (Authority Source: JSON) -->
+<nav class="fixed left-0 top-0 h-full flex flex-col z-40 bg-white dark:bg-slate-900 h-screen w-64 border-r border-slate-200 dark:border-slate-800" id="sidenav">
+<div class="p-lg flex items-center gap-md">
+<div class="w-10 h-10 bg-primary flex items-center justify-center rounded">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">shield</span>
+</div>
+<div>
+<h1 class="text-lg font-bold text-slate-900 dark:text-white">PrimoIT Tech</h1>
+<p class="text-xs text-slate-500 font-inter font-semibold">Vigilant Security</p>
+</div>
+</div>
+<div class="mt-xl flex flex-col px-md gap-xs"><!-- Active Tab: Scanning Dashboard -->
+<a class="flex items-center gap-md px-md py-md bg-slate-100 dark:bg-slate-800 text-blue-600 dark:text-blue-400 border-l-4 border-blue-600 font-inter text-sm font-semibold transition-transform duration-100 active:scale-95" href="#">
+<span class="material-symbols-outlined">qr_code_scanner</span>
+<span>Scanning Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-md py-md text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-inter text-sm font-semibold hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">person_add</span>
+<span>Visitor Pre-Reg</span>
+</a>
+<a class="flex items-center gap-md px-md py-md text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-inter text-sm font-semibold hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">history</span>
+<span>Access Logs</span>
+</a>
+<a class="flex items-center gap-md px-md py-md text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-inter text-sm font-semibold hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">sync</span>
+<span>Sync &amp; Connectivity</span>
+</a>
+<a class="flex items-center gap-md px-md py-md text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-inter text-sm font-semibold hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">settings_accessibility</span>
+<span>Admin Settings</span>
+</a></div>
+<div class="mt-auto p-lg border-t border-slate-100 dark:border-slate-800">
+<div class="flex items-center gap-sm mb-md">
+<div class="w-2 h-2 rounded-full bg-green-500"></div>
+<span class="text-label-caps font-label-caps text-on-surface-variant">System Online</span>
+</div>
+<div class="flex items-center gap-md">
+<img alt="Security Officer Profile" class="w-8 h-8 rounded-full border border-outline-variant" data-alt="A focused close-up profile portrait of a professional security officer in a dark navy uniform. The officer has a calm, vigilant expression, illuminated by the cool, high-tech glow of a security control room. The background features blurred digital displays and monitoring equipment in a sleek, modern architectural setting. The color palette is dominated by professional blues and slate grays, creating an authoritative and secure atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPrux_F5VN0__ZbC9O2U9ou816VCniwo-cgToepMpMVmivfpcuQ9nZJzDm2DHHK300pOVu-fLH0LIxLc4shorIQaNXff19MwbP8eYfCBYuhGy7A6Yh8Tds5xPXIi4_hs7I47i8K_8IdA_Y7YS2K2WcCBuSjcsvaxJXAbusrfhD8EYgN274LqKngVUV2AubUHxqq9tDEWP-FvppoqPztrsY12_H4XEigRdj1UJgA6lP5GX3bjrNWYSF7hpk7hnOItlw2_pQQ0bLbK_w"/>
+<div class="overflow-hidden"><p class="text-body-sm font-semibold truncate">Officer Miller</p>
+<p class="text-xs text-slate-500 truncate">Lead Guardian</p></div>
+</div>
+</div>
+</nav>
+<!-- Main Content Shell -->
+<main class="ml-64 flex flex-col h-screen">
+<!-- TopAppBar (Authority Source: JSON) -->
+<header class="bg-white dark:bg-slate-900 flex justify-between items-center w-full px-6 h-16 border-b border-slate-200 dark:border-slate-800 sticky top-0 z-30"><div class="flex items-center">
+<span class="text-xl font-black text-slate-900 dark:text-white font-inter uppercase tracking-wider">Scanning Dashboard</span>
+</div>
+<div class="flex items-center gap-lg">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="pl-10 pr-4 py-2 bg-slate-100 border-none rounded-lg text-body-sm w-64 focus:ring-2 focus:ring-primary" placeholder="Quick find visitor..." type="text"/>
+</div>
+<div class="flex items-center gap-md text-slate-500">
+<button class="material-symbols-outlined hover:bg-slate-50 p-2 rounded transition-colors">notifications</button>
+<button class="material-symbols-outlined hover:bg-slate-50 p-2 rounded transition-colors">help</button>
+<div class="w-8 h-8 rounded-full bg-slate-200 overflow-hidden border border-slate-200 ml-sm">
+<img alt="User profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPrux_F5VN0__ZbC9O2U9ou816VCniwo-cgToepMpMVmivfpcuQ9nZJzDm2DHHK300pOVu-fLH0LIxLc4shorIQaNXff19MwbP8eYfCBYuhGy7A6Yh8Tds5xPXIi4_hs7I47i8K_8IdA_Y7YS2K2WcCBuSjcsvaxJXAbusrfhD8EYgN274LqKngVUV2AubUHxqq9tDEWP-FvppoqPztrsY12_H4XEigRdj1UJgA6lP5GX3bjrNWYSF7hpk7hnOItlw2_pQQ0bLbK_w"/>
+</div>
+</div>
+</div></header>
+<!-- Dashboard Content -->
+<div class="flex-1 p-lg grid grid-cols-12 gap-lg overflow-hidden">
+<!-- Left: Scanning & Controls Cluster (Bento Layout) -->
+<div class="col-span-9 flex flex-col gap-lg h-full">
+<!-- System Health Indicators -->
+<div class="flex gap-lg items-center bg-white border border-outline-variant p-md rounded-xl">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-green-600" style="font-variation-settings: 'FILL' 1;">videocam</span>
+<span class="text-label-caps font-label-caps text-on-surface-variant">Camera Active</span>
+</div>
+<div class="h-4 w-[1px] bg-outline-variant"></div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-green-600" style="font-variation-settings: 'FILL' 1;">database</span>
+<span class="text-label-caps font-label-caps text-on-surface-variant">DB Connected</span>
+</div>
+<div class="h-4 w-[1px] bg-outline-variant"></div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-green-600" style="font-variation-settings: 'FILL' 1;">sensor_occupied</span>
+<span class="text-label-caps font-label-caps text-on-surface-variant">Scanner Ready</span>
+</div>
+</div>
+<!-- Live Scanner Feed -->
+<div class="flex-1 relative rounded-xl overflow-hidden bg-slate-900 border-4 border-slate-800 shadow-2xl group">
+<div class="absolute inset-0 flex items-center justify-center z-10">
+<div class="w-[60%] h-[50%] scanner-frame rounded-lg pointer-events-none"></div>
+</div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-md z-20 pointer-events-none">
+<span class="material-symbols-outlined text-white text-6xl opacity-40">dock_to_bottom</span>
+<p class="text-white font-headline-md text-headline-md tracking-widest uppercase opacity-70">Ready to Scan</p>
+</div>
+<div class="absolute top-md right-md z-20 flex gap-xs">
+<span class="px-md py-xs bg-black/60 backdrop-blur-md text-white text-label-caps font-label-caps rounded-full flex items-center gap-xs">
+<span class="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span> REC 00:45:21
+                        </span>
+</div>
+<div class="absolute inset-0 w-full h-full">
+<img class="w-full h-full object-cover grayscale opacity-40" data-alt="A cinematic, high-definition view of a dark interior space with dramatic blue lighting and architectural shadows. The scene mimics a high-security checkpoint with sharp geometric lines and a minimalist corporate atmosphere. Soft ambient light from overhead panels creates a professional, moody environment. The overall aesthetic is clean, authoritative, and technologically sophisticated, utilizing a palette of deep navy, charcoal, and cool white." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsIaS2mG1msFLTzAQLNG7ZFUO16E1SzYqOdGNq5MJipvADTCVMNvuZjxz4AmCdIaN2dyQLnQq7cLDR4uH1v4HNwfvcPXDzxpNWa8STmKQP7aMuikq3Nc2FO8e66NHDtqSTZ8XAb6Y1AUGUWb6lAxm6QcNXV1qs8USXXGGURwxF3mxCKm4kjyl_5kVgNISnt7acY1KJCaSbp8_nNhay3TcvZWrJHV7-q0zav_BJcnKVWJimOJtJ1EtYN3BM4Y81CUmLv7Aiqo0d3zzJ"/>
+</div>
+</div>
+<!-- Real-time Status Bar & Actions -->
+<div class="space-y-md">
+<!-- Status Indicator -->
+<div class="bg-surface-container border border-primary/20 p-md flex items-center justify-center gap-md rounded-xl">
+<span class="material-symbols-outlined text-primary status-pulse">radar</span>
+<p class="text-title-sm font-title-sm text-primary uppercase tracking-[0.2em]">Waiting for input</p>
+</div>
+<!-- Quick-Action Controls -->
+<div class="grid grid-cols-2 gap-lg">
+<button class="group relative flex flex-col items-center justify-center py-xl bg-slate-200 border-2 border-slate-300 rounded-xl cursor-not-allowed opacity-60" disabled="">
+<span class="material-symbols-outlined text-4xl mb-sm text-slate-500">check_circle</span>
+<span class="text-headline-md font-headline-md text-slate-500">PERMIT ENTRY</span>
+<span class="absolute top-2 right-2 text-label-caps font-label-caps text-slate-400">DISABLED</span>
+</button>
+<button class="group relative flex flex-col items-center justify-center py-xl bg-slate-200 border-2 border-slate-300 rounded-xl cursor-not-allowed opacity-60" disabled="">
+<span class="material-symbols-outlined text-4xl mb-sm text-slate-500">cancel</span>
+<span class="text-headline-md font-headline-md text-slate-500">DENY ENTRY</span>
+<span class="absolute top-2 right-2 text-label-caps font-label-caps text-slate-400">DISABLED</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Right: Recent Scans Sidebar -->
+<div class="col-span-3 h-full flex flex-col gap-lg">
+<div class="flex items-center justify-between">
+<h3 class="text-title-sm font-title-sm">Recent Scans</h3>
+<button class="text-primary text-label-caps font-label-caps hover:underline">View All</button>
+</div>
+<div class="flex flex-col gap-md">
+<!-- Scan Card 1 -->
+<div class="bg-white border border-outline-variant rounded-xl p-md flex gap-md relative overflow-hidden group hover:border-primary transition-colors cursor-pointer">
+<div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-slate-200">
+<img class="w-full h-full object-cover" data-alt="A sharp, professional headshot of a middle-aged man with short dark hair and a confident expression. The lighting is bright and even, characteristic of an official identification photo. He is wearing a clean, modern white shirt against a neutral, light-gray background. The image has a crisp, high-resolution quality with a professional corporate look." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrK7lRecQN1h-HIOtkNBl2Cf7LbBIj00fowDheZSwbypV_Qyw2AKE7WTlirOe8TqgznTmbrYAnP6lYI2grhcgid8ten0tw7ldySN8gTPETrpT3JVA_4SRDi6NjdhpYfTg5opav5HoRXNhnVum7yalAAeSXdNDLGrJ4HWJ4CIEIWD1C6wv0-_weLDx9zggnlFHpfayvfudjyCfxCe2cd2vmt2QNWQ9UU41YEh5pMDRTQnsE90-zKla1BIDZS58pPLZ6--GaiuV3Oi6c"/>
+</div>
+<div class="flex flex-col justify-center min-w-0">
+<p class="text-body-md font-bold truncate">David Chen</p>
+<p class="text-label-caps font-label-caps text-slate-500 uppercase">Vendor ID: #8821</p>
+<p class="text-xs text-slate-400 mt-1">2m ago • Gate 04</p>
+</div>
+<div class="absolute top-md right-md">
+<span class="w-3 h-3 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]"></span>
+</div>
+</div>
+<!-- Scan Card 2 -->
+<div class="bg-white border border-outline-variant rounded-xl p-md flex gap-md relative overflow-hidden group hover:border-primary transition-colors cursor-pointer">
+<div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-slate-200">
+<img class="w-full h-full object-cover" data-alt="A professional ID portrait of a young woman with a friendly, professional smile and long brown hair. She is captured in clear, high-key lighting against a soft, solid background. Her attire is business casual in professional tones. The image is clean and well-defined, perfectly suited for an enterprise verification interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcgHZmV0JkNnX_HqZlBQTI4agL_1DgrIcDhZWRxFuQbfeJhyqvm76OE0Oozd5apsXwQI2B45A8fV4QKjxNpUmfr1okH1FFDmiOGqASwM5CT4g7lAaVV1bS12Ism_jMjjUAQIhpaQ5AmSSW3iLPXCtbYWg0PHi6Kriucg1Se1qxk_qDMqOZksGoUFgK_HtAHh_v6rKEJRKM4ndWJzaxJK04_AlqIOOIperhM48VXJyZVzOKhCR37MPb7AnUyK38UfKoV6Ie93DjS5kP"/>
+</div>
+<div class="flex flex-col justify-center min-w-0">
+<p class="text-body-md font-bold truncate">Elena Rodriguez</p>
+<p class="text-label-caps font-label-caps text-slate-500 uppercase">Visitor ID: #4492</p>
+<p class="text-xs text-slate-400 mt-1">14m ago • Gate 04</p>
+</div>
+<div class="absolute top-md right-md">
+<span class="w-3 h-3 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]"></span>
+</div>
+</div>
+<!-- Scan Card 3 (Denied Example) -->
+<div class="bg-white border border-outline-variant rounded-xl p-md flex gap-md relative overflow-hidden group hover:border-primary transition-colors cursor-pointer">
+<div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-slate-200 grayscale">
+<img class="w-full h-full object-cover" data-alt="A detailed Identification photo of a man with a serious expression, shot against a plain studio background. The lighting is sharp and clinical. He is wearing a dark, professional jacket. The photo is displayed with a slight grayscale tint to signify a flagged or denied status within the security interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDeQZLibv8ZdBRWh6u1qdgBYqni9GLuOA2I8zXJ65H2s6q_4DKwdDZO_jQBHQ-FrYiTnRw8Uka9YmDJ-ZtVxqCKaMja7RBUnc92cQ4QSVaX08On3KrFLWPtDCCjIkfY9W3KjRNKriMVPH5jmTlOHrnfco6r2jkCOuGXD__ZbmuZ7UK3_DR4d0sLbOZqKPXPGg9zKAk3VpWVNJYUXPt7jPT5S7eBW9wIE6oGTXYbnZROndiZOCR4fzllT8tKbuIQDb8-QwmMOyCPuBy8"/>
+</div>
+<div class="flex flex-col justify-center min-w-0">
+<p class="text-body-md font-bold truncate">Unknown Entry</p>
+<p class="text-label-caps font-label-caps text-error uppercase">Expired Badge</p>
+<p class="text-xs text-slate-400 mt-1">28m ago • Gate 02</p>
+</div>
+<div class="absolute top-md right-md">
+<span class="w-3 h-3 rounded-full bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.6)]"></span>
+</div>
+</div>
+<!-- Scan Card 4 -->
+<div class="bg-white border border-outline-variant rounded-xl p-md flex gap-md relative overflow-hidden group hover:border-primary transition-colors cursor-pointer">
+<div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-slate-200">
+<img class="w-full h-full object-cover" data-alt="A bright, clear identity portrait of a professional man with short hair and glasses, looking directly at the camera with a neutral expression. The image is perfectly exposed in a high-key light-mode style, emphasizing clarity and verification accuracy. The background is a flat, clean white." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBudKsIdybmfTDlhXSOAmeT-CQf2TSTFufZ5nDRKPjfGQnrbEfm3KH_pwu3-4xmcaTdN1SvQSJasVPuBqqJwvfeYb1pLrbLzcnPQmJeWqljJLFJN_xifwhodDf6LY38A-bn8NJyrpufKIt861sBKJkeEVJEYghmksg788U_0NEssuLRKA0sutljXFCq_5IEeE40AbVPa5IiXtj37FHFUIZrkU_gt2Iy44--6TLv56cbSNEdqZcyCKAagR1twaCWnaGU6Ws2typG13uG"/>
+</div>
+<div class="flex flex-col justify-center min-w-0">
+<p class="text-body-md font-bold truncate">Samuel Peterson</p>
+<p class="text-label-caps font-label-caps text-slate-500 uppercase">Employee ID: #1029</p>
+<p class="text-xs text-slate-400 mt-1">41m ago • Gate 04</p>
+</div>
+<div class="absolute top-md right-md">
+<span class="w-3 h-3 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]"></span>
+</div>
+</div>
+</div>
+<!-- Live Logs Area -->
+<div class="mt-auto bg-slate-900 rounded-xl p-md h-48 border border-slate-800">
+<div class="flex items-center gap-sm mb-sm border-b border-slate-800 pb-xs">
+<span class="material-symbols-outlined text-xs text-blue-400">terminal</span>
+<span class="text-label-caps font-label-caps text-slate-400">Live System Console</span>
+</div>
+<div class="font-data-mono text-xs text-green-500 space-y-1 overflow-y-auto h-32 scrollbar-hide">
+<p>&gt; [14:41:22] Camera #04 feed initialized...</p>
+<p>&gt; [14:42:05] DB connection stable (latency 12ms)</p>
+<p>&gt; [14:43:11] Waiting for biometric handshake...</p>
+<p>&gt; [14:45:00] OCR engine hot-swapped for document v3.2</p>
+<p class="text-blue-400 animate-pulse">&gt; [14:45:21] Scanning for proximity card...</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

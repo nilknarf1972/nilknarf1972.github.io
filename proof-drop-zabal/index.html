@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Proof Drop - Build Receipt Kit</title>
+    <meta
+      name="description"
+      content="Create a portable build receipt, hash a proof photo locally, and export verification posts for ZABAL, POIDH, or any community that asks for proof."
+    />
+    <meta property="og:title" content="Proof Drop - Build Receipt Kit" />
+    <meta
+      property="og:description"
+      content="A small receipt maker for shipped work, public links, proof photos, and verification posts."
+    />
+    <meta property="og:url" content="https://proof-drop-zabal.pages.dev" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://proof-drop-zabal.pages.dev/cover.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Proof Drop cover showing Build, Proof, Cast, Claim, and Receipt." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Proof Drop - Build Receipt Kit" />
+    <meta
+      name="twitter:description"
+      content="Create a timestamped receipt for shipped work and export it wherever proof is requested."
+    />
+    <meta name="twitter:image" content="https://proof-drop-zabal.pages.dev/cover.png" />
+    <meta
+      name="fc:miniapp"
+      content='{"version":"1","name":"Proof Drop","homeUrl":"https://proof-drop-zabal.pages.dev","iconUrl":"https://proof-drop-zabal.pages.dev/icon.svg","imageUrl":"https://proof-drop-zabal.pages.dev/cover.png","buttonTitle":"Make a build receipt","splashImageUrl":"https://proof-drop-zabal.pages.dev/icon.svg","splashBackgroundColor":"#07111f"}'
+    />
+    <meta
+      name="fc:frame"
+      content='{"version":"next","imageUrl":"https://proof-drop-zabal.pages.dev/cover.png","button":{"title":"Make a build receipt","action":{"type":"launch_frame","name":"Proof Drop","url":"https://proof-drop-zabal.pages.dev","splashImageUrl":"https://proof-drop-zabal.pages.dev/icon.svg","iconUrl":"https://proof-drop-zabal.pages.dev/icon.svg","splashBackgroundColor":"#07111f"}}}'
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero" aria-labelledby="page-title" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+        <div style="display:flex;align-items:center;gap:14px">
+          <div class="mark" aria-hidden="true">PD</div>
+          <div>
+            <p class="system-line">Build receipt and verification kit • Primo IT Tech LLC</p>
+            <h1 id="page-title">Proof Drop</h1>
+            <p class="lede">
+              Create a portable receipt for shipped work. This ZABAL template includes POIDH because that is how this bounty asks builders to verify.
+            </p>
+          </div>
+        </div>
+        <button id="pdTourBtn" type="button" onclick="window.togglePdTour && window.togglePdTour()" style="background:rgba(56,189,248,0.16);color:#38bdf8;border:1px solid #0284c7;border-radius:999px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer">✨ Quick Guided Tour</button>
+      </section>
+
+      <section class="bar" aria-label="Proof Drop verification flow">
+        <article>
+          <b>Public build</b>
+          <span>Live app, frame, mini app, repo, video, mint page, or working demo.</span>
+        </article>
+        <article>
+          <b>Proof evidence</b>
+          <span>Attach the photo or file your community asks for. Proof Drop hashes it locally.</span>
+        </article>
+        <article>
+          <b>Export path</b>
+          <span>Copy posts for X and Farcaster, then submit wherever proof is requested.</span>
+        </article>
+      </section>
+
+      <section class="composer" aria-label="Create build receipt">
+        <div>
+          <span class="label">Track</span>
+          <div class="track-grid" role="radiogroup" aria-label="Track">
+            <button class="active" type="button" data-track="builder">
+              <b>Builder</b>
+              <span>Live app, frame, mini app, repo, or demo</span>
+            </button>
+            <button type="button" data-track="artist">
+              <b>Artist</b>
+              <span>Finished piece, drop, or collection</span>
+            </button>
+            <button type="button" data-track="creator">
+              <b>Creator</b>
+              <span>Video, show, write-up, or campaign</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="two">
+          <label>
+            <span>Build title</span>
+            <input id="buildTitle" placeholder="My shipped build" />
+          </label>
+          <label>
+            <span>Farcaster handle</span>
+            <input id="farcasterHandle" placeholder="yourname" />
+          </label>
+        </div>
+
+        <label>
+          <span>Live build URL</span>
+          <input id="buildUrl" placeholder="https://your-live-build.example" />
+        </label>
+
+        <label>
+          <span>Public repo URL</span>
+          <input id="repoUrl" placeholder="https://github.com/you/your-build" />
+        </label>
+
+        <div class="two">
+          <label>
+            <span>X handle</span>
+            <input id="xHandle" placeholder="yourname" />
+          </label>
+          <label>
+            <span>Wallet address optional</span>
+            <input id="walletAddress" placeholder="0x..." />
+          </label>
+        </div>
+
+        <label class="file-box">
+          <span>Proof photo or evidence file</span>
+          <input id="proofPhoto" type="file" accept="image/*" />
+          <small id="photoStatus">Choose the photo or image evidence you plan to submit or share. The app hashes it locally and does not upload it.</small>
+        </label>
+
+        <div class="actions">
+          <button class="primary" id="stampButton" type="button">Stamp receipt</button>
+          <button id="copyXButton" type="button">Copy X post</button>
+          <button id="copyFarcasterButton" type="button">Copy /zabal post</button>
+          <button id="castButton" type="button">Open cast</button>
+          <button id="copyJsonButton" type="button">Copy JSON</button>
+          <button id="downloadButton" type="button">Download JSON</button>
+        </div>
+      </section>
+
+      <section class="claim-kit" aria-label="Claim kit">
+        <div class="receipt-head">
+          <div>
+            <span>Claim receipt</span>
+            <strong id="shortHash">pending</strong>
+          </div>
+          <div class="seal" id="seal">READY</div>
+        </div>
+
+        <div class="checklist">
+          <div id="buildCheck"><span>Build link</span></div>
+          <div id="repoCheck"><span>Repo link</span></div>
+          <div id="photoCheck"><span>Photo hash</span></div>
+          <div id="receiptCheck"><span>Receipt</span></div>
+        </div>
+
+        <div class="posts">
+          <label>
+            <span>X post</span>
+            <textarea id="xPost" rows="5" readonly></textarea>
+          </label>
+          <label>
+            <span>Farcaster post</span>
+            <textarea id="farcasterPost" rows="5" readonly></textarea>
+          </label>
+        </div>
+
+        <div class="links">
+          <a href="https://poidh.xyz/base/bounty/1249" target="_blank" rel="noreferrer">Open POIDH claim for ZABAL</a>
+          <a href="https://farcaster.xyz/~/channel/zabal" target="_blank" rel="noreferrer">Open /zabal</a>
+          <a href="https://zabalgamez.com" target="_blank" rel="noreferrer">ZABAL Gamez</a>
+        </div>
+      </section>
+
+      <section class="receipt" aria-label="Receipt JSON">
+        <div class="receipt-head">
+          <div>
+            <span>Portable JSON</span>
+            <strong>Local SHA-256 receipt</strong>
+          </div>
+          <button id="verifyButton" type="button">Verify JSON</button>
+        </div>
+        <pre id="receiptJson"></pre>
+      </section>
+
+      <p class="status" id="status">Ready.</p>
+    </main>
+
+    <script src="./app.js" type="module"></script>
+    <script>
+      const PD_STEPS = [
+        { selector: ".bar", badge: "FLOW", title: "1. Verification Workflow", desc: "Attach your public build URL, hash your proof photo locally in the browser, and export verification posts." },
+        { selector: ".composer", badge: "COMPOSER", title: "2. Stamp Build Receipt & Local SHA-256 Hash", desc: "Choose Builder, Artist, or Creator track, enter your live build & repo links, and hash your proof photo locally." },
+        { selector: ".claim-kit", badge: "CLAIM KIT", title: "3. Ready-to-Post X & Farcaster Claim Kit", desc: "Copy formatted verification posts for X and /zabal or launch POIDH bounty verification." },
+        { selector: ".receipt", badge: "PORTABLE JSON", title: "4. Verifiable Cryptographic Receipt JSON", desc: "Inspect, download, or verify the portable SHA-256 JSON build receipt." }
+      ];
+      let pdActive = false, pdStep = 0;
+      function ensurePdDom() {
+        if (document.getElementById("pdCoachMark")) return;
+        const st = document.createElement("style");
+        st.textContent = `.pd-hi { outline: 2px solid #38bdf8 !important; box-shadow: 0 0 24px rgba(56,189,248,0.4) !important; border-radius: 12px; } #pdCoachMark { position:fixed; bottom:24px; right:24px; width:380px; max-width:calc(100vw - 32px); background:#0f172a; color:#f8fafc; border:2px solid #0284c7; border-radius:14px; padding:18px; box-shadow:0 20px 50px rgba(0,0,0,0.8); z-index:9999; display:none; font-family:system-ui,sans-serif; }`;
+        document.head.appendChild(st);
+        const box = document.createElement("div");
+        box.id = "pdCoachMark";
+        box.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><span id="pdBadge" style="font-size:11px;font-weight:800;color:#38bdf8;background:rgba(56,189,248,0.15);padding:3px 9px;border-radius:99px"></span><button onclick="window.closePdTour(true)" style="background:none;border:none;color:#94a3b8;font-size:12px;cursor:pointer">Skip tour ✕</button></div><h4 id="pdTitle" style="margin:0 0 6px 0;font-size:15px;color:#fff"></h4><p id="pdDesc" style="margin:0 0 14px 0;font-size:13px;line-height:1.5;color:#cbd5e1"></p><div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:11px;color:#64748b">← / → or Esc</span><div style="display:flex;gap:8px"><button id="pdPrev" onclick="window.stepPdTour(-1)" style="background:#1e293b;color:#e2e8f0;border:1px solid #334155;border-radius:8px;padding:6px 12px;font-size:12px;cursor:pointer">← Prev</button><button id="pdNext" onclick="window.stepPdTour(1)" style="background:#0284c7;color:#fff;border:none;border-radius:8px;padding:6px 14px;font-size:12px;font-weight:700;cursor:pointer">Next Step →</button></div></div>`;
+        document.body.appendChild(box);
+      }
+      function renderPdTour() {
+        ensurePdDom();
+        document.querySelectorAll(".pd-hi").forEach(e => e.classList.remove("pd-hi"));
+        const box = document.getElementById("pdCoachMark"), btn = document.getElementById("pdTourBtn");
+        if (!pdActive) { box.style.display = "none"; if (btn) btn.textContent = "✨ Quick Guided Tour"; return; }
+        if (btn) btn.textContent = "✕ Exit Tour";
+        const s = PD_STEPS[pdStep];
+        box.style.display = "block";
+        document.getElementById("pdBadge").textContent = `STEP ${pdStep + 1} OF ${PD_STEPS.length} • ${s.badge}`;
+        document.getElementById("pdTitle").textContent = s.title;
+        document.getElementById("pdDesc").textContent = s.desc;
+        document.getElementById("pdPrev").style.display = pdStep > 0 ? "inline-block" : "none";
+        document.getElementById("pdNext").textContent = pdStep === PD_STEPS.length - 1 ? "Finish Tour ✓" : "Next Step →";
+        const t = document.querySelector(s.selector);
+        if (t) { t.classList.add("pd-hi"); t.scrollIntoView({ behavior: "smooth", block: "nearest" }); }
+      }
+      window.togglePdTour = () => { pdActive = !pdActive; if (pdActive) pdStep = 0; renderPdTour(); };
+      window.closePdTour = (done) => { pdActive = false; if (done) { try { localStorage.setItem("primoit.proofdrop.tour_v1", "true"); } catch(e){} } renderPdTour(); };
+      window.stepPdTour = (d) => { const n = pdStep + d; if (n < 0) return; if (n >= PD_STEPS.length) { window.closePdTour(true); return; } pdStep = n; renderPdTour(); };
+      window.addEventListener("keydown", e => { if (!pdActive) return; if (e.key === "Escape") window.closePdTour(true); else if (e.key === "ArrowRight") window.stepPdTour(1); else if (e.key === "ArrowLeft") window.stepPdTour(-1); });
+      try { if (!localStorage.getItem("primoit.proofdrop.tour_v1")) setTimeout(() => { pdActive = true; renderPdTour(); }, 700); } catch(e){}
+    </script>
+  </body>
+</html>

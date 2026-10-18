@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PrimoIT Card Editor v3.0 — Universal Web &amp; Cloud Studio</title>
+  <style>:root{--bg-app:#0f172a;--bg-panel:#1e293b;--bg-panel-alt:#162032;--bg-workspace:#0b1120;--border:#334155;--text-primary:#f1f5f9;--text-secondary:#94a3b8;--accent:#2563eb;--accent-hover:#3b82f6;--accent-soft:#2563eb2e;--danger:#dc2626;--success:#16a34a}body.light-theme{--bg-app:#f1f5f9;--bg-panel:#fff;--bg-panel-alt:#f8fafc;--bg-workspace:#cbd5e1;--border:#cbd5e1;--text-primary:#0f172a;--text-secondary:#475569;--accent:#2563eb;--accent-hover:#1d4ed8;--accent-soft:#dbeafe}*{box-sizing:border-box;margin:0;padding:0}body{background:var(--bg-app);color:var(--text-primary);-webkit-user-select:none;user-select:none;flex-direction:column;height:100vh;font-family:Segoe UI,system-ui,-apple-system,sans-serif;display:flex;overflow:hidden}.topbar{background:var(--bg-panel);border-bottom:1px solid var(--border);flex-wrap:wrap;align-items:center;gap:8px;padding:8px 14px;display:flex}.brand{letter-spacing:.3px;color:var(--text-primary);align-items:center;gap:8px;margin-right:10px;font-size:15px;font-weight:800;display:flex}.brand-badge{color:#fff;background:linear-gradient(135deg,#2563eb,#7c3aed);border-radius:5px;padding:3px 8px;font-size:11px;font-weight:700}.btn{background:var(--bg-panel-alt);color:var(--text-primary);border:1px solid var(--border);cursor:pointer;border-radius:5px;align-items:center;gap:5px;padding:5px 10px;font-size:12px;font-weight:600;transition:all .12s;display:inline-flex}.btn:hover{border-color:var(--accent);background:var(--accent-soft)}.btn-accent{background:var(--accent);color:#fff;border-color:var(--accent)}.btn-accent:hover{background:var(--accent-hover)}.divider{background:var(--border);width:1px;height:22px;margin:0 3px}select,input[type=text],input[type=number]{background:var(--bg-app);color:var(--text-primary);border:1px solid var(--border);border-radius:4px;padding:4px 7px;font-size:12px}.workspace-grid{flex:1;grid-template-columns:256px 1fr 340px;display:grid;overflow:hidden}.panel{background:var(--bg-panel);border-right:1px solid var(--border);flex-direction:column;gap:10px;padding:12px;display:flex;overflow-y:auto}.panel-right{border-right:none;border-left:1px solid var(--border)}.section-title{text-transform:uppercase;letter-spacing:.7px;color:var(--text-secondary);margin-top:4px;font-size:10.5px;font-weight:800}.tool-grid{grid-template-columns:1fr 1fr;gap:5px;display:grid}.tag{color:#fff;border-radius:3px;padding:1px 4px;font-size:9px;font-weight:800}.nudge-card{background:var(--bg-panel-alt);border:1px solid var(--border);border-radius:7px;padding:9px}.preset-row{flex-wrap:wrap;gap:4px;margin-top:6px;display:flex}.preset-btn{background:var(--bg-app);color:var(--text-primary);border:1px solid var(--border);cursor:pointer;border-radius:4px;flex:1;padding:3px 5px;font-size:11px}.preset-btn.active,.preset-btn:hover{background:var(--accent);color:#fff;border-color:var(--accent)}.dpad{grid-template-columns:repeat(3,32px);justify-content:center;gap:4px;margin-top:8px;display:grid}.canvas-viewport{background:var(--bg-workspace);flex-direction:column;justify-content:center;align-items:center;padding:28px;display:flex;position:relative;overflow:auto}.card-stage-wrapper{transform-origin:50%;border-radius:22px;transition:transform .1s;position:relative;box-shadow:0 22px 50px #00000073}#cardSvg{cursor:default;background:#fff;border-radius:22px;display:block}.layer-list{border:1px solid var(--border);background:var(--bg-app);border-radius:6px;max-height:210px;overflow-y:auto}.layer-item{border-bottom:1px solid var(--border);cursor:pointer;justify-content:space-between;align-items:center;padding:6px 8px;font-size:12px;display:flex}.layer-item.selected{background:var(--accent-soft);border-left:3px solid var(--accent);font-weight:700}.prop-row{grid-template-columns:92px 1fr;align-items:center;gap:6px;margin-bottom:6px;font-size:12px;display:grid}.statusbar{background:var(--bg-panel);border-top:1px solid var(--border);color:var(--text-secondary);justify-content:space-between;padding:5px 14px;font-size:11.5px;display:flex}.modal-backdrop{z-index:100;background:#000000ad;justify-content:center;align-items:center;display:none;position:fixed;inset:0}.modal{background:var(--bg-panel);border:1px solid var(--border);border-radius:10px;width:720px;max-width:94vw;max-height:88vh;padding:20px;overflow-y:auto;box-shadow:0 25px 60px #0009}.export-grid{grid-template-columns:1fr 1fr;gap:8px;margin-top:12px;display:grid}</style>
+</head>
+<body>
+
+  <!-- TOP COMMAND BAR -->
+  <div class="topbar">
+    <div class="brand">
+      <span>🪪 PrimoIT Card Editor</span>
+      <span class="brand-badge">v3.0 WEB STUDIO</span>
+    </div>
+
+    <button class="btn" onclick="document.getElementById('openCardInput').click()" title="Open ANY ID Card (.card, .cdf, .svg, .json, .png, .jpg, .bmp, .html) or Drag &amp; Drop onto page">
+      📂 Open Any Card
+    </button>
+    <input type="file" id="openCardInput" style="display:none" accept=".card,.cdf,.ini,.svg,.xml,.json,.html,.png,.jpg,.jpeg,.bmp,.webp" onchange="handleOpenAnyCard(event)" />
+
+    <select id="templateSelect" onchange="loadStarterTemplate(this.value)" title="Load Starter ID Template">
+      <option value="vds">🎓 VDS University Student ID</option>
+      <option value="corp">🏢 PrimoIT Enterprise Employee Badge</option>
+      <option value="visitor">🪪 Facility Visitor Security Pass</option>
+      <option value="chip">🛡 Zero-Trust Smart Chip &amp; Cloud ID</option>
+    </select>
+
+    <button class="btn btn-accent" onclick="openExportModal()">☁ Export All / Cloud Hub</button>
+    <button class="btn" onclick="print8UpSheet()">🖨 Print / 8-Up Sheet</button>
+
+    <div class="divider"></div>
+
+    <button class="btn" id="frontSideBtn" onclick="switchSide('Front')" style="border-color:var(--accent)">Front Side</button>
+    <button class="btn" id="backSideBtn" onclick="switchSide('Back')">Back Side</button>
+
+    <div class="divider"></div>
+
+    <label style="font-size:12px;display:inline-flex;align-items:center;gap:4px;cursor:pointer">
+      <input type="checkbox" id="previewToggle" checked onchange="renderCanvas()" /> Live Preview
+    </label>
+
+    <div class="divider"></div>
+
+    <button class="btn" onclick="stepRecord(-1)">◀</button>
+    <span id="recordLabel" style="font-size:12px;font-weight:600;min-width:145px;text-align:center">1/3: Jordan Vance</span>
+    <button class="btn" onclick="stepRecord(1)">▶</button>
+
+    <div class="divider"></div>
+
+    <button class="btn" onclick="changeZoom(-0.1)">−</button>
+    <span id="zoomLabel" style="font-size:12px;width:44px;text-align:center">75%</span>
+    <button class="btn" onclick="changeZoom(0.1)">+</button>
+
+    <button class="btn" id="quickTourBtn" onclick="toggleCardStudioTour()" style="margin-left:auto;border-color:#38bdf8;color:#38bdf8;background:rgba(56,189,248,0.12)">✨ Quick Guided Tour</button>
+    <button class="btn" onclick="document.body.classList.toggle('light-theme')">🌓 Theme</button>
+  </div>
+
+  <!-- MAIN 3-COLUMN WORKSPACE -->
+  <div class="workspace-grid" id="dropZone">
+
+    <!-- LEFT TOOLBOX & CUSTOM ANY-PX NUDGE PAD -->
+    <div class="panel">
+      <div class="section-title">Add Card Elements</div>
+      <div class="tool-grid">
+        <button class="btn" onclick="addElement('DataField')"><span class="tag" style="background:#dc2626">DAT</span> Data Field</button>
+        <button class="btn" onclick="addElement('StaticText')"><span class="tag" style="background:#2563eb">TXT</span> Static Text</button>
+        <button class="btn" onclick="addElement('Photo')"><span class="tag" style="background:#7c3aed">PHO</span> ID Photo</button>
+        <button class="btn" onclick="addElement('Shape')"><span class="tag" style="background:#0891b2">SHP</span> Shape / Box</button>
+        <button class="btn" onclick="addElement('PillBadge')"><span class="tag" style="background:#0d9488">PIL</span> Pill Badge</button>
+        <button class="btn" onclick="addElement('Barcode1D')"><span class="tag" style="background:#d97706">BAR</span> Barcode 1D</button>
+        <button class="btn" onclick="addElement('QrCode')"><span class="tag" style="background:#4f46e5">2D</span> QR Code</button>
+        <button class="btn" onclick="addElement('SmartChip')"><span class="tag" style="background:#ca8a04">CHP</span> Smart Chip</button>
+        <button class="btn" onclick="addElement('SecuritySeal')" style="grid-column:span 2"><span class="tag" style="background:#059669">SEA</span> UV Guilloche Security Seal</button>
+      </div>
+
+      <div class="section-title">Custom Any-Px Nudge + Presets</div>
+      <div class="nudge-card">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:6px">
+          <span style="font-size:11.5px;color:var(--text-secondary)">Custom Step (px):</span>
+          <input type="number" id="nudgeInput" value="5" min="0.25" max="500" step="0.5" style="width:78px;font-weight:700" onchange="setNudgeStep(this.value)" />
+        </div>
+        <div class="preset-row">
+          <button class="preset-btn" onclick="setNudgeStep(1)">1px</button>
+          <button class="preset-btn" onclick="setNudgeStep(2)">2px</button>
+          <button class="preset-btn active" onclick="setNudgeStep(5)">5px</button>
+          <button class="preset-btn" onclick="setNudgeStep(10)">10px</button>
+          <button class="preset-btn" onclick="setNudgeStep(25)">25px</button>
+          <button class="preset-btn" onclick="setNudgeStep(50)">50px</button>
+        </div>
+        <div class="dpad">
+          <div></div>
+          <button class="btn" onclick="nudgeSelected(0, -1)">▲</button>
+          <div></div>
+          <button class="btn" onclick="nudgeSelected(-1, 0)">◀</button>
+          <button class="btn" onclick="centerSelected()" title="Center on Card">🎯</button>
+          <button class="btn" onclick="nudgeSelected(1, 0)">▶</button>
+          <div></div>
+          <button class="btn" onclick="nudgeSelected(0, 1)">▼</button>
+          <div></div>
+        </div>
+      </div>
+
+      <div class="section-title">ID Portrait &amp; Background</div>
+      <button class="btn" onclick="document.getElementById('photoUploadInput').click()">📸 Upload Cardholder Photo...</button>
+      <input type="file" id="photoUploadInput" style="display:none" accept="image/*" onchange="handlePhotoUpload(event)" />
+      <button class="btn" onclick="document.getElementById('bgUploadInput').click()">🖼 Set Card Background Image...</button>
+      <input type="file" id="bgUploadInput" style="display:none" accept="image/*" onchange="handleBgUpload(event)" />
+      <div class="prop-row" style="margin-top:4px">
+        <span>Card Surface:</span>
+        <input type="color" id="cardBgColorPicker" value="#ffffff" onchange="updateCardBgColor(this.value)" style="width:100%;height:28px;border:none;cursor:pointer" />
+      </div>
+    </div>
+
+    <!-- CENTER INTERACTIVE CR80 CANVAS -->
+    <div class="canvas-viewport">
+      <div class="card-stage-wrapper" id="stageWrapper" style="transform:scale(0.75)">
+        <svg id="cardSvg" width="1016" height="648" viewBox="0 0 1016 648" xmlns="http://www.w3.org/2000/svg"></svg>
+      </div>
+    </div>
+
+    <!-- RIGHT LAYER LIST & PROPERTY INSPECTOR -->
+    <div class="panel panel-right">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div class="section-title">Layers (Z-Order)</div>
+        <div style="display:flex;gap:4px">
+          <button class="btn" onclick="moveLayer(1)" title="Bring Forward">▲</button>
+          <button class="btn" onclick="moveLayer(-1)" title="Send Backward">▼</button>
+          <button class="btn" onclick="duplicateSelected()" title="Duplicate">📋</button>
+          <button class="btn" onclick="deleteSelected()" title="Delete" style="color:#f87171">🗑</button>
+        </div>
+      </div>
+      <div class="layer-list" id="layerList"></div>
+
+      <div class="section-title">Selected Element Inspector</div>
+      <div id="inspectorPanel">
+        <div class="prop-row"><span>Layer Name:</span><input type="text" id="propName" oninput="updateSelectedProp('name', this.value)" /></div>
+        <div class="prop-row"><span>Data Field:</span>
+          <select id="propField" onchange="updateSelectedProp('dataFieldName', this.value)">
+            <option value="FIRST">FIRST (First Name)</option>
+            <option value="LAST">LAST (Last Name)</option>
+            <option value="ID_NUM">ID_NUM (ID Number)</option>
+            <option value="CARD_NUM">CARD_NUM (Card #)</option>
+            <option value="DEPARTMENT">DEPARTMENT</option>
+            <option value="USER2">USER2 (Role / Status)</option>
+            <option value="ISSUE_DATE">ISSUE_DATE</option>
+            <option value="EXP_DATE">EXP_DATE</option>
+          </select>
+        </div>
+        <div class="prop-row"><span>Text / Value:</span><input type="text" id="propText" oninput="updateSelectedProp('text', this.value)" /></div>
+        <div class="prop-row">
+          <span>X / Y (px):</span>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px">
+            <input type="number" id="propX" oninput="updateSelectedProp('x', parseFloat(this.value)||0)" />
+            <input type="number" id="propY" oninput="updateSelectedProp('y', parseFloat(this.value)||0)" />
+          </div>
+        </div>
+        <div class="prop-row">
+          <span>W / H (px):</span>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px">
+            <input type="number" id="propW" oninput="updateSelectedProp('width', parseFloat(this.value)||20)" />
+            <input type="number" id="propH" oninput="updateSelectedProp('height', parseFloat(this.value)||20)" />
+          </div>
+        </div>
+        <div class="prop-row"><span>Font Size:</span><input type="number" id="propFontSize" oninput="updateSelectedProp('fontSize', parseFloat(this.value)||24)" /></div>
+        <div class="prop-row"><span>Text / Fill:</span><input type="color" id="propColor" oninput="updateSelectedColor(this.value)" style="width:100%;height:28px" /></div>
+        <div class="prop-row"><span>Stroke Color:</span><input type="color" id="propStroke" oninput="updateSelectedProp('strokeColor', this.value)" style="width:100%;height:28px" /></div>
+        <div class="prop-row"><span>Corner Radius:</span><input type="number" id="propRadius" min="0" max="120" oninput="updateSelectedProp('cornerRadius', parseFloat(this.value)||0)" /></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATUS BAR -->
+  <div class="statusbar">
+    <span id="statusText">Ready — PrimoIT Card Editor v3.0 Web Studio (Drop ANY .card, .cdf, .svg, .json, .png, .jpg ID card onto the window to edit)</span>
+    <span>Standard CR80: 85.60 × 53.98 mm (1016 × 648 px @ 300 DPI)</span>
+  </div>
+
+  <!-- UNIVERSAL EXPORT HUB MODAL -->
+  <div class="modal-backdrop" id="exportModal" onclick="if(event.target===this)this.style.display='none'">
+    <div class="modal">
+      <h3 style="color:var(--accent-hover);margin-bottom:4px">☁ PrimoIT Universal Export &amp; Cloud Provisioning Hub</h3>
+      <p style="font-size:12px;color:var(--text-secondary)">Export your active ID credential to physical printers, vector graphics, AWS, Microsoft Azure Entra ID, W3C OpenBadges, or Mobile Wallets:</p>
+      <div class="export-grid">
+        <button class="btn btn-accent" onclick="exportPng(1)">🖼 Export PNG — 300 DPI (1016×648)</button>
+        <button class="btn btn-accent" onclick="exportPng(2)">🖼 Export PNG — 600 DPI Ultra-HD (2032×1296)</button>
+        <button class="btn" onclick="exportJpeg()">📷 Export JPEG (300 DPI High Quality)</button>
+        <button class="btn" onclick="exportSvgFile()">📐 Export W3C Vector SVG (.svg)</button>
+        <button class="btn" onclick="exportHtml5Badge()">🖥 Export Interactive HTML5 Web Badge (.html)</button>
+        <button class="btn" onclick="print8UpSheet()">🖨 Print 8-Up US Letter Sheet / Save PDF</button>
+        <button class="btn" onclick="exportAwsJson()">☁ Export AWS Cloud Credential (.aws.json)</button>
+        <button class="btn" onclick="exportAzureJson()">🔷 Export Microsoft Azure Entra ID (.azure.json)</button>
+        <button class="btn" onclick="exportW3cVcJson()">🌐 Export W3C Verifiable Credential (.vc.json)</button>
+        <button class="btn" onclick="exportWalletJson()">📱 Export Apple &amp; Google Wallet Pass (.wallet.json)</button>
+        <button class="btn" onclick="exportCardJson()">💾 Save PrimoIT Card Layout (.card)</button>
+        <button class="btn" onclick="exportLegacyCdf()">🗂 Export Legacy RapIDcard VDS (.cdf)</button>
+      </div>
+      <div style="text-align:right;margin-top:16px">
+        <button class="btn" onclick="document.getElementById('exportModal').style.display='none'">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ==================== STATE & SAMPLE ROSTER ====================
+    const roster = [
+      { profileName: "Jordan Vance (Student)", FIRST: "JORDAN A.", LAST: "VANCE", ID_NUM: "202688412", CARD_NUM: "00084920", DEPARTMENT: "Computer Science", USER2: "UNDERGRADUATE", ISSUE_DATE: "08/24/2026", EXP_DATE: "05/30/2030" },
+      { profileName: "Dr. Elena Rostova (Faculty)", FIRST: "ELENA M.", LAST: "ROSTOVA", ID_NUM: "900148291", CARD_NUM: "00010482", DEPARTMENT: "Cybersecurity Institute", USER2: "FACULTY SENATOR", ISSUE_DATE: "01/15/2026", EXP_DATE: "12/31/2031" },
+      { profileName: "Marcus Sterling (Staff)", FIRST: "MARCUS T.", LAST: "STERLING", ID_NUM: "740291844", CARD_NUM: "00059104", DEPARTMENT: "Cloud Infrastructure", USER2: "STAFF ENGINEER", ISSUE_DATE: "03/10/2026", EXP_DATE: "03/10/2031" }
+    ];
+    let currentRecordIdx = 0;
+    let activeSide = "Front";
+    let zoomLevel = 0.75;
+    let nudgeStep = 5;
+    let selectedId = null;
+    let customPortraitDataUrl = null;
+
+    let cardDoc = {
+      name: "VDS University - Student ID",
+      width: 1016,
+      height: 648,
+      frontBgColor: "#ffffff",
+      backBgColor: "#f8fafc",
+      frontBgImage: null,
+      frontElements: [],
+      backElements: []
+    };
+
+    function createDefaultBackSide() {
+      return [
+        { id: "b-mag", name: "ISO 7811 HiCo Magnetic Stripe", type: "Shape", x: 0, y: 54, width: 1016, height: 126, fillColor: "#111827", strokeColor: "#000000", cornerRadius: 0 },
+        { id: "b-sig", name: "Authorized Signature Strip", type: "Shape", x: 60, y: 225, width: 560, height: 78, fillColor: "#f1f5f9", strokeColor: "#94a3b8", cornerRadius: 4 },
+        { id: "b-txt", name: "Return Notice", type: "StaticText", x: 60, y: 335, width: 880, height: 42, text: "PROPERTY OF PRIMOIT ENTERPRISE — IF FOUND PLEASE RETURN TO SECURITY DESK", fontSize: 20, color: "#334155" },
+        { id: "b-seal", name: "Back Security Seal", type: "SecuritySeal", x: 760, y: 210, width: 145, height: 145, color: "#0284c7" },
+        { id: "b-bar", name: "Back Verification Barcode", type: "Barcode1D", x: 220, y: 470, width: 576, height: 118, dataFieldName: "ID_NUM", text: "202688412", color: "#000000" }
+      ];
+    }
+
+    function loadStarterTemplate(kind) {
+      cardDoc.backElements = createDefaultBackSide();
+      cardDoc.frontBgImage = null;
+      if (kind === "vds") {
+        cardDoc.name = "VDS University - Student ID";
+        cardDoc.frontBgColor = "#ffffff";
+        cardDoc.frontElements = [
+          { id: "e1", name: "University Header Banner", type: "Shape", x: 0, y: 0, width: 1016, height: 162, fillColor: "#991b1b", strokeColor: "#991b1b", cornerRadius: 0 },
+          { id: "e2", name: "Gold Accent Bar", type: "Shape", x: 0, y: 162, width: 1016, height: 14, fillColor: "#eab308", strokeColor: "#eab308", cornerRadius: 0 },
+          { id: "e3", name: "University Title", type: "StaticText", x: 38, y: 42, width: 720, height: 60, text: "VDS STATE UNIVERSITY", fontSize: 46, color: "#ffffff" },
+          { id: "e4", name: "Campus Subtitle", type: "StaticText", x: 40, y: 104, width: 520, height: 34, text: "OFFICIAL CAMPUS CREDENTIAL", fontSize: 21, color: "#fef08a" },
+          { id: "e5", name: "First Name", type: "DataField", dataFieldName: "FIRST", x: 40, y: 235, width: 290, height: 52, text: "JORDAN A.", fontSize: 36, color: "#0f172a" },
+          { id: "e6", name: "Last Name", type: "DataField", dataFieldName: "LAST", x: 325, y: 235, width: 310, height: 52, text: "VANCE", fontSize: 36, color: "#991b1b" },
+          { id: "e7", name: "ID Number", type: "DataField", dataFieldName: "ID_NUM", x: 40, y: 305, width: 480, height: 42, text: "202688412", fontSize: 28, color: "#1e293b" },
+          { id: "e8", name: "Department", type: "DataField", dataFieldName: "DEPARTMENT", x: 40, y: 360, width: 480, height: 38, text: "Computer Science", fontSize: 24, color: "#475569" },
+          { id: "e9", name: "Classification Pill", type: "PillBadge", dataFieldName: "USER2", x: 40, y: 416, width: 290, height: 46, text: "UNDERGRADUATE", fontSize: 21, fillColor: "#1e3a8a", color: "#ffffff", cornerRadius: 23 },
+          { id: "e10", name: "Student Photo", type: "Photo", x: 675, y: 202, width: 290, height: 356, strokeColor: "#0f172a", cornerRadius: 8 },
+          { id: "e11", name: "Library Barcode", type: "Barcode1D", dataFieldName: "ID_NUM", x: 40, y: 492, width: 420, height: 112, text: "202688412", color: "#000000" }
+        ];
+      } else if (kind === "corp") {
+        cardDoc.name = "PrimoIT Enterprise Employee Badge";
+        cardDoc.frontBgColor = "#f8fafc";
+        cardDoc.frontElements = [
+          { id: "c1", name: "Dark Header", type: "Shape", x: 0, y: 0, width: 1016, height: 150, fillColor: "#0f172a", strokeColor: "#0f172a", cornerRadius: 0 },
+          { id: "c2", name: "Blue Strip", type: "Shape", x: 0, y: 150, width: 1016, height: 12, fillColor: "#2563eb", strokeColor: "#2563eb", cornerRadius: 0 },
+          { id: "c3", name: "Company Title", type: "StaticText", x: 42, y: 44, width: 650, height: 54, text: "PRIMOIT GLOBAL SYSTEMS", fontSize: 38, color: "#ffffff" },
+          { id: "c4", name: "Employee Photo", type: "Photo", x: 52, y: 205, width: 270, height: 345, strokeColor: "#2563eb", cornerRadius: 14 },
+          { id: "c5", name: "First Name", type: "DataField", dataFieldName: "FIRST", x: 360, y: 215, width: 440, height: 50, text: "JORDAN A.", fontSize: 36, color: "#0f172a" },
+          { id: "c6", name: "Last Name", type: "DataField", dataFieldName: "LAST", x: 360, y: 268, width: 440, height: 50, text: "VANCE", fontSize: 38, color: "#2563eb" },
+          { id: "c7", name: "Department", type: "DataField", dataFieldName: "DEPARTMENT", x: 360, y: 334, width: 460, height: 40, text: "Cloud Infrastructure", fontSize: 25, color: "#475569" },
+          { id: "c8", name: "Role Pill", type: "PillBadge", dataFieldName: "USER2", x: 360, y: 392, width: 290, height: 46, text: "STAFF ENGINEER", fontSize: 20, fillColor: "#059669", color: "#ffffff", cornerRadius: 23 },
+          { id: "c9", name: "QR Credential", type: "QrCode", dataFieldName: "ID_NUM", x: 810, y: 430, width: 155, height: 155, text: "202688412", color: "#0f172a" }
+        ];
+      } else if (kind === "visitor") {
+        cardDoc.name = "Facility Visitor Security Pass";
+        cardDoc.frontBgColor = "#ffffff";
+        cardDoc.frontElements = [
+          { id: "v1", name: "Visitor Red Banner", type: "Shape", x: 0, y: 0, width: 1016, height: 170, fillColor: "#dc2626", strokeColor: "#dc2626", cornerRadius: 0 },
+          { id: "v2", name: "Visitor Header", type: "StaticText", x: 44, y: 48, width: 680, height: 70, text: "VISITOR — ESCORT REQUIRED", fontSize: 44, color: "#ffffff" },
+          { id: "v3", name: "Visitor Photo", type: "Photo", x: 54, y: 210, width: 260, height: 330, strokeColor: "#dc2626", cornerRadius: 12 },
+          { id: "v4", name: "Visitor Name", type: "DataField", dataFieldName: "FIRST", x: 355, y: 230, width: 520, height: 56, text: "JORDAN A.", fontSize: 40, color: "#0f172a" },
+          { id: "v5", name: "Visitor Last", type: "DataField", dataFieldName: "LAST", x: 355, y: 290, width: 520, height: 56, text: "VANCE", fontSize: 40, color: "#dc2626" },
+          { id: "v6", name: "Barcode", type: "Barcode1D", dataFieldName: "ID_NUM", x: 355, y: 445, width: 520, height: 110, text: "202688412", color: "#000000" }
+        ];
+      } else {
+        cardDoc.name = "Zero-Trust Smart Chip & Cloud ID";
+        cardDoc.frontBgColor = "#0f172a";
+        cardDoc.frontElements = [
+          { id: "s1", name: "Cyber Accent Banner", type: "Shape", x: 0, y: 0, width: 1016, height: 132, fillColor: "#1e3a8a", strokeColor: "#3b82f6", cornerRadius: 0 },
+          { id: "s2", name: "Title", type: "StaticText", x: 40, y: 38, width: 720, height: 52, text: "PRIMOIT ZERO-TRUST CLOUD ID", fontSize: 36, color: "#38bdf8" },
+          { id: "s3", name: "ISO 7816 Smart Chip", type: "SmartChip", x: 64, y: 225, width: 135, height: 112 },
+          { id: "s4", name: "Guilloche Seal", type: "SecuritySeal", x: 500, y: 195, width: 145, height: 145, color: "#38bdf8" },
+          { id: "s5", name: "First Name", type: "DataField", dataFieldName: "FIRST", x: 64, y: 375, width: 480, height: 48, text: "JORDAN A.", fontSize: 34, color: "#f8fafc" },
+          { id: "s6", name: "Last Name", type: "DataField", dataFieldName: "LAST", x: 64, y: 425, width: 480, height: 48, text: "VANCE", fontSize: 36, color: "#38bdf8" },
+          { id: "s7", name: "Holder Photo", type: "Photo", x: 690, y: 175, width: 270, height: 345, strokeColor: "#38bdf8", cornerRadius: 14 },
+          { id: "s8", name: "QR Code", type: "QrCode", dataFieldName: "ID_NUM", x: 515, y: 465, width: 140, height: 140, text: "202688412", color: "#38bdf8" }
+        ];
+      }
+      selectedId = cardDoc.frontElements[0]?.id || null;
+      renderCanvas();
+    }
+
+    function activeElements() {
+      return activeSide === "Front" ? cardDoc.frontElements : cardDoc.backElements;
+    }
+
+    function resolveText(el) {
+      const rec = roster[currentRecordIdx];
+      const isPrev = document.getElementById("previewToggle").checked;
+      if (el.type === "DataField" || el.type === "PillBadge" || el.type === "Barcode1D" || el.type === "QrCode") {
+        const key = el.dataFieldName || "ID_NUM";
+        return isPrev ? (rec[key] || el.text || key) : `{${key}}`;
+      }
+      return el.text || el.name || "TEXT";
+    }
+
+    // ==================== SVG CANVAS RENDERER ====================
+    function renderCanvas() {
+      const svg = document.getElementById("cardSvg");
+      const bgCol = activeSide === "Front" ? cardDoc.frontBgColor : cardDoc.backBgColor;
+      document.getElementById("cardBgColorPicker").value = bgCol;
+
+      let html = `<rect x="0" y="0" width="${cardDoc.width}" height="${cardDoc.height}" rx="28" fill="${bgCol}" />`;
+      if (activeSide === "Front" && cardDoc.frontBgImage) {
+        html += `<image href="${cardDoc.frontBgImage}" x="0" y="0" width="${cardDoc.width}" height="${cardDoc.height}" preserveAspectRatio="none" />`;
+      }
+
+      const els = activeElements();
+      els.forEach(el => {
+        const isSel = el.id === selectedId;
+        const val = resolveText(el);
+        html += `<g data-id="${el.id}" transform="translate(${el.x},${el.y})" style="cursor:move" onmousedown="startDrag(event, '${el.id}')">`;
+
+        if (el.type === "Shape") {
+          html += `<rect width="${el.width}" height="${el.height}" rx="${el.cornerRadius||0}" fill="${el.fillColor||'#2563eb'}" stroke="${el.strokeColor||'none'}" stroke-width="2" />`;
+        } else if (el.type === "PillBadge") {
+          const rx = el.height / 2;
+          html += `<rect width="${el.width}" height="${el.height}" rx="${rx}" fill="${el.fillColor||'#1e3a8a'}" />`;
+          html += `<text x="${el.width/2}" y="${el.height*0.67}" font-family="Segoe UI, Arial" font-size="${el.fontSize||20}" font-weight="bold" fill="${el.color||'#ffffff'}" text-anchor="middle">${escapeXml(val)}</text>`;
+        } else if (el.type === "StaticText" || el.type === "DataField") {
+          html += `<text x="4" y="${(el.fontSize||30)*0.88}" font-family="Segoe UI, Arial" font-size="${el.fontSize||30}" font-weight="bold" fill="${el.color||'#0f172a'}">${escapeXml(val)}</text>`;
+        } else if (el.type === "Photo") {
+          html += `<rect width="${el.width}" height="${el.height}" rx="${el.cornerRadius||8}" fill="#e2e8f0" stroke="${el.strokeColor||'#1e293b'}" stroke-width="4" />`;
+          if (customPortraitDataUrl) {
+            html += `<image href="${customPortraitDataUrl}" x="2" y="2" width="${el.width-4}" height="${el.height-4}" preserveAspectRatio="xMidYMid slice" />`;
+          } else {
+            const cx = el.width / 2;
+            html += `<circle cx="${cx}" cy="${el.height*0.36}" r="${Math.min(el.width,el.height)*0.21}" fill="#64748b" />`;
+            html += `<path d="M ${el.width*0.14} ${el.height*0.95} Q ${cx} ${el.height*0.58} ${el.width*0.86} ${el.height*0.95} Z" fill="#334155" />`;
+          }
+        } else if (el.type === "Barcode1D") {
+          html += `<rect width="${el.width}" height="${el.height}" rx="4" fill="#ffffff" stroke="#cbd5e1" />`;
+          const bars = 42;
+          const bw = (el.width - 28) / bars;
+          for (let i = 0; i < bars; i++) {
+            if ((i * 7 + val.charCodeAt(i % val.length)) % 3 !== 0) {
+              const w = (i % 4 === 0) ? bw * 1.4 : bw * 0.65;
+              html += `<rect x="${14 + i * bw}" y="12" width="${w.toFixed(1)}" height="${el.height - 38}" fill="${el.color||'#000000'}" />`;
+            }
+          }
+          html += `<text x="${el.width/2}" y="${el.height - 8}" font-family="Consolas, monospace" font-size="16" font-weight="bold" fill="#000" text-anchor="middle">*${escapeXml(val)}*</text>`;
+        } else if (el.type === "QrCode") {
+          html += `<rect width="${el.width}" height="${el.height}" rx="6" fill="#ffffff" stroke="#cbd5e1" />`;
+          const cells = 11;
+          const cw = (el.width - 20) / cells;
+          for (let r = 0; r < cells; r++) {
+            for (let c = 0; c < cells; c++) {
+              const isFinder = (r < 3 && c < 3) || (r < 3 && c >= cells - 3) || (r >= cells - 3 && c < 3);
+              if (isFinder || ((r * 13 + c * 7 + val.length) % 3 === 0)) {
+                html += `<rect x="${10 + c * cw}" y="${10 + r * cw}" width="${cw - 1}" height="${cw - 1}" fill="${el.color||'#0f172a'}" />`;
+              }
+            }
+          }
+        } else if (el.type === "SmartChip") {
+          html += `<rect width="${el.width}" height="${el.height}" rx="14" fill="#eab308" stroke="#a16207" stroke-width="3" />`;
+          html += `<line x1="0" y1="${el.height*0.33}" x2="${el.width}" y2="${el.height*0.33}" stroke="#713f12" stroke-width="2" />`;
+          html += `<line x1="0" y1="${el.height*0.66}" x2="${el.width}" y2="${el.height*0.66}" stroke="#713f12" stroke-width="2" />`;
+          html += `<rect x="${el.width*0.32}" y="${el.height*0.2}" width="${el.width*0.36}" height="${el.height*0.6}" rx="6" fill="none" stroke="#713f12" stroke-width="2" />`;
+        } else if (el.type === "SecuritySeal") {
+          const r = Math.min(el.width, el.height) / 2;
+          html += `<circle cx="${r}" cy="${r}" r="${r-4}" fill="none" stroke="${el.color||'#0284c7'}" stroke-width="2.5" stroke-dasharray="6,4" />`;
+          html += `<circle cx="${r}" cy="${r}" r="${r*0.72}" fill="none" stroke="${el.color||'#0284c7'}" stroke-width="1.5" />`;
+          html += `<text x="${r}" y="${r+6}" font-family="Segoe UI" font-size="15" font-weight="bold" fill="${el.color||'#0284c7'}" text-anchor="middle">VERIFIED</text>`;
+        }
+
+        if (isSel) {
+          html += `<rect x="-3" y="-3" width="${el.width+6}" height="${el.height+6}" fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-dasharray="6,4" />`;
+        }
+        html += `</g>`;
+      });
+
+      svg.innerHTML = html;
+      renderLayerList();
+      syncInspector();
+    }
+
+    function renderLayerList() {
+      const list = document.getElementById("layerList");
+      const els = [...activeElements()].reverse();
+      list.innerHTML = els.map(el => `
+        <div class="layer-item ${el.id === selectedId ? 'selected' : ''}" onclick="selectLayer('${el.id}')">
+          <span>${escapeXml(el.name)}</span>
+          <span style="font-size:10px;color:var(--text-secondary)">${el.type}</span>
+        </div>
+      `).join("");
+    }
+
+    function selectLayer(id) {
+      selectedId = id;
+      renderCanvas();
+    }
+
+    function getSelected() {
+      return activeElements().find(e => e.id === selectedId) || null;
+    }
+
+    function syncInspector() {
+      const el = getSelected();
+      if (!el) return;
+      document.getElementById("propName").value = el.name || "";
+      document.getElementById("propField").value = el.dataFieldName || "FIRST";
+      document.getElementById("propText").value = el.text || "";
+      document.getElementById("propX").value = Math.round(el.x || 0);
+      document.getElementById("propY").value = Math.round(el.y || 0);
+      document.getElementById("propW").value = Math.round(el.width || 100);
+      document.getElementById("propH").value = Math.round(el.height || 40);
+      document.getElementById("propFontSize").value = el.fontSize || 28;
+      document.getElementById("propColor").value = (el.color || el.fillColor || "#0f172a").slice(0, 7);
+      document.getElementById("propStroke").value = (el.strokeColor || "#0f172a").slice(0, 7);
+      document.getElementById("propRadius").value = el.cornerRadius || 0;
+    }
+
+    function updateSelectedProp(prop, val) {
+      const el = getSelected();
+      if (!el) return;
+      el[prop] = val;
+      renderCanvas();
+    }
+
+    function updateSelectedColor(val) {
+      const el = getSelected();
+      if (!el) return;
+      if (el.type === "Shape" || el.type === "PillBadge") el.fillColor = val;
+      else el.color = val;
+      renderCanvas();
+    }
+
+    // ==================== DRAGGING & NUDGING ====================
+    let dragTarget = null, dragStartX = 0, dragStartY = 0, elemOrigX = 0, elemOrigY = 0;
+
+    function startDrag(e, id) {
+      e.stopPropagation();
+      selectedId = id;
+      dragTarget = getSelected();
+      if (!dragTarget) return;
+      dragStartX = e.clientX;
+      dragStartY = e.clientY;
+      elemOrigX = dragTarget.x;
+      elemOrigY = dragTarget.y;
+      renderCanvas();
+    }
+
+    window.addEventListener("mousemove", e => {
+      if (!dragTarget) return;
+      const dx = (e.clientX - dragStartX) / zoomLevel;
+      const dy = (e.clientY - dragStartY) / zoomLevel;
+      dragTarget.x = Math.round(elemOrigX + dx);
+      dragTarget.y = Math.round(elemOrigY + dy);
+      renderCanvas();
+    });
+
+    window.addEventListener("mouseup", () => { dragTarget = null; });
+
+    function setNudgeStep(val) {
+      nudgeStep = Math.max(0.25, Math.min(500, parseFloat(val) || 5));
+      document.getElementById("nudgeInput").value = nudgeStep;
+      document.querySelectorAll(".preset-btn").forEach(b => {
+        b.classList.toggle("active", parseFloat(b.textContent) === nudgeStep);
+      });
+    }
+
+    function nudgeSelected(dxSign, dySign) {
+      const el = getSelected();
+      if (!el) return;
+      el.x = Math.round((el.x + dxSign * nudgeStep) * 100) / 100;
+      el.y = Math.round((el.y + dySign * nudgeStep) * 100) / 100;
+      renderCanvas();
+    }
+
+    function centerSelected() {
+      const el = getSelected();
+      if (!el) return;
+      el.x = Math.round((cardDoc.width - el.width) / 2);
+      el.y = Math.round((cardDoc.height - el.height) / 2);
+      renderCanvas();
+    }
+
+    window.addEventListener("keydown", e => {
+      if (["INPUT", "SELECT", "TEXTAREA"].includes(document.activeElement?.tagName)) return;
+      if (e.key === "ArrowLeft") { e.preventDefault(); nudgeSelected(-1, 0); }
+      if (e.key === "ArrowRight") { e.preventDefault(); nudgeSelected(1, 0); }
+      if (e.key === "ArrowUp") { e.preventDefault(); nudgeSelected(0, -1); }
+      if (e.key === "ArrowDown") { e.preventDefault(); nudgeSelected(0, 1); }
+      if (e.key === "Delete") { deleteSelected(); }
+    });
+
+    // ==================== ADD / DELETE / LAYER OPS ====================
+    function addElement(type) {
+      const id = "el-" + Date.now();
+      const newEl = { id, name: type + " Layer", type, x: 120, y: 180, width: 280, height: 55, fontSize: 30, color: "#0f172a", fillColor: "#2563eb", strokeColor: "#0f172a", cornerRadius: 8, text: "SAMPLE TEXT", dataFieldName: "FIRST" };
+      if (type === "Photo") { newEl.width = 240; newEl.height = 310; }
+      if (type === "Barcode1D") { newEl.width = 420; newEl.height = 105; newEl.dataFieldName = "ID_NUM"; }
+      if (type === "QrCode" || type === "SecuritySeal") { newEl.width = 145; newEl.height = 145; newEl.dataFieldName = "ID_NUM"; }
+      if (type === "SmartChip") { newEl.width = 130; newEl.height = 108; }
+      activeElements().push(newEl);
+      selectedId = id;
+      renderCanvas();
+    }
+
+    function deleteSelected() {
+      const arr = activeElements();
+      const idx = arr.findIndex(e => e.id === selectedId);
+      if (idx >= 0) {
+        arr.splice(idx, 1);
+        selectedId = arr[arr.length - 1]?.id || null;
+        renderCanvas();
+      }
+    }
+
+    function duplicateSelected() {
+      const el = getSelected();
+      if (!el) return;
+      const copy = JSON.parse(JSON.stringify(el));
+      copy.id = "el-" + Date.now();
+      copy.name = el.name + " Copy";
+      copy.x += 20;
+      copy.y += 20;
+      activeElements().push(copy);
+      selectedId = copy.id;
+      renderCanvas();
+    }
+
+    function moveLayer(dir) {
+      const arr = activeElements();
+      const idx = arr.findIndex(e => e.id === selectedId);
+      const target = idx + dir;
+      if (idx >= 0 && target >= 0 && target < arr.length) {
+        [arr[idx], arr[target]] = [arr[target], arr[idx]];
+        renderCanvas();
+      }
+    }
+
+    function switchSide(side) {
+      activeSide = side;
+      document.getElementById("frontSideBtn").style.borderColor = side === "Front" ? "var(--accent)" : "var(--border)";
+      document.getElementById("backSideBtn").style.borderColor = side === "Back" ? "var(--accent)" : "var(--border)";
+      selectedId = activeElements()[0]?.id || null;
+      renderCanvas();
+    }
+
+    function stepRecord(delta) {
+      currentRecordIdx = (currentRecordIdx + delta + roster.length) % roster.length;
+      const rec = roster[currentRecordIdx];
+      document.getElementById("recordLabel").textContent = `${currentRecordIdx + 1}/${roster.length}: ${rec.FIRST} ${rec.LAST}`;
+      renderCanvas();
+    }
+
+    function changeZoom(delta) {
+      zoomLevel = Math.max(0.35, Math.min(1.5, Math.round((zoomLevel + delta) * 100) / 100));
+      document.getElementById("zoomLabel").textContent = Math.round(zoomLevel * 100) + "%";
+      document.getElementById("stageWrapper").style.transform = `scale(${zoomLevel})`;
+    }
+
+    function updateCardBgColor(val) {
+      if (activeSide === "Front") cardDoc.frontBgColor = val;
+      else cardDoc.backBgColor = val;
+      renderCanvas();
+    }
+
+    // ==================== OPEN ANY ID CARD FILE (.card, .cdf, .svg, .json, .png, .jpg, .bmp) ====================
+    function handleOpenAnyCard(event) {
+      const file = event.target.files?.[0];
+      if (file) openCardFileObject(file);
+    }
+
+    window.addEventListener("dragover", e => e.preventDefault());
+    window.addEventListener("drop", e => {
+      e.preventDefault();
+      const file = e.dataTransfer?.files?.[0];
+      if (file) openCardFileObject(file);
+    });
+
+    function openCardFileObject(file) {
+      const name = file.name.toLowerCase();
+      if (name.endsWith(".png") || name.endsWith(".jpg") || name.endsWith(".jpeg") || name.endsWith(".bmp") || name.endsWith(".webp")) {
+        const reader = new FileReader();
+        reader.onload = ev => {
+          cardDoc.name = file.name.replace(/\.[^.]+$/, "") + " (Editable ID)";
+          cardDoc.frontBgImage = ev.target.result;
+          cardDoc.frontElements = [
+            { id: "ov-patch", name: "Redaction / Text Patch Box", type: "Shape", x: 330, y: 210, width: 420, height: 155, fillColor: "#ffffff", strokeColor: "#cbd5e1", cornerRadius: 8 },
+            { id: "ov-first", name: "Editable First Name", type: "DataField", dataFieldName: "FIRST", x: 345, y: 222, width: 380, height: 44, text: "JORDAN A.", fontSize: 30, color: "#0f172a" },
+            { id: "ov-last", name: "Editable Last Name", type: "DataField", dataFieldName: "LAST", x: 345, y: 268, width: 380, height: 44, text: "VANCE", fontSize: 30, color: "#1e3a8a" },
+            { id: "ov-id", name: "Editable ID Number", type: "DataField", dataFieldName: "ID_NUM", x: 345, y: 318, width: 360, height: 36, text: "202688412", fontSize: 22, color: "#334155" },
+            { id: "ov-photo", name: "Replacement Photo Overlay", type: "Photo", x: 48, y: 150, width: 245, height: 315, strokeColor: "#2563eb", cornerRadius: 10 }
+          ];
+          selectedId = "ov-first";
+          setStatus(`Opened ID Card Image '${file.name}' with Editable Overlay Layer Kit`);
+          renderCanvas();
+        };
+        reader.readAsDataURL(file);
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = ev => {
+        const text = ev.target.result;
+        if (name.endsWith(".cdf") || name.endsWith(".ini") || text.includes("[Header]")) {
+          parseLegacyCdfText(text, file.name);
+        } else {
+          try {
+            const j = JSON.parse(text);
+            if (Array.isArray(j.elements) || Array.isArray(j.frontElements)) {
+              cardDoc.name = j.name || file.name;
+              cardDoc.frontBgColor = j.backgroundColor || j.frontBgColor || "#ffffff";
+              const srcEls = j.elements || j.frontElements;
+              cardDoc.frontElements = srcEls.map((e, idx) => ({
+                id: e.id || ("imp-" + idx),
+                name: e.name || ("Layer " + idx),
+                type: e.elementType === "PhotoPlaceholder" ? "Photo" : (e.shapeKind === "PillBadge" ? "PillBadge" : (e.elementType || e.type || "StaticText")),
+                x: e.x || 40,
+                y: e.y || 40,
+                width: e.width || 220,
+                height: e.height || 50,
+                text: e.text || e.sampleFallbackText || "",
+                dataFieldName: e.dataFieldName || "FIRST",
+                fontSize: e.fontSize || 28,
+                color: (e.foregroundColor || e.color || "#0f172a").replace(/^#[0-9a-fA-F]{2}([0-9a-fA-F]{6})$/, "#$1"),
+                fillColor: (e.fillColor || "#2563eb").replace(/^#[0-9a-fA-F]{2}([0-9a-fA-F]{6})$/, "#$1"),
+                strokeColor: (e.strokeColor || "#0f172a").replace(/^#[0-9a-fA-F]{2}([0-9a-fA-F]{6})$/, "#$1"),
+                cornerRadius: e.cornerRadius || 0
+              }));
+              selectedId = cardDoc.frontElements[0]?.id || null;
+              setStatus(`Opened '${file.name}' (${cardDoc.frontElements.length} editable layers)`);
+              renderCanvas();
+            }
+          } catch (err) {
+            setStatus(`Loaded '${file.name}'`);
+          }
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    function parseLegacyCdfText(text, fileName) {
+      const lines = text.split(/\r?\n/);
+      let sec = "";
+      const map = {};
+      lines.forEach(l => {
+        l = l.trim();
+        if (!l || l.startsWith(";")) return;
+        if (l.startsWith("[") && l.endsWith("]")) { sec = l.slice(1, -1); map[sec] = {}; return; }
+        const eq = l.indexOf("=");
+        if (eq > 0 && sec) map[sec][l.slice(0, eq).trim()] = l.slice(eq + 1).trim();
+      });
+      cardDoc.name = fileName.replace(/\.[^.]+$/, "");
+      cardDoc.frontElements = [];
+      Object.entries(map).forEach(([k, p], idx) => {
+        if (k === "Header" || k === "Encode") return;
+        const xywh = (p.XYWH || "40,40,200,50").split(",").map(Number);
+        if (k.startsWith("Photo")) {
+          cardDoc.frontElements.push({ id: "cdf-" + idx, name: p.Name || k, type: "Photo", x: xywh[0], y: xywh[1], width: xywh[2], height: xywh[3], strokeColor: "#0f172a", cornerRadius: 4 });
+        } else if (k.startsWith("Text")) {
+          cardDoc.frontElements.push({ id: "cdf-" + idx, name: p.Name || k, type: "StaticText", x: xywh[0], y: xywh[1], width: xywh[2], height: xywh[3], text: p.String || k, fontSize: (parseFloat(p.Size)||12)*3, color: "#0f172a" });
+        } else if (k.startsWith("Data")) {
+          const isBar = (p.Font || "").toUpperCase().includes("39") || (p.Font || "").toUpperCase().includes("WASP");
+          cardDoc.frontElements.push({ id: "cdf-" + idx, name: p.Name || k, type: isBar ? "Barcode1D" : "DataField", dataFieldName: p.DBField || "ID_NUM", x: xywh[0], y: xywh[1], width: xywh[2], height: xywh[3], text: p.SampleText || "", fontSize: (parseFloat(p.Size)||12)*3, color: "#0f172a" });
+        }
+      });
+      selectedId = cardDoc.frontElements[0]?.id || null;
+      setStatus(`Imported Legacy VDS CDF '${fileName}' (${cardDoc.frontElements.length} elements)`);
+      renderCanvas();
+    }
+
+    function handlePhotoUpload(e) {
+      const f = e.target.files?.[0];
+      if (!f) return;
+      const r = new FileReader();
+      r.onload = ev => { customPortraitDataUrl = ev.target.result; renderCanvas(); setStatus(`Loaded portrait photo '${f.name}'`); };
+      r.readAsDataURL(f);
+    }
+
+    function handleBgUpload(e) {
+      const f = e.target.files?.[0];
+      if (!f) return;
+      const r = new FileReader();
+      r.onload = ev => { cardDoc.frontBgImage = ev.target.result; renderCanvas(); setStatus(`Loaded background image '${f.name}'`); };
+      r.readAsDataURL(f);
+    }
+
+    // ==================== UNIVERSAL EXPORTS (PNG, JPG, SVG, HTML5, AWS, AZURE, W3C, WALLET, .CARD, .CDF) ====================
+    function openExportModal() { document.getElementById("exportModal").style.display = "flex"; }
+
+    function getCleanSvgMarkup() {
+      const prevSel = selectedId;
+      selectedId = null;
+      renderCanvas();
+      const svgEl = document.getElementById("cardSvg");
+      const markup = new XMLSerializer().serializeToString(svgEl);
+      selectedId = prevSel;
+      renderCanvas();
+      return markup;
+    }
+
+    function exportPng(scale = 1) {
+      const markup = getCleanSvgMarkup();
+      const img = new Image();
+      const blob = new Blob([markup], { type: "image/svg+xml;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        canvas.width = cardDoc.width * scale;
+        canvas.height = cardDoc.height * scale;
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        URL.revokeObjectURL(url);
+        downloadDataUrl(canvas.toDataURL("image/png"), `${sanitize(cardDoc.name)}_${scale===2?'600dpi':'300dpi'}.png`);
+      };
+      img.src = url;
+    }
+
+    function exportJpeg() {
+      const markup = getCleanSvgMarkup();
+      const img = new Image();
+      const blob = new Blob([markup], { type: "image/svg+xml;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        canvas.width = cardDoc.width;
+        canvas.height = cardDoc.height;
+        const ctx = canvas.getContext("2d");
+        ctx.fillStyle = "#ffffff";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, 0, 0);
+        URL.revokeObjectURL(url);
+        downloadDataUrl(canvas.toDataURL("image/jpeg", 0.96), `${sanitize(cardDoc.name)}_300dpi.jpg`);
+      };
+      img.src = url;
+    }
+
+    function exportSvgFile() {
+      downloadText(getCleanSvgMarkup(), `${sanitize(cardDoc.name)}.svg`, "image/svg+xml");
+    }
+
+    function exportHtml5Badge() {
+      const svg = getCleanSvgMarkup();
+      const rec = roster[currentRecordIdx];
+      const html = `<!DOCTYPE html><html><head><meta charset="utf-8"><title>${cardDoc.name} — PrimoIT Web Badge</title>
+      <style>body{background:#0f172a;color:#f8fafc;font-family:'Segoe UI',sans-serif;display:flex;flex-direction:column;align-items:center;padding:40px}
+      .card{box-shadow:0 25px 60px rgba(0,0,0,0.6);border-radius:22px;overflow:hidden;max-width:680px;transition:transform .25s}
+      .card:hover{transform:perspective(900px) rotateY(4deg) scale(1.02)}</style></head>
+      <body><h2>${cardDoc.name} — Verified PrimoIT Web Credential</h2><p style="color:#94a3b8;margin-bottom:20px">Holder: ${rec.FIRST} ${rec.LAST} (${rec.ID_NUM})</p>
+      <div class="card">${svg}</div></body></html>`;
+      downloadText(html, `${sanitize(cardDoc.name)}_WebBadge.html`, "text/html");
+    }
+
+    function exportAwsJson() {
+      const rec = roster[currentRecordIdx];
+      const payload = {
+        schema: "primoit.aws.credential.v3",
+        generatedUtc: new Date().toISOString(),
+        cognitoUserAttributes: { given_name: rec.FIRST, family_name: rec.LAST, "custom:employee_id": rec.ID_NUM, "custom:department": rec.DEPARTMENT, "custom:role": rec.USER2 },
+        iotCoreSmartCardShadow: { cardNumber: rec.CARD_NUM, status: "ACTIVE", clearance: rec.USER2 },
+        dynamoDbItem: rec
+      };
+      downloadText(JSON.stringify(payload, null, 2), `${sanitize(cardDoc.name)}.aws.json`, "application/json");
+    }
+
+    function exportAzureJson() {
+      const rec = roster[currentRecordIdx];
+      const payload = {
+        schema: "primoit.azure.entra.verifiedid.v3",
+        generatedUtc: new Date().toISOString(),
+        entraVerifiedIdContract: { display: { card: { title: cardDoc.name, issuedBy: "PrimoIT Enterprise" } }, claims: rec },
+        microsoftGraphUser: { givenName: rec.FIRST, surname: rec.LAST, employeeId: rec.ID_NUM, department: rec.DEPARTMENT, jobTitle: rec.USER2 }
+      };
+      downloadText(JSON.stringify(payload, null, 2), `${sanitize(cardDoc.name)}.azure.json`, "application/json");
+    }
+
+    function exportW3cVcJson() {
+      const rec = roster[currentRecordIdx];
+      const payload = {
+        "@context": ["https://www.w3.org/ns/credentials/v2", "https://purl.imsglobal.org/spec/ob/v3p0/context-3.0.3.json"],
+        type: ["VerifiableCredential", "OpenBadgeCredential"],
+        issuer: { id: "did:web:primoit.enterprise", name: "PrimoIT Card Editor v3.0" },
+        validFrom: new Date().toISOString(),
+        credentialSubject: { id: `urn:uuid:${rec.ID_NUM}`, givenName: rec.FIRST, familyName: rec.LAST, department: rec.DEPARTMENT, role: rec.USER2 }
+      };
+      downloadText(JSON.stringify(payload, null, 2), `${sanitize(cardDoc.name)}.vc.json`, "application/json");
+    }
+
+    function exportWalletJson() {
+      const rec = roster[currentRecordIdx];
+      const payload = {
+        formatVersion: 1,
+        passTypeIdentifier: "pass.com.primoit.idbadge",
+        organizationName: cardDoc.name,
+        serialNumber: rec.ID_NUM,
+        generic: {
+          primaryFields: [{ key: "name", label: "CARDHOLDER", value: `${rec.FIRST} ${rec.LAST}` }],
+          secondaryFields: [{ key: "dept", label: "DEPARTMENT", value: rec.DEPARTMENT }, { key: "role", label: "ROLE", value: rec.USER2 }]
+        }
+      };
+      downloadText(JSON.stringify(payload, null, 2), `${sanitize(cardDoc.name)}.wallet.json`, "application/json");
+    }
+
+    function exportCardJson() {
+      downloadText(JSON.stringify({ name: cardDoc.name, width: cardDoc.width, height: cardDoc.height, backgroundColor: cardDoc.frontBgColor, elements: cardDoc.frontElements }, null, 2), `${sanitize(cardDoc.name)}.card`, "application/json");
+    }
+
+    function exportLegacyCdf() {
+      let cdf = `[Header]\r\nWidth=1016\r\nHeight=648\r\nID=VDS_WinCDF\r\nOrientation=1\r\n\r\n`;
+      cardDoc.frontElements.forEach((e, i) => {
+        cdf += `[Data${i+1}]\r\nName=${e.name}\r\nDBField=${e.dataFieldName||'FIRST'}\r\nXYWH=${Math.round(e.x)},${Math.round(e.y)},${Math.round(e.width)},${Math.round(e.height)}\r\n\r\n`;
+      });
+      downloadText(cdf, `${sanitize(cardDoc.name)}.cdf`, "text/plain");
+    }
+
+    function print8UpSheet() {
+      const svg = getCleanSvgMarkup();
+      const win = window.open("", "_blank");
+      let cardsHtml = "";
+      for (let i = 0; i < 8; i++) {
+        cardsHtml += `<div style="width:3.37in;height:2.125in;border:0.5pt dashed #94a3b8;overflow:hidden">${svg.replace('width="1016" height="648"', 'width="100%" height="100%"')}</div>`;
+      }
+      win.document.write(`<!DOCTYPE html><html><head><title>8-Up CR80 Print Sheet — ${cardDoc.name}</title>
+      <style>@page{size:letter portrait;margin:0.4in}body{margin:0;display:flex;justify-content:center}
+      .grid{display:grid;grid-template-columns:3.37in 3.37in;gap:0.25in 0.35in}</style></head>
+      <body onload="window.print()"><div class="grid">${cardsHtml}</div></body></html>`);
+      win.document.close();
+    }
+
+    function downloadText(text, filename, mime) {
+      const b = new Blob([text], { type: mime });
+      const u = URL.createObjectURL(b);
+      downloadDataUrl(u, filename);
+      setTimeout(() => URL.revokeObjectURL(u), 1500);
+    }
+
+    function downloadDataUrl(url, filename) {
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      a.click();
+      setStatus(`Exported '${filename}'`);
+    }
+
+    function setStatus(msg) { document.getElementById("statusText").textContent = msg; }
+    function sanitize(s) { return (s || "PrimoIT_Card").replace(/[^a-zA-Z0-9_-]+/g, "_"); }
+    function escapeXml(s) { return String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+
+    // Boot default template
+    loadStarterTemplate("vds");
+
+    // --- CoachMark Quick Guided Tour ---
+    const CARD_STUDIO_TOUR_STEPS = [
+      {
+        selector: ".topbar",
+        badge: "COMMAND BAR",
+        title: "1. Universal Card Importer & Starter Templates",
+        desc: "Open ANY legacy ID card format (.card, .cdf, .svg, .json, .png, .jpg) or choose from 4 enterprise starter templates (University, Employee, Visitor, Zero-Trust Smart Chip)."
+      },
+      {
+        selector: ".tool-grid",
+        badge: "ELEMENT TOOLBOX",
+        title: "2. Add Dynamic Card Layers",
+        desc: "Insert Data Fields, Static Text, ID Photos, Shapes, Pill Badges, 1D Barcodes, 2D QR Codes, Smart Chips, and UV Guilloche Security Seals with one click."
+      },
+      {
+        selector: ".nudge-card",
+        badge: "PRECISION NUDGE",
+        title: "3. Custom Any-Px Nudge Pad",
+        desc: "Set any custom pixel step (0.25px to 500px) or pick a preset (1px, 2px, 5px, 10px, 25px, 50px) and use the D-Pad or arrow keys for sub-millimeter CR80 alignment."
+      },
+      {
+        selector: ".canvas-viewport",
+        badge: "CR80 VECTOR STAGE",
+        title: "4. Interactive Dual-Sided CR80 Canvas",
+        desc: "Drag, resize, and inspect Front and Back card layouts at 1016x648 native resolution with live roster variable substitution."
+      },
+      {
+        selector: ".panel-right",
+        badge: "INSPECTOR & ROSTER",
+        title: "5. Layer Stack, Property Inspector & Live Roster",
+        desc: "Reorder layers, bind database fields (FIRST, LAST, ID_NUM, DEPARTMENT), customize typography/colors, and step through cardholder records."
+      },
+      {
+        selector: ".btn-accent",
+        badge: "CLOUD & PRINT HUB",
+        title: "6. Export to Cloud Credentials & 8-Up Print Sheet",
+        desc: "Export to SVG, PNG, PDF/8-Up CR80 print sheets, Microsoft Entra Verified ID, W3C Verifiable Credentials, Apple/Google Wallet, or legacy .CDF."
+      }
+    ];
+    let cardTourActive = false;
+    let cardTourStep = 0;
+
+    function ensureCardTourDom() {
+      if (document.getElementById("primoCoachMark")) return;
+      const style = document.createElement("style");
+      style.textContent = `
+        .primo-tour-highlight { outline: 2px solid #38bdf8 !important; box-shadow: 0 0 24px rgba(56,189,248,0.45) !important; border-radius: 6px; transition: all 0.2s ease; }
+        #primoCoachMark { position: fixed; bottom: 28px; right: 28px; width: 390px; max-width: calc(100vw - 32px); background: #0f172a; color: #f8fafc; border: 2px solid #0284c7; border-radius: 14px; padding: 18px; box-shadow: 0 22px 55px rgba(0,0,0,0.75); z-index: 9999; display: none; font-family: 'Segoe UI', system-ui, sans-serif; }
+      `;
+      document.head.appendChild(style);
+      const box = document.createElement("div");
+      box.id = "primoCoachMark";
+      box.setAttribute("role", "dialog");
+      box.innerHTML = `
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+          <span id="primoTourBadge" style="font-size:11px;font-weight:800;color:#38bdf8;background:rgba(56,189,248,0.15);padding:3px 9px;border-radius:99px"></span>
+          <button onclick="closeCardStudioTour(true)" style="background:none;border:none;color:#94a3b8;font-size:12px;cursor:pointer">Skip tour ✕</button>
+        </div>
+        <h4 id="primoTourTitle" style="margin:0 0 6px 0;font-size:15px;color:#fff"></h4>
+        <p id="primoTourDesc" style="margin:0 0 14px 0;font-size:12.5px;line-height:1.5;color:#cbd5e1"></p>
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span id="primoTourCounter" style="font-size:11px;color:#64748b;font-weight:700"></span>
+          <div style="display:flex;gap:8px">
+            <button id="primoTourPrev" class="btn" onclick="stepCardStudioTour(-1)">← Prev</button>
+            <button id="primoTourNext" class="btn btn-accent" onclick="stepCardStudioTour(1)">Next Step →</button>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(box);
+    }
+
+    function renderCardStudioTour() {
+      ensureCardTourDom();
+      document.querySelectorAll(".primo-tour-highlight").forEach(el => el.classList.remove("primo-tour-highlight"));
+      const box = document.getElementById("primoCoachMark");
+      const btn = document.getElementById("quickTourBtn");
+      if (!cardTourActive) {
+        box.style.display = "none";
+        if (btn) btn.innerHTML = "✨ Quick Guided Tour";
+        return;
+      }
+      if (btn) btn.innerHTML = "✕ Exit Tour";
+      const step = CARD_STUDIO_TOUR_STEPS[cardTourStep];
+      box.style.display = "block";
+      document.getElementById("primoTourBadge").textContent = `STEP ${cardTourStep + 1} OF ${CARD_STUDIO_TOUR_STEPS.length} • ${step.badge}`;
+      document.getElementById("primoTourTitle").textContent = step.title;
+      document.getElementById("primoTourDesc").textContent = step.desc;
+      document.getElementById("primoTourCounter").textContent = `Use ← / → keys or Esc`;
+      document.getElementById("primoTourPrev").style.display = cardTourStep > 0 ? "inline-flex" : "none";
+      document.getElementById("primoTourNext").textContent = cardTourStep === CARD_STUDIO_TOUR_STEPS.length - 1 ? "Finish Tour ✓" : "Next Step →";
+      const target = document.querySelector(step.selector);
+      if (target) {
+        target.classList.add("primo-tour-highlight");
+        target.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
+    }
+
+    function toggleCardStudioTour() {
+      cardTourActive = !cardTourActive;
+      if (cardTourActive) cardTourStep = 0;
+      renderCardStudioTour();
+    }
+
+    function closeCardStudioTour(markDone) {
+      cardTourActive = false;
+      if (markDone) {
+        try { localStorage.setItem("primoit.cardstudio.tour_completed_v1", "true"); } catch(e) {}
+      }
+      renderCardStudioTour();
+    }
+
+    function stepCardStudioTour(delta) {
+      const next = cardTourStep + delta;
+      if (next < 0) return;
+      if (next >= CARD_STUDIO_TOUR_STEPS.length) {
+        closeCardStudioTour(true);
+        return;
+      }
+      cardTourStep = next;
+      renderCardStudioTour();
+    }
+
+    window.addEventListener("keydown", (e) => {
+      if (!cardTourActive) return;
+      if (e.key === "Escape") closeCardStudioTour(true);
+      else if (e.key === "ArrowRight") stepCardStudioTour(1);
+      else if (e.key === "ArrowLeft") stepCardStudioTour(-1);
+    });
+
+    try {
+      if (!localStorage.getItem("primoit.cardstudio.tour_completed_v1")) {
+        setTimeout(() => { cardTourActive = true; renderCardStudioTour(); }, 700);
+      }
+    } catch(e) {}
+  </script>
+</body>
+</html>

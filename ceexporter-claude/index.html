@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link
+    rel="icon"
+    type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Cpath d='M22 2.5L39 10.5V23.5C39 33.2 31.6 39.6 22 42C12.4 39.6 5 33.2 5 23.5V10.5L22 2.5Z' fill='%231e3a8a' stroke='%23fbbf24' stroke-width='2.5'/%3E%3Ctext x='22' y='27' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-weight='900' font-size='13'%3EPIT%3C/text%3E%3C/svg%3E"
+  />
+  <title>CEExporter (Claude Edition) — RCE to EliteID Toolkit | Primo IT Tech LLC</title>
+  <style>
+    :root { --bg:#0b0f19; --panel:#111827; --border:#1e293b; --text:#f8fafc; --muted:#94a3b8; --accent:#0284c7; --glow:#38bdf8; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:'Segoe UI',system-ui,sans-serif; background:var(--bg); color:var(--text); min-height:100vh; display:flex; flex-direction:column; }
+    header { background:#0f172a; border-bottom:1px solid var(--border); padding:18px 28px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; }
+    .brand-pill { display:inline-block; font-size:11px; font-weight:800; letter-spacing:0.8px; color:var(--glow); background:rgba(56,189,248,0.12); border:1px solid rgba(56,189,248,0.3); padding:3px 10px; border-radius:99px; margin-bottom:6px; }
+    h1 { font-size:20px; font-weight:800; color:#fff; }
+    .sub { font-size:13px; color:var(--muted); margin-top:3px; }
+    .header-actions { display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+    .btn { background:#1e293b; color:#e2e8f0; border:1px solid #334155; border-radius:99px; padding:8px 16px; font-size:12.5px; font-weight:700; cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; gap:6px; transition:all 0.15s; }
+    .btn:hover { border-color:var(--glow); color:#fff; }
+    .btn-tour { background:rgba(56,189,248,0.16); color:var(--glow); border:1px solid var(--accent); }
+    main { max-width:1280px; width:100%; margin:0 auto; padding:28px; flex:1; }
+    .cli-bar { background:#0f172a; border:1px solid var(--border); border-radius:10px; padding:12px 18px; margin-bottom:22px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; font-size:13px; }
+    .cli-bar code { font-family:'Consolas',monospace; color:#34d399; background:#020617; padding:4px 10px; border-radius:6px; border:1px solid #1e293b; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:18px; }
+    .card { background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:20px; transition:all 0.2s ease; }
+    .card-badge { display:inline-block; font-size:10.5px; font-weight:800; color:var(--glow); background:rgba(56,189,248,0.12); padding:3px 9px; border-radius:6px; margin-bottom:10px; }
+    .card h3 { font-size:16px; margin-bottom:8px; color:#fff; }
+    .card p { font-size:13.5px; line-height:1.55; color:var(--muted); }
+    .tour-hi { outline:2px solid var(--glow) !important; box-shadow:0 0 28px rgba(56,189,248,0.38) !important; transform:translateY(-2px); }
+    footer { border-top:1px solid var(--border); padding:16px 28px; font-size:12px; color:#94a3b8; background:#0f172a; }
+    #coachMark { position:fixed; bottom:24px; right:24px; width:390px; max-width:calc(100vw - 32px); background:#0f172a; color:#f8fafc; border:2px solid var(--accent); border-radius:14px; padding:18px; box-shadow:0 22px 55px rgba(0,0,0,0.8); z-index:9999; display:none; }
+  </style>
+</head>
+<body>
+  <header>
+    <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+      <!-- Custom Vector SVG Shield & Connectivity Crest for Primo IT Tech LLC -->
+      <div
+        style="display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%);border:1.5px solid #38bdf8;box-shadow:0 0 18px rgba(56,189,248,0.22);padding:6px 12px 6px 8px;border-radius:10px;"
+        title="Primo IT Tech LLC — Official Vector Crest & Emblem"
+      >
+        <svg width="36" height="36" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="ceeClaudeShieldGrad" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#06b6d4" />
+              <stop offset="55%" stop-color="#2563eb" />
+              <stop offset="100%" stop-color="#1e1b4b" />
+            </linearGradient>
+            <linearGradient id="ceeClaudeGoldAccent" x1="6" y1="4" x2="38" y2="40" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#fbbf24" />
+              <stop offset="100%" stop-color="#d97706" />
+            </linearGradient>
+          </defs>
+          <path d="M22 2.5L39 10.5V23.5C39 33.2 31.6 39.6 22 42C12.4 39.6 5 33.2 5 23.5V10.5L22 2.5Z" fill="url(#ceeClaudeShieldGrad)" stroke="url(#ceeClaudeGoldAccent)" stroke-width="2" />
+          <path d="M22 7V13M12 15L17 18M32 15L27 18M22 31V37" stroke="#38bdf8" stroke-width="1.4" stroke-linecap="round" opacity="0.75" />
+          <circle cx="22" cy="7" r="1.8" fill="#fbbf24" />
+          <circle cx="12" cy="15" r="1.5" fill="#38bdf8" />
+          <circle cx="32" cy="15" r="1.5" fill="#38bdf8" />
+          <text x="22" y="26.5" text-anchor="middle" fill="#ffffff" font-family="Inter, system-ui, sans-serif" font-weight="900" font-size="12.5" letter-spacing="0.8">PIT</text>
+        </svg>
+        <div style="display:flex;flex-direction:column;line-height:1.15;">
+          <span style="font-size:12px;font-weight:900;letter-spacing:0.9px;color:#f8fafc;text-transform:uppercase;">Primo IT Tech</span>
+          <span style="font-size:9.5px;font-weight:700;letter-spacing:1.2px;color:#fbbf24;text-transform:uppercase;">LLC &bull; Florida</span>
+        </div>
+      </div>
+
+      <div>
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px;">
+          <span class="brand-pill" style="margin-bottom:0;">PRIMO IT TECH LLC &bull; GENESIS PROTOCOL ALIGNED</span>
+          <span style="background:rgba(16,185,129,0.18);color:#34d399;border:1px solid rgba(16,185,129,0.45);padding:3px 9px;border-radius:99px;font-size:11px;font-weight:800;letter-spacing:0.5px;">GENESIS 6/6 ACTIVE</span>
+        </div>
+        <h1>CEExporter (Claude Edition) — RCE to EliteID Toolkit</h1>
+        <div class="sub">Python CLI &amp; Desktop Card Design File (.CDF) Parser, Coordinate Mapper &amp; Migration Exporter</div>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button type="button" class="btn" onclick="openCeeClaudeLegalModal()">⚖️ Legal, IP &amp; Genesis Protocol</button>
+      <button id="tourBtn" class="btn btn-tour" onclick="toggleTour()">✨ Quick Guided Tour</button>
+      <a class="btn" href="https://github.com/nilknarf1972/ceexporter-claude" target="_blank" rel="noopener">🔗 GitHub Repo</a>
+    </div>
+  </header>
+  <main>
+    <div class="cli-bar">
+      <span><strong>Local Quick-Start Command:</strong> <code>python -m ceexporter.cli</code></span>
+      <span style="color:#94a3b8">Use <strong>← / →</strong> arrow keys or click <strong>✨ Quick Guided Tour</strong> anytime</span>
+    </div>
+    <div class="grid">
+      <section class="card" id="sec-parser">
+        <div class="card-badge">1. CDF PARSER</div>
+        <h3>1. Legacy RCE .CDF INI &amp; Binary Layer Extractor</h3>
+        <p>Parses legacy [Header], [DataN], [TextN], [Photo], and [Barcode] sections from Windows Card Design Files with exact pixel coordinates.</p>
+      </section>
+      <section class="card" id="sec-preview">
+        <div class="card-badge">2. VISUAL STAGE</div>
+        <h3>2. Color-Coded Coordinate Layout Verifier</h3>
+        <p>Renders dynamic database fields, static text labels, and cardholder portrait zones at true CR80 aspect ratio.</p>
+      </section>
+      <section class="card" id="sec-mapping">
+        <div class="card-badge">3. SCHEMA MAP</div>
+        <h3>3. Automated EliteID Field Name Matcher</h3>
+        <p>Maps legacy FIRST, LAST, ID_NUM, DEPARTMENT, and PHOTO bindings to modern EliteID schema attributes.</p>
+      </section>
+      <section class="card" id="sec-package">
+        <div class="card-badge">4. ZIP EXPORT</div>
+        <h3>4. Intermediate EliteID Recreation Package</h3>
+        <p>Bundles parsed JSON metadata, extracted background assets, and step-by-step recreation guides into a portable archive.</p>
+      </section>
+      <section class="card" id="sec-cli">
+        <div class="card-badge">5. BATCH CLI</div>
+        <h3>5. Unattended Batch Folder Conversion</h3>
+        <p>Run headless CLI batch migrations across hundreds of campus or enterprise .CDF templates.</p>
+      </section>
+    </div>
+  </main>
+
+  <!-- Primo IT Tech LLC Legal, IP & Genesis Protocol Modal -->
+  <div id="ceeClaudeLegalModal" onclick="if(event.target===this) closeCeeClaudeLegalModal()" style="display:none; position:fixed; inset:0; z-index:10000; background:rgba(2, 6, 23, 0.86); backdrop-filter:blur(6px); align-items:center; justify-content:center; padding:1rem;">
+    <div style="background:#0f172a; border:1px solid #334155; border-radius:16px; max-width:740px; width:100%; max-height:85vh; overflow-y:auto; padding:1.75rem; color:#e2e8f0; box-shadow:0 25px 50px -12px rgba(0,0,0,0.75);">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:1rem; border-bottom:1px solid #1e293b; padding-bottom:1rem; margin-bottom:1.25rem;">
+        <div>
+          <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
+            <span style="background:rgba(56, 189, 248, 0.15); color:#38bdf8; border:1px solid rgba(56, 189, 248, 0.35); font-size:0.7rem; font-weight:700; padding:0.15rem 0.5rem; border-radius:4px; letter-spacing:0.06em;">FLORIDA LEGAL &amp; IP COMPLIANCE</span>
+            <span style="background:rgba(16, 185, 129, 0.15); color:#34d399; border:1px solid rgba(16, 185, 129, 0.35); font-size:0.7rem; font-weight:700; padding:0.15rem 0.5rem; border-radius:4px; letter-spacing:0.06em;">GENESIS 6/6 PILLARS</span>
+          </div>
+          <h3 style="margin:0.5rem 0 0 0; font-size:1.25rem; color:#f8fafc;">Primo IT Tech LLC — Legal, IP &amp; Interoperability Notice</h3>
+        </div>
+        <button type="button" onclick="closeCeeClaudeLegalModal()" style="background:#1e293b; border:1px solid #334155; color:#94a3b8; border-radius:8px; padding:0.35rem 0.65rem; cursor:pointer; font-weight:700;">✕</button>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:1rem; font-size:0.86rem; line-height:1.6; color:#cbd5e1;">
+        <div style="background:rgba(15, 23, 42, 0.7); border:1px solid #1e293b; border-radius:10px; padding:1rem;">
+          <strong style="color:#f8fafc; display:block; margin-bottom:0.25rem;">1. Corporate Ownership &amp; Proprietary IP</strong>
+          Copyright &copy; 2026 <strong>Primo IT Tech LLC</strong> (State of Florida). All Rights Reserved. The <strong>CEExporter (Claude Edition)</strong> parser, analyzer, renderer, compatibility matrix generator, and migration suite are proprietary software works owned exclusively by <strong>Primo IT Tech LLC</strong>.
+        </div>
+
+        <div style="background:rgba(15, 23, 42, 0.7); border:1px solid #1e293b; border-radius:10px; padding:1rem;">
+          <strong style="color:#38bdf8; display:block; margin-bottom:0.25rem;">2. DMCA Interoperability (17 U.S.C. &sect; 1201(f)) &amp; Nominative Fair Use</strong>
+          <strong>Primo IT Tech LLC</strong> is an independent Florida technology company and is <strong>not affiliated with, endorsed by, or sponsored by</strong> any third-party card software vendor (including RCE or EliteID / Vision Database Systems). Legacy <code>.CDF</code> file structure parsing and field mapping are performed strictly for lawful data migration and software interoperability by licensed template owners pursuant to <strong>17 U.S.C. &sect; 1201(f)</strong>.
+        </div>
+
+        <div style="background:rgba(15, 23, 42, 0.7); border:1px solid #1e293b; border-radius:10px; padding:1rem;">
+          <strong style="color:#34d399; display:block; margin-bottom:0.25rem;">3. 100% Local-First &amp; Zero-Upload Privacy</strong>
+          All template parsing and preview rendering run 100% locally on your workstation. Zero cardholder PII, student records, or database credentials are logged or transmitted to external cloud servers.
+        </div>
+
+        <div style="background:rgba(15, 23, 42, 0.7); border:1px solid #1e293b; border-radius:10px; padding:1rem;">
+          <strong style="color:#a78bfa; display:block; margin-bottom:0.25rem;">4. Genesis Protocol 6-Pillar Architectural Grounding</strong>
+          Engineered in full alignment with the canonical <strong>Genesis Protocol</strong> (<code>genesis.md</code> &amp; <code>genesis_manifest.md</code>) across all 6 Pillars (The Seed, The Microcosm, The Breakthrough, The First Tree, The City/Realms, and The Living System).
+        </div>
+
+        <div style="background:rgba(15, 23, 42, 0.7); border:1px solid #1e293b; border-radius:10px; padding:1rem;">
+          <strong style="color:#fbbf24; display:block; margin-bottom:0.25rem;">5. Limitation of Liability &amp; Florida Governing Law</strong>
+          Provided &ldquo;AS IS&rdquo; without warranty of any kind. Governed by the laws of the <strong>State of Florida</strong> (exclusive venue in Palm Beach County, Florida) and applicable U.S. federal law.
+        </div>
+      </div>
+
+      <div style="display:flex; justify-content:flex-end; margin-top:1.25rem; padding-top:1rem; border-top:1px solid #1e293b;">
+        <button type="button" onclick="closeCeeClaudeLegalModal()" style="background:linear-gradient(135deg, #2563eb, #0ea5e9); color:#ffffff; border:none; border-radius:8px; padding:0.5rem 1.25rem; font-weight:700; cursor:pointer;">Acknowledge &amp; Close</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div style="max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+      <div style="text-align:left;">
+        <div style="font-weight:700;color:#f8fafc;">&copy; 2026 Primo IT Tech LLC (Florida) &bull; CEExporter (Claude Edition) &bull; Genesis 6/6 Active</div>
+        <div style="font-size:11.5px;color:#94a3b8;">Independent Interoperability Utility (17 U.S.C. &sect; 1201(f)) &bull; Managing Member: Keith Franklin &bull; 100% Local Zero-Upload Privacy</div>
+      </div>
+      <button type="button" onclick="openCeeClaudeLegalModal()" class="btn" style="padding:6px 14px;border-radius:8px;font-size:12px;color:#38bdf8;border-color:rgba(56,189,248,0.4);">
+        ⚖️ Legal, IP &amp; Genesis Notice
+      </button>
+    </div>
+  </footer>
+  <div id="coachMark" role="dialog" aria-label="Quick Guided Tour">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <span id="tourBadge" style="font-size:11px;font-weight:800;color:#38bdf8;background:rgba(56,189,248,0.15);padding:3px 9px;border-radius:99px"></span>
+      <button onclick="closeTour(true)" style="background:none;border:none;color:#94a3b8;font-size:12px;cursor:pointer">Skip tour ✕</button>
+    </div>
+    <h4 id="tourTitle" style="margin:0 0 6px 0;font-size:15px;color:#fff"></h4>
+    <p id="tourDesc" style="margin:0 0 14px 0;font-size:13px;line-height:1.5;color:#cbd5e1"></p>
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <span style="font-size:11px;color:#64748b;font-weight:600">← / → or Esc</span>
+      <div style="display:flex;gap:8px">
+        <button id="tourPrev" class="btn" onclick="stepTour(-1)" style="padding:6px 12px;border-radius:8px">← Prev</button>
+        <button id="tourNext" class="btn btn-tour" onclick="stepTour(1)" style="background:linear-gradient(135deg,#0284c7,#2563eb);color:#fff;border:none;padding:6px 14px;border-radius:8px">Next Step →</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    function openCeeClaudeLegalModal() {
+      const m = document.getElementById("ceeClaudeLegalModal");
+      if (m) m.style.display = "flex";
+    }
+    function closeCeeClaudeLegalModal() {
+      const m = document.getElementById("ceeClaudeLegalModal");
+      if (m) m.style.display = "none";
+    }
+    const STEPS = [{ selector: "#sec-parser", badge: "1. CDF PARSER", title: "1. Legacy RCE .CDF INI & Binary Layer Extractor", desc: "Parses legacy [Header], [DataN], [TextN], [Photo], and [Barcode] sections from Windows Card Design Files with exact pixel coordinates." },
+        { selector: "#sec-preview", badge: "2. VISUAL STAGE", title: "2. Color-Coded Coordinate Layout Verifier", desc: "Renders dynamic database fields, static text labels, and cardholder portrait zones at true CR80 aspect ratio." },
+        { selector: "#sec-mapping", badge: "3. SCHEMA MAP", title: "3. Automated EliteID Field Name Matcher", desc: "Maps legacy FIRST, LAST, ID_NUM, DEPARTMENT, and PHOTO bindings to modern EliteID schema attributes." },
+        { selector: "#sec-package", badge: "4. ZIP EXPORT", title: "4. Intermediate EliteID Recreation Package", desc: "Bundles parsed JSON metadata, extracted background assets, and step-by-step recreation guides into a portable archive." },
+        { selector: "#sec-cli", badge: "5. BATCH CLI", title: "5. Unattended Batch Folder Conversion", desc: "Run headless CLI batch migrations across hundreds of campus or enterprise .CDF templates." }];
+    let active = false, step = 0;
+    const STORAGE_KEY = "primo_it_tech.ceexporter-claude.tour_completed_v1";
+    function renderTour() {
+      document.querySelectorAll(".tour-hi").forEach(el => el.classList.remove("tour-hi"));
+      const box = document.getElementById("coachMark"), btn = document.getElementById("tourBtn");
+      if (!active) { box.style.display = "none"; btn.textContent = "✨ Quick Guided Tour"; return; }
+      btn.textContent = "✕ Exit Tour";
+      const s = STEPS[step];
+      box.style.display = "block";
+      document.getElementById("tourBadge").textContent = "STEP " + (step + 1) + " OF " + STEPS.length + " • " + s.badge;
+      document.getElementById("tourTitle").textContent = s.title;
+      document.getElementById("tourDesc").textContent = s.desc;
+      document.getElementById("tourPrev").style.display = step > 0 ? "inline-flex" : "none";
+      document.getElementById("tourNext").textContent = step === STEPS.length - 1 ? "Finish Tour ✓" : "Next Step →";
+      const t = document.querySelector(s.selector);
+      if (t) { t.classList.add("tour-hi"); t.scrollIntoView({ behavior: "smooth", block: "nearest" }); }
+    }
+    function toggleTour() { active = !active; if (active) step = 0; renderTour(); }
+    function closeTour(done) { active = false; if (done) { try { localStorage.setItem(STORAGE_KEY, "true"); } catch(e){} } renderTour(); }
+    function stepTour(d) { const n = step + d; if (n < 0) return; if (n >= STEPS.length) { closeTour(true); return; } step = n; renderTour(); }
+    window.addEventListener("keydown", e => {
+      if (e.key === "Escape") { closeCeeClaudeLegalModal(); if (active) closeTour(true); }
+      else if (active && e.key === "ArrowRight") stepTour(1);
+      else if (active && e.key === "ArrowLeft") stepTour(-1);
+    });
+    try { if (!localStorage.getItem(STORAGE_KEY)) setTimeout(() => { active = true; renderTour(); }, 600); } catch(e){}
+  </script>
+</body>
+</html>

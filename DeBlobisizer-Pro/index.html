@@ -1,0 +1,2443 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="PrimoBLOB" />
+  <meta name="theme-color" content="#0d1117" />
+  <link rel="icon" type="image/svg+xml" href="/primo-logo.svg" />
+  <link rel="apple-touch-icon" href="/primo-logo.svg" />
+  <link rel="manifest" href="/manifest.json" />
+  <title>PrimoIT Tech LLC BLOB Extractor — BLOB Image Extractor &amp; MS-SQL Sync</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    :root {
+      --brand-cyan: #06b6d4;
+      --accent-red: #ef4444;
+    }
+    body {
+      background-color: #0d1117;
+      color: #e6edf3;
+    }
+    .navbar {
+      background: linear-gradient(90deg, #0f172a 0%, #1e293b 100%);
+      border-bottom: 1px solid #30363d;
+    }
+    .card {
+      background-color: #161b22;
+      border: 1px solid #30363d;
+    }
+    .nav-tabs .nav-link {
+      color: #8b949e;
+      font-weight: 500;
+    }
+    .nav-tabs .nav-link.active {
+      background-color: #161b22;
+      border-color: #30363d #30363d #161b22;
+      color: #58a6ff;
+    }
+    .thumb-card img {
+      height: 130px;
+      object-fit: contain;
+      background: repeating-conic-gradient(#21262d 0% 25%, #161b22 0% 50%) 50% / 16px 16px;
+    }
+    .mono {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.85rem;
+    }
+    .brand-pill {
+      background: linear-gradient(135deg, #2563eb, #06b6d4);
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    /* Quick Guided Tour (CoachMark Engine) */
+    .btn-quick-tour {
+      border: 1px solid rgba(6, 182, 212, 0.5);
+      color: #22d3ee;
+      background: rgba(6, 182, 212, 0.1);
+      font-weight: 600;
+      font-size: 0.85rem;
+      transition: all 0.2s ease;
+    }
+    .btn-quick-tour:hover {
+      background: rgba(6, 182, 212, 0.22);
+      color: #67e8f9;
+      border-color: #06b6d4;
+    }
+    .tour-card {
+      width: 390px;
+      max-width: calc(100vw - 32px);
+      background: #161b22;
+      border: 2px solid var(--brand-cyan);
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 18px 44px rgba(0, 0, 0, 0.75), 0 0 0 4px rgba(6, 182, 212, 0.22);
+      color: #e6edf3;
+      z-index: 10000;
+      transition: top 0.22s cubic-bezier(0.16, 1, 0.3, 1), left 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .tour-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #30363d;
+      padding-bottom: 8px;
+    }
+    .tour-step-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      color: #22d3ee;
+      text-transform: uppercase;
+    }
+    .tour-btn-close {
+      background: transparent;
+      border: none;
+      color: #8b949e;
+      font-size: 20px;
+      cursor: pointer;
+      padding: 0 4px;
+      line-height: 1;
+    }
+    .tour-btn-close:hover {
+      color: #ffffff;
+    }
+    .tour-card-title {
+      margin: 10px 0 6px 0;
+      font-size: 15px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+    .tour-card-copy {
+      margin: 0;
+      font-size: 13px;
+      color: #c9d1d9;
+      line-height: 1.55;
+    }
+    .tour-tip-note {
+      margin-top: 10px;
+      font-size: 11px;
+      color: #8b949e;
+      font-style: italic;
+    }
+    .tour-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 14px;
+      padding-top: 10px;
+      border-top: 1px solid #30363d;
+    }
+    .tour-highlight {
+      position: relative;
+      z-index: 9998 !important;
+      box-shadow: 0 0 0 3px var(--brand-cyan), 0 0 22px rgba(6, 182, 212, 0.5) !important;
+      border-radius: 8px;
+      transition: box-shadow 0.25s ease;
+      animation: tour-glow 2s infinite ease-in-out;
+    }
+    @keyframes tour-glow {
+      0%, 100% { box-shadow: 0 0 0 3px var(--brand-cyan), 0 0 16px rgba(6, 182, 212, 0.35); }
+      50% { box-shadow: 0 0 0 4px var(--brand-cyan), 0 0 28px rgba(6, 182, 212, 0.7); }
+    }
+    /* Light Mode Theme Overrides */
+    [data-bs-theme="light"] body {
+      background-color: #f4f6f9;
+      color: #1e293b;
+    }
+    [data-bs-theme="light"] .navbar {
+      background: linear-gradient(90deg, #ffffff 0%, #f1f5f9 100%);
+      border-bottom: 1px solid #cbd5e1;
+    }
+    [data-bs-theme="light"] .navbar-brand {
+      color: #0f172a !important;
+    }
+    [data-bs-theme="light"] .card {
+      background-color: #ffffff;
+      border: 1px solid #cbd5e1;
+    }
+    [data-bs-theme="light"] .nav-tabs .nav-link {
+      color: #475569;
+    }
+    [data-bs-theme="light"] .nav-tabs .nav-link.active {
+      background-color: #ffffff;
+      border-color: #cbd5e1 #cbd5e1 #ffffff;
+      color: #0284c7;
+    }
+    [data-bs-theme="light"] .thumb-card img {
+      background: repeating-conic-gradient(#e2e8f0 0% 25%, #f8fafc 0% 50%) 50% / 16px 16px;
+    }
+    [data-bs-theme="light"] .btn-quick-tour {
+      color: #0369a1;
+      border-color: #0284c7;
+      background: rgba(2, 132, 199, 0.08);
+    }
+    [data-bs-theme="light"] .btn-quick-tour:hover {
+      background: rgba(2, 132, 199, 0.16);
+      color: #075985;
+    }
+    [data-bs-theme="light"] .tour-card {
+      background: #ffffff;
+      color: #0f172a;
+      box-shadow: 0 18px 44px rgba(15, 23, 42, 0.25), 0 0 0 4px rgba(6, 182, 212, 0.22);
+    }
+    [data-bs-theme="light"] .tour-card-header,
+    [data-bs-theme="light"] .tour-card-footer {
+      border-color: #e2e8f0;
+    }
+    [data-bs-theme="light"] .tour-card-title {
+      color: #0f172a;
+    }
+    [data-bs-theme="light"] .tour-card-copy {
+      color: #334155;
+    }
+    [data-bs-theme="light"] .tour-step-badge {
+      color: #0284c7;
+    }
+    [data-bs-theme="light"] #btn-tour-prev,
+    [data-bs-theme="light"] #btnAutoMatchCols {
+      border-color: #64748b;
+      color: #334155;
+    }
+    .btn-theme-toggle {
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg py-3 mb-4">
+    <div class="container">
+      <span class="navbar-brand fw-bold d-flex align-items-center gap-2">
+        <span class="badge brand-pill">PRIMOIT TECH LLC</span>
+        PrimoIT Tech LLC BLOB Extractor
+      </span>
+      <div class="d-flex gap-2 align-items-center flex-wrap">
+        <button type="button" class="btn btn-sm btn-outline-info fw-semibold" id="btn-remote-install-url" onclick="openInstallUrlTabOrModal()" title="Install from URL, view LAN / Remote links, or install SQL ODBC drivers">
+          &#127760; <span>Install / Remote URL</span>
+        </button>
+        <button type="button" class="btn btn-sm btn-outline-secondary btn-theme-toggle" id="btn-theme-toggle" onclick="toggleTheme()" title="Switch between Dark and Light Mode">
+          &#9728;&#65039; <span id="theme-btn-text">Light Mode</span>
+        </button>
+        <button type="button" class="btn btn-sm btn-quick-tour" id="btn-quick-tour" title="Launch Interactive Step-by-Step Guided Tour">
+          &#10024; <span id="tour-btn-text">Quick Guided Tour</span>
+        </button>
+        {% if pil_available %}
+          <span class="badge text-bg-success">Pillow Active</span>
+        {% else %}
+          <span class="badge text-bg-warning">Pillow Missing</span>
+        {% endif %}
+        {% if pyodbc_available %}
+          <span class="badge text-bg-info">pyodbc Ready</span>
+        {% else %}
+          <span class="badge text-bg-danger">pyodbc Missing</span>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+
+  <div class="container pb-5">
+    <ul class="nav nav-tabs mb-4" id="mainTabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="file-tab" data-bs-toggle="tab" data-bs-target="#file-pane" type="button" role="tab">
+          1. File Mode (BLOB &rarr; ZIP)
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="sqlex-tab" data-bs-toggle="tab" data-bs-target="#sqlex-pane" type="button" role="tab">
+          2. SQL Extract
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="sqlsync-tab" data-bs-toggle="tab" data-bs-target="#sqlsync-pane" type="button" role="tab">
+          3. SQL Sync (Source &rarr; Target)
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="urlinstall-tab" data-bs-toggle="tab" data-bs-target="#urlinstall-pane" type="button" role="tab">
+          4. Install from URL &amp; Remote Link
+        </button>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+      <!-- ================================================================ -->
+      <!-- TAB 1: FILE EXTRACT                                              -->
+      <!-- ================================================================ -->
+      <div class="tab-pane fade show active" id="file-pane" role="tabpanel">
+        <div class="card shadow-sm mb-4" id="fileExtractCard">
+          <div class="card-header fw-semibold">Upload Binary / BLOB File(s)</div>
+          <div class="card-body">
+            <form id="fileExtractForm">
+              <div class="row g-3 align-items-end">
+                <div class="col-md-6">
+                  <label class="form-label">Select BLOB / Binary File(s)</label>
+                  <input class="form-control" type="file" id="blobFiles" name="files" multiple required />
+                </div>
+                <div class="col-md-2">
+                  <label class="form-label">Min Size (bytes)</label>
+                  <input class="form-control" type="number" id="fileMinSize" name="min_size" value="100" min="16" />
+                </div>
+                <div class="col-md-2">
+                  <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="fileValidate" name="validate" checked />
+                    <label class="form-check-label" for="fileValidate">Validate with Pillow</label>
+                  </div>
+                </div>
+                <div class="col-md-2 d-grid">
+                  <button type="submit" class="btn btn-primary" id="btnFileExtract">
+                    Scan &amp; Extract
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div id="fileResultArea" class="d-none">
+          <div class="alert alert-info d-flex justify-content-between align-items-center" id="fileSummaryBanner">
+            <span id="fileSummaryText"></span>
+            <a id="fileZipBtn" href="#" class="btn btn-success btn-sm fw-semibold d-none">
+              Download Extracted Images (.ZIP)
+            </a>
+          </div>
+          <div class="row g-3" id="fileGallery"></div>
+        </div>
+      </div>
+
+      <!-- ================================================================ -->
+      <!-- TAB 2: SQL EXTRACT                                               -->
+      <!-- ================================================================ -->
+      <div class="tab-pane fade" id="sqlex-pane" role="tabpanel">
+        <div class="card shadow-sm mb-4">
+          <div class="card-header fw-semibold">MS-SQL Server Connection &amp; BLOB Column Extractor</div>
+          <div class="card-body">
+            <div id="sqlexConnectionBox" class="p-2 rounded">
+              <div class="row g-3 mb-3">
+                <div class="col-md-3">
+                  <label class="form-label">ODBC Driver</label>
+                  <select class="form-select" id="sqlexDriver">
+                    {% for d in drivers %}
+                      <option value="{{ d }}">{{ d }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="col-md-3">
+                  <label class="form-label">SQL Server</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="sqlexServer" value="primo\sqlexpress" placeholder="primo\sqlexpress" />
+                    <button class="btn btn-outline-secondary" type="button" onclick="loadSqlDatabases('sqlex')" title="Discover Databases on Server">
+                      Load DBs
+                    </button>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <label class="form-label">Database</label>
+                  <input type="text" class="form-control" list="sqlexDbList" id="sqlexDb" placeholder="Select or type database" />
+                  <datalist id="sqlexDbList"></datalist>
+                </div>
+                <div class="col-md-3 d-flex align-items-end">
+                  <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="sqlexTrusted" checked onchange="toggleAuthFields('sqlex')" />
+                    <label class="form-check-label" for="sqlexTrusted">Windows Auth (Trusted)</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row g-3 mb-3" id="sqlexAuthRow" style="display:none;">
+                <div class="col-md-4">
+                  <label class="form-label">SQL Username</label>
+                  <input type="text" class="form-control" id="sqlexUser" value="sa" />
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label">SQL Password</label>
+                  <input type="password" class="form-control" id="sqlexPass" />
+                </div>
+              </div>
+
+              <div class="row g-3 mb-2">
+                <div class="col-md-9">
+                  <label class="form-label">Optional Raw ODBC Connection String</label>
+                  <input type="text" class="form-control mono" id="sqlexRaw" placeholder="Leave blank to use fields above" />
+                </div>
+                <div class="col-md-3 d-grid align-items-end">
+                  <button type="button" class="btn btn-outline-info fw-semibold" id="sqlexConnectBtn" onclick="loadSqlTables('sqlex')">
+                    Connect &amp; Browse Tables
+                  </button>
+                </div>
+              </div>
+              <div id="sqlexConnStatus" class="alert py-1 px-2 mt-2 mb-0 small d-none"></div>
+            </div>
+
+            <hr class="border-secondary" />
+
+            <div class="row g-3 align-items-end p-2 rounded" id="sqlexTableBox">
+              <div class="col-md-4">
+                <label class="form-label">Table</label>
+                <select class="form-select" id="sqlexTable" onchange="loadSqlColumns('sqlex')"></select>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">BLOB Column</label>
+                <select class="form-select" id="sqlexBlobCol"></select>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">ID / Filename Column (optional)</label>
+                <select class="form-select" id="sqlexIdCol"></select>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Optional WHERE Clause</label>
+                <input type="text" class="form-control mono" id="sqlexWhere" placeholder="e.g. Image IS NOT NULL" />
+              </div>
+              <div class="col-md-2">
+                <label class="form-label">Row Limit (0=All)</label>
+                <input type="number" class="form-control" id="sqlexLimit" value="0" min="0" />
+              </div>
+              <div class="col-md-3">
+                <label class="form-label fw-semibold text-info">Filename Template</label>
+                <select class="form-select" id="sqlexFilenameTemplate">
+                  <option value="{id}">{id}.jpg (e.g. 10045.jpg — Best for ID Systems)</option>
+                  <option value="{table}_{id}" selected>{table}_{id}.jpg (e.g. ID_Image_10045.jpg)</option>
+                  <option value="{id}_{index}">{id}_{index}.jpg (e.g. 10045_00.jpg)</option>
+                  <option value="{table}_{id}_{format}">{table}_{id}_{format}.jpg</option>
+                </select>
+              </div>
+              <div class="col-md-3">
+                <label class="form-label fw-semibold text-info">Convert Image Format</label>
+                <select class="form-select" id="sqlexTargetFormat">
+                  <option value="keep">Keep Original Format</option>
+                  <option value="JPEG">Convert All to JPEG (Save ~85% Space)</option>
+                  <option value="PNG">Convert All to PNG</option>
+                  <option value="WEBP">Convert All to WEBP</option>
+                </select>
+              </div>
+              <div class="col-md-3">
+                <label class="form-label">Max Dimension (Resize)</label>
+                <select class="form-select" id="sqlexMaxDim">
+                  <option value="0">Keep Original Dimensions</option>
+                  <option value="600">Max 600px (ID Card Portrait Standard)</option>
+                  <option value="800">Max 800px</option>
+                  <option value="1024">Max 1024px</option>
+                </select>
+              </div>
+              <div class="col-md-3 d-flex align-items-center pt-3">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="sqlexValidate" checked />
+                  <label class="form-check-label" for="sqlexValidate">Validate Images &amp; Include <code>audit_manifest.csv</code></label>
+                </div>
+              </div>
+              <div class="col-md-6 d-flex gap-2">
+                <button type="button" class="btn btn-outline-warning flex-grow-1 fw-semibold" id="btnSqlAudit" onclick="runSqlAudit()">
+                  &#128269; Run BLOB Health &amp; Duplicate Audit
+                </button>
+                <button type="button" class="btn btn-primary flex-grow-1 fw-semibold" id="btnSqlExtract" onclick="runSqlExtract()">
+                  &#128229; Extract BLOBs (.ZIP + CSV)
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Forensic BLOB Health & Duplicate Audit Report Card -->
+        <div id="sqlexAuditCard" class="card shadow-sm mb-4 border-warning d-none">
+          <div class="card-header fw-semibold text-warning d-flex justify-content-between align-items-center">
+            <span>&#128269; Database BLOB Forensic Health, Format &amp; Duplicate Audit</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary py-0" onclick="document.getElementById('sqlexAuditCard').classList.add('d-none')">Close</button>
+          </div>
+          <div class="card-body">
+            <div class="row text-center g-2 mb-3">
+              <div class="col-md-2">
+                <div class="p-2 border border-secondary rounded">
+                  <div class="small text-secondary">Rows Scanned</div>
+                  <div class="fs-5 fw-bold mono" id="audRowsScanned">0</div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="p-2 border border-secondary rounded">
+                  <div class="small text-secondary">Valid Images</div>
+                  <div class="fs-5 fw-bold text-success mono" id="audValidBlobs">0</div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="p-2 border border-secondary rounded">
+                  <div class="small text-secondary">NULL / Corrupt</div>
+                  <div class="fs-5 fw-bold text-danger mono" id="audCorruptBlobs">0</div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="p-2 border border-secondary rounded">
+                  <div class="small text-secondary">OLE Header Wrapped</div>
+                  <div class="fs-5 fw-bold text-info mono" id="audWrappedBlobs">0</div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="p-2 border border-secondary rounded">
+                  <div class="small text-secondary">Duplicate Photos</div>
+                  <div class="fs-5 fw-bold text-warning mono" id="audDuplicates">0</div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="p-2 border border-secondary rounded">
+                  <div class="small text-secondary">Est. JPEG Savings</div>
+                  <div class="fs-5 fw-bold text-success mono" id="audSavings">0 MB</div>
+                </div>
+              </div>
+            </div>
+            <div class="row g-3 small">
+              <div class="col-md-6">
+                <div class="p-2 rounded border border-secondary h-100">
+                  <div class="fw-semibold text-info mb-1">Detected Image Formats &amp; Payload Size</div>
+                  <div id="audFormatsText" class="mono"></div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="p-2 rounded border border-secondary h-100">
+                  <div class="fw-semibold text-warning mb-1">Duplicate Cardholder Photos (Same SHA-256 across IDs)</div>
+                  <div id="audDuplicatesList" class="mono" style="max-height:110px; overflow-y:auto;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="sqlexResultArea" class="d-none mb-4">
+          <div class="alert alert-info d-flex justify-content-between align-items-center">
+            <span id="sqlexSummaryText"></span>
+            <a id="sqlexZipBtn" href="#" class="btn btn-success btn-sm fw-semibold d-none">
+              Download SQL Images + Manifest (.ZIP)
+            </a>
+          </div>
+          <div class="row g-3" id="sqlexGallery"></div>
+        </div>
+
+        <!-- Reverse Importer: Upload Image Files from Disk -> SQL BLOB Table -->
+        <div class="card shadow-sm mb-4">
+          <div class="card-header fw-semibold text-success d-flex justify-content-between align-items-center">
+            <span>&#128228; Reverse Importer: Batch Upload Image Files &rarr; SQL Server BLOB Table</span>
+            <span class="badge bg-success">Auto-parses Cardholder ID from Filename (e.g. 10045.jpg &rarr; ID_Num=10045)</span>
+          </div>
+          <div class="card-body">
+            <div class="row g-3 align-items-end">
+              <div class="col-md-4">
+                <label class="form-label">Select Image Files (<code>10045.jpg</code>, <code>ID_20491.png</code>, etc.)</label>
+                <input type="file" class="form-control" id="sqlImportFilesInput" multiple accept="image/*" />
+              </div>
+              <div class="col-md-2">
+                <label class="form-label">Set Target <code>Type</code> Value</label>
+                <input type="number" class="form-control" id="sqlImportTypeVal" value="0" />
+              </div>
+              <div class="col-md-2">
+                <label class="form-label">Conflict Mode</label>
+                <select class="form-select" id="sqlImportConflict">
+                  <option value="upsert" selected>Upsert (Update or Insert)</option>
+                  <option value="skip">Skip Existing IDs</option>
+                  <option value="insert">Insert All</option>
+                </select>
+              </div>
+              <div class="col-md-2">
+                <label class="form-label">Standardize Format</label>
+                <select class="form-select" id="sqlImportFormat">
+                  <option value="keep">Keep Original</option>
+                  <option value="JPEG" selected>Convert to JPEG</option>
+                  <option value="PNG">Convert to PNG</option>
+                </select>
+              </div>
+              <div class="col-md-2 d-grid">
+                <button type="button" class="btn btn-success fw-semibold" id="btnSqlImportFiles" onclick="runSqlImportFiles()">
+                  &#128228; Import to SQL Table
+                </button>
+              </div>
+            </div>
+            <div id="sqlImportStatus" class="alert py-2 px-3 mt-3 mb-0 small d-none"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================================================================ -->
+      <!-- TAB 3: SQL SYNC                                                  -->
+      <!-- ================================================================ -->
+      <div class="tab-pane fade" id="sqlsync-pane" role="tabpanel">
+        <div class="row g-4 mb-4">
+          <!-- Source SQL Server -->
+          <div class="col-md-6">
+            <div class="card shadow-sm h-100" id="srcServerCard">
+              <div class="card-header fw-semibold text-info d-flex justify-content-between align-items-center">
+                <span>1. Source SQL Server</span>
+                <button type="button" class="btn btn-outline-info btn-sm py-0" onclick="loadSqlDatabases('src')">
+                  Discover DBs
+                </button>
+              </div>
+              <div class="card-body">
+                <div class="row g-2 mb-2">
+                  <div class="col-md-6">
+                    <label class="form-label small mb-1">Server</label>
+                    <input type="text" class="form-control form-control-sm" id="srcServer" value="primo\sqlexpress" />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label small mb-1">Database (select or type)</label>
+                    <div class="input-group input-group-sm">
+                      <select class="form-select form-select-sm" id="srcDbSelect" onchange="onDbSelectChange('src')">
+                        <option value="">-- Click Discover DBs or type below --</option>
+                      </select>
+                    </div>
+                    <input type="text" class="form-control form-control-sm mt-1" id="srcDb" value="blob" placeholder="e.g. blob" />
+                  </div>
+                </div>
+                <div class="row g-2 mb-2 align-items-center">
+                  <div class="col-md-6">
+                    <select class="form-select form-select-sm" id="srcDriver">
+                      {% for d in drivers %}
+                        <option value="{{ d }}">{{ d }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="srcTrusted" checked onchange="toggleAuthFields('src')" />
+                      <label class="form-check-label small" for="srcTrusted">Windows Auth (Trusted)</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row g-2 mb-2" id="srcAuthRow" style="display:none;">
+                  <div class="col-md-6">
+                    <input type="text" class="form-control form-control-sm" id="srcUser" value="sa" placeholder="Username" />
+                  </div>
+                  <div class="col-md-6">
+                    <input type="password" class="form-control form-control-sm" id="srcPass" placeholder="Password" />
+                  </div>
+                </div>
+                <div class="mb-2">
+                  <input type="text" class="form-control form-control-sm mono" id="srcRaw" placeholder="Optional Raw Connection String" />
+                </div>
+                <button type="button" class="btn btn-sm btn-info w-100 fw-semibold" id="srcConnectBtn" onclick="loadSqlTables('src')">
+                  Connect &amp; Load Source Tables
+                </button>
+                <div id="srcConnStatus" class="alert py-1 px-2 mt-2 mb-0 small d-none"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Target SQL Server -->
+          <div class="col-md-6">
+            <div class="card shadow-sm h-100" id="dstServerCard">
+              <div class="card-header fw-semibold text-warning d-flex justify-content-between align-items-center">
+                <span>2. Target SQL Server</span>
+                <div class="d-flex gap-1">
+                  <button type="button" class="btn btn-outline-warning btn-sm py-0" onclick="loadSqlDatabases('dst')">
+                    Discover DBs
+                  </button>
+                  <button type="button" class="btn btn-outline-secondary btn-sm py-0" onclick="copySourceToTarget()">
+                    Copy Source Server
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="row g-2 mb-2">
+                  <div class="col-md-6">
+                    <label class="form-label small mb-1">Server</label>
+                    <input type="text" class="form-control form-control-sm" id="dstServer" value="primo\sqlexpress" />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label small mb-1">Database (select or type)</label>
+                    <div class="input-group input-group-sm">
+                      <select class="form-select form-select-sm" id="dstDbSelect" onchange="onDbSelectChange('dst')">
+                        <option value="">-- Click Discover DBs or type below --</option>
+                      </select>
+                    </div>
+                    <input type="text" class="form-control form-control-sm mt-1" id="dstDb" value="cardsmithv7" placeholder="e.g. cardsmithv7" />
+                  </div>
+                </div>
+                <div class="row g-2 mb-2 align-items-center">
+                  <div class="col-md-6">
+                    <select class="form-select form-select-sm" id="dstDriver">
+                      {% for d in drivers %}
+                        <option value="{{ d }}">{{ d }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="dstTrusted" checked onchange="toggleAuthFields('dst')" />
+                      <label class="form-check-label small" for="dstTrusted">Windows Auth (Trusted)</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row g-2 mb-2" id="dstAuthRow" style="display:none;">
+                  <div class="col-md-6">
+                    <input type="text" class="form-control form-control-sm" id="dstUser" value="sa" placeholder="Username" />
+                  </div>
+                  <div class="col-md-6">
+                    <input type="password" class="form-control form-control-sm" id="dstPass" placeholder="Password" />
+                  </div>
+                </div>
+                <div class="mb-2">
+                  <input type="text" class="form-control form-control-sm mono" id="dstRaw" placeholder="Optional Raw Connection String" />
+                </div>
+                <button type="button" class="btn btn-sm btn-warning w-100 fw-semibold" id="dstConnectBtn" onclick="loadSqlTables('dst')">
+                  Connect &amp; Load Target Tables
+                </button>
+                <div id="dstConnStatus" class="alert py-1 px-2 mt-2 mb-0 small d-none"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Table & Column Mapping Card -->
+        <div class="card shadow-sm mb-4">
+          <div class="card-header fw-semibold d-flex justify-content-between align-items-center">
+            <span>3. Table &amp; Column Mappings (Supports Mismatched Schemas)</span>
+            <button type="button" class="btn btn-sm btn-outline-light py-0" onclick="autoMatchColumns()">
+              Auto-Match Columns
+            </button>
+          </div>
+          <div class="card-body">
+            <div class="row g-3 mb-3 p-2 rounded" id="syncCoreMappingBox">
+              <div class="col-md-6">
+                <label class="form-label fw-semibold text-info">Source Table</label>
+                <select class="form-select" id="srcTable" onchange="loadSqlColumns('src')">
+                  <option value="">-- Click 'Connect &amp; Load Source Tables' above --</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold text-warning">Target Table</label>
+                <select class="form-select" id="dstTable" onchange="loadSqlColumns('dst')">
+                  <option value="">-- Click 'Connect &amp; Load Target Tables' above --</option>
+                </select>
+              </div>
+
+              <div class="col-md-3">
+                <label class="form-label">Source Key / Match Column</label>
+                <select class="form-select" id="srcPk"></select>
+              </div>
+              <div class="col-md-3">
+                <label class="form-label">Target Key / Match Column</label>
+                <select class="form-select" id="dstPk"></select>
+              </div>
+              <div class="col-md-3">
+                <label class="form-label">Source BLOB Column</label>
+                <select class="form-select" id="srcBlob"></select>
+              </div>
+              <div class="col-md-3">
+                <label class="form-label">Target BLOB Column</label>
+                <select class="form-select" id="dstBlob"></select>
+              </div>
+            </div>
+
+            <!-- Interactive Extra Column Mapping Builder -->
+            <div class="border border-secondary rounded p-3 mb-3" id="extraMappingsBox">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <div>
+                  <span class="fw-semibold">Additional Column Mappings</span>
+                  <span class="text-secondary small ms-2">
+                    Map extra Source columns to Target columns (unmapped Target NOT NULL columns like <code>DT</code> are filled automatically)
+                  </span>
+                </div>
+                <button type="button" class="btn btn-sm btn-outline-info" onclick="addMappingRow('', '')">
+                  + Add Column Mapping
+                </button>
+              </div>
+              <div id="extraMappingsContainer" class="d-flex flex-column gap-2"></div>
+              <input type="hidden" id="syncExtraMappings" value="" />
+            </div>
+
+            <div class="row g-3 align-items-end mb-2">
+              <div class="col-md-2">
+                <label class="form-label">Conflict Mode</label>
+                <select class="form-select" id="syncConflictMode">
+                  <option value="skip">Skip Existing Keys</option>
+                  <option value="upsert">Upsert / Update Keys</option>
+                  <option value="insert">Insert All Rows</option>
+                </select>
+              </div>
+              <div class="col-md-3">
+                <label class="form-label fw-semibold text-info">Target <code>Type</code> Handling (1 &amp; 0 &rarr; 0)</label>
+                <select class="form-select" id="syncTargetTypeMode">
+                  <option value="keep">Keep Source Type as-is (0&rarr;0, 1&rarr;1)</option>
+                  <option value="prefer_0_fallback_1_as_0">Set Target Type = 0 (Prefer 0; fallback 1&rarr;0)</option>
+                  <option value="force_0">Force All Synced Rows to Target Type = 0</option>
+                  <option value="map_1_to_0_only">Sync Only Source Type = 1 &rarr; Set as Target Type = 0</option>
+                  <option value="force_1">Force All Synced Rows to Target Type = 1</option>
+                </select>
+              </div>
+              <div class="col-md-2">
+                <label class="form-label fw-semibold text-info">On-the-Fly Format</label>
+                <select class="form-select" id="syncTargetFormat">
+                  <option value="keep">Keep Original BLOB</option>
+                  <option value="JPEG">Convert to JPEG (~85% Smaller)</option>
+                  <option value="PNG">Convert to PNG</option>
+                </select>
+              </div>
+              <div class="col-md-2">
+                <label class="form-label">Max Dimension</label>
+                <select class="form-select" id="syncMaxDim">
+                  <option value="0">Original Size</option>
+                  <option value="600">Max 600px (Badge)</option>
+                  <option value="800">Max 800px</option>
+                  <option value="1024">Max 1024px</option>
+                </select>
+              </div>
+              <div class="col-md-2">
+                <label class="form-label">Source WHERE Filter</label>
+                <input type="text" class="form-control mono" id="syncWhere" placeholder="e.g. Image IS NOT NULL" />
+              </div>
+              <div class="col-md-1">
+                <label class="form-label">Batch</label>
+                <input type="number" class="form-control" id="syncBatchSize" value="50" min="1" max="1000" />
+              </div>
+            </div>
+
+            <div class="row g-3 align-items-center pt-1">
+              <div class="col-md-8 d-flex flex-wrap gap-4">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="syncHandleMissingFk" checked />
+                  <label class="form-check-label small fw-semibold" for="syncHandleMissingFk" title="When Target has a Foreign Key (e.g. fk_IDCARD -> dbo.IDCARD), automatically copy the missing parent cardholder record from Source or create a stub parent row so the BLOB is never skipped.">
+                    Auto-sync missing parent <code>IDCARD</code> / bypass FK
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="syncBackupTarget" checked />
+                  <label class="form-check-label small fw-semibold text-warning" for="syncBackupTarget" title="Automatically creates a full SQL backup table (e.g. dbo.ID_Image_Backup_YYYYMMDD_HHMMSS) on Target before syncing.">
+                    Backup Target table before sync (<code>_Backup</code> table)
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="syncExtractClean" />
+                  <label class="form-check-label small" for="syncExtractClean">
+                    Carve clean image before writing
+                  </label>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="d-flex gap-2">
+                  <button type="button" class="btn btn-success flex-grow-1 fw-semibold" id="btnStartSync" onclick="startSqlSync()">
+                    Start SQL Sync
+                  </button>
+                  <button type="button" class="btn btn-outline-danger d-none" id="btnCancelSync" onclick="cancelSqlSync()">
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Progress Bar & Status Card (Polls every 500ms) -->
+        <div class="card shadow-sm" id="syncProgressCard">
+          <div class="card-header fw-semibold d-flex justify-content-between">
+            <span>Sync Progress</span>
+            <span class="mono" id="syncBadgeStatus">Idle</span>
+          </div>
+          <div class="card-body">
+            <div class="progress mb-3" style="height: 26px;">
+              <div
+                id="syncProgressBar"
+                class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+                role="progressbar"
+                style="width: 0%"
+              >
+                0%
+              </div>
+            </div>
+            <div class="row text-center g-2 mb-3">
+              <div class="col">
+                <div class="p-2 border border-secondary rounded">
+                  <div class="small text-secondary">Processed</div>
+                  <div class="fs-5 fw-bold mono" id="statProcessed">0 / 0</div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="p-2 border border-secondary rounded">
+                  <div class="small text-secondary">Inserted</div>
+                  <div class="fs-5 fw-bold text-success mono" id="statInserted">0</div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="p-2 border border-secondary rounded">
+                  <div class="small text-secondary">Updated</div>
+                  <div class="fs-5 fw-bold text-info mono" id="statUpdated">0</div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="p-2 border border-secondary rounded">
+                  <div class="small text-secondary">Parent FK Synced</div>
+                  <div class="fs-5 fw-bold text-primary mono" id="statParentSynced">0</div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="p-2 border border-secondary rounded">
+                  <div class="small text-secondary">Skipped</div>
+                  <div class="fs-5 fw-bold text-warning mono" id="statSkipped">0</div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="p-2 border border-secondary rounded">
+                  <div class="small text-secondary">Errors</div>
+                  <div class="fs-5 fw-bold text-danger mono" id="statErrors">0</div>
+                </div>
+              </div>
+            </div>
+            <div class="mono small text-secondary" id="syncStatusMessage">Waiting to start...</div>
+            <pre class="mono small text-warning mt-2 mb-0 d-none" id="syncErrorDetails"></pre>
+
+            <!-- Pre-Sync & Live Sync Activity Log Console -->
+            <div class="mt-3">
+              <div class="d-flex justify-content-between align-items-center mb-1">
+                <label class="form-label small fw-semibold text-info mb-0">
+                  &#128221; Pre-Sync &amp; Live Sync Activity Log
+                </label>
+                <button type="button" class="btn btn-sm btn-outline-secondary py-0 px-2" onclick="clearSyncLog()">
+                  Clear Log
+                </button>
+              </div>
+                <pre
+                id="syncActivityLog"
+                class="mono small p-2 rounded border border-secondary mb-0"
+                style="max-height: 220px; overflow-y: auto; background: rgba(0,0,0,0.25); white-space: pre-wrap;"
+              >Click "Start SQL Sync" to inspect Source &amp; Target row counts, BLOB size, and Type breakdown before proceeding...</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================================================================ -->
+      <!-- TAB 4: INSTALL FROM URL & REMOTE LINK (PrimoITall Style)         -->
+      <!-- ================================================================ -->
+      <div class="tab-pane fade" id="urlinstall-pane" role="tabpanel">
+        <div class="row g-4 mb-4">
+          <!-- Left Column: Remote / LAN URL & Standalone App Install -->
+          <div class="col-lg-6">
+            <div class="card shadow-sm h-100">
+              <div class="card-header fw-semibold d-flex justify-content-between align-items-center text-info">
+                <span>&#127760; 1. Remote / LAN URL &amp; Web App Install</span>
+                <span class="badge text-bg-dark border border-info mono" id="netHostBadge">HOST: CHECKING...</span>
+              </div>
+              <div class="card-body">
+                <p class="small text-secondary mb-3">
+                  Open PrimoIT Tech BLOB Extractor on another PC, tablet, or phone via LAN/Remote URL, or install it as a standalone Desktop/Mobile Web App (PWA) just like <strong>PrimoITall</strong>.
+                </p>
+
+                <div class="mb-3">
+                  <label class="form-label small fw-bold text-uppercase text-warning mb-1">
+                    Encrypted Remote HTTPS URL (Different Network / 5G / Cellular):
+                  </label>
+                  <div class="input-group input-group-sm">
+                    <input type="text" id="inputRemoteTunnelUrl" class="form-control mono" readonly value="https://allows-lee-productive-constructed.trycloudflare.com" />
+                    <button class="btn btn-warning fw-semibold" type="button" onclick="copyUrlField('inputRemoteTunnelUrl', 'Remote HTTPS Tunnel URL')">
+                      Copy Remote Link
+                    </button>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label small fw-bold text-uppercase text-info mb-1">
+                    Local Office / Home Wi-Fi (LAN) URL:
+                  </label>
+                  <div class="input-group input-group-sm">
+                    <input type="text" id="inputLanUrl" class="form-control mono" readonly value="http://192.168.1.97:5050" />
+                    <button class="btn btn-info fw-semibold" type="button" onclick="copyUrlField('inputLanUrl', 'LAN Wi-Fi URL')">
+                      Copy LAN URL
+                    </button>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label small fw-bold text-uppercase text-secondary mb-1">
+                    Local Workstation URL:
+                  </label>
+                  <div class="input-group input-group-sm">
+                    <input type="text" id="inputLocalUrl" class="form-control mono" readonly value="http://localhost:5050" />
+                    <button class="btn btn-outline-secondary" type="button" onclick="copyUrlField('inputLocalUrl', 'Localhost URL')">
+                      Copy Local
+                    </button>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label small fw-bold text-uppercase text-success mb-1">
+                    1-Line PowerShell Install from URL (Any Windows PC):
+                  </label>
+                  <div class="input-group input-group-sm">
+                    <input
+                      type="text"
+                      id="inputPsInstallCmd"
+                      class="form-control mono"
+                      readonly
+                      value="irm https://raw.githubusercontent.com/nilknarf1972/DeBlobisizer-Pro/main/install.ps1 | iex"
+                    />
+                    <button class="btn btn-success fw-semibold" type="button" onclick="copyUrlField('inputPsInstallCmd', 'PowerShell URL Installer Command')">
+                      Copy PS1 Command
+                    </button>
+                  </div>
+                  <div class="form-text small">
+                    Paste into Windows PowerShell on any machine to automatically download, configure <code>.venv</code>, create a Desktop shortcut, and launch PrimoIT Tech BLOB Extractor.
+                  </div>
+                </div>
+
+                <div class="d-flex flex-wrap gap-2 mt-3">
+                  <button type="button" class="btn btn-sm btn-primary fw-semibold" id="btnPwaInstall" onclick="triggerPwaInstall()">
+                    &#128242; Install App from Browser URL (Desktop / Home Screen)
+                  </button>
+                  <a
+                    href="https://github.com/nilknarf1972/DeBlobisizer-Pro/archive/refs/heads/main.zip"
+                    target="_blank"
+                    rel="noopener"
+                    class="btn btn-sm btn-outline-info"
+                  >
+                    &#128230; Download Full ZIP from GitHub URL
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Direct URL Package Installer & SQL Driver Setup -->
+          <div class="col-lg-6">
+            <div class="card shadow-sm h-100">
+              <div class="card-header fw-semibold text-success">
+                &#128229; 2. Install Software / SQL Drivers from Direct URL
+              </div>
+              <div class="card-body">
+                <p class="small text-secondary mb-3">
+                  Paste any direct HTTP/HTTPS installer URL (<code>.msi</code>, <code>.exe</code>, <code>.zip</code>, <code>.ps1</code>) to download and launch on this workstation, or use 1-click verified SQL driver installers below.
+                </p>
+
+                <div class="mb-2">
+                  <label class="form-label small fw-bold mb-1">Direct Package / Installer URL:</label>
+                  <div class="input-group input-group-sm">
+                    <input
+                      type="url"
+                      id="directInstallUrlInput"
+                      class="form-control mono"
+                      placeholder="https://go.microsoft.com/fwlink/?linkid=2266337 (or .msi / .exe / .zip)"
+                    />
+                    <button class="btn btn-success fw-semibold" type="button" id="btnRunUrlInstall" onclick="installFromDirectUrl()">
+                      &#11015;&#65039; Download &amp; Install from URL
+                    </button>
+                  </div>
+                </div>
+
+                <div class="form-check mb-3">
+                  <input class="form-check-input" type="checkbox" id="chkAutoRunUrlInstaller" checked />
+                  <label class="form-check-label small" for="chkAutoRunUrlInstaller">
+                    Automatically launch installer (<code>.msi</code> / <code>.exe</code> / <code>.ps1</code>) or extract <code>.zip</code> after download
+                  </label>
+                </div>
+
+                <hr class="border-secondary my-3" />
+
+                <div class="small fw-bold text-info mb-2">
+                  &#9889; Verified SQL Server &amp; Runtime Quick-Installers (URL / Winget):
+                </div>
+                <div class="row g-2">
+                  <div class="col-sm-6">
+                    <div class="p-2 border border-secondary rounded d-flex flex-column justify-content-between h-100">
+                      <div>
+                        <div class="small fw-bold">MS ODBC Driver 17 for SQL</div>
+                        <div class="small text-secondary mono" style="font-size: 0.75rem;">Microsoft.msodbcsql.17</div>
+                      </div>
+                      <div class="d-flex gap-1 mt-2">
+                        <button type="button" class="btn btn-sm btn-outline-info flex-grow-1 py-0" onclick="installVerifiedPackage('winget', 'Microsoft.msodbcsql.17', 'MS ODBC Driver 17')">
+                          Winget Install
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-success py-0" onclick="fillAndRunUrl('https://go.microsoft.com/fwlink/?linkid=2266337')">
+                          From URL
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="p-2 border border-secondary rounded d-flex flex-column justify-content-between h-100">
+                      <div>
+                        <div class="small fw-bold">MS ODBC Driver 18 for SQL</div>
+                        <div class="small text-secondary mono" style="font-size: 0.75rem;">Microsoft.msodbcsql.18</div>
+                      </div>
+                      <div class="d-flex gap-1 mt-2">
+                        <button type="button" class="btn btn-sm btn-outline-info flex-grow-1 py-0" onclick="installVerifiedPackage('winget', 'Microsoft.msodbcsql.18', 'MS ODBC Driver 18')">
+                          Winget Install
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-success py-0" onclick="fillAndRunUrl('https://go.microsoft.com/fwlink/?linkid=2266584')">
+                          From URL
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="p-2 border border-secondary rounded d-flex flex-column justify-content-between h-100">
+                      <div>
+                        <div class="small fw-bold">SQL Server Mgmt Studio</div>
+                        <div class="small text-secondary mono" style="font-size: 0.75rem;">Microsoft.SQLServerManagementStudio</div>
+                      </div>
+                      <div class="d-flex gap-1 mt-2">
+                        <button type="button" class="btn btn-sm btn-outline-info flex-grow-1 py-0" onclick="installVerifiedPackage('winget', 'Microsoft.SQLServerManagementStudio', 'SSMS')">
+                          Winget Install
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-success py-0" onclick="fillAndRunUrl('https://aka.ms/ssmsfullsetup')">
+                          From URL
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="p-2 border border-secondary rounded d-flex flex-column justify-content-between h-100">
+                      <div>
+                        <div class="small fw-bold">VC++ 2015-2022 Redist (x64)</div>
+                        <div class="small text-secondary mono" style="font-size: 0.75rem;">Microsoft.VCRedist.2015+.x64</div>
+                      </div>
+                      <div class="d-flex gap-1 mt-2">
+                        <button type="button" class="btn btn-sm btn-outline-info flex-grow-1 py-0" onclick="installVerifiedPackage('winget', 'Microsoft.VCRedist.2015+.x64', 'VC++ Redist x64')">
+                          Winget Install
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-success py-0" onclick="fillAndRunUrl('https://aka.ms/vs/17/release/vc_redist.x64.exe')">
+                          From URL
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- URL Installer Console Output -->
+        <div class="card shadow-sm">
+          <div class="card-header fw-semibold d-flex justify-content-between align-items-center">
+            <span>&#128187; Install from URL &amp; Package Stream</span>
+            <span class="mono small text-secondary" id="urlInstallStatusBadge">Ready</span>
+          </div>
+          <div class="card-body">
+            <pre
+              id="urlInstallLog"
+              class="mono small p-2 rounded border border-secondary mb-0"
+              style="max-height: 200px; overflow-y: auto; background: rgba(0,0,0,0.25); white-space: pre-wrap;"
+            >// Install-from-URL console ready. Paste an installer URL or choose a package above.</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================================ -->
+  <!-- PRE-SYNC CONFIRMATION MODAL ("Are you sure before proceeding?")  -->
+  <!-- ================================================================ -->
+  <div class="modal fade" id="syncConfirmModal" tabindex="-1" aria-labelledby="syncConfirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header border-secondary">
+          <h5 class="modal-title fw-bold text-info" id="syncConfirmModalLabel">
+            &#9888;&#65039; Confirm SQL Sync Before Proceeding
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div id="syncConfirmLargeBanner" class="alert alert-warning fw-semibold py-2 px-3 d-none"></div>
+          <p class="small text-secondary mb-2">
+            Pre-flight inspection completed. <strong>No changes have been sent to the Target SQL Server yet.</strong>
+            Please review the Source &amp; Target summary below and confirm you want to proceed:
+          </p>
+          <div class="row g-2 mb-3 small">
+            <div class="col-md-6">
+              <div class="p-2 border border-secondary rounded h-100">
+                <div class="fw-bold text-info mb-1">1. Source BLOB Table Summary</div>
+                <div><strong>Server / DB:</strong> <span class="mono" id="confSrcServer"></span></div>
+                <div><strong>Table:</strong> <span class="mono" id="confSrcTable"></span></div>
+                <div><strong>Total Matching Rows:</strong> <span class="mono fw-bold text-warning" id="confSrcRows"></span></div>
+                <div><strong>Distinct IDs:</strong> <span class="mono" id="confSrcDistinct"></span></div>
+                <div><strong>Estimated BLOB Size:</strong> <span class="mono fw-bold" id="confSrcSize"></span></div>
+                <div><strong>Source Type Breakdown:</strong> <span class="mono" id="confSrcTypes"></span></div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="p-2 border border-secondary rounded h-100">
+                <div class="fw-bold text-success mb-1">2. Target Destination &amp; Rules</div>
+                <div><strong>Server / DB:</strong> <span class="mono" id="confDstServer"></span></div>
+                <div><strong>Table:</strong> <span class="mono" id="confDstTable"></span></div>
+                <div><strong>Existing Target Rows:</strong> <span class="mono" id="confDstRows"></span></div>
+                <div><strong>Target Type Mode:</strong> <span class="mono fw-bold text-info" id="confTypeMode"></span></div>
+                <div><strong>Conflict Mode:</strong> <span class="mono" id="confConflict"></span></div>
+                <div><strong>Target Backup Table:</strong> <span class="mono fw-bold" id="confBackup"></span></div>
+                <div><strong>Auto-Sync Parent FK:</strong> <span class="mono" id="confFk"></span></div>
+              </div>
+            </div>
+          </div>
+          <div class="small fw-semibold mb-1">Logged Pre-Sync Inspection Details:</div>
+          <pre
+            id="confPreviewLog"
+            class="mono small p-2 rounded border border-secondary mb-0"
+            style="max-height: 150px; overflow-y: auto; background: rgba(0,0,0,0.25); white-space: pre-wrap;"
+          ></pre>
+        </div>
+        <div class="modal-footer border-secondary d-flex justify-content-between">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+            Cancel (Do Not Sync)
+          </button>
+          <button type="button" class="btn btn-success fw-semibold" id="btnConfirmProceedSync" onclick="executeConfirmedSqlSync()">
+            &#9989; Yes, Proceed &amp; Sync to Target
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================================ -->
+  <!-- INTERACTIVE QUICK GUIDED TOUR OVERLAY (CoachMark Engine)         -->
+  <!-- ================================================================ -->
+  <div id="tour-container" style="display: none;">
+    <div id="tour-card" class="tour-card" role="dialog" aria-labelledby="tour-step-title">
+      <div class="tour-card-header">
+        <span class="tour-step-badge">
+          <span>&#10024; GUIDED TOUR</span>
+          <span>&bull;</span>
+          <span id="tour-step-indicator">STEP 1 OF 8</span>
+        </span>
+        <button type="button" class="tour-btn-close" id="btn-tour-close" title="Close Tour">&times;</button>
+      </div>
+      <div class="tour-card-title" id="tour-step-title"></div>
+      <p class="tour-card-copy" id="tour-step-copy"></p>
+      <div class="tour-tip-note">Tip: Use &larr; / &rarr; arrow keys or Enter to navigate, Esc to exit.</div>
+      <div class="tour-card-footer">
+        <div class="d-flex gap-2">
+          <button type="button" class="btn btn-sm btn-outline-secondary" id="btn-tour-skip">Skip Tour</button>
+          <button type="button" class="btn btn-sm btn-outline-light" id="btn-tour-prev">&larr; Back</button>
+        </div>
+        <button type="button" class="btn btn-sm btn-info fw-semibold" id="btn-tour-next">Next Step &rarr;</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="text-center py-4 mt-5 border-top border-secondary text-secondary small">
+    <div class="container">
+      <p class="mb-1"><strong>PrimoIT Tech LLC BLOB Extractor™</strong> &bull; Enterprise Binary Image Carving &amp; MS-SQL Synchronization Platform</p>
+      <p class="mb-0">&copy; 2026 PrimoIT Tech LLC. Jupiter, Florida. All Rights Reserved. &bull; Managing Member: Keith Franklin</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    let activeSyncJobId = null;
+    let syncPollTimer = null;
+    let loadedColumns = { src: [], dst: [], sqlex: [] };
+
+    function toggleAuthFields(prefix) {
+      const trusted = document.getElementById(prefix + 'Trusted').checked;
+      document.getElementById(prefix + 'AuthRow').style.display = trusted ? 'none' : 'flex';
+    }
+
+    function onDbSelectChange(prefix) {
+      const sel = document.getElementById(prefix + 'DbSelect');
+      if (sel && sel.value) {
+        document.getElementById(prefix + 'Db').value = sel.value;
+        loadSqlTables(prefix);
+      }
+    }
+
+    function getConnParams(prefix) {
+      return {
+        driver: document.getElementById(prefix + 'Driver').value,
+        server: document.getElementById(prefix + 'Server').value,
+        database: document.getElementById(prefix + 'Db').value,
+        trusted: document.getElementById(prefix + 'Trusted').checked,
+        username: document.getElementById(prefix + 'User').value,
+        password: document.getElementById(prefix + 'Pass').value,
+        connection_string: document.getElementById(prefix + 'Raw').value
+      };
+    }
+
+    function copySourceToTarget() {
+      ['Driver', 'Server', 'User', 'Pass', 'Raw'].forEach(f => {
+        document.getElementById('dst' + f).value = document.getElementById('src' + f).value;
+      });
+      document.getElementById('dstTrusted').checked = document.getElementById('srcTrusted').checked;
+      toggleAuthFields('dst');
+      loadSqlDatabases('dst');
+    }
+
+    function setConnStatus(prefix, state, message) {
+      const btn = document.getElementById(prefix + 'ConnectBtn');
+      const box = document.getElementById(prefix + 'ConnStatus');
+      const defaultLabels = {
+        sqlex: 'Connect & Browse Tables',
+        src: 'Connect & Load Source Tables',
+        dst: 'Connect & Load Target Tables'
+      };
+      if (btn) {
+        if (state === 'loading') {
+          btn.disabled = true;
+          btn.textContent = '⏳ Connecting to SQL Server...';
+        } else if (state === 'connected') {
+          btn.disabled = false;
+          btn.textContent = message.btnText || ('✅ Connected — ' + defaultLabels[prefix]);
+        } else {
+          btn.disabled = false;
+          btn.textContent = defaultLabels[prefix] || 'Connect & Load Tables';
+        }
+      }
+      if (box) {
+        box.className = 'alert py-1 px-2 mt-2 mb-0 small';
+        if (state === 'loading') {
+          box.classList.add('alert-info');
+          box.textContent = message.text || '⏳ Connecting to SQL Server...';
+        } else if (state === 'connected') {
+          box.classList.add('alert-success', 'fw-semibold');
+          box.textContent = message.text;
+        } else if (state === 'error') {
+          box.classList.add('alert-danger');
+          box.textContent = message.text;
+        } else {
+          box.classList.add('d-none');
+        }
+      }
+    }
+
+    async function loadSqlDatabases(prefix) {
+      const payload = getConnParams(prefix);
+      setConnStatus(prefix, 'loading', { text: `⏳ Connecting to ${payload.server || 'SQL Server'} to list databases...` });
+      try {
+        const res = await fetch('/api/sql/databases', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (!data.ok) {
+          setConnStatus(prefix, 'error', { text: `❌ Connection Failed: ${data.error}` });
+          alert('Failed to list databases:\n' + data.error);
+          return;
+        }
+        const dbs = data.databases || [];
+        populateDbList(prefix, dbs);
+        setConnStatus(prefix, 'connected', {
+          btnText: prefix === 'dst' ? '✅ Connected — Click to Load Target Tables' : (prefix === 'src' ? '✅ Connected — Click to Load Source Tables' : '✅ Connected — Click to Browse Tables'),
+          text: `✅ Connected to ${payload.server || 'SQL Server'} — Found ${dbs.length} database(s). Select a database or click Connect & Load Tables.`
+        });
+      } catch (err) {
+        setConnStatus(prefix, 'error', { text: `❌ Error listing databases: ${err.message}` });
+        alert('Error listing databases: ' + err.message);
+      }
+    }
+
+    function populateDbList(prefix, dbs, resolvedDb) {
+      const currentVal = resolvedDb || document.getElementById(prefix + 'Db').value;
+      if (resolvedDb) {
+        document.getElementById(prefix + 'Db').value = resolvedDb;
+      }
+      if (prefix === 'sqlex') {
+        const dl = document.getElementById('sqlexDbList');
+        dl.innerHTML = dbs.map(d => `<option value="${d}"></option>`).join('');
+      } else {
+        const sel = document.getElementById(prefix + 'DbSelect');
+        sel.innerHTML = `<option value="">-- Select Database (${dbs.length} available) --</option>` +
+          dbs.map(d => `<option value="${d}" ${d.toLowerCase() === (currentVal || '').toLowerCase() ? 'selected' : ''}>${d}</option>`).join('');
+      }
+    }
+
+    // ------------------------------------------------------------------
+    // 1. FILE MODE
+    // ------------------------------------------------------------------
+    document.getElementById('fileExtractForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('btnFileExtract');
+      const formData = new FormData();
+      const files = document.getElementById('blobFiles').files;
+      for (let i = 0; i < files.length; i++) {
+        formData.append('files', files[i]);
+      }
+      formData.append('min_size', document.getElementById('fileMinSize').value);
+      formData.append('validate', document.getElementById('fileValidate').checked ? 'true' : 'false');
+
+      btn.disabled = true;
+      btn.textContent = 'Scanning...';
+
+      try {
+        const res = await fetch('/api/extract-file', { method: 'POST', body: formData });
+        const data = await res.json();
+        if (!data.ok) {
+          alert(data.error || 'Extraction failed');
+          return;
+        }
+        renderGallery('file', data);
+      } catch (err) {
+        alert('Error: ' + err.message);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Scan & Extract';
+      }
+    });
+
+    function renderGallery(prefix, data) {
+      const area = document.getElementById(prefix + 'ResultArea');
+      const text = document.getElementById(prefix + 'SummaryText');
+      const zipBtn = document.getElementById(prefix + 'ZipBtn');
+      const gallery = document.getElementById(prefix + 'Gallery');
+
+      area.classList.remove('d-none');
+      text.textContent = data.message || `Extracted ${data.images.length} images.`;
+
+      if (data.zip_url) {
+        zipBtn.href = data.zip_url;
+        zipBtn.classList.remove('d-none');
+      } else {
+        zipBtn.classList.add('d-none');
+      }
+
+      gallery.innerHTML = '';
+      (data.images || []).forEach(img => {
+        const col = document.createElement('div');
+        col.className = 'col-sm-6 col-md-4 col-lg-3';
+        const previewHtml = img.preview_data_url
+          ? `<img src="${img.preview_data_url}" class="card-img-top p-2" alt="${img.filename}" />`
+          : `<div class="p-4 text-center text-secondary">Preview unavailable</div>`;
+        col.innerHTML = `
+          <div class="card thumb-card h-100">
+            ${previewHtml}
+            <div class="card-body p-2">
+              <div class="small fw-semibold text-truncate" title="${img.filename}">${img.filename}</div>
+              <div class="small text-secondary mono">
+                ${img.format} &bull; ${(img.size || 0).toLocaleString()} B &bull; ${img.width || '?'}x${img.height || '?'}
+              </div>
+            </div>
+          </div>
+        `;
+        gallery.appendChild(col);
+      });
+    }
+
+    // ------------------------------------------------------------------
+    // 2. SQL TABLES & COLUMNS
+    // ------------------------------------------------------------------
+    async function loadSqlTables(prefix) {
+      const payload = getConnParams(prefix);
+      const roleLabel = prefix === 'dst' ? 'Target' : (prefix === 'src' ? 'Source' : 'SQL');
+      setConnStatus(prefix, 'loading', { text: `⏳ Connecting to ${ roleLabel } SQL (${payload.server || 'Server'} / ${payload.database || 'DB'})...` });
+      try {
+        const res = await fetch('/api/sql/tables', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (!data.ok) {
+          setConnStatus(prefix, 'error', { text: `❌ ${roleLabel} Connection Failed: ${data.error}` });
+          alert('SQL Connection Error:\n' + data.error);
+          return;
+        }
+        if (data.databases && data.databases.length > 0) {
+          populateDbList(prefix, data.databases, data.resolved_database);
+        } else if (data.resolved_database) {
+          document.getElementById(prefix + 'Db').value = data.resolved_database;
+        }
+
+        const resolvedDb = data.resolved_database || document.getElementById(prefix + 'Db').value || payload.database;
+        const tables = data.tables || [];
+        const sel = document.getElementById(prefix + 'Table');
+        sel.innerHTML = tables.map(t => `<option value="${t}">${t}</option>`).join('');
+
+        const preferred = tables.find(t => t.toLowerCase().includes('id_image')) || tables[0];
+        if (preferred) {
+          sel.value = preferred;
+          await loadSqlColumns(prefix);
+        }
+
+        setConnStatus(prefix, 'connected', {
+          btnText: `✅ Connected — ${tables.length} ${roleLabel} Table(s) Loaded`,
+          text: `✅ Connected to ${roleLabel} SQL Server (${payload.server || 'Server'} / ${resolvedDb}) — Loaded ${tables.length} table(s)${preferred ? ` (Selected: ${preferred})` : ''}.`
+        });
+      } catch (err) {
+        setConnStatus(prefix, 'error', { text: `❌ Error connecting to ${roleLabel} SQL: ${err.message}` });
+        alert('Error loading tables: ' + err.message);
+      }
+    }
+
+    async function loadSqlColumns(prefix) {
+      const table = document.getElementById(prefix + 'Table').value;
+      if (!table) return;
+      const payload = { ...getConnParams(prefix), table };
+      try {
+        const res = await fetch('/api/sql/columns', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (!data.ok) return;
+
+        const cols = data.columns || [];
+        loadedColumns[prefix] = cols;
+
+        const pks = cols.filter(c => c.is_pk).map(c => c.name);
+        const keyCandidates = cols.filter(c => c.is_key_candidate).map(c => c.name);
+        const blobs = cols.filter(c => c.is_blob).map(c => c.name);
+
+        if (prefix === 'sqlex') {
+          const blobSel = document.getElementById('sqlexBlobCol');
+          const idSel = document.getElementById('sqlexIdCol');
+          blobSel.innerHTML = cols.map(c => `<option value="${c.name}">${c.name} (${c.data_type})</option>`).join('');
+          idSel.innerHTML = `<option value="">-- Row Index --</option>` +
+            cols.map(c => `<option value="${c.name}">${c.name} (${c.data_type})</option>`).join('');
+          if (blobs.length > 0) blobSel.value = blobs[0];
+          const idDefault = cols.find(c => c.name.toLowerCase() === 'id_num')?.name || pks[0] || keyCandidates[0];
+          if (idDefault) idSel.value = idDefault;
+        } else {
+          const pkSel = document.getElementById(prefix + 'Pk');
+          const blobSel = document.getElementById(prefix + 'Blob');
+          const optionsHtml = cols.map(c => {
+            const nullTag = c.is_nullable ? 'NULL' : 'NOT NULL';
+            return `<option value="${c.name}">${c.name} (${c.data_type}, ${nullTag})</option>`;
+          }).join('');
+          pkSel.innerHTML = optionsHtml;
+          blobSel.innerHTML = optionsHtml;
+
+          const idNumCol = cols.find(c => c.name.toLowerCase() === 'id_num')?.name;
+          if (idNumCol) {
+            pkSel.value = idNumCol;
+          } else if (pks.length > 0) {
+            pkSel.value = pks[0];
+          } else if (keyCandidates.length > 0) {
+            pkSel.value = keyCandidates[0];
+          }
+
+          if (blobs.length > 0) {
+            blobSel.value = blobs[0];
+          }
+          autoMatchColumns();
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    function autoMatchColumns() {
+      const srcCols = loadedColumns.src || [];
+      const dstCols = loadedColumns.dst || [];
+      if (srcCols.length === 0 || dstCols.length === 0) {
+        refreshMappingDropdowns();
+        return;
+      }
+
+      const dstLowerMap = {};
+      dstCols.forEach(c => { dstLowerMap[c.name.toLowerCase()] = c.name; });
+
+      for (const candidate of ['id_num', 'id', 'personid', 'photoid']) {
+        const sMatch = srcCols.find(c => c.name.toLowerCase() === candidate);
+        const dMatch = dstCols.find(c => c.name.toLowerCase() === candidate);
+        if (sMatch && dMatch) {
+          document.getElementById('srcPk').value = sMatch.name;
+          document.getElementById('dstPk').value = dMatch.name;
+          break;
+        }
+      }
+
+      const sBlob = srcCols.find(c => c.is_blob);
+      const dBlob = dstCols.find(c => c.is_blob);
+      if (sBlob) document.getElementById('srcBlob').value = sBlob.name;
+      if (dBlob) document.getElementById('dstBlob').value = dBlob.name;
+
+      const chosenSrcPk = (document.getElementById('srcPk').value || '').toLowerCase();
+      const chosenDstPk = (document.getElementById('dstPk').value || '').toLowerCase();
+      const chosenSrcBlob = (document.getElementById('srcBlob').value || '').toLowerCase();
+      const chosenDstBlob = (document.getElementById('dstBlob').value || '').toLowerCase();
+
+      const container = document.getElementById('extraMappingsContainer');
+      container.innerHTML = '';
+
+      srcCols.forEach(sc => {
+        const sLow = sc.name.toLowerCase();
+        if (sLow === chosenSrcPk || sLow === chosenSrcBlob) return;
+        const matchedDst = dstLowerMap[sLow];
+        if (matchedDst && matchedDst.toLowerCase() !== chosenDstPk && matchedDst.toLowerCase() !== chosenDstBlob) {
+          addMappingRow(sc.name, matchedDst);
+        }
+      });
+      syncHiddenMappingsInput();
+    }
+
+    function addMappingRow(srcVal = '', dstVal = '') {
+      const container = document.getElementById('extraMappingsContainer');
+      const srcCols = loadedColumns.src || [];
+      const dstCols = loadedColumns.dst || [];
+
+      const row = document.createElement('div');
+      row.className = 'row g-2 align-items-center mapping-row';
+
+      const constOptions = [
+        `<option value="const:0" ${srcVal === 'const:0' ? 'selected' : ''}>[Constant Value: 0]</option>`,
+        `<option value="const:1" ${srcVal === 'const:1' ? 'selected' : ''}>[Constant Value: 1]</option>`
+      ].join('');
+      const srcOptions = `<option value="">-- Select Source Column or Constant --</option>` +
+        constOptions +
+        srcCols.map(c => `<option value="${c.name}" ${c.name === srcVal ? 'selected' : ''}>${c.name} (${c.data_type})</option>`).join('');
+      const dstOptions = `<option value="">-- Select Target Column --</option>` +
+        dstCols.map(c => `<option value="${c.name}" ${c.name === dstVal ? 'selected' : ''}>${c.name} (${c.data_type}${c.is_nullable ? '' : ', NOT NULL'})</option>`).join('');
+
+      row.innerHTML = `
+        <div class="col-md-5">
+          <select class="form-select form-select-sm map-src" onchange="syncHiddenMappingsInput()">
+            ${srcOptions}
+          </select>
+        </div>
+        <div class="col-md-1 text-center text-secondary fw-bold">&rarr;</div>
+        <div class="col-md-5">
+          <select class="form-select form-select-sm map-dst" onchange="syncHiddenMappingsInput()">
+            ${dstOptions}
+          </select>
+        </div>
+        <div class="col-md-1 text-end">
+          <button type="button" class="btn btn-sm btn-outline-danger" onclick="this.closest('.mapping-row').remove(); syncHiddenMappingsInput();">&times;</button>
+        </div>
+      `;
+      container.appendChild(row);
+      syncHiddenMappingsInput();
+    }
+
+    function refreshMappingDropdowns() {
+      const rows = document.querySelectorAll('#extraMappingsContainer .mapping-row');
+      rows.forEach(r => {
+        const sVal = r.querySelector('.map-src').value;
+        const dVal = r.querySelector('.map-dst').value;
+        r.remove();
+        addMappingRow(sVal, dVal);
+      });
+    }
+
+    function syncHiddenMappingsInput() {
+      const pairs = [];
+      document.querySelectorAll('#extraMappingsContainer .mapping-row').forEach(r => {
+        const s = r.querySelector('.map-src')?.value;
+        const d = r.querySelector('.map-dst')?.value;
+        if (s && d) {
+          pairs.push(`${s}=${d}`);
+        }
+      });
+      document.getElementById('syncExtraMappings').value = pairs.join(', ');
+    }
+
+    async function runSqlExtract() {
+      const btn = document.getElementById('btnSqlExtract');
+      const payload = {
+        connection: getConnParams('sqlex'),
+        table: document.getElementById('sqlexTable').value,
+        blob_column: document.getElementById('sqlexBlobCol').value,
+        id_column: document.getElementById('sqlexIdCol').value,
+        where_clause: document.getElementById('sqlexWhere').value,
+        limit: parseInt(document.getElementById('sqlexLimit').value || '0', 10),
+        validate: document.getElementById('sqlexValidate').checked,
+        filename_template: document.getElementById('sqlexFilenameTemplate')?.value || '{table}_{id}',
+        target_format: document.getElementById('sqlexTargetFormat')?.value || 'keep',
+        max_dimension: parseInt(document.getElementById('sqlexMaxDim')?.value || '0', 10)
+      };
+
+      btn.disabled = true;
+      btn.textContent = '⏳ Extracting BLOBs...';
+      try {
+        const res = await fetch('/api/sql/extract', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (!data.ok) {
+          alert('SQL Extract Error:\n' + data.error);
+          return;
+        }
+        renderGallery('sqlex', data);
+      } catch (err) {
+        alert('Error: ' + err.message);
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '&#128229; Extract BLOBs (.ZIP + CSV)';
+      }
+    }
+
+    async function runSqlAudit() {
+      const btn = document.getElementById('btnSqlAudit');
+      const card = document.getElementById('sqlexAuditCard');
+      const payload = {
+        connection: getConnParams('sqlex'),
+        table: document.getElementById('sqlexTable').value,
+        blob_column: document.getElementById('sqlexBlobCol').value,
+        id_column: document.getElementById('sqlexIdCol').value,
+        where_clause: document.getElementById('sqlexWhere').value,
+        limit: parseInt(document.getElementById('sqlexLimit').value || '2000', 10) || 2000
+      };
+      btn.disabled = true;
+      btn.textContent = '⏳ Scanning BLOB Health & Duplicates...';
+      try {
+        const res = await fetch('/api/sql/audit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (!data.ok) {
+          alert('BLOB Audit Error:\n' + data.error);
+          return;
+        }
+        card.classList.remove('d-none');
+        document.getElementById('audRowsScanned').textContent = `${(data.rows_scanned || 0).toLocaleString()} / ${(data.total_table_rows || 0).toLocaleString()}`;
+        document.getElementById('audValidBlobs').textContent = (data.valid_blobs || 0).toLocaleString();
+        document.getElementById('audCorruptBlobs').textContent = `${(data.null_or_empty || 0) + (data.corrupt_blobs || 0)} (${data.corrupt_blobs || 0} corrupt)`;
+        document.getElementById('audWrappedBlobs').textContent = (data.header_wrapped_blobs || 0).toLocaleString();
+        document.getElementById('audDuplicates').textContent = `${data.duplicate_extra_rows || 0} (${data.duplicate_groups_count || 0} groups)`;
+        document.getElementById('audSavings').textContent = `${data.estimated_savings_mb || 0} MB (${data.estimated_savings_pct || 0}%)`;
+
+        const fmts = data.formats_breakdown || {};
+        const fmtEntries = Object.keys(fmts).map(k => `${k}: ${fmts[k].toLocaleString()}`).join(' | ') || 'None detected';
+        document.getElementById('audFormatsText').innerHTML =
+          `<div><strong>Formats:</strong> ${fmtEntries}</div>` +
+          `<div class="mt-1"><strong>Current Raw Size:</strong> ${data.raw_mb || 0} MB &rarr; <strong>Standardized JPEG Size:</strong> ~${data.estimated_optimized_mb || 0} MB</div>`;
+
+        const dupList = data.duplicate_groups || [];
+        const dupEl = document.getElementById('audDuplicatesList');
+        if (dupList.length === 0) {
+          dupEl.innerHTML = '<span class="text-success">&#9989; No duplicate cardholder photos detected across scanned rows.</span>';
+        } else {
+          dupEl.innerHTML = dupList.map(g =>
+            `<div>Hash <code>${g.sha256}</code> (${g.count}x): IDs <strong>${g.ids.join(', ')}</strong></div>`
+          ).join('');
+        }
+      } catch (err) {
+        alert('Audit Failed: ' + err.message);
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '&#128269; Run BLOB Health &amp; Duplicate Audit';
+      }
+    }
+
+    async function runSqlImportFiles() {
+      const fileInput = document.getElementById('sqlImportFilesInput');
+      const statusBox = document.getElementById('sqlImportStatus');
+      const btn = document.getElementById('btnSqlImportFiles');
+      if (!fileInput.files || fileInput.files.length === 0) {
+        alert('Please select one or more image files (e.g. 10045.jpg) to import into the SQL table.');
+        return;
+      }
+      const conn = getConnParams('sqlex');
+      const table = document.getElementById('sqlexTable').value;
+      const pkCol = document.getElementById('sqlexIdCol').value;
+      const blobCol = document.getElementById('sqlexBlobCol').value;
+      if (!table || !pkCol || !blobCol) {
+        alert('Please connect and select the Table, BLOB Column, and ID / Filename Column above first.');
+        return;
+      }
+
+      const fd = new FormData();
+      for (const f of fileInput.files) {
+        fd.append('files', f);
+      }
+      fd.append('server', conn.server || '');
+      fd.append('database', conn.database || '');
+      fd.append('driver', conn.driver || '');
+      fd.append('auth', conn.trusted ? 'windows' : 'sql');
+      fd.append('username', conn.username || '');
+      fd.append('password', conn.password || '');
+      fd.append('table', table);
+      fd.append('pk_column', pkCol);
+      fd.append('blob_column', blobCol);
+      fd.append('type_value', document.getElementById('sqlImportTypeVal').value || '0');
+      fd.append('conflict_mode', document.getElementById('sqlImportConflict').value || 'upsert');
+      fd.append('target_format', document.getElementById('sqlImportFormat').value || 'keep');
+
+      btn.disabled = true;
+      btn.textContent = '⏳ Importing...';
+      statusBox.className = 'alert alert-info py-2 px-3 mt-3 mb-0 small';
+      statusBox.textContent = `Uploading and importing ${fileInput.files.length} image(s) into ${table}...`;
+      statusBox.classList.remove('d-none');
+
+      try {
+        const res = await fetch('/api/sql/import-files', { method: 'POST', body: fd });
+        const data = await res.json();
+        if (!data.ok) {
+          statusBox.className = 'alert alert-danger py-2 px-3 mt-3 mb-0 small';
+          statusBox.textContent = `❌ Import Error: ${data.error}`;
+          return;
+        }
+        statusBox.className = 'alert alert-success py-2 px-3 mt-3 mb-0 small';
+        statusBox.innerHTML =
+          `&#9989; <strong>Import Complete!</strong> Files processed: <strong>${data.files_received}</strong> | ` +
+          `Inserted: <strong>${data.inserted}</strong> | Updated: <strong>${data.updated}</strong> | ` +
+          `Skipped: <strong>${data.skipped}</strong> | Errors: <strong>${data.errors}</strong>`;
+      } catch (err) {
+        statusBox.className = 'alert alert-danger py-2 px-3 mt-3 mb-0 small';
+        statusBox.textContent = `❌ Import Request Failed: ${err.message}`;
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '&#128228; Import to SQL Table';
+      }
+    }
+
+    // ------------------------------------------------------------------
+    // 3. SQL SYNC WITH PRE-FLIGHT LOGGING, CONFIRMATION & 500ms POLLING
+    // ------------------------------------------------------------------
+    let pendingSyncPayload = null;
+    let preSyncLogHistory = [];
+    let syncConfirmModalInstance = null;
+
+    function clearSyncLog() {
+      preSyncLogHistory = [];
+      const logEl = document.getElementById('syncActivityLog');
+      if (logEl) {
+        logEl.textContent = 'Log cleared.';
+      }
+    }
+
+    function appendPreSyncLines(lines) {
+      const logEl = document.getElementById('syncActivityLog');
+      if (!logEl) return;
+      preSyncLogHistory = preSyncLogHistory.concat(lines);
+      logEl.textContent = preSyncLogHistory.join('\n');
+      logEl.scrollTop = logEl.scrollHeight;
+    }
+
+    function buildSyncPayload() {
+      syncHiddenMappingsInput();
+      return {
+        source_connection: getConnParams('src'),
+        target_connection: getConnParams('dst'),
+        source_table: document.getElementById('srcTable').value,
+        target_table: document.getElementById('dstTable').value,
+        source_pk: document.getElementById('srcPk').value,
+        target_pk: document.getElementById('dstPk').value,
+        source_blob: document.getElementById('srcBlob').value,
+        target_blob: document.getElementById('dstBlob').value,
+        extra_mappings: document.getElementById('syncExtraMappings').value,
+        conflict_mode: document.getElementById('syncConflictMode').value,
+        target_type_mode: document.getElementById('syncTargetTypeMode').value,
+        target_format: document.getElementById('syncTargetFormat')?.value || 'keep',
+        max_dimension: parseInt(document.getElementById('syncMaxDim')?.value || '0', 10),
+        backup_target: document.getElementById('syncBackupTarget').checked,
+        batch_size: parseInt(document.getElementById('syncBatchSize').value || '50', 10),
+        where_clause: document.getElementById('syncWhere').value,
+        extract_clean_image: document.getElementById('syncExtractClean').checked,
+        handle_missing_fk: document.getElementById('syncHandleMissingFk').checked
+      };
+    }
+
+    async function startSqlSync() {
+      const payload = buildSyncPayload();
+      const btn = document.getElementById('btnStartSync');
+      btn.disabled = true;
+      btn.textContent = '⏳ Inspecting Source & Target...';
+      document.getElementById('syncBadgeStatus').textContent = 'PRE-CHECK';
+      document.getElementById('syncStatusMessage').textContent = 'Running pre-sync inspection (counting rows & BLOB payload before touching Target)...';
+
+      try {
+        const res = await fetch('/api/sql/sync/preview', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (!data.ok) {
+          alert('Pre-Sync Inspection Error:\n' + data.error);
+          document.getElementById('syncBadgeStatus').textContent = 'ERROR';
+          document.getElementById('syncStatusMessage').textContent = 'Pre-sync check failed: ' + data.error;
+          return;
+        }
+
+        pendingSyncPayload = payload;
+        preSyncLogHistory = [];
+        appendPreSyncLines(data.log_lines || []);
+        document.getElementById('syncStatusMessage').textContent =
+          `Pre-check logged: ${(data.source_total_rows || 0).toLocaleString()} Source rows (${data.source_blob_mb || 0} MB). Waiting for confirmation...`;
+
+        // Populate Confirmation Modal
+        document.getElementById('confSrcServer').textContent = data.source_server || '';
+        document.getElementById('confSrcTable').textContent = data.source_table || '';
+        document.getElementById('confSrcRows').textContent = `${(data.source_total_rows || 0).toLocaleString()} rows`;
+        document.getElementById('confSrcDistinct').textContent = `${(data.source_distinct_keys || 0).toLocaleString()} unique IDs`;
+        document.getElementById('confSrcSize').textContent = `${(data.source_blob_mb || 0).toLocaleString()} MB (${(data.source_blob_bytes || 0).toLocaleString()} bytes)`;
+
+        const tb = data.source_type_breakdown || {};
+        const tbKeys = Object.keys(tb);
+        document.getElementById('confSrcTypes').textContent = tbKeys.length > 0
+          ? tbKeys.map(k => `Type ${k}: ${tb[k].toLocaleString()}`).join(' | ')
+          : 'N/A';
+
+        document.getElementById('confDstServer').textContent = data.target_server || '';
+        document.getElementById('confDstTable').textContent = data.target_table || '';
+        document.getElementById('confDstRows').textContent = `${(data.target_existing_rows || 0).toLocaleString()} rows`;
+        document.getElementById('confTypeMode').textContent = data.target_type_mode || 'keep';
+        document.getElementById('confConflict').textContent = data.conflict_mode || 'skip';
+        document.getElementById('confBackup').textContent = data.backup_target ? '✅ YES (_Backup table will be created first)' : '❌ NO';
+        document.getElementById('confFk').textContent = data.handle_missing_fk ? '✅ YES (Auto-sync parent IDCARD)' : '❌ NO';
+        document.getElementById('confPreviewLog').textContent = (data.log_lines || []).join('\n');
+
+        const largeBanner = document.getElementById('syncConfirmLargeBanner');
+        if (data.is_large_table) {
+          largeBanner.classList.remove('d-none');
+          largeBanner.innerHTML =
+            `&#9888;&#65039; <strong>Large BLOB Table Detected:</strong> ` +
+            `<strong>${(data.source_total_rows || 0).toLocaleString()} entries</strong> ` +
+            `(<strong>${(data.source_blob_mb || 0).toLocaleString()} MB</strong> across ${(data.estimated_batches || 0).toLocaleString()} batches). ` +
+            `Streaming cursor and in-memory Target key caching will be used.`;
+        } else {
+          largeBanner.classList.add('d-none');
+        }
+
+        const modalEl = document.getElementById('syncConfirmModal');
+        syncConfirmModalInstance = bootstrap.Modal.getOrCreateInstance(modalEl);
+        syncConfirmModalInstance.show();
+      } catch (err) {
+        alert('Failed to run pre-sync check: ' + err.message);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Start SQL Sync';
+      }
+    }
+
+    async function executeConfirmedSqlSync() {
+      if (!pendingSyncPayload) return;
+      const payload = pendingSyncPayload;
+      if (syncConfirmModalInstance) {
+        syncConfirmModalInstance.hide();
+      }
+      const ts = new Date().toTimeString().split(' ')[0];
+      appendPreSyncLines([`[${ts}] ✅ User confirmed sync. Proceeding to sync with Target SQL Server...`]);
+
+      try {
+        const res = await fetch('/api/sql/sync/start', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (!data.ok) {
+          alert('Sync Start Error:\n' + data.error);
+          return;
+        }
+        activeSyncJobId = data.job_id;
+        document.getElementById('btnStartSync').disabled = true;
+        document.getElementById('btnCancelSync').classList.remove('d-none');
+        const bar = document.getElementById('syncProgressBar');
+        bar.classList.add('progress-bar-animated');
+
+        if (syncPollTimer) clearInterval(syncPollTimer);
+        syncPollTimer = setInterval(pollSyncStatus, 500);
+        pollSyncStatus();
+      } catch (err) {
+        alert('Failed to start sync: ' + err.message);
+      }
+    }
+
+    async function pollSyncStatus() {
+      if (!activeSyncJobId) return;
+      try {
+        const res = await fetch(`/api/sql/sync/status/${activeSyncJobId}`);
+        const data = await res.json();
+        if (!data.ok) return;
+
+        const pct = data.percent || 0;
+        const bar = document.getElementById('syncProgressBar');
+        bar.style.width = `${pct}%`;
+        bar.textContent = `${pct}%`;
+
+        document.getElementById('syncBadgeStatus').textContent = (data.status || '').toUpperCase();
+        document.getElementById('statProcessed').textContent = `${(data.processed_rows || 0).toLocaleString()} / ${(data.total_rows || '?').toLocaleString()}`;
+        document.getElementById('statInserted').textContent = (data.inserted || 0).toLocaleString();
+        document.getElementById('statUpdated').textContent = (data.updated || 0).toLocaleString();
+        document.getElementById('statParentSynced').textContent = (data.parent_synced || 0).toLocaleString();
+        document.getElementById('statSkipped').textContent = (data.skipped || 0).toLocaleString();
+        document.getElementById('statErrors').textContent = (data.errors || 0).toLocaleString();
+        document.getElementById('syncStatusMessage').textContent = data.message || '';
+
+        if (data.log_lines && data.log_lines.length > 0) {
+          const logEl = document.getElementById('syncActivityLog');
+          if (logEl) {
+            const combined = preSyncLogHistory.concat(data.log_lines);
+            logEl.textContent = combined.join('\n');
+            logEl.scrollTop = logEl.scrollHeight;
+          }
+        }
+
+        const errEl = document.getElementById('syncErrorDetails');
+        if (data.error_details && data.error_details.length > 0) {
+          errEl.textContent = data.error_details.join('\n');
+          errEl.classList.remove('d-none');
+        } else {
+          errEl.classList.add('d-none');
+        }
+
+        if (['completed', 'failed', 'cancelled'].includes(data.status)) {
+          clearInterval(syncPollTimer);
+          syncPollTimer = null;
+          document.getElementById('btnStartSync').disabled = false;
+          document.getElementById('btnCancelSync').classList.add('d-none');
+          bar.classList.remove('progress-bar-animated');
+        }
+      } catch (err) {
+        console.error('Poll error:', err);
+      }
+    }
+
+    async function cancelSqlSync() {
+      if (!activeSyncJobId) return;
+      await fetch(`/api/sql/sync/cancel/${activeSyncJobId}`, { method: 'POST' });
+    }
+
+    // =========================================================================
+    // DARK / LIGHT THEME TOGGLE
+    // =========================================================================
+    const THEME_STORAGE_KEY = 'primoit.blob.theme';
+
+    function applyTheme(theme) {
+      const normalized = theme === 'light' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-bs-theme', normalized);
+      const btn = document.getElementById('btn-theme-toggle');
+      if (btn) {
+        if (normalized === 'light') {
+          btn.innerHTML = '&#127769; <span id="theme-btn-text">Dark Mode</span>';
+        } else {
+          btn.innerHTML = '&#9728;&#65039; <span id="theme-btn-text">Light Mode</span>';
+        }
+      }
+      try { localStorage.setItem(THEME_STORAGE_KEY, normalized); } catch (e) {}
+    }
+
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-bs-theme') || 'dark';
+      applyTheme(current === 'dark' ? 'light' : 'dark');
+    }
+
+    function initTheme() {
+      let saved = 'dark';
+      try { saved = localStorage.getItem(THEME_STORAGE_KEY) || 'dark'; } catch (e) {}
+      applyTheme(saved);
+    }
+
+    // =========================================================================
+    // INTERACTIVE QUICK GUIDED TOUR (CoachMark Engine)
+    // =========================================================================
+    const TOUR_STORAGE_COMPLETED = 'primoit.blob.tour_completed_v1';
+    const TOUR_STORAGE_DISMISSED = 'primoit.blob.tour_dismissed_v1';
+
+    const TOUR_STEPS = [
+      {
+        step: 1,
+        tabBtnId: 'file-tab',
+        targetSelector: '#fileExtractCard',
+        title: '1. File Mode: Carve Images from Any Binary / BLOB File',
+        copy: 'Select one or more raw binary or proprietary BLOB files from your computer. PrimoIT Tech BLOB Extractor scans for JPEG, PNG, GIF, BMP, and WEBP magic signatures, validates every image with Pillow, previews them in your browser, and packages them into a downloadable .ZIP archive.'
+      },
+      {
+        step: 2,
+        tabBtnId: 'sqlex-tab',
+        targetSelector: '#sqlexConnectionBox',
+        title: '2. SQL Extract: Connect & Discover Databases',
+        copy: 'Enter your SQL Server instance (e.g., primo\\sqlexpress) and click "Load DBs" to discover all online databases automatically. Choose Windows Auth (Trusted) or SQL login credentials, then click "Connect & Browse Tables".'
+      },
+      {
+        step: 3,
+        tabBtnId: 'sqlex-tab',
+        targetSelector: '#sqlexTableBox',
+        title: '3. SQL Extract: Pick Table, BLOB Column & ID Column',
+        copy: 'Select the table holding your photos or signatures (such as dbo.ID_IMAGE), choose the binary BLOB column (e.g., Image), and pick an ID column (e.g., ID_NUM) so every extracted image file is named after its cardholder ID. Click "Extract BLOBs" to preview and download as a .ZIP.'
+      },
+      {
+        step: 4,
+        tabBtnId: 'sqlsync-tab',
+        targetSelector: '#srcServerCard',
+        title: '4. SQL Sync: Configure Source SQL Server',
+        copy: 'In Tab 3, connect to the Source SQL Server & database that contains your existing BLOB records (for example, the "blob" database). Click "Discover DBs" to select from a dropdown, then click "Connect & Load Source Tables".'
+      },
+      {
+        step: 5,
+        tabBtnId: 'sqlsync-tab',
+        targetSelector: '#dstServerCard',
+        title: '5. SQL Sync: Configure Target SQL Server',
+        copy: 'Set up your destination SQL Server & database (for example, "cardsmithv7"). Click "Copy Source Server" to reuse your server settings or "Discover DBs" to pick the exact Target database name, then click "Connect & Load Target Tables".'
+      },
+      {
+        step: 6,
+        tabBtnId: 'sqlsync-tab',
+        targetSelector: '#syncCoreMappingBox',
+        title: '6. Match Source & Target Tables, Keys & BLOBs',
+        copy: 'Select your Source Table (e.g., dbo.ID_IMAGE) and Target Table (e.g., dbo.ID_Image). Even when the two tables have different column structures, use the dropdowns to pair the matching Key/ID column (ID_NUM -> ID_Num) and BLOB column (Image -> Image).'
+      },
+      {
+        step: 7,
+        tabBtnId: 'sqlsync-tab',
+        targetSelector: '#extraMappingsBox',
+        title: '7. Map Extra Columns Across Mismatched Schemas',
+        copy: 'Click "Auto-Match Columns" or "+ Add Column Mapping" to pair additional columns (such as Type -> Type or DT -> DT) using dropdowns. Columns that only exist in Source (like PhotoID or PersonID) are safely omitted, and required NOT NULL Target columns (like DT) are automatically given safe defaults when NULL.'
+      },
+      {
+        step: 8,
+        tabBtnId: 'sqlsync-tab',
+        targetSelector: '#syncProgressCard',
+        title: '8. Auto-Sync Parent IDCARD & Live 500ms Progress',
+        copy: 'Keep "Auto-sync missing parent IDCARD / bypass FK" checked so missing cardholder parent records in Target are automatically synced from Source (or created as stub rows) instead of failing Foreign Key constraints. Click "Start SQL Sync" to watch live 500ms progress!'
+      }
+    ];
+
+    let currentTourStep = null;
+
+    function setupTour() {
+      initTheme();
+      const quickTourBtn = document.getElementById('btn-quick-tour');
+      const closeBtn = document.getElementById('btn-tour-close');
+      const skipBtn = document.getElementById('btn-tour-skip');
+      const nextBtn = document.getElementById('btn-tour-next');
+      const prevBtn = document.getElementById('btn-tour-prev');
+
+      quickTourBtn?.addEventListener('click', () => {
+        if (currentTourStep !== null) {
+          skipTour();
+        } else {
+          startTour(1);
+        }
+      });
+
+      closeBtn?.addEventListener('click', skipTour);
+      skipBtn?.addEventListener('click', skipTour);
+      nextBtn?.addEventListener('click', nextTourStep);
+      prevBtn?.addEventListener('click', prevTourStep);
+
+      window.addEventListener('keydown', (e) => {
+        if (currentTourStep === null) return;
+        if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement || e.target instanceof HTMLSelectElement) return;
+        if (e.key === 'ArrowRight' || e.key === 'Enter') {
+          e.preventDefault();
+          nextTourStep();
+        } else if (e.key === 'ArrowLeft' && currentTourStep > 1) {
+          e.preventDefault();
+          prevTourStep();
+        } else if (e.key === 'Escape') {
+          e.preventDefault();
+          skipTour();
+        }
+      });
+
+      window.addEventListener('resize', () => {
+        if (currentTourStep !== null) positionTourCard(currentTourStep);
+      });
+      window.addEventListener('scroll', () => {
+        if (currentTourStep !== null) positionTourCard(currentTourStep);
+      }, { passive: true });
+
+      const completed = localStorage.getItem(TOUR_STORAGE_COMPLETED);
+      const dismissed = localStorage.getItem(TOUR_STORAGE_DISMISSED);
+      if (!completed && !dismissed) {
+        setTimeout(() => startTour(1), 600);
+      }
+    }
+
+    function startTour(stepNum = 1) {
+      currentTourStep = stepNum;
+      updateTourHeaderButton(true);
+      renderTourStep(currentTourStep);
+    }
+
+    function updateTourHeaderButton(isActive) {
+      const btn = document.getElementById('btn-quick-tour');
+      const text = document.getElementById('tour-btn-text');
+      if (!btn || !text) return;
+      if (isActive) {
+        text.textContent = 'Exit Tour';
+        btn.style.borderColor = 'var(--accent-red)';
+        btn.style.color = '#f87171';
+      } else {
+        text.textContent = 'Quick Guided Tour';
+        btn.style.borderColor = '';
+        btn.style.color = '';
+      }
+    }
+
+    function renderTourStep(stepNum) {
+      const container = document.getElementById('tour-container');
+      const stepData = TOUR_STEPS.find(s => s.step === stepNum);
+      if (!container || !stepData) return;
+
+      document.querySelectorAll('.tour-highlight').forEach(el => el.classList.remove('tour-highlight'));
+
+      if (stepData.tabBtnId) {
+        const tabEl = document.getElementById(stepData.tabBtnId);
+        if (tabEl && !tabEl.classList.contains('active')) {
+          bootstrap.Tab.getOrCreateInstance(tabEl).show();
+        }
+      }
+
+      container.style.display = 'block';
+      document.getElementById('tour-step-indicator').textContent = `STEP ${stepData.step} OF ${TOUR_STEPS.length}`;
+      document.getElementById('tour-step-title').textContent = stepData.title;
+      document.getElementById('tour-step-copy').textContent = stepData.copy;
+
+      const prevBtn = document.getElementById('btn-tour-prev');
+      const nextBtn = document.getElementById('btn-tour-next');
+      if (prevBtn) prevBtn.style.display = stepNum > 1 ? 'inline-block' : 'none';
+      if (nextBtn) nextBtn.textContent = stepNum === TOUR_STEPS.length ? 'Finish Tour \u2713' : 'Next Step \u2192';
+
+      const applyHighlightAndPosition = () => {
+        const targetEl = document.querySelector(stepData.targetSelector);
+        if (targetEl) {
+          targetEl.classList.add('tour-highlight');
+          try {
+            targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          } catch (e) {}
+        }
+        positionTourCard(stepNum);
+      };
+
+      applyHighlightAndPosition();
+      setTimeout(applyHighlightAndPosition, 80);
+      setTimeout(applyHighlightAndPosition, 260);
+    }
+
+    function positionTourCard(stepNum) {
+      const card = document.getElementById('tour-card');
+      const stepData = TOUR_STEPS.find(s => s.step === stepNum);
+      if (!card || !stepData) return;
+
+      const targetEl = document.querySelector(stepData.targetSelector);
+      const cardWidth = Math.min(390, window.innerWidth - 32);
+      const cardHeight = Math.max(210, card.offsetHeight || 230);
+      const padding = 16;
+
+      if (!targetEl) {
+        card.style.position = 'fixed';
+        card.style.top = '50%';
+        card.style.left = '50%';
+        card.style.transform = 'translate(-50%, -50%)';
+        card.style.width = `${cardWidth}px`;
+        return;
+      }
+
+      const rect = targetEl.getBoundingClientRect();
+      let left = rect.left;
+      let top = rect.bottom + 14;
+
+      if (top + cardHeight > window.innerHeight - padding) {
+        if (rect.top - cardHeight - 14 >= padding) {
+          top = rect.top - cardHeight - 14;
+        } else if (rect.right + cardWidth + padding <= window.innerWidth) {
+          left = rect.right + 14;
+          top = rect.top;
+        } else if (rect.left - cardWidth - padding >= 0) {
+          left = rect.left - cardWidth - 14;
+          top = rect.top;
+        }
+      }
+
+      const maxLeft = Math.max(padding, window.innerWidth - cardWidth - padding);
+      const maxTop = Math.max(padding, window.innerHeight - cardHeight - padding);
+      left = Math.max(padding, Math.min(left, maxLeft));
+      top = Math.max(padding, Math.min(top, maxTop));
+
+      card.style.position = 'fixed';
+      card.style.transform = 'none';
+      card.style.top = `${Math.round(top)}px`;
+      card.style.left = `${Math.round(left)}px`;
+      card.style.width = `${cardWidth}px`;
+    }
+
+    function nextTourStep() {
+      if (currentTourStep === null) return;
+      if (currentTourStep >= TOUR_STEPS.length) {
+        try { localStorage.setItem(TOUR_STORAGE_COMPLETED, 'true'); } catch (e) {}
+        closeTour();
+        return;
+      }
+      currentTourStep++;
+      renderTourStep(currentTourStep);
+    }
+
+    function prevTourStep() {
+      if (currentTourStep === null || currentTourStep <= 1) return;
+      currentTourStep--;
+      renderTourStep(currentTourStep);
+    }
+
+    function skipTour() {
+      try { localStorage.setItem(TOUR_STORAGE_DISMISSED, 'true'); } catch (e) {}
+      closeTour();
+    }
+
+    function closeTour() {
+      currentTourStep = null;
+      updateTourHeaderButton(false);
+      const container = document.getElementById('tour-container');
+      if (container) container.style.display = 'none';
+      document.querySelectorAll('.tour-highlight').forEach(el => el.classList.remove('tour-highlight'));
+    }
+
+    // =========================================================================
+    // 4. INSTALL FROM URL, REMOTE / LAN LINK & PWA CONTROLLER (PrimoITall Style)
+    // =========================================================================
+    let deferredPwaPrompt = null;
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPwaPrompt = e;
+      const btn = document.getElementById('btnPwaInstall');
+      if (btn) {
+        btn.textContent = '📲 Install App to Desktop / Home Screen (Ready)';
+      }
+    });
+
+    async function loadNetworkInfo() {
+      try {
+        const res = await fetch('/api/network-info');
+        const data = await res.json();
+        if (!data.ok) return;
+        const lanInput = document.getElementById('inputLanUrl');
+        const locInput = document.getElementById('inputLocalUrl');
+        const psInput = document.getElementById('inputPsInstallCmd');
+        const badge = document.getElementById('netHostBadge');
+        if (lanInput && data.lan_url) lanInput.value = data.lan_url;
+        if (locInput && data.local_url) locInput.value = data.local_url;
+        if (psInput && data.ps_install_cmd) psInput.value = data.ps_install_cmd;
+        if (badge && data.hostname) badge.textContent = `HOST: ${data.hostname} (${data.lan_ip})`;
+      } catch (e) {
+        console.warn('Could not load network info:', e);
+      }
+    }
+
+    function openInstallUrlTabOrModal() {
+      const tabBtn = document.getElementById('urlinstall-tab');
+      if (tabBtn) {
+        bootstrap.Tab.getOrCreateInstance(tabBtn).show();
+      }
+      loadNetworkInfo();
+    }
+
+    function appendUrlInstallLog(text) {
+      const logEl = document.getElementById('urlInstallLog');
+      if (!logEl) return;
+      const ts = new Date().toTimeString().split(' ')[0];
+      logEl.textContent += `\n[${ts}] ${text}`;
+      logEl.scrollTop = logEl.scrollHeight;
+    }
+
+    async function copyUrlField(inputId, label) {
+      const el = document.getElementById(inputId);
+      if (!el) return;
+      try {
+        await navigator.clipboard.writeText(el.value);
+      } catch (e) {
+        el.select();
+        document.execCommand('copy');
+      }
+      const badge = document.getElementById('urlInstallStatusBadge');
+      if (badge) badge.textContent = `✅ Copied ${label}`;
+      appendUrlInstallLog(`✅ Copied ${label} to clipboard: ${el.value}`);
+    }
+
+    async function triggerPwaInstall() {
+      if (deferredPwaPrompt) {
+        deferredPwaPrompt.prompt();
+        const choice = await deferredPwaPrompt.userChoice;
+        appendUrlInstallLog(`PWA Install prompt result: ${choice.outcome}`);
+        deferredPwaPrompt = null;
+      } else {
+        alert(
+          'To install PrimoIT Tech BLOB Extractor as a standalone app from your browser:\n\n' +
+          '• In Chrome / Microsoft Edge: Click the "Install App" icon on the right side of the browser address bar (or Menu -> Apps -> Install this site as an app).\n' +
+          '• On iOS / Android: Tap Share -> "Add to Home Screen".'
+        );
+      }
+    }
+
+    function fillAndRunUrl(url) {
+      const input = document.getElementById('directInstallUrlInput');
+      if (input) {
+        input.value = url;
+        installFromDirectUrl();
+      }
+    }
+
+    async function installFromDirectUrl() {
+      const urlInput = document.getElementById('directInstallUrlInput');
+      const autoRun = document.getElementById('chkAutoRunUrlInstaller')?.checked ?? true;
+      const targetUrl = (urlInput?.value || '').trim();
+      if (!targetUrl) {
+        alert('Please enter an http:// or https:// URL to download and install.');
+        return;
+      }
+      if (!confirm(
+        `Confirm Install from URL:\n\n` +
+        `URL: ${targetUrl}\n` +
+        `Action: ${autoRun ? 'Download and launch installer/archive' : 'Download only and show in Explorer'}\n\n` +
+        `Are you sure you want to proceed?`
+      )) {
+        return;
+      }
+
+      const btn = document.getElementById('btnRunUrlInstall');
+      const badge = document.getElementById('urlInstallStatusBadge');
+      if (btn) {
+        btn.disabled = true;
+        btn.textContent = '⏳ Downloading...';
+      }
+      if (badge) badge.textContent = '⏳ Downloading from URL...';
+      appendUrlInstallLog(`Initiating download from URL: ${targetUrl}`);
+
+      try {
+        const res = await fetch('/api/install-from-url', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ mode: 'url', url: targetUrl, auto_run: autoRun })
+        });
+        const data = await res.json();
+        (data.logs || []).forEach(l => appendUrlInstallLog(l));
+        if (!data.ok) {
+          if (badge) badge.textContent = '❌ Failed';
+          alert('URL Install Error:\n' + (data.error || 'Unknown error'));
+          return;
+        }
+        if (badge) badge.textContent = '✅ Downloaded & Dispatched';
+      } catch (err) {
+        if (badge) badge.textContent = '❌ Error';
+        appendUrlInstallLog(`❌ Error: ${err.message}`);
+        alert('Error: ' + err.message);
+      } finally {
+        if (btn) {
+          btn.disabled = false;
+          btn.textContent = '⬇️ Download & Install from URL';
+        }
+      }
+    }
+
+    async function installVerifiedPackage(mode, wingetId, friendlyName) {
+      const cmdPreview = `winget install --id ${wingetId} --exact --accept-package-agreements --accept-source-agreements`;
+      if (!confirm(
+        `Confirm Verified Package Installation (${friendlyName}):\n\n` +
+        `Exact Command:\n${cmdPreview}\n\n` +
+        `Windows may display a standard User Account Control (UAC) prompt.\n` +
+        `Proceed with installation?`
+      )) {
+        return;
+      }
+
+      const badge = document.getElementById('urlInstallStatusBadge');
+      if (badge) badge.textContent = `⏳ Installing ${friendlyName}...`;
+      appendUrlInstallLog(`Executing verified package install: ${cmdPreview}`);
+
+      try {
+        const res = await fetch('/api/install-from-url', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ mode: 'winget', winget_id: wingetId })
+        });
+        const data = await res.json();
+        (data.logs || []).forEach(l => appendUrlInstallLog(l));
+        if (badge) {
+          badge.textContent = data.ok ? `✅ ${friendlyName} Installed` : `⚠️ Check Log`;
+        }
+      } catch (err) {
+        if (badge) badge.textContent = '❌ Install Error';
+        appendUrlInstallLog(`❌ Error installing ${friendlyName}: ${err.message}`);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      setupTour();
+      loadNetworkInfo();
+    });
+  </script>
+</body>
+</html>

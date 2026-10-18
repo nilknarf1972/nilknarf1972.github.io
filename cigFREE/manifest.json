@@ -1,0 +1,11 @@
+{
+  "name": "Clear Path — Quit Smoking Companion",
+  "short_name": "Clear Path",
+  "description": "Supportive cigarette-cessation app by The Primo IT Tech LLC. Educational imagery, quit calendar, milestones, and craving support. One-time $0.99 download, 100% offline, no account required.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F4F7F6",
+  "theme_color": "#0F5257",
+  "orientation": "portrait-primary",
+  "categories": ["health", "lifestyle", "education"]
+}

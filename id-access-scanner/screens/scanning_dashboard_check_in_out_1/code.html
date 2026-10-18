@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-container": "#fdfcff",
+                    "secondary-fixed-dim": "#c6c6c6",
+                    "error-container": "#ffdad6",
+                    "secondary-container": "#e2e2e2",
+                    "surface-bright": "#f8f9ff",
+                    "tertiary-fixed": "#e2e2e4",
+                    "on-surface-variant": "#41474e",
+                    "on-tertiary-fixed-variant": "#454749",
+                    "inverse-primary": "#9accf8",
+                    "surface-container-high": "#dce9ff",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-fixed-variant": "#474747",
+                    "surface-dim": "#cbdbf5",
+                    "primary-fixed-dim": "#9accf8",
+                    "on-tertiary-fixed": "#1a1c1d",
+                    "primary-fixed": "#cce5ff",
+                    "on-tertiary-container": "#fcfcfe",
+                    "secondary-fixed": "#e2e2e2",
+                    "inverse-on-surface": "#eaf1ff",
+                    "tertiary": "#5a5c5e",
+                    "surface-container": "#e5eeff",
+                    "on-surface": "#0b1c30",
+                    "on-secondary-fixed": "#1b1b1b",
+                    "on-primary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "surface-variant": "#d3e4fe",
+                    "error": "#ba1a1a",
+                    "on-background": "#0b1c30",
+                    "on-secondary-container": "#646464",
+                    "surface-container-highest": "#d3e4fe",
+                    "on-secondary": "#ffffff",
+                    "primary": "#2a6087",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-container": "#4679a2",
+                    "outline-variant": "#c1c7cf",
+                    "surface-tint": "#2d638a",
+                    "inverse-surface": "#213145",
+                    "surface-container-low": "#eff4ff",
+                    "outline": "#72787f",
+                    "surface": "#f8f9ff",
+                    "secondary": "#5e5e5e",
+                    "tertiary-fixed-dim": "#c6c6c8",
+                    "on-primary-fixed-variant": "#0a4b71",
+                    "on-primary-fixed": "#001d31",
+                    "background": "#f8f9ff",
+                    "tertiary-container": "#737576"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "xl": "48px",
+                    "sm": "8px",
+                    "md": "16px",
+                    "lg": "24px",
+                    "xs": "4px",
+                    "unit": "4px",
+                    "gutter": "16px",
+                    "container-margin": "32px"
+            },
+            "fontFamily": {
+                    "title-sm": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "label-caps": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "data-mono": ["Inter"]
+            },
+            "fontSize": {
+                    "title-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "data-mono": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .zebra-stripe:nth-child(even) {
+            background-color: #F4F4F6;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-hidden">
+<!-- Top Navigation Bar -->
+<header class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center w-full px-6 h-16 fixed top-0 z-50"><div class="flex items-center gap-lg">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined" data-icon="shield" data-weight="fill" style="font-variation-settings: 'FILL' 1;">shield</span>
+</div>
+<span class="text-xl font-black text-slate-900 dark:text-white font-inter uppercase tracking-wider">PrimoIT Tech</span>
+</div>
+<div class="h-6 w-[1px] bg-slate-300"></div>
+<h1 class="text-lg font-semibold text-slate-700 dark:text-slate-300">Scanning Dashboard</h1>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative hidden md:flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-slate-400" data-icon="search">search</span>
+<input class="bg-slate-100 dark:bg-slate-800 border-none rounded-full py-1.5 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary w-64" placeholder="Search..." type="text"/>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined text-slate-500 dark:text-slate-400 p-sm rounded-full hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-pointer" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border border-white"></span>
+</div>
+<span class="material-symbols-outlined text-slate-500 dark:text-slate-400 p-sm rounded-full hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-pointer" data-icon="help">help</span>
+<div class="w-8 h-8 rounded-full bg-surface-dim border border-outline overflow-hidden ml-sm">
+<img alt="Officer Miller" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpXogC6YZHAIV-WXVS5Wu4A-BLfYEluCdjMxpytqBMlUUP4v7mHBeVYb8Uob05VPHt8ZAEAOaG8SauTcKC7-wP4f6cqjseKA6lIeju3bqH6At6gfymYtwfqF4LvLkzz1H9HXzLbIYec_W8wbulJ7thZp1Oc6YrJJua4AhnZs_iJ8Hiy_axxPM7EIjocdLSBE_XXbkvKOiBzmrbuMFsRg3YQvQUQaQOofR3VhB2Wt0hEMxL5LjVufmexp8pB6uecr0Vzf1tsFS23lY9"/>
+</div>
+</div></header>
+<div class="flex pt-16 h-screen">
+<!-- Sidebar Navigation -->
+<nav class="fixed left-0 top-16 h-[calc(100vh-64px)] flex flex-col z-40 bg-white dark:bg-slate-900 h-screen w-64 border-r border-slate-200 dark:border-slate-800 font-inter text-sm font-semibold">
+<div class="p-lg flex flex-col gap-sm"><div class="flex items-center gap-md p-md rounded bg-slate-100 dark:bg-slate-800 text-blue-600 dark:text-blue-400 border-l-4 border-blue-600 active:scale-95 transition-transform duration-100">
+<span class="material-symbols-outlined" data-icon="qr_code_scanner">qr_code_scanner</span>
+<span>Scanning Dashboard</span>
+</div>
+<div class="flex items-center gap-md p-md text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800 cursor-pointer">
+<span class="material-symbols-outlined" data-icon="person_add">person_add</span>
+<span>Visitor Pre-Reg</span>
+</div>
+<div class="flex items-center gap-md p-md text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800 cursor-pointer">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span>Access Logs</span>
+</div>
+<div class="flex items-center gap-md p-md text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800 cursor-pointer">
+<span class="material-symbols-outlined" data-icon="sync">sync</span>
+<span>Sync &amp; Connectivity</span>
+</div>
+<div class="flex items-center gap-md p-md text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800 cursor-pointer">
+<span class="material-symbols-outlined" data-icon="settings_accessibility">settings_accessibility</span>
+<span>Admin Settings</span>
+</div></div>
+<div class="mt-auto p-lg border-t border-slate-200"><div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-surface-dim border border-outline overflow-hidden">
+<img alt="Officer Miller" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpXogC6YZHAIV-WXVS5Wu4A-BLfYEluCdjMxpytqBMlUUP4v7mHBeVYb8Uob05VPHt8ZAEAOaG8SauTcKC7-wP4f6cqjseKA6lIeju3bqH6At6gfymYtwfqF4LvLkzz1H9HXzLbIYec_W8wbulJ7thZp1Oc6YrJJua4AhnZs_iJ8Hiy_axxPM7EIjocdLSBE_XXbkvKOiBzmrbuMFsRg3YQvQUQaQOofR3VhB2Wt0hEMxL5LjVufmexp8pB6uecr0Vzf1tsFS23lY9"/>
+</div>
+<div>
+<div class="text-slate-900 dark:text-white font-bold">Officer Miller</div>
+<div class="text-slate-500 text-xs">Lead Guardian</div>
+</div>
+</div></div>
+</nav>
+<!-- Main Workspace -->
+<main class="ml-64 w-full p-lg overflow-y-auto max-w-[1440px] mx-auto">
+<div class="grid grid-cols-12 gap-lg h-full">
+<!-- Left Column: Operations & Toggle -->
+<div class="col-span-4 flex flex-col gap-lg">
+<!-- Dual-Mode Toggle Card -->
+<div class="bg-white border border-outline-variant p-lg rounded-lg">
+<h2 class="font-label-caps text-on-surface-variant mb-md">OPERATION MODE</h2>
+<div class="flex bg-surface-container p-xs rounded-lg gap-xs">
+<button class="flex-1 flex items-center justify-center gap-sm py-md rounded-lg bg-primary text-on-primary font-bold transition-all shadow-sm">
+<span class="material-symbols-outlined" data-icon="login">login</span>
+                                CHECK-IN
+                            </button>
+<button class="flex-1 flex items-center justify-center gap-sm py-md rounded-lg text-secondary font-bold hover:bg-white transition-all">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                                CHECK-OUT
+                            </button>
+</div>
+<p class="mt-md text-xs text-secondary font-body-sm italic">Currently recording entries at North Gate Portal 04.</p>
+</div>
+<!-- Scan History / Recent Activity -->
+<div class="bg-white border border-outline-variant rounded-lg flex-1 overflow-hidden flex flex-col">
+<div class="p-md border-b border-outline-variant flex justify-between items-center bg-surface-container-low">
+<h2 class="font-label-caps text-on-surface-variant">RECENT ACTIVITY</h2>
+<span class="font-data-mono text-xs text-primary">Live Updates</span>
+</div>
+<div class="overflow-y-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container-highest">
+<tr class="font-label-caps text-[10px] text-on-surface-variant">
+<th class="p-md">TIME</th>
+<th class="p-md">NAME</th>
+<th class="p-md text-right">MODE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="zebra-stripe border-b border-outline-variant">
+<td class="p-md font-data-mono text-xs">14:22:01</td>
+<td class="p-md font-title-sm text-sm">Marcus Vane</td>
+<td class="p-md text-right"><span class="bg-green-100 text-green-800 text-[10px] px-sm py-xs font-bold rounded">IN</span></td>
+</tr>
+<tr class="zebra-stripe border-b border-outline-variant">
+<td class="p-md font-data-mono text-xs">14:20:55</td>
+<td class="p-md font-title-sm text-sm">Sarah Jenkins</td>
+<td class="p-md text-right"><span class="bg-red-100 text-red-800 text-[10px] px-sm py-xs font-bold rounded">OUT</span></td>
+</tr>
+<tr class="zebra-stripe border-b border-outline-variant">
+<td class="p-md font-data-mono text-xs">14:18:30</td>
+<td class="p-md font-title-sm text-sm">Tech Support B</td>
+<td class="p-md text-right"><span class="bg-green-100 text-green-800 text-[10px] px-sm py-xs font-bold rounded">IN</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Right Column: Primary Scanning Center -->
+<div class="col-span-8 flex flex-col gap-lg">
+<!-- Main Ready To Scan Area -->
+<div class="bg-white border border-outline-variant rounded-lg p-xl flex flex-col items-center justify-center relative overflow-hidden h-[400px]">
+<!-- Visual mode indicator bg -->
+<div class="absolute inset-0 bg-primary opacity-[0.03]"></div>
+<div class="z-10 flex flex-col items-center gap-lg">
+<div class="relative">
+<div class="w-32 h-32 rounded-full border-4 border-dashed border-primary animate-pulse flex items-center justify-center">
+<span class="material-symbols-outlined text-6xl text-primary" data-icon="qr_code_scanner">qr_code_scanner</span>
+</div>
+<div class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-primary text-on-primary px-lg py-xs rounded-full font-label-caps text-xs">
+                                    MODE: CHECK-IN
+                                </div>
+</div>
+<div class="text-center">
+<h1 class="font-display-lg text-on-background">READY TO SCAN</h1>
+<p class="font-body-md text-secondary mt-sm">Position identity document or QR code within the frame.</p>
+</div>
+<button class="bg-black text-white px-xl py-md font-bold font-title-sm hover:bg-slate-800 active:scale-95 transition-all">
+                                MANUAL OVERRIDE
+                            </button>
+</div>
+<!-- ID Edge Preview Guidelines -->
+<div class="absolute top-10 left-10 w-20 h-20 border-t-2 border-l-2 border-primary"></div>
+<div class="absolute top-10 right-10 w-20 h-20 border-t-2 border-r-2 border-primary"></div>
+<div class="absolute bottom-10 left-10 w-20 h-20 border-b-2 border-l-2 border-primary"></div>
+<div class="absolute bottom-10 right-10 w-20 h-20 border-b-2 border-r-2 border-primary"></div>
+</div>
+<!-- Last Verification Card (Bento Style) -->
+<div class="grid grid-cols-2 gap-lg flex-1">
+<div class="bg-white border border-outline-variant rounded-lg flex overflow-hidden shadow-sm">
+<div class="w-1/3 h-full">
+<img alt="Last Validated User" class="w-full h-full object-cover grayscale-[20%]" data-alt="A close-up high-resolution portrait of a male professional in his 30s with short hair, wearing a navy blue polo shirt. The lighting is bright and uniform as seen in a professional identification photo. The subject is centered against a clean light-gray background, with the edges of the image having a sharp 1px black stroke as defined in the security design guidelines." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJQ8_YLgg6oN6_rYHUrhkZSppMT2WOZwJ-Do7532OY8sfy2AITOBPh5cMpuJ_-vJ228poJB_cLA7NCr3PcXwMawdhtRkL8q2conIMOksExy9qL0tP0QfEo6vrqWYZktZswbBpYr_zDD-6ZkYfT2T-SC_gRjDKfweUT4459Sf4iW5Ujgbvb7giE8MR44cVnimjIwY0GH5Vu86hCcH7v-VzepR7BgDB8gI5BVl1s77WhpuxFFEdI6J1pfSvCTpsPyevL4NdQVbgMVZXB"/>
+</div>
+<div class="w-2/3 p-md flex flex-col relative">
+<div class="flex justify-between items-start mb-sm">
+<div>
+<span class="font-label-caps text-[10px] text-secondary">PREVIOUS SCAN</span>
+<h3 class="font-title-sm text-on-surface">DR. JULIAN REED</h3>
+</div>
+<span class="material-symbols-outlined text-green-600" data-icon="verified" data-weight="fill" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<div class="flex flex-col gap-xs mt-auto">
+<div class="flex justify-between text-xs">
+<span class="text-secondary">Level:</span>
+<span class="font-data-mono font-bold">LEVEL 4 - RESTRICTED</span>
+</div>
+<div class="flex justify-between text-xs">
+<span class="text-secondary">Exp:</span>
+<span class="font-data-mono">12 NOV 2025</span>
+</div>
+</div>
+<!-- Vertical Status Bar -->
+<div class="absolute top-0 right-0 h-full w-2 bg-green-500"></div>
+</div>
+</div>
+<div class="bg-white border border-outline-variant rounded-lg p-md flex flex-col justify-center">
+<h2 class="font-label-caps text-on-surface-variant mb-sm">DOCUMENT PREVIEW</h2>
+<div class="bg-slate-100 h-32 rounded border border-black border-opacity-10 overflow-hidden relative group cursor-zoom-in">
+<img alt="ID Document Scan" class="w-full h-full object-cover group-hover:scale-150 transition-transform duration-300" data-alt="A flat-lay photograph of a modern high-security identification card resting on a clean white surface. The card features holographic elements, micro-text, and a secondary ghost image portrait. The lighting is direct and surgical, highlighting the security features of the document. The UI frame includes a subtle zoom-on-hover effect indicator." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_5TdumiFpZAjWgHCSyhog-htfCp9y85_opcq2qSC-TNgFGDWZOyAayy1erMGZSQJ0J9EFAlm7Rckz68-PFnVjCYG6r3Qv39vMBBwa8c9Tjb_YG22fAdT1KLL6Zhvkdx-Y85w48JdCm6BOtB01LCGOgYaSMzob66I18_ain1jrtMD1Xnyrgw5xbk6PYSipIAVQZHevoTTktU2OgIDMMPAYn8yV2tu68mD6yuP3vul2Z-w6rlf8FVMYQ8OvFO4tsLzw8h29UOMl5UIY"/>
+<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 bg-black bg-opacity-20 pointer-events-none transition-opacity">
+<span class="material-symbols-outlined text-white text-3xl" data-icon="zoom_in">zoom_in</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Floating Action Button (Only on main dashboard) -->
+<div class="fixed bottom-lg right-lg">
+<button class="bg-primary text-on-primary w-14 h-14 rounded-full shadow-lg flex items-center justify-center hover:scale-105 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-2xl" data-icon="add">add</span>
+</button>
+</div>
+</body></html>

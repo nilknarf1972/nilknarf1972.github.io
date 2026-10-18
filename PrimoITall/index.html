@@ -1,0 +1,2323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Primo IT Tech All-in-One">
+  <meta name="theme-color" content="#0b0f17">
+  <link
+    rel="icon"
+    type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Cpath d='M22 2.5L39 10.5V23.5C39 33.2 31.6 39.6 22 42C12.4 39.6 5 33.2 5 23.5V10.5L22 2.5Z' fill='%231e3a8a' stroke='%23fbbf24' stroke-width='2.5'/%3E%3Ctext x='22' y='27' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-weight='900' font-size='13'%3EPIT%3C/text%3E%3C/svg%3E"
+  />
+  <link rel="apple-touch-icon" href="primo-logo.webp">
+  <link rel="manifest" href="manifest.json">
+  <title>Primo IT Tech All-in-One — Local Reader, Encoder &amp; AI Configurator | Primo IT Tech LLC</title>
+  <script>
+    // Immediate Theme Bootstrap (Prevents Theme Flash)
+    (function() {
+      try {
+        var savedTheme = localStorage.getItem("primo_theme") || "dark";
+        document.documentElement.setAttribute("data-theme", savedTheme);
+      } catch (e) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Toast Notifications Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <div class="app-container">
+    <!-- Top Header -->
+    <header class="app-header">
+      <div class="header-left">
+        <!-- Custom Vector SVG Shield & Connectivity Crest for Primo IT Tech LLC -->
+        <div
+          style="display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%);border:1.5px solid #38bdf8;box-shadow:0 0 18px rgba(56,189,248,0.22);padding:6px 12px 6px 8px;border-radius:10px;"
+          title="Primo IT Tech LLC — Official Vector Crest & Emblem"
+        >
+          <svg width="36" height="36" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="primoShieldGrad" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#06b6d4" />
+                <stop offset="55%" stop-color="#2563eb" />
+                <stop offset="100%" stop-color="#1e1b4b" />
+              </linearGradient>
+              <linearGradient id="primoGoldAccent" x1="6" y1="4" x2="38" y2="40" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#fbbf24" />
+                <stop offset="100%" stop-color="#d97706" />
+              </linearGradient>
+            </defs>
+            <path d="M22 2.5L39 10.5V23.5C39 33.2 31.6 39.6 22 42C12.4 39.6 5 33.2 5 23.5V10.5L22 2.5Z" fill="url(#primoShieldGrad)" stroke="url(#primoGoldAccent)" stroke-width="2" />
+            <path d="M22 7V13M12 15L17 18M32 15L27 18M22 31V37" stroke="#38bdf8" stroke-width="1.4" stroke-linecap="round" opacity="0.75" />
+            <circle cx="22" cy="7" r="1.8" fill="#fbbf24" />
+            <circle cx="12" cy="15" r="1.5" fill="#38bdf8" />
+            <circle cx="32" cy="15" r="1.5" fill="#38bdf8" />
+            <text x="22" y="26.5" text-anchor="middle" fill="#ffffff" font-family="Inter, system-ui, sans-serif" font-weight="900" font-size="12.5" letter-spacing="0.8">PIT</text>
+          </svg>
+          <div style="display:flex;flex-direction:column;line-height:1.15;">
+            <span style="font-size:12px;font-weight:900;letter-spacing:0.9px;color:#f8fafc;text-transform:uppercase;">Primo IT Tech</span>
+            <span style="font-size:9.5px;font-weight:800;letter-spacing:1.4px;color:#fbbf24;text-transform:uppercase;">LLC &bull; FLORIDA</span>
+          </div>
+        </div>
+        <div class="brand-text-container">
+          <div class="title-row">
+            <h1 class="app-title">Primo IT Tech All-in-One</h1>
+            <span class="app-sub">v1.2.0</span>
+            <span style="font-size:10px;font-weight:700;background:rgba(16,185,129,0.15);color:#34d399;border:1px solid rgba(16,185,129,0.4);padding:2px 8px;border-radius:999px;">GENESIS 6/6 ACTIVE</span>
+          </div>
+          <p class="app-desc">Local Hardware Configurator &bull; EliteID Engine &bull; Primo IT Tech LLC</p>
+        </div>
+      </div>
+      <div class="header-right">
+        <button
+          type="button"
+          onclick="openAllInOneLegalModal()"
+          style="background:rgba(251,191,36,0.12);color:#fbbf24;border:1px solid rgba(251,191,36,0.45);padding:6px 13px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;"
+        >
+          ⚖️ Legal, IP &amp; Genesis Protocol
+        </button>
+
+        <!-- Prominent Primary Scan & Load Action -->
+        <button class="btn btn-primary btn-sm btn-header-scan" id="btn-scan-load-devices" title="Scan USB ports and load connected hardware readers">
+          <span id="scan-btn-icon">🔍</span>
+          <span id="scan-btn-text">Scan &amp; Load</span>
+          <span class="badge badge-scan-count" id="header-device-badge">0</span>
+        </button>
+
+        <!-- Prominent Backup & Analyze Action -->
+        <button class="btn btn-secondary btn-sm btn-header-backup" id="btn-header-backup" title="Create a timestamped project backup and run codebase health analysis">
+          <span>💾</span>
+          <span class="hidden-xs">Backup &amp; Analyze</span>
+        </button>
+
+        <!-- All Tools Category Drawer Toggle -->
+        <button class="btn btn-secondary btn-sm btn-header-drawer" id="btn-open-drawer" title="Open complete catalog of all 16 tools & sections">
+          <span>☰</span>
+          <span class="hidden-xs">All Tools</span>
+        </button>
+
+        <div class="autoscan-badge" id="badge-autoscan" title="Automatic scanning is disabled. Use Scan &amp; Load button to find devices.">
+          <span class="status-dot-off"></span> USB Scan: On-Demand
+        </div>
+
+        <button class="btn btn-tour" id="btn-quick-tour" title="Start interactive Quick Tour walkthrough like in ID Scanner">
+          <span class="tour-sparkle">✨</span> <span id="tour-btn-text">Quick Tour</span>
+        </button>
+        <button class="btn btn-secondary btn-sm" id="btn-remote-share" title="View remote testing links for cellular and different networks">
+          <span>🌐</span> <span class="hidden-xs">Remote Link</span>
+        </button>
+        <button class="theme-toggle-btn" id="btn-theme-toggle" title="Toggle Light / Dark Theme">
+          <span id="theme-toggle-icon">☀️</span> <span id="theme-toggle-text">Light Mode</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Navigation Tabs (Desktop Segmented Bar; Mobile uses Bottom Bar) -->
+    <nav class="nav-tabs">
+      <button class="tab-btn active" data-tab="configurator">⚡ Configurator</button>
+      <button class="tab-btn" data-tab="devices">📡 Connected Hardware (<span id="device-count">0</span>)</button>
+      <button class="tab-btn" data-tab="verifier">🏷️ Tap &amp; Swipe Test</button>
+      <button class="tab-btn" data-tab="presets">🛡️ Presets (7)</button>
+      <button class="tab-btn" data-tab="site-profiles">🏢 Site Profiles (<span id="site-profile-count">0</span>)</button>
+      <button class="tab-btn" data-tab="options">⚙️ Options &amp; Backup</button>
+      <button class="tab-btn tab-btn-more" id="btn-desktop-more-tools" type="button">
+        ☰ More Tools (<span id="more-tools-count">10</span>) ▾
+      </button>
+
+      <!-- Secondary tabs kept in DOM for seamless activation, styled cleanly -->
+      <button class="tab-btn tab-btn-secondary" data-tab="bix-firmware" style="display:none;">.BIX Firmware (<span id="bix-count">0</span>)</button>
+      <button class="tab-btn tab-btn-secondary" data-tab="catalog" style="display:none;">Credential Catalog (12)</button>
+      <button class="tab-btn tab-btn-secondary" data-tab="exporter" style="display:none;">ID Scanner Exporter</button>
+      <button class="tab-btn tab-btn-secondary" data-tab="sysinternals" style="display:none;">Sysinternals</button>
+      <button class="tab-btn tab-btn-secondary" data-tab="winget" style="display:none;">Winget Apps</button>
+      <button class="tab-btn tab-btn-secondary" data-tab="pstools" style="display:none;">PowerShell Tools</button>
+      <button class="tab-btn tab-btn-secondary" data-tab="win11cleanup" style="display:none;">Win 11 Cleanup</button>
+      <button class="tab-btn tab-btn-secondary" data-tab="printers" style="display:none;">Printer Spooler</button>
+      <button class="tab-btn tab-btn-secondary" data-tab="ai-tools" style="display:none;">AI Apps &amp; IDEs</button>
+      <button class="tab-btn tab-btn-secondary" data-tab="ai-cleanup" style="display:none;">AI Cleanup</button>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="app-main">
+
+      <!-- TAB 1: Configurator & Apply -->
+      <section id="tab-configurator" class="tab-pane active">
+        <div class="grid-2-col">
+          <!-- Left: Device & Preset Selection Form -->
+          <div class="card" id="card-reader-config">
+            <h2 class="card-title">1. Device & Deployment Selection</h2>
+            <div class="form-group">
+              <div class="label-row-flex">
+                <label for="select-device">Target Hardware Device:</label>
+                <span id="detected-status-tag" class="badge badge-sec-med">ON-DEMAND SCAN</span>
+              </div>
+              <select id="select-device" class="form-control">
+                <option value="">⚠️ No devices loaded. Tap "Scan &amp; Load" to detect readers.</option>
+              </select>
+              <div class="device-actions-row mt-2">
+                <button class="btn btn-primary btn-sm" id="btn-scan-load-configurator" title="Scan USB ports and load connected hardware readers">
+                  🔍 Scan &amp; Load Devices
+                </button>
+                <button class="btn btn-secondary btn-sm" id="btn-read-hardware-config" title="Interrogate connected reader over USB and grab its active settings">
+                  &lightning; Read Active Hardware Config
+                </button>
+              </div>
+              <small id="device-info-hint" class="text-muted">Tap "Scan &amp; Load" to detect connected PC/SC, USB PnP, COM, or lab simulation readers.</small>
+            </div>
+
+            <div class="form-group">
+              <label for="select-preset">Deployment Security Preset:</label>
+              <select id="select-preset" class="form-control"></select>
+            </div>
+
+            <div class="preset-summary-box" id="preset-summary-box">
+              <div class="preset-header-row">
+                <span class="badge badge-tech" id="summary-tech">DESFire EV3</span>
+                <span class="badge badge-sec" id="summary-tier">VERY HIGH</span>
+              </div>
+              <p id="summary-env" class="summary-env-text">Target Environment</p>
+              <p id="summary-desc" class="summary-desc-text">Preset details loading...</p>
+            </div>
+
+            <h3 class="card-subtitle">Reader Behavior Adjustments</h3>
+            <div class="grid-2-sub">
+              <div class="form-group">
+                <label for="input-wiegand-bits">Wiegand Bit Length:</label>
+                <input type="number" id="input-wiegand-bits" class="form-control" value="37" min="16" max="128">
+              </div>
+              <div class="form-group">
+                <label for="input-facility-code">Facility Code:</label>
+                <input type="number" id="input-facility-code" class="form-control" value="101" min="0" max="65535">
+              </div>
+            </div>
+
+            <div class="checkbox-row">
+              <label class="checkbox-label">
+                <input type="checkbox" id="check-beeper" checked> Beeper Audio Confirmation on Read
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" id="check-led" checked> LED Visual Feedback Flash
+              </label>
+            </div>
+
+            <div class="action-buttons-grid">
+              <button class="btn btn-primary" id="btn-apply-config">
+                &blacktriangleright; Write Configuration to Reader
+              </button>
+              <button class="btn btn-secondary" id="btn-save-as-site">
+                &plus; Save as Site Profile
+              </button>
+            </div>
+          </div>
+
+          <!-- Right: Live Driver Terminal & Payload Inspector -->
+          <div class="card">
+            <div class="card-header-flex">
+              <h2 class="card-title">2. Configuration Payload & Driver Stream</h2>
+              <span class="badge badge-status" id="terminal-status">READY</span>
+            </div>
+
+            <div class="terminal-container">
+              <div class="terminal-bar">
+                <span>Driver Execution Stream</span>
+                <button class="btn-text-only" id="btn-clear-terminal">Clear</button>
+              </div>
+              <pre class="terminal-output" id="terminal-output">// Primo IT Tech All-in-One Driver Engine Ready.
+// Select a reader and deployment preset, then click 'Write Configuration to Reader'.
+// All commands are audited through ethical security guardrails.</pre>
+            </div>
+
+            <div class="appblaster-preview-container">
+              <h3 class="card-subtitle">Native Script / BAP Definition:</h3>
+              <pre class="code-preview" id="code-script-preview"># Ready for driver compilation...</pre>
+            </div>
+
+            <div class="quick-export-row">
+              <button class="btn btn-secondary btn-sm" id="btn-download-bap">
+                &darr; Download Elatec .BAP File
+              </button>
+              <button class="btn btn-secondary btn-sm" id="btn-quick-bix" title="Search workstation and OneDrive for Elatec .BIX firmware files">
+                &boxbox; Scan .BIX Packages
+              </button>
+              <button class="btn btn-secondary btn-sm" id="btn-print-handover">
+                &printer; Print Deployment Sheet
+              </button>
+              <button class="btn btn-outline btn-sm" id="btn-quick-export">
+                &boxbox; Export Profile for Scanner
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 2: Tap & Swipe Verification Loopback -->
+      <section id="tab-verifier" class="tab-pane">
+        <div class="pane-header">
+          <h2>Live Card Tap & Swipe Verification</h2>
+          <p class="text-muted">Present a card or swipe a badge to verify hardware calibration, framing formats, and facility codes before field deployment.</p>
+        </div>
+
+        <div class="grid-2-col">
+          <div class="card">
+            <h3 class="card-title">Card Input Stream</h3>
+            <p class="text-muted small">Tap a card on a connected USB reader, swipe a badge, or use the quick simulation presets below:</p>
+
+            <div class="form-group mt-3">
+              <label for="input-test-tap">Raw Reader Presentation Input:</label>
+              <input type="text" id="input-test-tap" class="form-control" placeholder="Present card or paste raw output (e.g. 101,45210 or 04A1B2C3)..." autofocus>
+            </div>
+
+            <div class="action-buttons-flex mt-3">
+              <button class="btn btn-primary" id="btn-run-tap-verify">Test Presentation</button>
+              <button class="btn btn-text-only" id="btn-clear-tap">Clear Input</button>
+            </div>
+
+            <div class="sim-buttons-group mt-4">
+              <label>Quick Simulation Samples:</label>
+              <div class="btn-group-chips">
+                <button class="chip-btn" id="chip-sim-ev3">37-bit DESFire EV3 (101,45210)</button>
+                <button class="chip-btn" id="chip-sim-prox">26-bit Legacy Prox (101,2410)</button>
+                <button class="chip-btn" id="chip-sim-uid">Hex UID (04A1B2C3)</button>
+                <button class="chip-btn" id="chip-sim-mag">Track 2 Magstripe (;45210=2912?)</button>
+              </div>
+            </div>
+
+            <div class="guardrail-note-box mt-4">
+              <strong>Security Guardrail Note:</strong> This loopback tester strictly validates reader output framing and facility codes. No cardholder databases, student identities, or attendance logs are accessed.
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">Diagnostics & Calibration Report</h3>
+            <div id="tap-result-box" class="tap-result-box">
+              <p class="text-muted">// Awaiting card presentation or swipe test...</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 3: Site Profiles Library -->
+      <section id="tab-site-profiles" class="tab-pane">
+        <div class="pane-header-flex">
+          <div>
+            <h2>Site Profiles Library</h2>
+            <p class="text-muted">Saved deployment configurations organized by school district, campus, or client.</p>
+          </div>
+          <button class="btn btn-primary btn-sm" id="btn-open-create-site">&plus; Create New Site Profile</button>
+        </div>
+
+        <div class="site-profiles-grid" id="site-profiles-container">
+          <!-- Populated dynamically via JS -->
+        </div>
+      </section>
+
+      <!-- TAB 4: Presets View -->
+      <section id="tab-presets" class="tab-pane">
+        <div class="pane-header" id="presets-pane-header">
+          <h2>Deployment Security Presets</h2>
+          <p class="text-muted">Pre-architected deployment profiles optimized for K-12, Higher Ed, Government, and Legacy Migration.</p>
+        </div>
+        <div class="presets-grid" id="presets-grid-container">
+          <!-- Populated dynamically via JS -->
+        </div>
+      </section>
+
+      <!-- TAB 5: Connected Hardware View -->
+      <section id="tab-devices" class="tab-pane">
+        <div class="pane-header flex-between align-center">
+          <div>
+            <h2>Hardware Inventory &amp; Discovery</h2>
+            <p class="text-muted">Detected PC/SC smartcard readers, USB PnP units, serial COM ports, and lab simulators on this workstation.</p>
+          </div>
+          <button class="btn btn-primary" id="btn-scan-load-devices-tab">
+            🔍 Scan &amp; Load Devices
+          </button>
+        </div>
+        <div class="devices-table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Status</th>
+                <th>Device Name</th>
+                <th>Manufacturer</th>
+                <th>Transport</th>
+                <th>Interface</th>
+                <th>Supported Technologies</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="devices-table-body">
+              <!-- Populated dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- TAB 6: Elatec .BIX Firmware Scanner View -->
+      <section id="tab-bix-firmware" class="tab-pane">
+        <div class="pane-header-flex">
+          <div>
+            <h2>Elatec TWN4 .BIX Firmware Packages</h2>
+            <p class="text-muted">Scan, locate, and inspect compiled Elatec TWN4 <code>.bix</code> binary firmware images, AppBlaster packages, and transponder profiles.</p>
+          </div>
+          <div class="header-action-group">
+            <button class="btn btn-primary btn-sm" id="btn-run-bix-scan">&search; Scan for .BIX Files</button>
+            <button class="btn btn-secondary btn-sm" id="btn-quick-bix-scan">&lightning; Quick Scan</button>
+          </div>
+        </div>
+
+        <!-- Search Controls & Metrics -->
+        <div class="card mb-3">
+          <div class="grid-2-sub">
+            <div class="form-group">
+              <label for="input-bix-search-path">Target Search Directory / Path:</label>
+              <div class="input-with-button">
+                <input type="text" id="input-bix-search-path" class="form-control" placeholder="e.g. ./firmware/bix-packages">
+                <button class="btn btn-secondary btn-sm" id="btn-bix-reset-path" title="Reset to standard search paths">Reset</button>
+              </div>
+              <small class="text-muted">Searches OneDrive, ____Apps, .VDS STUFF, Downloads, and local folders up to 3 levels deep.</small>
+            </div>
+            <div class="form-group">
+              <label for="input-bix-filter">Filter Discovered Firmware Images:</label>
+              <input type="text" id="input-bix-filter" class="form-control" placeholder="Filter by version (v5.20, v4.80), interface (CCID, CDC), or filename...">
+              <small class="text-muted">Instant live table filter.</small>
+            </div>
+          </div>
+
+          <!-- Metrics summary cards -->
+          <div class="diag-stats-grid mt-3">
+            <div class="diag-stat-card">
+              <div class="diag-stat-label">Total .BIX Packages</div>
+              <div class="diag-stat-value text-accent-cyan" id="bix-stat-total">0</div>
+            </div>
+            <div class="diag-stat-card">
+              <div class="diag-stat-label">Valid TWN4 Images (0xFEAF)</div>
+              <div class="diag-stat-value text-accent-green" id="bix-stat-valid">0</div>
+            </div>
+            <div class="diag-stat-card">
+              <div class="diag-stat-label">CCID Smartcard Images</div>
+              <div class="diag-stat-value text-accent-blue" id="bix-stat-ccid">0</div>
+            </div>
+            <div class="diag-stat-card">
+              <div class="diag-stat-label">CDC Virtual COM Images</div>
+              <div class="diag-stat-value text-accent-amber" id="bix-stat-cdc">0</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- BIX Results Table -->
+        <div class="devices-table-container">
+          <table class="data-table" id="bix-files-table">
+            <thead>
+              <tr>
+                <th>Status</th>
+                <th>File Name</th>
+                <th>Firmware Version</th>
+                <th>Subsystem</th>
+                <th>Interface</th>
+                <th>Variant / Profile</th>
+                <th>Size</th>
+                <th>Modified</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="bix-table-body">
+              <tr>
+                <td colspan="9" class="text-center py-4 text-muted">
+                  Click <strong>Scan for .BIX Files</strong> above to discover all Elatec TWN4 firmware images on this workstation.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- TAB 7: Credential Catalog View -->
+      <section id="tab-catalog" class="tab-pane">
+        <div class="pane-header">
+          <h2>Access Credential Catalog</h2>
+          <p class="text-muted">Comprehensive catalog of RFID, NFC, contact, and magnetic access credentials with technical specifications.</p>
+        </div>
+        <div class="catalog-grid" id="catalog-grid-container">
+          <!-- Populated dynamically -->
+        </div>
+      </section>
+
+      <!-- TAB 7: ID Access Scanner Exporter -->
+      <section id="tab-exporter" class="tab-pane">
+        <div class="pane-header">
+          <h2>Export Profile for ID Access Scanner</h2>
+          <p class="text-muted">Decoupled configuration file generation conforming to <code>READER_PROFILE_SCHEMA.md</code>.</p>
+        </div>
+
+        <div class="grid-2-col">
+          <div class="card">
+            <h3 class="card-title">Profile Export Destination</h3>
+            <p class="text-muted">Save the reader configuration file directly where ID Access Scanner or other scan-only verification apps can load it.</p>
+
+            <div class="form-group mt-3">
+              <label>Target Destination:</label>
+              <div class="radio-option">
+                <input type="radio" id="dest-idaccess" name="export-dest" value="ID_ACCESS_SCANNER" checked>
+                <label for="dest-idaccess">
+                  <strong>ID Access Scanner Workspace</strong><br>
+                  <span class="text-muted small"><code>../ID Access Scanner/reader-profile.json</code></span>
+                </label>
+              </div>
+              <div class="radio-option mt-2">
+                <input type="radio" id="dest-local" name="export-dest" value="LOCAL">
+                <label for="dest-local">
+                  <strong>Local Primo IT Tech All-in-One Directory</strong><br>
+                  <span class="text-muted small"><code>./reader-profile.json</code></span>
+                </label>
+              </div>
+            </div>
+
+            <button class="btn btn-primary btn-block mt-4" id="btn-do-export">
+              Export reader-profile.json
+            </button>
+
+            <div id="export-result-alert" class="alert-box mt-3" style="display: none;">
+              <!-- Export feedback -->
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">Profile JSON Schema Preview</h3>
+            <pre class="code-preview" id="export-json-preview">{
+  "schemaVersion": "1.0.0",
+  "note": "Configure a reader above to generate JSON preview."
+}</pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 8: Options & Site Setup -->
+      <section id="tab-options" class="tab-pane">
+        <div class="pane-header">
+          <h2>Options & Client Site Setup</h2>
+          <p class="text-muted">Accelerate on-site deployment: manage client firewall ports, ODBC database connections, USB auto-scan settings, and integration options.</p>
+        </div>
+
+        <div class="grid-2-col">
+          <!-- Left: Client Commissioning Utility (Firewall + ODBC DSN) -->
+          <div class="card">
+            <div class="card-header-flex">
+              <h3 class="card-title">1. Client Commissioning Utility</h3>
+              <div class="header-badges-flex" style="display: flex; gap: 6px; align-items: center; flex-wrap: wrap;">
+                <button type="button" class="btn btn-secondary btn-xs" id="btn-check-uac-status" title="Click to inspect Windows UAC elevation and commissioning status">
+                  🔍 Check Status &amp; UAC
+                </button>
+                <span class="badge badge-sec" id="badge-comm-elevation">UAC: UNCHECKED</span>
+                <span class="badge badge-tech" id="badge-comm-status">STATUS: UNCHECKED</span>
+              </div>
+            </div>
+            <p class="text-muted small">One-click on-site setup for Sentinel Verify / ID Access Scanner: applies documented firewall ports and registers 32-bit (x86) or 64-bit (x64) System ODBC DSNs.</p>
+
+            <div class="options-status-summary mt-3">
+              <div class="status-indicator-box">
+                <span class="indicator-dot" id="dot-firewall"></span>
+                <div>
+                  <strong>Windows Firewall Rules</strong>
+                  <div class="text-muted small" id="text-firewall-status">Status unchecked. Click &ldquo;Check Status &amp; UAC&rdquo; to test inbound firewall ports.</div>
+                </div>
+              </div>
+              <div class="status-indicator-box mt-2">
+                <span class="indicator-dot" id="dot-odbc"></span>
+                <div>
+                  <strong id="label-odbc-header">System ODBC DSN (<span id="text-odbc-current-name">PockeTrackerLocal</span>)</strong>
+                  <div class="text-muted small" id="text-odbc-status">Status unchecked. Click &ldquo;Check Status &amp; UAC&rdquo; to inspect ODBC drivers.</div>
+                </div>
+              </div>
+            </div>
+
+            <h4 class="card-subtitle mt-4">Firewall Configuration:</h4>
+            <div class="form-group">
+              <label for="input-comm-subnet">Firewall Remote Subnet Scope:</label>
+              <input type="text" id="input-comm-subnet" class="form-control" value="LocalSubnet" placeholder="LocalSubnet or CIDR (e.g. 192.168.1.0/24)">
+              <small class="text-muted">Applies to ports 3000, 80, 443, and 1433 (Domain, Private profiles).</small>
+            </div>
+
+            <hr class="options-divider">
+
+            <div class="flex-between">
+              <h4 class="card-subtitle" style="margin-bottom: 0;">Windows System ODBC DSN Settings:</h4>
+              <span class="text-muted small" id="text-driver-count-badge">Detecting drivers...</span>
+            </div>
+
+            <!-- Architecture Selection: 32-bit (x86) or 64-bit (x64) -->
+            <div class="form-group mt-2">
+              <label class="font-bold">ODBC Subsystem Architecture:</label>
+              <div class="radio-pill-group mt-1" style="display: flex; gap: 12px;">
+                <label class="radio-pill-label" style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+                  <input type="radio" name="comm-platform" id="radio-platform-64" value="64-bit" checked>
+                  <strong>64-bit (x64) System DSN</strong>
+                  <span class="badge badge-tech small">Default</span>
+                </label>
+                <label class="radio-pill-label" style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+                  <input type="radio" name="comm-platform" id="radio-platform-32" value="32-bit">
+                  <strong>32-bit (x86) System DSN</strong>
+                  <span class="badge badge-sec small">Legacy / SysWOW64</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="grid-2-sub mt-2">
+              <div class="form-group">
+                <div class="flex-between">
+                  <label for="input-comm-dsn-name">DSN Name:</label>
+                  <span class="small font-bold" id="badge-dsn-exists-status" style="display: none;"></span>
+                </div>
+                <input type="text" id="input-comm-dsn-name" class="form-control font-mono" value="PockeTrackerLocal" maxlength="32" placeholder="e.g. PockeTrackerLocal">
+                <small class="text-muted">Max 32 chars, letters, numbers, spaces, underscores, dashes.</small>
+              </div>
+              <div class="form-group">
+                <div class="flex-between">
+                  <label for="select-comm-driver">Installed ODBC Driver:</label>
+                  <button type="button" class="btn btn-text-only small" id="btn-refresh-odbc-drivers" style="padding: 0; line-height: 1;">⟳ Refresh</button>
+                </div>
+                <select id="select-comm-driver" class="form-control">
+                  <option value="ODBC Driver 17 for SQL Server" selected>ODBC Driver 17 for SQL Server</option>
+                  <option value="ODBC Driver 18 for SQL Server">ODBC Driver 18 for SQL Server</option>
+                  <option value="SQL Server">SQL Server (Legacy In-Box)</option>
+                </select>
+                <small class="text-muted" id="text-selected-driver-info">Showing drivers installed for selected architecture.</small>
+              </div>
+            </div>
+
+            <div id="dsn-duplicate-alert" class="alert-box alert-warning mt-2" style="display: none; padding: 8px 12px; font-size: 12px; border-radius: 6px;">
+              ⚠️ <strong>Existing DSN Detected:</strong> A System DSN with this name already exists for this architecture. To preserve existing configurations, it will NOT be overwritten unless you check the box below.
+            </div>
+
+            <div class="grid-2-sub mt-2">
+              <div class="form-group">
+                <label for="input-comm-server">SQL Server / Instance Host:</label>
+                <input type="text" id="input-comm-server" class="form-control font-mono" value="(localdb)\MSSQLLocalDB" placeholder="e.g. (localdb)\MSSQLLocalDB or IP\Instance">
+              </div>
+              <div class="form-group">
+                <label for="input-comm-database">Database Catalog Name:</label>
+                <input type="text" id="input-comm-database" class="form-control font-mono" value="PockeTrackerLocal" placeholder="e.g. PockeTrackerLocal">
+              </div>
+            </div>
+
+            <div class="grid-2-sub">
+              <div class="form-group">
+                <label for="select-comm-auth">Authentication Mode:</label>
+                <select id="select-comm-auth" class="form-control">
+                  <option value="trusted" selected>Windows Integrated (Trusted Connection)</option>
+                  <option value="sql">SQL Server Authentication (UID / PWD)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="input-comm-port">SQL Server Listener Port:</label>
+                <input type="number" id="input-comm-port" class="form-control" value="1433" min="1" max="65535">
+              </div>
+            </div>
+
+            <div class="grid-2-sub mt-2" id="comm-credentials-group" style="display: none;">
+              <div class="form-group">
+                <label for="input-comm-user">MS-SQL Username:</label>
+                <input type="text" id="input-comm-user" class="form-control" value="sa" placeholder="e.g. sa">
+              </div>
+              <div class="form-group">
+                <label for="input-comm-password">MS-SQL Password:</label>
+                <input type="password" id="input-comm-password" class="form-control" placeholder="Enter password (masked)">
+              </div>
+              <div style="grid-column: span 2; margin-top: -6px; margin-bottom: 8px;">
+                <button type="button" class="btn btn-secondary btn-sm" id="btn-test-sql-creds">
+                  🧪 Test SQL Server Credentials
+                </button>
+              </div>
+            </div>
+
+            <div class="form-group mt-2">
+              <label class="checkbox-label" style="display: flex; align-items: center; gap: 8px;">
+                <input type="checkbox" id="check-comm-overwrite">
+                <strong>Allow Overwrite / Update Existing DSN</strong>
+              </label>
+              <small class="text-muted" style="display: block; margin-left: 24px;">Leave unchecked to preserve existing DSNs and prevent accidental configuration clobbering.</small>
+            </div>
+
+            <div class="alert-box alert-info mt-3" style="padding: 8px 12px; font-size: 11.5px; border-radius: 6px;">
+              🛡️ <strong>Administrator Elevation &amp; Windows UAC:</strong> Creating or modifying a Windows System DSN requires elevated rights. If running non-elevated, standard Windows UAC will request administrator authorization. If cancelled or denied, the system remains completely unchanged.
+            </div>
+
+            <div class="action-buttons-grid mt-4">
+              <button class="btn btn-primary" id="btn-run-comm-both" title="Apply both Firewall rules and System ODBC DSN">
+                ⚡ Apply Both (Firewall + System DSN)
+              </button>
+              <button class="btn btn-secondary" id="btn-run-comm-firewall">
+                🛡️ Apply Firewall Only
+              </button>
+              <button class="btn btn-secondary" id="btn-run-comm-dsn">
+                🗄️ Setup System DSN Only
+              </button>
+              <button class="btn btn-outline" id="btn-test-comm-odbc">
+                🧪 Test ODBC Connection
+              </button>
+            </div>
+
+            <div class="mt-3 flex-between">
+              <button class="btn btn-text-only text-danger small" id="btn-rollback-comm">
+                ↺ Rollback (Remove Firewall Rules & DSN)
+              </button>
+              <button class="btn btn-text-only small" id="btn-refresh-comm-status">
+                ⟳ Refresh Status
+              </button>
+            </div>
+          </div>
+
+          <!-- Right: Hardware Preferences & Integration Options -->
+          <div class="card">
+            <h3 class="card-title">2. Hardware & Integration Preferences</h3>
+            <p class="text-muted small">Configure auto-scan background polling, reader readback, and export behaviors.</p>
+
+            <div class="form-group mt-3">
+              <label class="checkbox-label font-bold">
+                <input type="checkbox" id="check-opt-autoscan" checked> Enable Background USB Auto-Scan
+              </label>
+              <small class="text-muted">Continuously polls USB ports and smartcard slots for connected readers.</small>
+            </div>
+
+            <div class="grid-2-sub mt-2">
+              <div class="form-group">
+                <label for="input-opt-interval">Scan Interval (ms):</label>
+                <input type="number" id="input-opt-interval" class="form-control" value="3000" min="1000" max="30000" step="500">
+              </div>
+              <div class="form-group">
+                <label class="checkbox-label mt-4">
+                  <input type="checkbox" id="check-opt-autoreadback" checked> Auto-Readback Profile on Plug-in
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group mt-2">
+              <label class="checkbox-label">
+                <input type="checkbox" id="check-opt-simulated" checked> Include Lab Simulation Readers in Device Inventory
+              </label>
+            </div>
+
+            <hr class="options-divider">
+
+            <h4 class="card-subtitle">Display & Branding Theme:</h4>
+            <div class="form-group">
+              <label for="select-opt-theme">Application Theme:</label>
+              <select id="select-opt-theme" class="form-control">
+                <option value="dark">Dark Theme (Primo IT Tech Cyber Slate)</option>
+                <option value="light">Light Theme (Primo IT Tech Crisp White)</option>
+              </select>
+            </div>
+
+            <hr class="options-divider">
+
+            <h4 class="card-subtitle">ID Access Scanner Export Preferences:</h4>
+            <div class="form-group">
+              <label for="input-opt-export-path">Default reader-profile.json Path:</label>
+              <input type="text" id="input-opt-export-path" class="form-control" value="../ID Access Scanner/reader-profile.json">
+            </div>
+
+            <div class="form-group">
+              <label class="checkbox-label">
+                <input type="checkbox" id="check-opt-autoexport" checked> Auto-Export reader-profile.json When Writing Configuration
+              </label>
+              <small class="text-muted">Automatically decouples and exports profile whenever a reader is programmed.</small>
+            </div>
+
+            <hr class="options-divider">
+
+            <h4 class="card-subtitle">Elatec .BIX Firmware Scanner Preferences:</h4>
+            <div class="form-group">
+              <label for="input-opt-bix-path">Default .BIX Search Path:</label>
+              <input type="text" id="input-opt-bix-path" class="form-control" value="./firmware">
+              <small class="text-muted">Primary directory scanned when locating Elatec TWN4 firmware images.</small>
+            </div>
+            <div class="mt-2">
+              <button type="button" class="btn btn-secondary btn-sm" id="btn-opt-scan-bix">
+                🔍 Scan for .BIX Files Now
+              </button>
+            </div>
+
+            <button class="btn btn-primary btn-block mt-4" id="btn-save-preferences">
+              Save Options & Preferences
+            </button>
+
+            <!-- Commissioning Execution Console -->
+            <div class="commissioning-console-box mt-4">
+              <div class="terminal-bar">
+                <span>Setup & Commissioning Stream</span>
+                <span class="small text-muted" id="comm-console-timestamp">Idle</span>
+              </div>
+              <pre class="terminal-output small" id="comm-console-output">// Commissioning console ready. Click 'Apply Both' or 'Refresh Status' above.</pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 3: Project Backups & Post-Backup Analysis -->
+        <div class="card mt-4" id="card-project-backup">
+          <div class="card-header-flex">
+            <div>
+              <h3 class="card-title">3. Project Backups &amp; Post-Backup Codebase Analysis</h3>
+              <p class="text-muted small">Create complete timestamped project archives with zero auto-scan overhead, and run deep codebase health &amp; integrity analysis.</p>
+            </div>
+            <div class="header-badges-group">
+              <span id="backup-status-badge" class="badge badge-status">READY</span>
+              <span id="backup-health-badge" class="badge badge-sec">HEALTH: PENDING</span>
+            </div>
+          </div>
+
+          <div class="action-buttons-flex mt-3">
+            <button class="btn btn-primary" id="btn-run-project-backup">
+              🚀 Run Project Backup &amp; Analyze
+            </button>
+            <button class="btn btn-secondary" id="btn-view-backup-analysis">
+              📊 View Latest Analysis Report
+            </button>
+            <button class="btn btn-outline" id="btn-refresh-backup-list">
+              ⟳ Scan Available Backups
+            </button>
+          </div>
+
+          <!-- In-Page Backup Summary Container -->
+          <div id="backup-summary-inpage" class="mt-4" style="display: none;">
+            <!-- Populated dynamically by app.js -->
+          </div>
+
+          <!-- Available Backups & Restore Archives Table -->
+          <div class="mt-4" id="backup-archives-list-wrapper">
+            <div class="flex-between mb-2">
+              <h4 class="card-subtitle" style="margin: 0;">📦 Available Backups &amp; Snapshot Archives (<span id="backup-archives-count">0</span>)</h4>
+              <div class="flex-row-center gap-2">
+                <input type="text" id="input-import-backup-path" class="input-sm font-mono" placeholder="External .zip or folder path..." style="width: 260px;" />
+                <button type="button" class="btn btn-secondary btn-sm" id="btn-import-backup">📥 Import Archive</button>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table small" id="table-backup-archives">
+                <thead>
+                  <tr>
+                    <th>Archive Name</th>
+                    <th>Date / Timestamp</th>
+                    <th>Format</th>
+                    <th class="text-right">Size</th>
+                    <th class="text-right">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="backup-archives-tbody">
+                  <tr><td colspan="5" class="text-muted text-center py-3">Click "Scan Available Backups" to enumerate archive snapshots...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 10: Sysinternals Suite -->
+      <section id="tab-sysinternals" class="tab-pane">
+        <div class="card">
+          <div class="card-header-flex">
+            <div>
+              <h2 class="card-title">Microsoft Sysinternals Suite</h2>
+              <p class="text-muted small">Portable advanced system diagnostics, real-time process monitoring, and autoruns inspection.</p>
+            </div>
+            <div class="header-badges-group">
+              <span id="sysinternals-status-tag" class="badge badge-status">CHECKING...</span>
+              <span id="sysinternals-path-tag" class="badge badge-sec">PATH: CHECKING</span>
+            </div>
+          </div>
+
+          <div class="status-summary-grid mt-3">
+            <div class="status-metric-card">
+              <span class="metric-label">Install Directory</span>
+              <span id="sysinternals-dir" class="metric-value font-mono small text-accent-cyan">Checking...</span>
+            </div>
+            <div class="status-metric-card">
+              <span class="metric-label">Architecture</span>
+              <span id="sysinternals-arch" class="metric-value">x64</span>
+            </div>
+            <div class="status-metric-card">
+              <span class="metric-label">Available Tools</span>
+              <span id="sysinternals-count" class="metric-value">0 / 11</span>
+            </div>
+          </div>
+
+          <div class="action-buttons-flex mt-3">
+            <button class="btn btn-primary" id="btn-sysinternals-download">
+              ⬇️ Download & Extract Suite
+            </button>
+            <button class="btn btn-secondary" id="btn-sysinternals-add-path-user">
+              ➕ Add to User PATH
+            </button>
+            <button class="btn btn-secondary" id="btn-sysinternals-add-path-sys">
+              🛡️ Add to System PATH (Elevated)
+            </button>
+            <button class="btn btn-secondary" id="btn-sysinternals-refresh">
+              🔄 Refresh Status
+            </button>
+          </div>
+
+          <hr class="options-divider mt-4">
+
+          <h3 class="card-subtitle">Popular Sysinternals Tools</h3>
+          <div id="sysinternals-tools-grid" class="tools-card-grid mt-2">
+            <!-- Dynamic Tool Cards Injected by app.js -->
+          </div>
+
+          <div class="commissioning-console-box mt-4">
+            <div class="terminal-bar">
+              <span>Sysinternals Activity & Execution Stream</span>
+              <span class="small text-muted" id="sysinternals-log-time">Idle</span>
+            </div>
+            <pre class="terminal-output small" id="sysinternals-log-output">// Sysinternals console ready.</pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 11: Winget Package Manager -->
+      <section id="tab-winget" class="tab-pane">
+        <div class="card">
+          <div class="card-header-flex">
+            <div>
+              <h2 class="card-title">Windows Package Manager (winget)</h2>
+              <p class="text-muted small">Search, install, inspect, and update software packages natively on Windows.</p>
+            </div>
+            <div class="header-badges-group">
+              <span id="winget-status-tag" class="badge badge-status">CHECKING...</span>
+              <span id="winget-version-tag" class="badge badge-tech">v1.x</span>
+            </div>
+          </div>
+
+          <div class="search-bar-row mt-3">
+            <input type="text" id="input-winget-search" class="form-control" placeholder="Search packages (e.g. vscode, git, 7zip, notepad++, docker)...">
+            <button class="btn btn-primary" id="btn-winget-search">🔍 Search Repository</button>
+            <button class="btn btn-secondary" id="btn-winget-list-installed">📋 List Installed Apps</button>
+            <button class="btn btn-secondary" id="btn-winget-upgrade-all">⬆️ Upgrade All Packages</button>
+          </div>
+
+          <div class="direct-install-box mt-3">
+            <label class="small text-muted font-bold">Install Package by Exact ID:</label>
+            <div class="input-with-button mt-1">
+              <input type="text" id="input-winget-direct-id" class="form-control font-mono" placeholder="e.g. Git.Git or Microsoft.VisualStudioCode">
+              <button class="btn btn-primary" id="btn-winget-direct-install">➕ Install Package</button>
+            </div>
+          </div>
+
+          <div class="table-container mt-4">
+            <div class="table-header-row">
+              <span class="card-subtitle" id="winget-table-title">Software Catalog / Search Results</span>
+              <span class="text-muted small" id="winget-results-count">0 items</span>
+            </div>
+            <table class="data-table" id="table-winget">
+              <thead>
+                <tr>
+                  <th>Application Name</th>
+                  <th>Package ID</th>
+                  <th>Version</th>
+                  <th>Available</th>
+                  <th>Source</th>
+                  <th style="text-align: right;">Action</th>
+                </tr>
+              </thead>
+              <tbody id="tbody-winget">
+                <tr><td colspan="6" class="text-muted text-center p-3">Click 'Search Repository' or 'List Installed Apps' above.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="commissioning-console-box mt-4">
+            <div class="terminal-bar">
+              <span>Winget Process Stream</span>
+              <span class="small text-muted" id="winget-log-time">Idle</span>
+            </div>
+            <pre class="terminal-output small" id="winget-log-output">// Winget console ready.</pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 12: PowerShell Tools & Diagnostics -->
+      <section id="tab-pstools" class="tab-pane">
+        <div class="card">
+          <div class="card-header-flex">
+            <div>
+              <h2 class="card-title">PowerShell System Tools & Diagnostics</h2>
+              <p class="text-muted small">Live system statistics, network diagnostics, process inspection, and interactive console launchers.</p>
+            </div>
+            <div class="header-badges-group">
+              <span id="pstools-host-tag" class="badge badge-tech">HOST: PRIMO</span>
+            </div>
+          </div>
+
+          <!-- Quick System Specs Cards -->
+          <div class="system-specs-grid mt-3">
+            <div class="spec-card">
+              <span class="spec-label">Operating System</span>
+              <span id="spec-os" class="spec-val font-bold">Microsoft Windows 11</span>
+              <span id="spec-build" class="spec-sub text-muted">Build 26300</span>
+            </div>
+            <div class="spec-card">
+              <span class="spec-label">Processor</span>
+              <span id="spec-cpu" class="spec-val font-bold">Loading CPU...</span>
+              <span id="spec-arch" class="spec-sub text-muted">64-bit Architecture</span>
+            </div>
+            <div class="spec-card">
+              <span class="spec-label">Physical Memory (RAM)</span>
+              <span id="spec-ram" class="spec-val font-bold">Loading RAM...</span>
+              <span id="spec-uptime" class="spec-sub text-muted">Uptime: 0d</span>
+            </div>
+            <div class="spec-card">
+              <span class="spec-label">Primary Drive (C:)</span>
+              <span id="spec-drive" class="spec-val font-bold">Loading Drive...</span>
+              <span id="spec-drive-sub" class="spec-sub text-muted">Free space</span>
+            </div>
+          </div>
+
+          <!-- Action Buttons Bar -->
+          <div class="action-buttons-flex mt-3">
+            <button class="btn btn-primary" id="btn-launch-ps-user">
+              💻 Launch PowerShell Console
+            </button>
+            <button class="btn btn-secondary" id="btn-launch-ps-admin">
+              🛡️ Launch Elevated PowerShell (Admin)
+            </button>
+            <button class="btn btn-secondary" id="btn-flush-dns">
+              🌐 Flush DNS Cache
+            </button>
+            <button class="btn btn-secondary" id="btn-refresh-sysinfo">
+              🔄 Refresh Diagnostics
+            </button>
+          </div>
+
+          <hr class="options-divider mt-4">
+
+          <!-- Subtabs for Processes, Services, Network, Users -->
+          <div class="subnav-tabs">
+            <button class="subtab-btn active" data-subtab="subtab-procs">Top Processes</button>
+            <button class="subtab-btn" data-subtab="subtab-svcs">Windows Services</button>
+            <button class="subtab-btn" data-subtab="subtab-net">Network Diagnostics</button>
+            <button class="subtab-btn" data-subtab="subtab-users">Local Users</button>
+            <button class="subtab-btn" data-subtab="subtab-custom">Custom Script Runner</button>
+          </div>
+
+          <div class="subtab-content mt-3">
+            <!-- Subtab: Processes -->
+            <div id="subtab-procs" class="subtab-pane active">
+              <table class="data-table">
+                <thead>
+                  <tr><th>PID</th><th>Process Name</th><th>Memory (Working Set)</th><th>CPU Time</th><th>Status</th></tr>
+                </thead>
+                <tbody id="tbody-pstools-procs">
+                  <tr><td colspan="5" class="text-muted text-center p-3">Loading running processes...</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Subtab: Services -->
+            <div id="subtab-svcs" class="subtab-pane">
+              <table class="data-table">
+                <thead>
+                  <tr><th>Service Name</th><th>Display Name</th><th>Status</th><th>Startup Type</th></tr>
+                </thead>
+                <tbody id="tbody-pstools-svcs">
+                  <tr><td colspan="4" class="text-muted text-center p-3">Loading services...</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Subtab: Network -->
+            <div id="subtab-net" class="subtab-pane">
+              <div id="pstools-network-view" class="p-3 mb-3" style="background: var(--bg-card-sub); border-radius: 6px; border: 1px solid var(--border-color);">
+                Loading network adapters &amp; diagnostic connectivity...
+              </div>
+
+              <!-- Network Testing Toolkit (10-Tool Diagnostic Suite) -->
+              <div class="network-toolkit-card mt-3" id="network-toolkit-card" style="background: var(--bg-card); border-radius: 8px; border: 1px solid var(--border-color); padding: 1.25rem;">
+                <div class="card-header-flex">
+                  <div>
+                    <h3 class="card-subtitle font-bold text-main flex-row-center gap-2" style="font-size: 1.15rem; margin-bottom: 0.25rem;">
+                      <span>🌐 Network Testing Toolkit</span>
+                      <span class="badge badge-tech text-xs">10 Essential Tools</span>
+                    </h3>
+                    <p class="text-muted small">Instant 1-click execution for network troubleshooting, latency probing, sockets, DNS, and stack resets.</p>
+                  </div>
+                  <div class="header-badges-group">
+                    <span class="badge badge-status">Windows Diagnostics</span>
+                  </div>
+                </div>
+
+                <!-- Target Configuration Bar -->
+                <div class="network-target-bar mt-3 p-2" style="background: var(--bg-card-sub); border-radius: 6px; border: 1px solid var(--border-color); display: flex; flex-wrap: wrap; gap: 8px; align-items: center;">
+                  <label for="input-net-target" class="small font-bold" style="white-space: nowrap; margin-bottom: 0;">🎯 Target Host / IP:</label>
+                  <input type="text" id="input-net-target" class="form-control form-control-sm font-mono" style="flex: 1; min-width: 140px; max-width: 260px;" placeholder="8.8.8.8 or domain" value="8.8.8.8">
+                  <div class="preset-pills-group flex-row-center gap-1">
+                    <button type="button" class="btn btn-xs btn-outline btn-net-preset" data-target="8.8.8.8">8.8.8.8 (Google)</button>
+                    <button type="button" class="btn btn-xs btn-outline btn-net-preset" data-target="1.1.1.1">1.1.1.1 (Cloudflare)</button>
+                    <button type="button" class="btn btn-xs btn-outline btn-net-preset" data-target="google.com">google.com</button>
+                    <button type="button" class="btn btn-xs btn-outline btn-net-preset" data-target="127.0.0.1">localhost</button>
+                  </div>
+                  <label class="checkbox-label small ml-auto" style="margin-bottom: 0; display: inline-flex; align-items: center; gap: 4px;">
+                    <input type="checkbox" id="check-net-elevate"> <span title="Run with administrator permissions via UAC">Run as Admin</span>
+                  </label>
+                </div>
+
+                <!-- 10 Tools Grid -->
+                <div class="network-tools-grid mt-3" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px;">
+                  <!-- Tool 1: Flush DNS -->
+                  <div class="net-tool-item" style="background: var(--bg-card-sub); border: 1px solid var(--border-color); border-radius: 6px; padding: 10px; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                      <div class="flex-between mb-1">
+                        <span class="font-bold text-main flex-row-center gap-1"><span>⚡</span> Flush DNS Cache</span>
+                        <span class="badge badge-tech font-mono text-xs">DNS</span>
+                      </div>
+                      <code class="small text-muted font-mono" style="display: block; margin-bottom: 4px;">ipconfig /flushdns</code>
+                      <p class="text-muted text-xs mb-2">Clears local DNS resolver cache to purge stale entries and fix unreachable hostnames.</p>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-outline btn-block btn-run-net-tool" data-cmd="flushdns">▶️ Flush Cache</button>
+                  </div>
+
+                  <!-- Tool 2: IP Configuration -->
+                  <div class="net-tool-item" style="background: var(--bg-card-sub); border: 1px solid var(--border-color); border-radius: 6px; padding: 10px; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                      <div class="flex-between mb-1">
+                        <span class="font-bold text-main flex-row-center gap-1"><span>📋</span> IP Configuration</span>
+                        <span class="badge badge-tech font-mono text-xs">CONFIG</span>
+                      </div>
+                      <code class="small text-muted font-mono" style="display: block; margin-bottom: 4px;">ipconfig /all</code>
+                      <p class="text-muted text-xs mb-2">Detailed network adapter telemetry, MAC addresses, DHCP lease times, and DNS servers.</p>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-outline btn-block btn-run-net-tool" data-cmd="ipconfig_all">▶️ Show Config</button>
+                  </div>
+
+                  <!-- Tool 3: Ping -->
+                  <div class="net-tool-item" style="background: var(--bg-card-sub); border: 1px solid var(--border-color); border-radius: 6px; padding: 10px; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                      <div class="flex-between mb-1">
+                        <span class="font-bold text-main flex-row-center gap-1"><span>📶</span> Ping Latency Test</span>
+                        <span class="badge badge-status font-mono text-xs">PING</span>
+                      </div>
+                      <code class="small text-muted font-mono" style="display: block; margin-bottom: 4px;">ping -n 4 [target]</code>
+                      <p class="text-muted text-xs mb-2">Sends ICMP echo requests to measure roundtrip latency (ms) and packet drop rate.</p>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-primary btn-block btn-run-net-tool" data-cmd="ping">▶️ Ping Host</button>
+                  </div>
+
+                  <!-- Tool 4: Trace Route -->
+                  <div class="net-tool-item" style="background: var(--bg-card-sub); border: 1px solid var(--border-color); border-radius: 6px; padding: 10px; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                      <div class="flex-between mb-1">
+                        <span class="font-bold text-main flex-row-center gap-1"><span>🗺️</span> Trace Route (Hops)</span>
+                        <span class="badge badge-tech font-mono text-xs">ROUTE</span>
+                      </div>
+                      <code class="small text-muted font-mono" style="display: block; margin-bottom: 4px;">tracert -d -h 15 [target]</code>
+                      <p class="text-muted text-xs mb-2">Traces every router hop along the path to diagnose network bottlenecks and gateway routing.</p>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-outline btn-block btn-run-net-tool" data-cmd="tracert">▶️ Trace Route</button>
+                  </div>
+
+                  <!-- Tool 5: Netstat -->
+                  <div class="net-tool-item" style="background: var(--bg-card-sub); border: 1px solid var(--border-color); border-radius: 6px; padding: 10px; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                      <div class="flex-between mb-1">
+                        <span class="font-bold text-main flex-row-center gap-1"><span>🔌</span> Active Ports &amp; Sockets</span>
+                        <span class="badge badge-tech font-mono text-xs">SOCKETS</span>
+                      </div>
+                      <code class="small text-muted font-mono" style="display: block; margin-bottom: 4px;">netstat -ano</code>
+                      <p class="text-muted text-xs mb-2">Lists listening TCP/UDP ports, established remote connections, and associated Process IDs.</p>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-outline btn-block btn-run-net-tool" data-cmd="netstat">▶️ View Sockets</button>
+                  </div>
+
+                  <!-- Tool 6: NSLookup -->
+                  <div class="net-tool-item" style="background: var(--bg-card-sub); border: 1px solid var(--border-color); border-radius: 6px; padding: 10px; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                      <div class="flex-between mb-1">
+                        <span class="font-bold text-main flex-row-center gap-1"><span>🔎</span> DNS Name Lookup</span>
+                        <span class="badge badge-tech font-mono text-xs">DNS</span>
+                      </div>
+                      <code class="small text-muted font-mono" style="display: block; margin-bottom: 4px;">nslookup [target]</code>
+                      <p class="text-muted text-xs mb-2">Queries active nameservers to resolve hostnames to IP addresses or verify DNS records.</p>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-outline btn-block btn-run-net-tool" data-cmd="nslookup">▶️ Lookup DNS</button>
+                  </div>
+
+                  <!-- Tool 7: ARP Cache -->
+                  <div class="net-tool-item" style="background: var(--bg-card-sub); border: 1px solid var(--border-color); border-radius: 6px; padding: 10px; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                      <div class="flex-between mb-1">
+                        <span class="font-bold text-main flex-row-center gap-1"><span>🖧</span> ARP Subnet Map</span>
+                        <span class="badge badge-tech font-mono text-xs">ARP</span>
+                      </div>
+                      <code class="small text-muted font-mono" style="display: block; margin-bottom: 4px;">arp -a</code>
+                      <p class="text-muted text-xs mb-2">Displays Address Resolution Protocol cache mapping subnet IPs to physical hardware MAC addresses.</p>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-outline btn-block btn-run-net-tool" data-cmd="arp">▶️ Show ARP Table</button>
+                  </div>
+
+                  <!-- Tool 8: Winsock Reset -->
+                  <div class="net-tool-item" style="background: var(--bg-card-sub); border: 1px solid var(--border-color); border-radius: 6px; padding: 10px; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                      <div class="flex-between mb-1">
+                        <span class="font-bold text-main flex-row-center gap-1"><span>🛡️</span> Reset Winsock &amp; IP</span>
+                        <span class="badge badge-sec-low font-mono text-xs">ADMIN</span>
+                      </div>
+                      <code class="small text-muted font-mono" style="display: block; margin-bottom: 4px;">netsh winsock reset</code>
+                      <p class="text-muted text-xs mb-2">Repairs corrupted Windows network catalogs and resets TCP/IP stack to factory defaults.</p>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-outline btn-block btn-run-net-tool" data-cmd="winsock_reset">▶️ Reset Winsock</button>
+                  </div>
+
+                  <!-- Tool 9: DHCP Release & Renew -->
+                  <div class="net-tool-item" style="background: var(--bg-card-sub); border: 1px solid var(--border-color); border-radius: 6px; padding: 10px; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                      <div class="flex-between mb-1">
+                        <span class="font-bold text-main flex-row-center gap-1"><span>🔄</span> DHCP Release &amp; Renew</span>
+                        <span class="badge badge-tech font-mono text-xs">DHCP</span>
+                      </div>
+                      <code class="small text-muted font-mono" style="display: block; margin-bottom: 4px;">ipconfig /release &amp;&amp; /renew</code>
+                      <p class="text-muted text-xs mb-2">Releases stale DHCP lease and negotiates a brand-new IP address configuration from router.</p>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-outline btn-block btn-run-net-tool" data-cmd="release_renew">▶️ Release &amp; Renew</button>
+                  </div>
+
+                  <!-- Tool 10: Wi-Fi Telemetry -->
+                  <div class="net-tool-item" style="background: var(--bg-card-sub); border: 1px solid var(--border-color); border-radius: 6px; padding: 10px; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                      <div class="flex-between mb-1">
+                        <span class="font-bold text-main flex-row-center gap-1"><span>📡</span> Wi-Fi Signal &amp; Info</span>
+                        <span class="badge badge-status font-mono text-xs">WI-FI</span>
+                      </div>
+                      <code class="small text-muted font-mono" style="display: block; margin-bottom: 4px;">netsh wlan show interfaces</code>
+                      <p class="text-muted text-xs mb-2">Queries active Wi-Fi radio type, connected SSID, BSSID, channel, and signal strength %.</p>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-outline btn-block btn-run-net-tool" data-cmd="wifi_status">▶️ Query Wi-Fi</button>
+                  </div>
+                </div>
+
+                <!-- Network Output Console -->
+                <div class="commissioning-console-box mt-3">
+                  <div class="terminal-bar flex-between" style="display: flex; justify-content: space-between; align-items: center;">
+                    <div class="flex-row-center gap-2">
+                      <span class="terminal-indicator status-ready" id="net-terminal-indicator"></span>
+                      <strong id="net-terminal-title">Network Execution Stream</strong>
+                      <span class="badge badge-tech text-xs" id="net-terminal-cmd-badge" style="display: none;"></span>
+                    </div>
+                    <div class="flex-row-center gap-2">
+                      <span class="small text-muted font-mono" id="net-terminal-duration">0 ms</span>
+                      <button type="button" class="btn btn-xs btn-outline" id="btn-copy-net-output" title="Copy output to clipboard">📋 Copy</button>
+                      <button type="button" class="btn btn-xs btn-outline" id="btn-clear-net-output" title="Clear console">🧹 Clear</button>
+                    </div>
+                  </div>
+                  <pre class="terminal-output small font-mono" id="net-tools-output" style="max-height: 260px; overflow-y: auto; margin-top: 0;">// Ready. Click any network diagnostic command above to run.</pre>
+                </div>
+              </div>
+            </div>
+
+            <!-- Subtab: Users -->
+            <div id="subtab-users" class="subtab-pane">
+              <table class="data-table">
+                <thead>
+                  <tr><th>Account Name</th><th>Full Name</th><th>State</th><th>Admin Role</th><th>Description</th></tr>
+                </thead>
+                <tbody id="tbody-pstools-users">
+                  <tr><td colspan="5" class="text-muted text-center p-3">Loading local users...</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Subtab: Custom Script -->
+            <div id="subtab-custom" class="subtab-pane">
+              <div class="alert-box alert-warning">
+                <strong>⚠️ Safety Notice:</strong> PowerShell commands execute directly on your local workstation. Destructive disk format/deletion patterns are blocked by guardrails.
+              </div>
+              <div class="form-group mt-2">
+                <label for="input-custom-ps-script">PowerShell Command / Snippet:</label>
+                <textarea id="input-custom-ps-script" class="form-control font-mono" rows="3" placeholder="Get-Date; Get-Location; (Get-WmiObject Win32_OperatingSystem).Caption"></textarea>
+              </div>
+              <div class="checkbox-row">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="check-custom-elevated"> Run with Elevated Privileges (Admin UAC)
+                </label>
+              </div>
+              <button class="btn btn-primary mt-2" id="btn-run-custom-ps">▶️ Execute Command</button>
+            </div>
+          </div>
+
+          <div class="commissioning-console-box mt-4">
+            <div class="terminal-bar">
+              <span>PowerShell Execution Stream</span>
+              <span class="small text-muted" id="pstools-log-time">Idle</span>
+            </div>
+            <pre class="terminal-output small" id="pstools-log-output">// PowerShell console ready.</pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 13: Windows 11 Cleanup & Optimization -->
+      <section id="tab-win11cleanup" class="tab-pane">
+        <div class="card">
+          <div class="card-header-flex">
+            <div>
+              <h2 class="card-title">Windows 11 Cleanup &amp; Safe Optimization</h2>
+              <p class="text-muted small">Non-destructive cache purges, temporary file removal, and safe system maintenance.</p>
+            </div>
+            <div class="header-badges-group">
+              <span id="cleanup-target-badge" class="badge badge-tech">Target: Windows 11</span>
+              <span id="cleanup-reclaimable-badge" class="badge badge-status">Reclaimable: 0 B</span>
+            </div>
+          </div>
+
+          <div class="one-click-safe-box mt-3">
+            <div class="one-click-left">
+              <h3 class="font-bold text-accent-cyan mb-1">✨ 1-Click Basic Safe Cleanup</h3>
+              <p class="text-muted small mb-0">Safely purges user temp files, system temp, Windows Update cache, and thumbnail caches without touching personal files or registry security.</p>
+            </div>
+            <div class="one-click-right">
+              <button class="btn btn-primary btn-lg" id="btn-run-safe-cleanup">
+                🧹 Run Basic Safe Cleanup Now
+              </button>
+            </div>
+          </div>
+
+          <hr class="options-divider mt-4">
+
+          <div class="card-header-flex">
+            <h3 class="card-subtitle">Granular Maintenance Categories</h3>
+            <button class="btn btn-secondary btn-sm" id="btn-rescan-cleanup">🔍 Rescan Disk Space</button>
+          </div>
+
+          <div id="cleanup-categories-list" class="cleanup-categories-grid mt-3">
+            <!-- Dynamic categories injected by app.js -->
+          </div>
+
+          <div class="checkbox-row mt-3">
+            <label class="checkbox-label font-bold text-accent-green">
+              <input type="checkbox" id="check-create-restore-point" checked> 🛡️ Create Windows System Restore Point Before Execution (Recommended)
+            </label>
+          </div>
+
+          <div class="action-buttons-flex mt-3">
+            <button class="btn btn-primary" id="btn-execute-selected-cleanup">
+              🧹 Execute Selected Cleanup Actions
+            </button>
+            <button class="btn btn-secondary" id="btn-create-manual-restore-point">
+              🛡️ Create Standalone Restore Point
+            </button>
+          </div>
+
+          <div class="commissioning-console-box mt-4">
+            <div class="terminal-bar">
+              <span>Cleanup &amp; Optimization Audit Log</span>
+              <span class="small text-muted" id="cleanup-log-time">Idle</span>
+            </div>
+            <pre class="terminal-output small" id="cleanup-log-output">// Cleanup engine ready. Click 'Run Basic Safe Cleanup' or select categories above.</pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 14: Printer Spooler & Queue Maintenance -->
+      <section id="tab-printers" class="tab-pane">
+        <div class="card">
+          <div class="card-header-flex">
+            <div>
+              <h2 class="card-title">Windows Print Spooler &amp; Queue Maintenance</h2>
+              <p class="text-muted small">Clear stuck print jobs, purge corrupt spool files, and restart the Windows Spooler service.</p>
+            </div>
+            <div class="header-badges-group">
+              <span id="spooler-status-tag" class="badge badge-status">Spooler: RUNNING</span>
+            </div>
+          </div>
+
+          <div class="one-click-safe-box mt-3" style="border-color: rgba(239, 68, 68, 0.4); background: rgba(239, 68, 68, 0.04);">
+            <div class="one-click-left">
+              <h3 class="font-bold text-accent-red mb-1">🧹 Clear All Print Queues &amp; Reset Spooler</h3>
+              <p class="text-muted small mb-0">Stops the Print Spooler service, purges all pending and corrupted files in C:\Windows\System32\spool\PRINTERS, and restarts the service cleanly.</p>
+            </div>
+            <div class="one-click-right">
+              <button class="btn btn-danger btn-lg" id="btn-clear-all-printer-queues">
+                ⚠️ Clear All Queues &amp; Restart Spooler
+              </button>
+            </div>
+          </div>
+
+          <div class="action-buttons-flex mt-3">
+            <button class="btn btn-secondary" id="btn-restart-spooler-only">
+              🔄 Restart Print Spooler Service Only
+            </button>
+            <button class="btn btn-secondary" id="btn-refresh-printers">
+              🔄 Refresh Printers &amp; Jobs
+            </button>
+          </div>
+
+          <hr class="options-divider mt-4">
+
+          <h3 class="card-subtitle">Installed Printers &amp; Active Queue Status</h3>
+          <div class="table-container mt-2">
+            <table class="data-table" id="table-printers">
+              <thead>
+                <tr>
+                  <th>Printer Name</th>
+                  <th>Default</th>
+                  <th>Status</th>
+                  <th>Driver Name</th>
+                  <th>Port</th>
+                  <th>Queued Jobs</th>
+                  <th style="text-align: right;">Action</th>
+                </tr>
+              </thead>
+              <tbody id="tbody-printers">
+                <tr><td colspan="7" class="text-muted text-center p-3">Loading printers...</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="commissioning-console-box mt-4">
+            <div class="terminal-bar">
+              <span>Print Spooler Event Stream</span>
+              <span class="small text-muted" id="printers-log-time">Idle</span>
+            </div>
+            <pre class="terminal-output small" id="printers-log-output">// Print Spooler manager ready.</pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 15: AI & LLM Tools Inventory & Setup Dashboard -->
+      <section id="tab-ai-tools" class="tab-pane">
+        <div class="card">
+          <!-- Companion Agent Status Banner -->
+          <div id="ai-agent-banner" class="ai-agent-banner connected">
+            <div class="agent-banner-left">
+              <span class="agent-pulse-dot" id="agent-status-dot"></span>
+              <span id="ai-agent-status-text"><strong>Companion Agent:</strong> Checking local integration status...</span>
+            </div>
+            <div class="agent-banner-right">
+              <span class="badge badge-accent" id="ai-agent-elevated-badge">Standard User</span>
+              <button class="btn btn-secondary btn-xs" id="btn-check-agent-status" title="Recheck local companion agent connection">🔄 Recheck Agent</button>
+            </div>
+          </div>
+
+          <div class="card-header-flex mt-3">
+            <div>
+              <h2 class="card-title">🤖 Local AI/LLM Tools Inventory &amp; Setup Dashboard</h2>
+              <p class="text-muted small">Scan this computer for installed AI runtimes, developer CLIs, IDEs, and model-serving runtimes with explicit consent, verified publishers, and transparent installation.</p>
+            </div>
+            <div class="header-badges-group">
+              <span class="badge badge-status" id="badge-ai-scan-summary">Scan Pending</span>
+              <button class="btn btn-primary" id="btn-trigger-scan-modal">
+                🔍 Scan This Computer
+              </button>
+            </div>
+          </div>
+
+          <!-- Quick Stats Row -->
+          <div class="quick-stats-row mt-3">
+            <div class="stat-card">
+              <span class="stat-val text-accent-cyan" id="stat-ai-installed">0</span>
+              <span class="stat-lbl">Installed Tools</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-val text-accent-orange" id="stat-ai-running">0</span>
+              <span class="stat-lbl">Active Runtimes</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-val text-muted" id="stat-ai-missing">0</span>
+              <span class="stat-lbl">Available to Install</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-val text-muted small" id="stat-ai-last-scan">Never</span>
+              <span class="stat-lbl">Last Scan Completed</span>
+            </div>
+          </div>
+
+          <!-- Dashboard Sub-Tabs -->
+          <div class="subtabs-bar mt-4">
+            <button class="subtab-btn active" id="subtab-ai-inventory" data-ai-subview="inventory">
+              📋 Installed Inventory (<span id="count-ai-installed-tab">0</span>)
+            </button>
+            <button class="subtab-btn" id="subtab-ai-discover" data-ai-subview="discover">
+              🌟 Discover &amp; Install (<span id="count-ai-discover-tab">0</span>)
+            </button>
+            <button class="subtab-btn" id="subtab-ai-settings" data-ai-subview="settings">
+              ⚙️ Scan Scope &amp; Categories
+            </button>
+          </div>
+
+          <!-- Controls Bar: Search, Category Filter, Status Filter, OS Filter -->
+          <div class="table-controls-row mt-3" id="ai-filters-row">
+            <input type="text" id="input-filter-ai-tools" class="form-control" placeholder="Search by name, publisher, keyword (e.g. Ollama, Claude, Aider, PyTorch)..." style="max-width: 320px;">
+            <select id="select-ai-category-filter" class="form-control" style="max-width: 220px;">
+              <option value="all">All Categories</option>
+              <option value="Local Runtime & Model Manager">Local Runtime &amp; Model Manager</option>
+              <option value="Developer CLI & Agent">Developer CLI &amp; Agent</option>
+              <option value="AI Code Editor / IDE">AI Code Editor / IDE</option>
+              <option value="Model Serving & SDK Runtime">Model Serving &amp; SDK Runtime</option>
+              <option value="Chat & Desktop Client">Chat &amp; Desktop Client</option>
+              <option value="Networking & Tunnel">Networking &amp; Tunnel</option>
+              <option value="SI">SI (Configurable)</option>
+            </select>
+            <select id="select-ai-status-filter" class="form-control" style="max-width: 170px;">
+              <option value="all">All Statuses</option>
+              <option value="installed">Installed Only</option>
+              <option value="missing">Missing Only</option>
+              <option value="running">Running Only</option>
+            </select>
+            <select id="select-ai-os-filter" class="form-control" style="max-width: 150px;">
+              <option value="all">All OS</option>
+              <option value="windows">Windows</option>
+              <option value="macos">macOS</option>
+              <option value="linux">Linux</option>
+            </select>
+          </div>
+
+          <!-- Subview 1: Installed Inventory -->
+          <div id="ai-view-inventory" class="ai-subview mt-3">
+            <div class="ai-tools-grid" id="ai-inventory-container">
+              <div class="empty-state p-4 text-center">
+                <span style="font-size: 2.2rem;">🔍</span>
+                <h4 class="mt-2 mb-1">No Local Inventory Loaded</h4>
+                <p class="text-muted small">Click "Scan This Computer" above to authorize a safe scan of installed AI applications, runtimes, and developer CLIs.</p>
+                <button class="btn btn-primary btn-sm mt-2" id="btn-empty-start-scan">Start Authorization &amp; Scan</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Subview 2: Discover and Install -->
+          <div id="ai-view-discover" class="ai-subview mt-3" style="display: none;">
+            <div class="discover-banner mb-3 p-3">
+              <h4 class="font-bold text-accent-cyan mb-1">🌟 Curated &amp; Verified AI Tools Catalog</h4>
+              <p class="text-muted small mb-0">Browse verified developer AI tools, local model servers, and AI coding environments. Every installer uses official publishers, verified package manager IDs, and transparent command lines. Nothing is installed automatically.</p>
+            </div>
+            <div class="ai-tools-grid" id="ai-discover-container">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <!-- Subview 3: Scan Scope & Category Settings -->
+          <div id="ai-view-settings" class="ai-subview mt-3" style="display: none;">
+            <div class="card-inner p-3">
+              <h3 class="card-subtitle mb-2">Scan Scope Settings</h3>
+              <p class="text-muted small mb-3">Configure how deeply the local companion agent inspects your machine. Deeper scans query package managers and system PATH.</p>
+              
+              <div class="form-group mb-3">
+                <label class="checkbox-label">
+                  <input type="radio" name="ai-scope-radio" value="standard" checked id="radio-scope-standard">
+                  <span><strong>Standard Scan (Recommended)</strong> &mdash; Queries Windows Registry uninstall keys, running process tables, running services, and known application paths. Fast and safe.</span>
+                </label>
+              </div>
+              <div class="form-group mb-4">
+                <label class="checkbox-label">
+                  <input type="radio" name="ai-scope-radio" value="deep" id="radio-scope-deep">
+                  <span><strong>Deep Scan (Optional)</strong> &mdash; In addition to standard scan, interrogates Windows Package Manager (<code>winget list</code>) and queries system <code>PATH</code> executables. Requires user opt-in.</span>
+                </label>
+              </div>
+
+              <h3 class="card-subtitle mb-2">Configurable Categories</h3>
+              <p class="text-muted small mb-3">Enable or disable specific categories from the inventory scan. Category labels are user-configurable. <em>"SI" is treated as an unknown / custom category label and can be configured freely below.</em></p>
+
+              <div class="categories-config-list" id="ai-categories-config-list">
+                <!-- Dynamically populated category rows with toggle and label editor -->
+              </div>
+
+              <div class="mt-3">
+                <button class="btn btn-primary" id="btn-save-ai-settings">💾 Save Scope &amp; Category Settings</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Terminal / Execution Console -->
+          <div class="commissioning-console-box mt-4">
+            <div class="terminal-bar">
+              <span>AI Package Installation &amp; Companion Agent Console</span>
+              <span class="small text-muted" id="ai-tools-log-time">Idle</span>
+            </div>
+            <pre class="terminal-output small" id="ai-tools-log-output">// AI Companion Agent ready. No actions currently executing.</pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 16: AI Cleanup & Storage Purge -->
+      <section id="tab-ai-cleanup" class="tab-pane">
+        <div class="card">
+          <div class="card-header-flex">
+            <div>
+              <h2 class="card-title">AI Storage &amp; Cache Purge</h2>
+              <p class="text-muted small">Reclaim gigabytes of disk space from Hugging Face caches, PyTorch checkpoints, Pip wheels, and editor buffers.</p>
+            </div>
+            <div class="header-badges-group">
+              <span class="badge badge-accent" id="badge-ai-reclaimable">Scan Pending</span>
+              <button class="btn btn-secondary btn-sm" id="btn-rescan-ai-storage">
+                🔄 Rescan AI Storage
+              </button>
+            </div>
+          </div>
+
+          <!-- 1-Click Safe AI Cache Purge -->
+          <div class="one-click-safe-box mt-3">
+            <div class="one-click-left">
+              <h3 class="font-bold text-accent-cyan mb-1">⚡ 1-Click Safe AI Cache Cleanup</h3>
+              <p class="text-muted small mb-0">Safely purges Hugging Face hub caches, PyTorch downloads, Pip AI wheel buffers, Pieces OS logs, and editor caches. <strong>Preserves your Ollama models and weights.</strong></p>
+            </div>
+            <div class="one-click-right">
+              <button class="btn btn-primary btn-lg" id="btn-run-safe-ai-cleanup">
+                🚀 Purge Safe AI Caches Now
+              </button>
+            </div>
+          </div>
+
+          <h3 class="card-subtitle mt-4">AI Cache Categories</h3>
+          <div class="cleanup-categories-grid mt-2" id="ai-categories-container">
+            <div class="text-muted p-3">Analyzing AI storage folders...</div>
+          </div>
+
+          <div class="action-buttons-flex mt-3">
+            <button class="btn btn-primary" id="btn-execute-selected-ai-cleanup">
+              🧹 Purge Selected Caches
+            </button>
+          </div>
+
+          <hr class="options-divider mt-4">
+
+          <!-- Ollama Model Management Section -->
+          <div class="card-header-flex">
+            <div>
+              <h3 class="card-subtitle" style="margin-bottom: 2px;">Ollama Model Catalog &amp; Disk Usage</h3>
+              <p class="text-muted small">Manage downloaded GGUF weights and LLMs. Strict guardrail enforced: models are <strong>never</strong> deleted without explicit confirmation.</p>
+            </div>
+            <div class="header-badges-group">
+              <span class="badge badge-status" id="badge-ollama-model-count">0 Models</span>
+            </div>
+          </div>
+
+          <div class="table-container mt-2">
+            <table class="data-table" id="table-ollama-models">
+              <thead>
+                <tr>
+                  <th>Model Name</th>
+                  <th>Model ID</th>
+                  <th>Disk Size</th>
+                  <th>Last Modified</th>
+                  <th style="text-align: right;">Action</th>
+                </tr>
+              </thead>
+              <tbody id="tbody-ollama-models">
+                <tr><td colspan="5" class="text-muted text-center p-3">Loading Ollama models...</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="commissioning-console-box mt-4">
+            <div class="terminal-bar">
+              <span>AI Storage Purge Event Log</span>
+              <span class="small text-muted" id="ai-cleanup-log-time">Idle</span>
+            </div>
+            <pre class="terminal-output small" id="ai-cleanup-log-output">// AI Storage engine ready.</pre>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Save / Create Site Profile Modal -->
+    <div id="modal-site-profile" class="modal-backdrop" style="display: none;">
+      <div class="modal-box modal-md">
+        <div class="modal-header-flex">
+          <div class="flex-row-center gap-2">
+            <span class="text-2xl">🏢</span>
+            <div>
+              <h3 class="modal-title" id="modal-site-title">Create Site Configuration Profile</h3>
+              <p class="text-muted text-xs">Standardized deployment profile for fleets, schools, or client campuses</p>
+            </div>
+          </div>
+          <button type="button" class="btn-close-modal" id="btn-close-site-modal" aria-label="Close modal">&times;</button>
+        </div>
+
+        <div id="modal-site-error" class="alert-box alert-warning mt-2" style="display: none; padding: 8px 12px; font-size: 12px;"></div>
+
+        <div class="modal-body-scroll mt-2">
+          <div class="form-group">
+            <label for="modal-site-name"><strong>Site / Campus Name:</strong> <span class="text-danger">*</span></label>
+            <input type="text" id="modal-site-name" class="form-control" placeholder="e.g. Lincoln High School - 2026 EV3 Deployment" required>
+          </div>
+
+          <div class="form-group">
+            <label for="modal-client-name"><strong>Client / District Name:</strong> <span class="text-danger">*</span></label>
+            <input type="text" id="modal-client-name" class="form-control" placeholder="e.g. Lincoln Public Schools" required>
+          </div>
+
+          <div class="form-group">
+            <label for="modal-site-preset"><strong>Security Deployment Preset:</strong></label>
+            <select id="modal-site-preset" class="form-control font-bold text-accent-cyan">
+              <option value="new-small-k12">New Small K-12 District (DESFire EV3, 37-bit)</option>
+              <option value="large-k12">Large K-12 District (DESFire EV3 + Mobile NFC/BLE, 37-bit)</option>
+              <option value="college">Higher Education / Campus (DESFire EV3 / Seos, Hex UID)</option>
+              <option value="existing-prox-migration">Existing Prox Migration (Dual-Tech 125kHz + 13.56MHz, 26-bit)</option>
+              <option value="government">Government &amp; Enterprise PIV (PIV / FIPS 201, 75-bit GSA)</option>
+              <option value="healthcare">Healthcare Staff Attendance (MIFARE Classic 1K, 26-bit)</option>
+              <option value="magtek-track2">Gym / Transit Card (Track 2 Magstripe Emulation)</option>
+            </select>
+          </div>
+
+          <div class="grid-2-sub mt-2">
+            <div class="form-group">
+              <label for="modal-site-fc">Facility Code (FC):</label>
+              <input type="number" id="modal-site-fc" class="form-control font-mono" value="101" min="0" max="65535">
+            </div>
+            <div class="form-group">
+              <label for="modal-site-bits">Wiegand Bit Length:</label>
+              <input type="number" id="modal-site-bits" class="form-control font-mono" value="37" min="1" max="128">
+            </div>
+          </div>
+
+          <div class="form-group mt-2">
+            <label for="modal-site-device">Target Reader Model / Device:</label>
+            <select id="modal-site-device" class="form-control">
+              <option value="">Auto-Detect / Any Connected Reader</option>
+            </select>
+          </div>
+
+          <div class="checkbox-row mt-2" style="display: flex; gap: 18px;">
+            <label class="checkbox-label font-bold text-xs" style="display: flex; align-items: center; gap: 6px;">
+              <input type="checkbox" id="modal-site-beeper" checked> Beeper Feedback
+            </label>
+            <label class="checkbox-label font-bold text-xs" style="display: flex; align-items: center; gap: 6px;">
+              <input type="checkbox" id="modal-site-led" checked> LED Feedback
+            </label>
+          </div>
+
+          <div class="form-group mt-2">
+            <label for="modal-tech-name">Field Technician / Engineer:</label>
+            <input type="text" id="modal-tech-name" class="form-control" placeholder="e.g. Keith Franklin" value="Keith Franklin">
+          </div>
+
+          <div class="form-group">
+            <label for="modal-site-notes">Notes &amp; Deployment Instructions:</label>
+            <textarea id="modal-site-notes" class="form-control" rows="2" placeholder="e.g. Main entrance turnstiles; 37-bit DESFire EV3 badges with FC 101."></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer-flex mt-4 flex-between">
+          <button type="button" class="btn btn-secondary btn-sm" id="btn-modal-cancel-site">Cancel</button>
+          <button type="button" class="btn btn-primary btn-sm" id="btn-modal-save-site">💾 Save Site Profile</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Inspect .BIX File Modal -->
+    <div id="modal-bix-inspect" class="modal-backdrop" style="display: none;">
+      <div class="modal-box" style="max-width: 640px;">
+        <h3 class="modal-title">Elatec .BIX Package Metadata</h3>
+        <p class="text-muted small">Binary inspection &amp; transponder profile breakdown.</p>
+
+        <div class="form-group mt-3">
+          <label>File Name:</label>
+          <div id="bix-modal-filename" class="font-bold text-accent-cyan"></div>
+        </div>
+
+        <div class="form-group">
+          <label>Full Workstation Path:</label>
+          <div class="input-with-button">
+            <input type="text" id="bix-modal-path" class="form-control font-mono small" readonly>
+            <button class="btn btn-secondary btn-sm" id="btn-modal-copy-bix-path">Copy</button>
+          </div>
+        </div>
+
+        <div class="grid-2-sub">
+          <div class="form-group">
+            <label>Firmware Revision:</label>
+            <div id="bix-modal-version" class="text-main font-bold"></div>
+          </div>
+          <div class="form-group">
+            <label>Subsystem Code:</label>
+            <div id="bix-modal-subsystem" class="text-main"></div>
+          </div>
+        </div>
+
+        <div class="grid-2-sub">
+          <div class="form-group">
+            <label>Hardware Interface:</label>
+            <div id="bix-modal-interface" class="text-main"></div>
+          </div>
+          <div class="form-group">
+            <label>Target Hardware:</label>
+            <div id="bix-modal-target" class="text-main"></div>
+          </div>
+        </div>
+
+        <div class="grid-2-sub">
+          <div class="form-group">
+            <label>Package Size:</label>
+            <div id="bix-modal-size" class="text-main"></div>
+          </div>
+          <div class="form-group">
+            <label>Magic Signature Hex:</label>
+            <div id="bix-modal-magic" class="font-mono text-accent-green font-bold"></div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Extracted Header Strings:</label>
+          <div id="bix-modal-strings" class="font-mono text-muted small p-2" style="background: var(--bg-card-sub); border-radius: 4px; border: 1px solid var(--border-color); word-break: break-all; padding: 8px;"></div>
+        </div>
+
+        <div class="action-buttons-flex mt-4">
+          <button class="btn btn-secondary" id="btn-modal-close-bix">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Generic Action Confirmation Modal -->
+    <div id="modal-confirm" class="modal-backdrop" style="display: none;">
+      <div class="modal-box">
+        <h3 class="modal-title" id="confirm-modal-title">Action Confirmation</h3>
+        <p class="text-main mt-2" id="confirm-modal-message">Are you sure you want to proceed?</p>
+        <div class="alert-box alert-warning mt-3" id="confirm-modal-warning" style="display: none;"></div>
+
+        <div class="action-buttons-flex mt-4">
+          <button class="btn btn-primary" id="btn-confirm-accept">Confirm &amp; Proceed</button>
+          <button class="btn btn-secondary" id="btn-confirm-cancel">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Printable Deployment Record (Shown during window.print()) -->
+    <div id="printable-record" class="printable-record" style="display: none;">
+      <div class="print-header">
+        <div class="print-logo-row">
+          <img src="primo-logo.svg" alt="Primo IT Tech LLC" class="print-logo-img" onerror="this.onerror=null; this.src='primo-logo.webp';">
+          <div>
+            <h2>PRIMO IT TECH LLC - HARDWARE CONFIGURATION RECORD</h2>
+            <p>Primo IT Tech All-in-One &bull; Hardware Deployment Certificate &bull; Primo IT Tech LLC</p>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="print-body" id="print-body-content"></div>
+      <div class="print-footer">
+        <div class="sign-line">Technician Signature: _________________________</div>
+        <div class="sign-line">Date: _________________________</div>
+      </div>
+    </div>
+
+    <!-- Interactive Guided Tour Overlay (CoachMark Engine) -->
+    <div id="tour-container" class="tour-overlay-wrapper" style="display: none;">
+      <div id="tour-card" class="tour-card animate-pop-in">
+        <div class="tour-card-header">
+          <span class="tour-step-badge">
+            <span class="tour-sparkle">✨</span> <span id="tour-step-indicator">STEP 1 OF 6</span>
+          </span>
+          <button type="button" id="btn-tour-close" class="tour-btn-close" title="Dismiss Guided Tour">&times;</button>
+        </div>
+        <h4 id="tour-step-title" class="tour-card-title">Title</h4>
+        <p id="tour-step-copy" class="tour-card-copy">Description</p>
+        <div class="tour-card-footer">
+          <div class="tour-footer-left">
+            <button type="button" id="btn-tour-skip" class="btn btn-text-only btn-sm">Skip tour</button>
+            <button type="button" id="btn-tour-prev" class="btn btn-secondary btn-sm" style="display: none;">&larr; Prev</button>
+          </div>
+          <button type="button" id="btn-tour-next" class="btn btn-primary btn-sm">Next Step &rarr;</button>
+        </div>
+        <div class="tour-tip-note">
+          Tip: You can re-enable this walkthrough anytime by clicking <strong>&ldquo;✨ Quick Tour&rdquo;</strong> in the top header.
+        </div>
+      </div>
+    </div>
+
+    <!-- Remote Testing & Cross-Network Test Modal -->
+    <div id="modal-remote-share" class="modal-backdrop" style="display: none;">
+      <div class="modal-box modal-lg">
+        <div class="modal-header-flex">
+          <h3 class="modal-title">🌐 Remote Cross-Network Testing</h3>
+          <button type="button" class="btn-close-modal" id="btn-close-remote-share" aria-label="Close modal">&times;</button>
+        </div>
+        <div class="modal-body-scroll mt-3">
+          <p class="text-main">
+            Test Primo IT Tech All-in-One on another PC, tablet, or mobile device connected to a different network (cellular data, client site, or outside Wi-Fi) without port-forwarding:
+          </p>
+          <div class="remote-link-box mt-3">
+            <label class="font-bold text-xs uppercase text-cyan">Encrypted Remote HTTPS URL (Different Network / 5G):</label>
+            <div class="input-with-button mt-1">
+              <input type="text" id="input-remote-url" class="form-control font-mono text-sm" readonly value="https://throwing-keywords-fought-restrictions.trycloudflare.com">
+              <button class="btn btn-primary btn-sm" id="btn-copy-remote-url">Copy Link</button>
+            </div>
+          </div>
+          <div class="remote-link-box mt-3">
+            <label class="font-bold text-xs uppercase text-muted">Local Office / Home Wi-Fi (LAN) URL:</label>
+            <div class="input-with-button mt-1">
+              <input type="text" id="input-lan-url" class="form-control font-mono text-sm" readonly value="http://192.168.1.97:3800">
+              <button class="btn btn-secondary btn-sm" id="btn-copy-lan-url">Copy LAN</button>
+            </div>
+          </div>
+          <div class="alert-box alert-info mt-3">
+            <strong>💡 Remote &amp; Mobile Testing Tip:</strong> Open the Remote HTTPS URL in any web browser on your phone, tablet, or secondary computer. You can also tap <strong>&ldquo;Add to Home Screen&rdquo;</strong> to run Primo IT Tech All-in-One in full-screen standalone mode.
+          </div>
+        </div>
+        <div class="action-buttons-flex mt-4">
+          <button class="btn btn-secondary" id="btn-modal-close-remote">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Responsive Bottom Navigation Bar (Active on Mobile and Tablet Screens) -->
+    <nav class="ios-bottom-bar" id="ios-bottom-bar">
+      <button class="ios-tab-item active" data-tab="configurator">
+        <span class="ios-tab-icon">⚡</span>
+        <span class="ios-tab-label">Config</span>
+      </button>
+      <button class="ios-tab-item" data-tab="devices">
+        <span class="ios-tab-icon">📡</span>
+        <span class="ios-tab-label">Devices</span>
+        <span class="ios-tab-badge" id="ios-device-badge">0</span>
+      </button>
+      <button class="ios-tab-item" data-tab="verifier">
+        <span class="ios-tab-icon">🏷️</span>
+        <span class="ios-tab-label">Verify</span>
+      </button>
+      <button class="ios-tab-item" data-tab="options">
+        <span class="ios-tab-icon">💾</span>
+        <span class="ios-tab-label">Backup/Site</span>
+      </button>
+      <button class="ios-tab-item" id="btn-ios-more-tools">
+        <span class="ios-tab-icon">☰</span>
+        <span class="ios-tab-label">All Tools</span>
+      </button>
+    </nav>
+
+    <!-- Mobile Tools Drawer / Category Action Sheet -->
+    <div id="modal-tools-drawer" class="modal-backdrop modal-drawer-backdrop" style="display: none;">
+      <div class="modal-drawer-sheet">
+        <div class="drawer-handle-bar"></div>
+        <div class="drawer-header">
+          <div class="drawer-title-row">
+            <h3 class="drawer-title">🛠️ Primo IT Tech All-in-One &bull; All Tools</h3>
+            <div class="drawer-header-actions" style="display: flex; align-items: center; gap: 8px;">
+              <button type="button" class="btn-tour btn-sm" id="btn-drawer-quick-tour" title="Launch Interactive Tour of the whole project">
+                <span class="tour-sparkle">✨</span> Tour
+              </button>
+              <button type="button" class="theme-toggle-btn btn-sm" id="btn-drawer-theme-toggle" title="Toggle Light / Dark Theme">
+                <span id="drawer-theme-toggle-icon">☀️</span> <span id="drawer-theme-toggle-text">Light Mode</span>
+              </button>
+              <button type="button" class="btn-close-modal" id="btn-close-drawer">&times;</button>
+            </div>
+          </div>
+          <p class="drawer-sub">Instant 1-tap access to all 16 hardware, system, and AI configuration modules.</p>
+          <div class="drawer-search-box mt-2">
+            <input type="text" id="input-drawer-search" class="form-control" placeholder="🔍 Search tools (e.g. DSN, printer, BIX, cleanup, sysinternals)...">
+          </div>
+        </div>
+
+        <div class="drawer-scroll-body">
+          <!-- Category 1: Hardware & Configuration -->
+          <div class="drawer-category" data-cat="hardware">
+            <div class="category-header">
+              <span class="category-icon">📡</span>
+              <span class="category-name">Hardware &amp; Credentials</span>
+            </div>
+            <div class="drawer-cards-grid">
+              <button class="drawer-tool-card" data-tab="configurator">
+                <span class="tool-icon">⚡</span>
+                <div class="tool-info">
+                  <div class="tool-title">Configurator &amp; Apply</div>
+                  <div class="tool-desc">Select reader, apply security presets, write configurations</div>
+                </div>
+              </button>
+              <button class="drawer-tool-card" data-tab="devices">
+                <span class="tool-icon">📡</span>
+                <div class="tool-info">
+                  <div class="tool-title">Connected Hardware</div>
+                  <div class="tool-desc">PC/SC, USB PnP, and serial reader inventory (<span id="drawer-device-count">0</span>)</div>
+                </div>
+              </button>
+              <button class="drawer-tool-card" data-tab="verifier">
+                <span class="tool-icon">🏷️</span>
+                <div class="tool-info">
+                  <div class="tool-title">Tap &amp; Swipe Verifier</div>
+                  <div class="tool-desc">Loopback test for Wiegand bits, Facility Codes, Magstripe</div>
+                </div>
+              </button>
+              <button class="drawer-tool-card" data-tab="presets">
+                <span class="tool-icon">🛡️</span>
+                <div class="tool-info">
+                  <div class="tool-title">Security Presets</div>
+                  <div class="tool-desc">7 industry standard credential deployment profiles</div>
+                </div>
+              </button>
+              <button class="drawer-tool-card" data-tab="site-profiles">
+                <span class="tool-icon">🏢</span>
+                <div class="tool-info">
+                  <div class="tool-title">Site Profiles Library</div>
+                  <div class="tool-desc">Client site hardware profiles &amp; facility assignments</div>
+                </div>
+              </button>
+              <button class="drawer-tool-card" data-tab="bix-firmware">
+                <span class="tool-icon">💾</span>
+                <div class="tool-info">
+                  <div class="tool-title">Elatec .BIX Firmware</div>
+                  <div class="tool-desc">Discovered TWN4 firmware packages &amp; image parser</div>
+                </div>
+              </button>
+              <button class="drawer-tool-card" data-tab="catalog">
+                <span class="tool-icon">🗂️</span>
+                <div class="tool-info">
+                  <div class="tool-title">Credential Catalog</div>
+                  <div class="tool-desc">12 LF/HF smartcard specs, frequencies, and security tiers</div>
+                </div>
+              </button>
+              <button class="drawer-tool-card" data-tab="exporter">
+                <span class="tool-icon">📤</span>
+                <div class="tool-info">
+                  <div class="tool-title">ID Access Scanner Exporter</div>
+                  <div class="tool-desc">Generate decoupled reader-profile.json for mobile stations</div>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Category 2: System & Deployment -->
+          <div class="drawer-category mt-3" data-cat="system">
+            <div class="category-header">
+              <span class="category-icon">🛠️</span>
+              <span class="category-name">System &amp; Deployment</span>
+            </div>
+            <div class="drawer-cards-grid">
+              <button class="drawer-tool-card highlight-card" id="drawer-btn-backup" data-tab="options">
+                <span class="tool-icon">🚀</span>
+                <div class="tool-info">
+                  <div class="tool-title">Project Backup &amp; Code Analysis</div>
+                  <div class="tool-desc">Create timestamped archive + instant health audit</div>
+                </div>
+              </button>
+              <button class="drawer-tool-card" data-tab="options">
+                <span class="tool-icon">⚙️</span>
+                <div class="tool-info">
+                  <div class="tool-title">Site Setup, ODBC &amp; Firewall</div>
+                  <div class="tool-desc">On-site client setup, ODBC DSN, Windows Firewall</div>
+                </div>
+              </button>
+              <button class="drawer-tool-card" data-tab="win11cleanup">
+                <span class="tool-icon">🧹</span>
+                <div class="tool-info">
+                  <div class="tool-title">Win 11 Storage Cleanup</div>
+                  <div class="tool-desc">Safe system caches, temporary files, and space recovery</div>
+                </div>
+              </button>
+              <button class="drawer-tool-card" data-tab="sysinternals">
+                <span class="tool-icon">🔍</span>
+                <div class="tool-info">
+                  <div class="tool-title">Sysinternals Suite</div>
+                  <div class="tool-desc">Process Explorer, TCPView, Autoruns diagnostic tools</div>
+                </div>
+              </button>
+              <button class="drawer-tool-card" data-tab="winget">
+                <span class="tool-icon">📦</span>
+                <div class="tool-info">
+                  <div class="tool-title">Winget App Manager</div>
+                  <div class="tool-desc">Search, install, and update Windows applications</div>
+                </div>
+              </button>
+              <button class="drawer-tool-card" data-tab="pstools">
+                <span class="tool-icon">⚡</span>
+                <div class="tool-info">
+                  <div class="tool-title">PowerShell System Tools</div>
+                  <div class="tool-desc">Hardware specs, services, DNS flush, and user accounts</div>
+                </div>
+              </button>
+              <button class="drawer-tool-card" data-tab="pstools" data-subtab="subtab-net" id="drawer-btn-net-tools">
+                <span class="tool-icon">🌐</span>
+                <div class="tool-info">
+                  <div class="tool-title">Network Testing Toolkit</div>
+                  <div class="tool-desc">10-in-1 ping, tracert, flushdns, netstat, nslookup, arp, wifi suite</div>
+                </div>
+              </button>
+              <button class="drawer-tool-card" data-tab="printers">
+                <span class="tool-icon">🖨️</span>
+                <div class="tool-info">
+                  <div class="tool-title">Printer Spooler &amp; Queues</div>
+                  <div class="tool-desc">Manage installed printers, clear stuck print jobs, restart spooler</div>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Category 3: AI & Developer Tools -->
+          <div class="drawer-category mt-3" data-cat="ai">
+            <div class="category-header">
+              <span class="category-icon">🤖</span>
+              <span class="category-name">AI &amp; Developer Tools</span>
+            </div>
+            <div class="drawer-cards-grid">
+              <button class="drawer-tool-card" data-tab="ai-tools">
+                <span class="tool-icon">🧠</span>
+                <div class="tool-info">
+                  <div class="tool-title">AI Apps &amp; IDEs</div>
+                  <div class="tool-desc">Ollama, Pieces OS, Tailscale, VS Code, Antigravity status</div>
+                </div>
+              </button>
+              <button class="drawer-tool-card" data-tab="ai-cleanup">
+                <span class="tool-icon">🗑️</span>
+                <div class="tool-info">
+                  <div class="tool-title">AI Storage Cleanup</div>
+                  <div class="tool-desc">Hugging Face cache, PyTorch weights, Ollama model manager</div>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="drawer-footer">
+          <button class="btn btn-secondary btn-block" id="btn-drawer-close-bottom">Done</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Post-Backup Analysis Modal -->
+    <div id="modal-backup-analysis" class="modal-backdrop" style="display: none;">
+      <div class="modal-box modal-lg">
+        <div class="modal-header-flex">
+          <div class="flex-row-center gap-2">
+            <span class="text-2xl">📦</span>
+            <div>
+              <h3 class="modal-title" id="backup-modal-title">Project Backup &amp; Codebase Health Analysis</h3>
+              <p class="text-muted text-xs" id="backup-modal-subtitle">Snapshot provenance, file statistics, and integrity audit</p>
+            </div>
+          </div>
+          <button type="button" class="btn-close-modal" id="btn-close-backup-modal">&times;</button>
+        </div>
+
+        <div class="modal-body-scroll mt-3" id="backup-modal-content">
+          <!-- Populated dynamically by app.js -->
+        </div>
+
+        <div class="modal-footer-flex mt-4 flex-between">
+          <button class="btn btn-secondary btn-sm" id="btn-copy-backup-summary">📋 Copy Summary</button>
+          <div class="flex-row-center gap-2">
+            <button class="btn btn-primary btn-sm" id="btn-run-new-backup">🚀 Run Backup Again</button>
+            <button class="btn btn-outline btn-sm" id="btn-modal-close-backup">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Restore Backup Confirmation Modal -->
+    <div id="modal-backup-restore-confirm" class="modal-backdrop" style="display: none;">
+      <div class="modal-box modal-md">
+        <div class="modal-header-flex">
+          <div class="flex-row-center gap-2">
+            <span class="text-2xl">⚠️</span>
+            <div>
+              <h3 class="modal-title">Confirm Project Restore &amp; Rollback</h3>
+              <p class="text-muted text-xs">Restore project files from backup snapshot</p>
+            </div>
+          </div>
+          <button type="button" class="btn-close-modal" id="btn-close-restore-modal">&times;</button>
+        </div>
+
+        <div class="modal-body-scroll mt-3">
+          <div class="alert-box alert-warning mb-3">
+            <strong>Warning:</strong> Restoring will overwrite existing files in this project with the contents of the selected backup snapshot.
+          </div>
+          <div class="status-summary-grid mb-3">
+            <div class="status-metric-card">
+              <span class="metric-label">Selected Snapshot</span>
+              <span class="metric-value font-mono text-sm text-accent-cyan" id="restore-target-snapshot-name">None</span>
+            </div>
+            <div class="status-metric-card">
+              <span class="metric-label">Pre-Restore Protection</span>
+              <span class="metric-value text-green text-sm">Automatic Safety Backup</span>
+            </div>
+          </div>
+          <label class="checkbox-label mb-2">
+            <input type="checkbox" id="check-create-safety-backup" checked />
+            <span>Create an automated pre-restore safety snapshot before applying files (Recommended)</span>
+          </label>
+        </div>
+
+        <div class="modal-footer-flex mt-4 flex-between">
+          <button type="button" class="btn btn-outline btn-sm" id="btn-cancel-restore">Cancel</button>
+          <button type="button" class="btn btn-danger btn-sm" id="btn-confirm-execute-restore">🔄 Confirm &amp; Restore Project</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI Scan Consent & Scope Modal -->
+    <div id="modal-ai-consent" class="modal-backdrop" style="display: none;">
+      <div class="modal-box modal-md">
+        <div class="modal-header-flex">
+          <div class="flex-row-center gap-2">
+            <span class="text-2xl">🔒</span>
+            <div>
+              <h3 class="modal-title">Authorize Local Machine AI Scan</h3>
+              <p class="text-muted text-xs">User consent is strictly required before inspecting local software</p>
+            </div>
+          </div>
+          <button type="button" class="btn-close-modal" id="btn-close-ai-consent">&times;</button>
+        </div>
+
+        <div class="modal-body-scroll mt-3">
+          <div class="alert-box alert-info mb-3">
+            <strong>Consent Notice:</strong> Web browsers cannot inspect your computer directly. Primo IT Tech All-in-One's local companion agent queries official system APIs on your machine.
+          </div>
+
+          <h4 class="font-bold text-accent-cyan mb-2">What will be checked:</h4>
+          <ul class="clean-check-list text-xs mb-3">
+            <li>✅ Windows Registry uninstall entries (<code>HKLM</code> / <code>HKCU</code>) for recognized AI software</li>
+            <li>✅ Running process and background service status (e.g. Ollama, Pieces OS, Docker)</li>
+            <li>✅ Standard user application directories (e.g. <code>%LOCALAPPDATA%\Programs</code>)</li>
+            <li>✅ Package manager inventory (Winget) if Deep Scan is selected</li>
+          </ul>
+
+          <h4 class="font-bold text-danger mb-2">What will NEVER be checked or collected:</h4>
+          <ul class="clean-cross-list text-xs mb-3">
+            <li>❌ <strong>No private model files or weights</strong> are opened or analyzed</li>
+            <li>❌ <strong>No API keys, passwords, or tokens</strong> are read, logged, or collected</li>
+            <li>❌ <strong>No personal documents, browser history, or unrelated files</strong> are accessed</li>
+            <li>❌ <strong>Zero external telemetry</strong>: all scan data remains strictly on your localhost</li>
+          </ul>
+
+          <div class="form-group mt-3">
+            <label class="form-label font-bold">Select Scan Scope:</label>
+            <div class="scope-radio-card mb-2">
+              <input type="radio" id="modal-scope-standard" name="modal-scan-scope" value="standard" checked>
+              <label for="modal-scope-standard">
+                <strong>Standard Scan (Fast &amp; Safe)</strong>
+                <span class="text-muted text-xs d-block">Queries Registry and known app directories. Zero disk crawling.</span>
+              </label>
+            </div>
+            <div class="scope-radio-card">
+              <input type="radio" id="modal-scope-deep" name="modal-scan-scope" value="deep">
+              <label for="modal-scope-deep">
+                <strong>Deep Scan (Optional)</strong>
+                <span class="text-muted text-xs d-block">Includes package manager catalog queries (<code>winget list</code>) and system <code>PATH</code> resolution.</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-check mt-3 p-2 border-rounded-card">
+            <input type="checkbox" id="check-ai-consent" class="form-check-input">
+            <label for="check-ai-consent" class="form-check-label text-xs">
+              <strong>I authorize the Primo IT Tech All-in-One local companion agent to inventory installed AI developer tools and runtimes.</strong>
+            </label>
+          </div>
+        </div>
+
+        <div class="modal-footer-flex mt-4 flex-between">
+          <button class="btn btn-secondary btn-sm" id="btn-cancel-ai-consent">Cancel</button>
+          <button class="btn btn-primary btn-sm" id="btn-confirm-start-scan" disabled>
+            🚀 Authorize &amp; Scan Now
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI Tool Install Confirmation & Preview Modal -->
+    <div id="modal-ai-install-confirm" class="modal-backdrop" style="display: none;">
+      <div class="modal-box modal-md">
+        <div class="modal-header-flex">
+          <div class="flex-row-center gap-2">
+            <span class="text-2xl">⚡</span>
+            <div>
+              <h3 class="modal-title" id="ai-install-modal-title">Confirm AI Tool Installation</h3>
+              <p class="text-muted text-xs">Review exact command and publisher details before executing</p>
+            </div>
+          </div>
+          <button type="button" class="btn-close-modal" id="btn-close-ai-install-modal">&times;</button>
+        </div>
+
+        <div class="modal-body-scroll mt-3" id="ai-install-modal-body">
+          <!-- Dynamically populated -->
+        </div>
+
+        <div class="modal-footer-flex mt-4 flex-between">
+          <button class="btn btn-secondary btn-sm" id="btn-skip-ai-install">Skip</button>
+          <div class="flex-row-center gap-2">
+            <button class="btn btn-outline btn-sm" id="btn-cancel-ai-install">Cancel</button>
+            <button class="btn btn-primary btn-sm" id="btn-execute-confirmed-install">
+              ✅ Confirm &amp; Execute
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Primo IT Tech LLC Legal, IP & Genesis Protocol Modal -->
+    <div id="allInOneLegalModal" onclick="if(event.target===this) closeAllInOneLegalModal()" style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(2, 6, 23, 0.86); backdrop-filter:blur(6px); align-items:center; justify-content:center; padding:1rem;">
+      <div style="background:#0f172a; border:1px solid #334155; border-radius:16px; max-width:740px; width:100%; max-height:85vh; overflow-y:auto; padding:1.75rem; color:#e2e8f0; box-shadow:0 25px 50px -12px rgba(0,0,0,0.75);">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:1rem; border-bottom:1px solid #1e293b; padding-bottom:1rem; margin-bottom:1.25rem;">
+          <div>
+            <div style="display:flex; align-items:center; gap:0.5rem;">
+              <span style="background:rgba(56, 189, 248, 0.15); color:#38bdf8; border:1px solid rgba(56, 189, 248, 0.35); font-size:0.7rem; font-weight:700; padding:0.15rem 0.5rem; border-radius:4px; letter-spacing:0.06em;">FLORIDA LEGAL &amp; IP COMPLIANCE</span>
+              <span style="background:rgba(16, 185, 129, 0.15); color:#34d399; border:1px solid rgba(16, 185, 129, 0.35); font-size:0.7rem; font-weight:700; padding:0.15rem 0.5rem; border-radius:4px; letter-spacing:0.06em;">GENESIS 6/6 PILLARS</span>
+            </div>
+            <h3 style="margin:0.5rem 0 0 0; font-size:1.25rem; color:#f8fafc;">Primo IT Tech LLC — Legal, IP &amp; Interoperability Notice</h3>
+          </div>
+          <button type="button" onclick="closeAllInOneLegalModal()" style="background:#1e293b; border:1px solid #334155; color:#94a3b8; border-radius:8px; padding:0.35rem 0.65rem; cursor:pointer; font-weight:700;">✕</button>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:1rem; font-size:0.86rem; line-height:1.6; color:#cbd5e1;">
+          <div style="background:rgba(15, 23, 42, 0.7); border:1px solid #1e293b; border-radius:10px; padding:1rem;">
+            <strong style="color:#f8fafc; display:block; margin-bottom:0.25rem;">1. Corporate Ownership &amp; Proprietary IP</strong>
+            Copyright &copy; 2026 <strong>Primo IT Tech LLC</strong> (State of Florida). All Rights Reserved. The <strong>Primo IT Tech All-in-One</strong> Reader &amp; Encoder Configurator, ethical security guardrails, site profile libraries, Elatec <code>.bix</code> / <code>.bap</code> binary inspection engines, Windows ODBC/Firewall commissioning utilities, and local AI workstation managers are proprietary works owned exclusively by <strong>Primo IT Tech LLC</strong>.
+          </div>
+
+          <div style="background:rgba(15, 23, 42, 0.7); border:1px solid #1e293b; border-radius:10px; padding:1rem;">
+            <strong style="color:#38bdf8; display:block; margin-bottom:0.25rem;">2. Nominal Fair Use &amp; Independent Interoperability (17 U.S.C. &sect; 1201(f))</strong>
+            <strong>Primo IT Tech LLC</strong> is an independent Florida technology company and is <strong>not affiliated with, endorsed by, or sponsored by</strong> Elatec GmbH, HID Global Corporation (ASSA ABLOY), NXP Semiconductors (MIFARE / DESFire), Vision Database Systems, or Microsoft Corporation. All third-party product names, reader models (TWN4 MultiTech, OMNIKEY, ProxPro, iCLASS SE, Seos), and credential formats are referenced strictly under nominal fair use and <strong>17 U.S.C. &sect; 1201(f)</strong> to identify hardware compatibility and lawful interoperability.
+          </div>
+
+          <div style="background:rgba(15, 23, 42, 0.7); border:1px solid #1e293b; border-radius:10px; padding:1rem;">
+            <strong style="color:#34d399; display:block; margin-bottom:0.25rem;">3. Ethical Security Guardrails &amp; 100% Local-First Privacy</strong>
+            Primo IT Tech All-in-One is strictly an authorized hardware configuration, diagnostics, and workstation commissioning platform. Card cloning, unauthorized key extraction, credential skimming, and cryptographic bypasses are blocked at the engine level. All reader profiles, ODBC DSNs, and AI workstation inventories execute <strong>100% locally on your workstation</strong> with zero external cloud telemetry.
+          </div>
+
+          <div style="background:rgba(15, 23, 42, 0.7); border:1px solid #1e293b; border-radius:10px; padding:1rem;">
+            <strong style="color:#a78bfa; display:block; margin-bottom:0.25rem;">4. Genesis Protocol 6-Pillar Architectural Grounding</strong>
+            Architected in full alignment with the canonical <strong>Genesis Protocol</strong> (<code>genesis.md</code> &amp; <code>genesis_manifest.md</code>):
+            <ul style="margin:0.4rem 0 0 1.2rem; padding:0; color:#94a3b8; font-size:0.82rem;">
+              <li><strong>Pillar 1 (The Seed):</strong> Minimalist, high-integrity hardware configuration &amp; workstation kernel.</li>
+              <li><strong>Pillar 2 (The Microcosm):</strong> Subterranean PC/SC, USB PnP, Serial, <code>.bix</code> parser, and AI runtime workers.</li>
+              <li><strong>Pillar 3 (The Breakthrough):</strong> Seamless bridge from local hardware buses to interactive diagnostic UI.</li>
+              <li><strong>Pillar 4 (The First Tree):</strong> Modular connectivity across 16 hardware, system, and AI configuration leaves.</li>
+              <li><strong>Pillar 5 (The City / Realms):</strong> Manifest-verified ethical guardrails, UAC safety checks, and backup ledgers.</li>
+              <li><strong>Pillar 6 (The Living System):</strong> Self-auditing backup snapshots, rollback safety, and live health telemetry.</li>
+            </ul>
+          </div>
+
+          <div style="background:rgba(15, 23, 42, 0.7); border:1px solid #1e293b; border-radius:10px; padding:1rem;">
+            <strong style="color:#fbbf24; display:block; margin-bottom:0.25rem;">5. Limitation of Liability &amp; Florida Governing Law</strong>
+            Provided &ldquo;AS IS&rdquo; without warranty of any kind. Governed by the laws of the <strong>State of Florida</strong> and applicable U.S. federal law, with exclusive venue in Florida state and federal courts.
+          </div>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; margin-top:1.25rem; padding-top:1rem; border-top:1px solid #1e293b;">
+          <button type="button" onclick="closeAllInOneLegalModal()" style="background:linear-gradient(135deg, #2563eb, #0ea5e9); color:#ffffff; border:none; border-radius:8px; padding:0.5rem 1.25rem; font-weight:700; cursor:pointer;">Acknowledge &amp; Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="app-footer" style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:0.75rem; padding:1rem 1.5rem; border-top:1px solid rgba(56, 189, 248, 0.18);">
+      <div style="display:flex; flex-direction:column; gap:0.2rem;">
+        <span style="font-weight:700; color:#e2e8f0;">&copy; 2026 <strong>Primo IT Tech LLC</strong> (Florida) &bull; <strong>Primo IT Tech All-in-One</strong> &bull; Genesis 6/6 Active</span>
+        <span style="font-size:0.75rem; color:#94a3b8;">Independent Hardware Configuration &amp; Workstation Suite &bull; 17 U.S.C. &sect; 1201(f) Interoperability &bull; Strictly Configuration-Only (Zero Card Cloning / Zero External Telemetry)</span>
+      </div>
+      <button type="button" onclick="openAllInOneLegalModal()" style="background:rgba(30, 41, 59, 0.85); color:#38bdf8; border:1px solid rgba(56, 189, 248, 0.35); border-radius:8px; padding:0.35rem 0.75rem; font-size:0.75rem; font-weight:600; cursor:pointer;">
+        ⚖️ Legal, IP &amp; Genesis Notice
+      </button>
+    </footer>
+  </div>
+
+  <script>
+    function openAllInOneLegalModal() {
+      var m = document.getElementById('allInOneLegalModal');
+      if (m) m.style.display = 'flex';
+    }
+    function closeAllInOneLegalModal() {
+      var m = document.getElementById('allInOneLegalModal');
+      if (m) m.style.display = 'none';
+    }
+  </script>
+  <script src="app.js?v=20261016_primo_it_tech_llc"></script>
+</body>
+</html>

@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PrimoIT Tech - Access Logs</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-container": "#fdfcff",
+                        "secondary-fixed-dim": "#c6c6c6",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#e2e2e2",
+                        "surface-bright": "#f8f9ff",
+                        "tertiary-fixed": "#e2e2e4",
+                        "on-surface-variant": "#41474e",
+                        "on-tertiary-fixed-variant": "#454749",
+                        "inverse-primary": "#9accf8",
+                        "surface-container-high": "#dce9ff",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#474747",
+                        "surface-dim": "#cbdbf5",
+                        "primary-fixed-dim": "#9accf8",
+                        "on-tertiary-fixed": "#1a1c1d",
+                        "primary-fixed": "#cce5ff",
+                        "on-tertiary-container": "#fcfcfe",
+                        "secondary-fixed": "#e2e2e2",
+                        "inverse-on-surface": "#eaf1ff",
+                        "tertiary": "#5a5c5e",
+                        "surface-container": "#e5eeff",
+                        "on-surface": "#0b1c30",
+                        "on-secondary-fixed": "#1b1b1b",
+                        "on-primary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface-variant": "#d3e4fe",
+                        "error": "#ba1a1a",
+                        "on-background": "#0b1c30",
+                        "on-secondary-container": "#646464",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-secondary": "#ffffff",
+                        "primary": "#2a6087",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#4679a2",
+                        "outline-variant": "#c1c7cf",
+                        "surface-tint": "#2d638a",
+                        "inverse-surface": "#213145",
+                        "surface-container-low": "#eff4ff",
+                        "outline": "#72787f",
+                        "surface": "#f8f9ff",
+                        "secondary": "#5e5e5e",
+                        "tertiary-fixed-dim": "#c6c6c8",
+                        "on-primary-fixed-variant": "#0a4b71",
+                        "on-primary-fixed": "#001d31",
+                        "background": "#f8f9ff",
+                        "tertiary-container": "#737576"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "xl": "48px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "xs": "4px",
+                        "unit": "4px",
+                        "gutter": "16px",
+                        "container-margin": "32px"
+                    },
+                    "fontFamily": {
+                        "title-sm": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "data-mono": ["Inter"]
+                    },
+                    "fontSize": {
+                        "title-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "data-mono": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- TopAppBar Shell -->
+<header class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center w-full px-6 h-16 fixed top-0 z-50">
+<div class="flex items-center gap-sm">
+<span class="text-xl font-black text-slate-900 dark:text-white font-inter uppercase tracking-wider font-bold">Access Logs</span>
+</div>
+<div class="flex items-center gap-lg">
+<div class="relative hidden md:block">
+<input class="bg-surface-container-low border border-outline-variant rounded px-md py-xs text-body-sm focus:ring-2 focus:ring-primary focus:outline-none w-64" placeholder="Search access logs..." type="text"/>
+<span class="material-symbols-outlined absolute right-2 top-1.5 text-outline" data-icon="search">search</span>
+</div>
+<div class="flex items-center gap-md">
+<button class="hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors p-xs rounded">
+<span class="material-symbols-outlined text-slate-500" data-icon="notifications">notifications</span>
+</button>
+<button class="hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors p-xs rounded">
+<span class="material-symbols-outlined text-slate-500" data-icon="help">help</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-surface-container overflow-hidden border border-outline-variant">
+<img alt="Security Officer Profile" data-alt="A professional headshot of a security officer in a modern dark blue uniform. He has a focused and vigilant expression, set against a blurred background of a high-tech corporate security operations center with glowing blue monitors. The lighting is crisp and clear, emphasizing professionalism and authority within a corporate modern aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8Z15vbcqpAB6rLNVuJbRmCxitNCurP1xDC3Zh3v3VL-9PlcLyG7oS3cFI2bf88d2CEGyXkqtVOHwhwNEUcCDsphSeUmDK_Dfz6_HMsAYVDAFprp3PLC1o5O5X4h27YzRIIYNh6TbzM0OttaNNw7RJoFNz-C32eJ4kGj3o79HjVdQm--k-FY1sj6zaO_hgpXdPUDU8EmLm_16vzdvoti_bhI6qJuKtTGbrkbMprFBNKh-8tQgXd5rZuiq2c4u3JeG8a4pYK3QWOzxj"/>
+</div>
+</div>
+</div>
+</header>
+<!-- SideNavBar Shell -->
+<aside class="bg-white dark:bg-slate-900 h-screen w-64 border-r border-slate-200 dark:border-slate-800 fixed left-0 top-0 hidden md:flex flex-col z-40 pt-16">
+<div class="p-lg"><div class="flex items-center gap-sm mb-xs">
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="shield" data-weight="fill" style="font-variation-settings: 'FILL' 1;">shield</span>
+<span class="text-lg font-bold text-on-surface dark:text-white font-inter">PrimoIT Tech</span>
+</div>
+<p class="text-xs text-secondary uppercase tracking-widest font-semibold">Vigilant Security</p></div>
+<nav class="flex-1 px-md">
+<ul class="space-y-xs"><li>
+<a class="flex items-center gap-md p-md rounded text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 font-inter text-sm font-semibold transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="qr_code_scanner">qr_code_scanner</span>
+                        Scanning Dashboard
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-md p-md rounded text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 font-inter text-sm font-semibold transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="person_add">person_add</span>
+                        Visitor Pre-Reg
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-md p-md rounded bg-slate-100 dark:bg-slate-800 text-blue-600 dark:text-blue-400 border-l-4 border-blue-600 font-inter text-sm font-semibold active:scale-95 transition-transform duration-100" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+                        Access Logs
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-md p-md rounded text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 font-inter text-sm font-semibold transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="sync">sync</span>
+                        Sync &amp; Connectivity
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-md p-md rounded text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 font-inter text-sm font-semibold transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="settings_accessibility">settings_accessibility</span>
+                        Admin Settings
+                    </a>
+</li></ul>
+</nav>
+<div class="p-lg mt-auto border-t border-slate-100"><div class="flex items-center gap-md p-md bg-surface-container-low rounded-lg border border-outline-variant">
+<div class="h-10 w-10 rounded-full overflow-hidden border border-primary">
+<img alt="Officer Arthur Miller" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPQiHcAqA_RxgOPkw6FZ2brjOBQ5VNFypgJJaBDxe7HYn282aE3lvJ_Cpw3CYgHPbYUOWvfseSBluwQXuSO72AA7G07uaMf6NGk4mdcNe5MTG7JiCogNrpYVu7lmqq7aVNt9zuFVQ7-HmttwibzQlY2wRTpfw0zvgWulotTj49t3XuanmmE2wQvex6OfI58FZc-oegIpd7471tPSdJI72JSL5fbQXbgkSj0bwUGEq692Hxhe6DeTZDAeHjhsd1EGDzsL3Z9Odj4g7p"/>
+</div>
+<div class="flex flex-col">
+<span class="text-body-sm font-bold text-on-surface">Arthur Miller</span>
+<span class="text-[10px] uppercase font-black text-primary tracking-tighter">Lead Guardian</span>
+</div>
+</div></div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="md:pl-64 pt-16 min-h-screen">
+<div class="max-w-[1440px] mx-auto p-lg">
+<!-- Summary Panel (Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-lg mb-xl">
+<div class="md:col-span-2 bg-white border border-slate-200 p-lg rounded flex flex-col justify-between">
+<div>
+<span class="text-label-caps text-secondary uppercase block mb-xs">Occupancy Overview</span>
+<h1 class="text-headline-md text-on-surface">Current On-Site Count</h1>
+</div>
+<div class="flex items-end justify-between mt-lg">
+<div class="flex items-baseline gap-sm">
+<span class="text-[48px] font-black text-primary leading-none">142</span>
+<span class="text-body-sm text-slate-500">Authorized Personnel</span>
+</div>
+<div class="text-right">
+<div class="flex items-center gap-xs text-green-600 font-bold">
+<span class="material-symbols-outlined text-sm" data-icon="trending_up">trending_up</span>
+<span class="text-xs">8% vs yesterday</span>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-white border border-slate-200 p-lg rounded flex flex-col">
+<span class="text-label-caps text-secondary uppercase block mb-xs">Total Check-Ins</span>
+<div class="flex-1 flex items-center">
+<span class="text-display-lg font-bold text-on-surface">584</span>
+</div>
+<div class="mt-md pt-md border-t border-slate-100 flex items-center gap-sm text-slate-400">
+<span class="material-symbols-outlined text-sm" data-icon="login">login</span>
+<span class="text-xs">Last 24 Hours</span>
+</div>
+</div>
+<div class="bg-white border border-slate-200 p-lg rounded flex flex-col">
+<span class="text-label-caps text-secondary uppercase block mb-xs">Total Check-Outs</span>
+<div class="flex-1 flex items-center">
+<span class="text-display-lg font-bold text-on-surface">442</span>
+</div>
+<div class="mt-md pt-md border-t border-slate-100 flex items-center gap-sm text-slate-400">
+<span class="material-symbols-outlined text-sm" data-icon="logout">logout</span>
+<span class="text-xs">Last 24 Hours</span>
+</div>
+</div>
+</div>
+<!-- Access Log Table Container -->
+<div class="bg-white border border-slate-200 rounded-lg overflow-hidden">
+<div class="p-lg border-b border-slate-200 flex flex-col md:flex-row justify-between items-start md:items-center gap-lg">
+<div>
+<h2 class="text-title-sm text-on-surface">Access Event History</h2>
+<p class="text-body-sm text-slate-500">Real-time tracking of security checkpoints</p>
+</div>
+<div class="flex gap-sm">
+<button class="bg-white border border-black px-md py-xs flex items-center gap-sm font-inter font-bold text-xs uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm" data-icon="filter_list">filter_list</span>
+                            Filter Logs
+                        </button>
+<button class="bg-primary text-white px-md py-xs flex items-center gap-sm font-inter font-bold text-xs uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm" data-icon="download">download</span>
+                            Export CSV
+                        </button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-slate-50 border-b border-slate-200">
+<tr>
+<th class="px-lg py-md text-label-caps text-slate-600 uppercase">Timestamp</th>
+<th class="px-lg py-md text-label-caps text-slate-600 uppercase">Personnel / ID</th>
+<th class="px-lg py-md text-label-caps text-slate-600 uppercase">Direction</th>
+<th class="px-lg py-md text-label-caps text-slate-600 uppercase">Sync Status</th>
+<th class="px-lg py-md text-label-caps text-slate-600 uppercase">Location</th>
+<th class="px-lg py-md text-label-caps text-slate-600 uppercase">Verification</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100">
+<!-- Entry 1 -->
+<tr class="hover:bg-slate-50 transition-colors">
+<td class="px-lg py-md font-data-mono text-slate-600">14:22:15 Oct 24</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<div class="h-10 w-10 bg-slate-200 rounded overflow-hidden border border-slate-900">
+<img alt="Visitor Portrait" data-alt="A detailed portrait of a corporate professional woman in business attire, looking directly at the camera with a neutral, professional expression. The background is a clean, modern office environment with soft bokeh. The lighting is bright and even, fitting the high-contrast corporate aesthetic of a security identification system." src="https://lh3.googleusercontent.com/aida-public/AB6AXuARtWcdUWSr-Bq-cFzXLoPwkfHH1dqAbV3nXQAsgPcYELi6FqS4Be2uFlXi9J6bOygLJqeII062WtX07b0bmAe02zQH9HeqAa9CDAqQVpQxqkFM5TbF6VxteXUUNYM7Zwsu8xEydelJ_Zfk0u_fupKvlAYAzcqW3bz-6M32x66Q1h_iuaa6zxzzziqNMdaV78s1hKoi6HGu914vltcUeEWXm-wbFiX74VScplbSFHVbe7e9e0QHmNo8TAAcShxJ3tJix9enKfyQ3pVf"/>
+</div>
+<div>
+<div class="font-bold text-on-surface text-body-sm">Elena Rodriguez</div>
+<div class="text-xs text-slate-500 font-data-mono">UID: 8824-XQ</div>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center gap-xs px-sm py-xs rounded bg-green-50 text-green-700 text-[10px] font-black uppercase tracking-widest border border-green-200">
+<span class="material-symbols-outlined text-xs" data-icon="login">login</span>
+                                        Check-In
+                                    </span>
+</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-blue-600 text-sm" data-icon="cloud_done" data-weight="fill" style="font-variation-settings: 'FILL' 1;">cloud_done</span>
+<span class="text-xs font-bold text-slate-700">Synced</span>
+</div>
+</td>
+<td class="px-lg py-md text-body-sm text-slate-600">North Perimeter Gate</td>
+<td class="px-lg py-md">
+<span class="px-sm py-xs bg-slate-900 text-white text-[10px] font-bold uppercase tracking-tighter">LVL 3 Access</span>
+</td>
+</tr>
+<!-- Entry 2 (Offline) -->
+<tr class="hover:bg-slate-50 transition-colors">
+<td class="px-lg py-md font-data-mono text-slate-600">14:19:02 Oct 24</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<div class="h-10 w-10 bg-slate-200 rounded overflow-hidden border border-slate-900">
+<img alt="Visitor Portrait" data-alt="A close-up headshot of a middle-aged male executive wearing glasses and a formal suit. He has a serious and authoritative demeanor. The image is crisp with high contrast, set against a dark grey architectural background. The aesthetic is professional, reliable, and corporate, consistent with high-security identification standards." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtFtbJkNC-ApbEtT1DC0eA1MPLgBcHAkCX4Y6v0bW3EYTPO7n1IA6BL990de3hl868INOFnd1t9ANfMFj2jAgACCpqdHUcqM7nqHaGho0A26kd4-FhCpAqBfys5MQS5iKN6vHCcUvAa9Wb4G5Y7YDpz8Vm8Ungs9nPAr_8sz6GAY1vIGa0MNE9N3qkGapk26ltgogfAB2V0dpvcRQiudoE-wVuIFiuC_5fuJse23IHhjo8gV8N7nfE9Adnkut6OZ00t6QM05QcQkNQ"/>
+</div>
+<div>
+<div class="font-bold text-on-surface text-body-sm">Marcus Chen</div>
+<div class="text-xs text-slate-500 font-data-mono">UID: 1209-BZ</div>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center gap-xs px-sm py-xs rounded bg-slate-100 text-slate-700 text-[10px] font-black uppercase tracking-widest border border-slate-300">
+<span class="material-symbols-outlined text-xs" data-icon="logout">logout</span>
+                                        Check-Out
+                                    </span>
+</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-amber-500 text-sm" data-icon="cloud_off">cloud_off</span>
+<span class="text-xs font-bold text-slate-700">Offline</span>
+</div>
+</td>
+<td class="px-lg py-md text-body-sm text-slate-600">Docking Bay 4</td>
+<td class="px-lg py-md">
+<span class="px-sm py-xs bg-slate-900 text-white text-[10px] font-bold uppercase tracking-tighter">LVL 1 Guest</span>
+</td>
+</tr>
+<!-- Entry 3 -->
+<tr class="hover:bg-slate-50 transition-colors bg-slate-50/50">
+<td class="px-lg py-md font-data-mono text-slate-600">14:15:44 Oct 24</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<div class="h-10 w-10 bg-slate-200 rounded overflow-hidden border border-slate-900">
+<img alt="Visitor Portrait" data-alt="A professional studio portrait of a young woman with a focused and determined look, suitable for an ID card. The lighting is high-key with minimal shadows, emphasizing clarity. The background is a flat light grey, creating a clean and modern look that integrates seamlessly with a high-security digital interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnn1o6Egg-omPfP0W4bxNunS-UWIHpe9MxUhNUpIuIeMWhIwrrcHMF2oFd6TckEux4b3FVtQQDO8mILbzgcmjR9wSo3QyEDKJRmlTPzxWVTP4qgiDkn77LBGUwD0rzEtV-Gg5EZEiUNfkrE0w8Izv37W0V1hL4O6cu4_GD2Fwpkm8GBxFVRZAUnYcfzKK9wpzSfH9O2USz9z1wl0DjPIPy4DK9b-O5KJH1JKTvPxShFMGnOzFydjpCbR2ZfgDXQYxPJZJrLmGcuusr"/>
+</div>
+<div>
+<div class="font-bold text-on-surface text-body-sm">Sarah Jenkins</div>
+<div class="text-xs text-slate-500 font-data-mono">UID: 4451-WM</div>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center gap-xs px-sm py-xs rounded bg-green-50 text-green-700 text-[10px] font-black uppercase tracking-widest border border-green-200">
+<span class="material-symbols-outlined text-xs" data-icon="login">login</span>
+                                        Check-In
+                                    </span>
+</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-blue-600 text-sm" data-icon="cloud_done" data-weight="fill" style="font-variation-settings: 'FILL' 1;">cloud_done</span>
+<span class="text-xs font-bold text-slate-700">Synced</span>
+</div>
+</td>
+<td class="px-lg py-md text-body-sm text-slate-600">Main Lobby South</td>
+<td class="px-lg py-md">
+<span class="px-sm py-xs bg-slate-900 text-white text-[10px] font-bold uppercase tracking-tighter">Contractor</span>
+</td>
+</tr>
+<!-- Entry 4 -->
+<tr class="hover:bg-slate-50 transition-colors">
+<td class="px-lg py-md font-data-mono text-slate-600">14:12:10 Oct 24</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<div class="h-10 w-10 bg-slate-200 rounded overflow-hidden border border-slate-900">
+<img alt="Visitor Portrait" data-alt="A portrait of an elderly man with a friendly yet professional demeanor, captured in a brightly lit environment. He is wearing a simple polo shirt. The image is high-resolution with sharp details on facial features, set against a blurred outdoor corporate park background. The overall style is clean, modern, and high-contrast." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPQiHcAqA_RxgOPkw6FZ2brjOBQ5VNFypgJJaBDxe7HYn282aE3lvJ_Cpw3CYgHPbYUOWvfseSBluwQXuSO72AA7G07uaMf6NGk4mdcNe5MTG7JiCogNrpYVu7lmqq7aVNt9zuFVQ7-HmttwibzQlY2wRTpfw0zvgWulotTj49t3XuanmmE2wQvex6OfI58FZc-oegIpd7471tPSdJI72JSL5fbQXbgkSj0bwUGEq692Hxhe6DeTZDAeHjhsd1EGDzsL3Z9Odj4g7p"/>
+</div>
+<div>
+<div class="font-bold text-on-surface text-body-sm">Arthur Miller</div>
+<div class="text-xs text-slate-500 font-data-mono">UID: 9902-TR</div>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center gap-xs px-sm py-xs rounded bg-slate-100 text-slate-700 text-[10px] font-black uppercase tracking-widest border border-slate-300">
+<span class="material-symbols-outlined text-xs" data-icon="logout">logout</span>
+                                        Check-Out
+                                    </span>
+</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-blue-600 text-sm" data-icon="cloud_done" data-weight="fill" style="font-variation-settings: 'FILL' 1;">cloud_done</span>
+<span class="text-xs font-bold text-slate-700">Synced</span>
+</div>
+</td>
+<td class="px-lg py-md text-body-sm text-slate-600">East Security Point</td>
+<td class="px-lg py-md">
+<span class="px-sm py-xs bg-slate-900 text-white text-[10px] font-bold uppercase tracking-tighter">Admin Staff</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-lg bg-slate-50 border-t border-slate-200 flex justify-between items-center">
+<span class="text-xs text-slate-500 font-semibold">Showing 1-25 of 1,248 entries</span>
+<div class="flex gap-xs">
+<button class="w-8 h-8 flex items-center justify-center border border-slate-200 bg-white rounded hover:bg-slate-50">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center bg-primary text-white rounded font-bold text-xs">1</button>
+<button class="w-8 h-8 flex items-center justify-center border border-slate-200 bg-white rounded hover:bg-slate-50 font-bold text-xs">2</button>
+<button class="w-8 h-8 flex items-center justify-center border border-slate-200 bg-white rounded hover:bg-slate-50 font-bold text-xs">3</button>
+<button class="w-8 h-8 flex items-center justify-center border border-slate-200 bg-white rounded hover:bg-slate-50">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Sync Alert (Transactional/Floating Status) -->
+<div class="mt-lg flex items-center gap-md bg-surface-container-low border border-blue-200 p-md rounded-lg">
+<span class="material-symbols-outlined text-blue-600" data-icon="info">info</span>
+<p class="text-body-sm text-on-surface">
+<strong>Auto-reconciliation:</strong> 12 offline events were synced from Mobile Unit #7 at 14:05.
+                </p>
+<button class="ml-auto text-xs font-bold text-blue-600 uppercase tracking-wider hover:underline">View Sync Logs</button>
+</div>
+</div>
+</main>
+<!-- Floating Action Button - Supressed as per rules for Details/Settings/Logs -->
+<!-- Mobile Bottom Navigation (Visible on small screens) -->
+<div class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 flex justify-around items-center h-16 z-50">
+<button class="flex flex-col items-center gap-xs text-slate-400">
+<span class="material-symbols-outlined" data-icon="qr_code_scanner">qr_code_scanner</span>
+<span class="text-[10px] font-bold uppercase">Scan</span>
+</button>
+<button class="flex flex-col items-center gap-xs text-blue-600">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="text-[10px] font-bold uppercase">Logs</span>
+</button>
+<button class="flex flex-col items-center gap-xs text-slate-400">
+<span class="material-symbols-outlined" data-icon="person_add">person_add</span>
+<span class="text-[10px] font-bold uppercase">Reg</span>
+</button>
+<button class="flex flex-col items-center gap-xs text-slate-400">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-[10px] font-bold uppercase">Admin</span>
+</button>
+</div>
+</body></html>

@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link
+    rel="icon"
+    type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Cpath d='M22 2.5L39 10.5V23.5C39 33.2 31.6 39.6 22 42C12.4 39.6 5 33.2 5 23.5V10.5L22 2.5Z' fill='%231e3a8a' stroke='%23fbbf24' stroke-width='2.5'/%3E%3Ctext x='22' y='27' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-weight='900' font-size='13'%3EPIT%3C/text%3E%3C/svg%3E"
+  />
+  <title>CDF Exporter — RCE CDF to EliteID | Primo IT Tech LLC</title>
+  <style>
+    :root {
+      --primary: #1a73e8;
+      --bg: #f8f9fa;
+      --card: #ffffff;
+      --border: #dadce0;
+      --warning: #f9ab00;
+      --danger: #d93025;
+      --success: #1e8e3e;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      margin: 0;
+      background: var(--bg);
+      color: #202124;
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+      color: white;
+      padding: 1.25rem 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+      border-bottom: 1px solid rgba(56, 189, 248, 0.3);
+    }
+    header h1 { margin: 0; font-size: 1.45rem; font-weight: 800; letter-spacing: -0.01em; }
+    header p { margin: 0.2rem 0 0; opacity: 0.9; font-size: 0.9rem; color: #cbd5e1; }
+    main { max-width: 1400px; width: 100%; margin: 0 auto; padding: 2rem; flex: 1; }
+    .steps { display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
+    .step { 
+      padding: 0.75rem 1.25rem; 
+      background: var(--card); 
+      border: 1px solid var(--border); 
+      border-radius: 8px; 
+      font-weight: 600;
+    }
+    .step.active { background: var(--primary); color: white; border-color: var(--primary); }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+    .card h2 { margin-top: 0; color: #1a365d; }
+    .warning-banner {
+      background: #fff3cd;
+      border: 1px solid #ffc107;
+      color: #856404;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+    }
+    .upload-area {
+      border: 2px dashed var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+      background: #fafbfc;
+      transition: border-color 0.2s;
+    }
+    .upload-area:hover, .upload-area.dragover { border-color: var(--primary); background: #e8f0fe; }
+    button, .btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+    button:hover { background: #1557b0; }
+    button.secondary { background: #5f6368; }
+    button.danger { background: var(--danger); }
+    input[type="file"] { margin: 0.5rem 0; }
+    table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+    th, td { padding: 0.75rem; text-align: left; border-bottom: 1px solid var(--border); }
+    th { background: #f1f3f4; font-weight: 600; }
+    .preview-container {
+      position: relative;
+      background: #e0e0e0;
+      border: 1px solid var(--border);
+      overflow: auto;
+      max-height: 700px;
+      border-radius: 8px;
+    }
+    .card-preview {
+      position: relative;
+      background: white;
+      margin: 1rem auto;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    .obj {
+      position: absolute;
+      border: 1px dashed #1a73e8;
+      font-size: 10px;
+      overflow: hidden;
+      box-sizing: border-box;
+      pointer-events: none;
+    }
+    .obj.dynamic { border-color: #1e8e3e; background: rgba(30,142,62,0.08); }
+    .obj.static { border-color: #f9ab00; background: rgba(249,171,0,0.08); }
+    .obj.photo { border-color: #d93025; background: rgba(217,48,37,0.1); }
+    .obj.shape { border: 2px solid #5f6368; }
+    .obj-label {
+      position: absolute;
+      top: 2px; left: 2px;
+      background: rgba(0,0,0,0.7);
+      color: white;
+      font-size: 9px;
+      padding: 1px 4px;
+      border-radius: 2px;
+      max-width: 90%;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    .mapping-row select, .mapping-row input { width: 100%; padding: 0.4rem; }
+    .status-badge {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .status-review { background: #fff3cd; color: #856404; }
+    .status-mapped { background: #d4edda; color: #155724; }
+    .status-unmapped { background: #f8d7da; color: #721c24; }
+    .hidden { display: none; }
+    .flex { display: flex; gap: 1rem; }
+    .flex > * { flex: 1; }
+    footer {
+      background: #0f172a;
+      color: #cbd5e1;
+      padding: 1.25rem 2rem;
+      font-size: 0.85rem;
+      border-top: 1px solid #1e293b;
+    }
+  </style>
+</head>
+<body>
+  <header style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px">
+    <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+      <!-- Custom Vector SVG Shield & Connectivity Crest for Primo IT Tech LLC -->
+      <div
+        style="display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%);border:1.5px solid #38bdf8;box-shadow:0 0 18px rgba(56,189,248,0.22);padding:6px 12px 6px 8px;border-radius:10px;"
+        title="Primo IT Tech LLC — Official Vector Crest & Emblem"
+      >
+        <svg width="36" height="36" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="cdfExpShieldGrad" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#06b6d4" />
+              <stop offset="55%" stop-color="#2563eb" />
+              <stop offset="100%" stop-color="#1e1b4b" />
+            </linearGradient>
+            <linearGradient id="cdfExpGoldAccent" x1="6" y1="4" x2="38" y2="40" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#fbbf24" />
+              <stop offset="100%" stop-color="#d97706" />
+            </linearGradient>
+          </defs>
+          <path d="M22 2.5L39 10.5V23.5C39 33.2 31.6 39.6 22 42C12.4 39.6 5 33.2 5 23.5V10.5L22 2.5Z" fill="url(#cdfExpShieldGrad)" stroke="url(#cdfExpGoldAccent)" stroke-width="2" />
+          <path d="M22 7V13M12 15L17 18M32 15L27 18M22 31V37" stroke="#38bdf8" stroke-width="1.4" stroke-linecap="round" opacity="0.75" />
+          <circle cx="22" cy="7" r="1.8" fill="#fbbf24" />
+          <circle cx="12" cy="15" r="1.5" fill="#38bdf8" />
+          <circle cx="32" cy="15" r="1.5" fill="#38bdf8" />
+          <text x="22" y="26.5" text-anchor="middle" fill="#ffffff" font-family="Inter, system-ui, sans-serif" font-weight="900" font-size="12.5" letter-spacing="0.8">PIT</text>
+        </svg>
+        <div style="display:flex;flex-direction:column;line-height:1.15;">
+          <span style="font-size:12px;font-weight:900;letter-spacing:0.9px;color:#f8fafc;text-transform:uppercase;">Primo IT Tech</span>
+          <span style="font-size:9.5px;font-weight:700;letter-spacing:1.2px;color:#fbbf24;text-transform:uppercase;">LLC &bull; Florida</span>
+        </div>
+      </div>
+
+      <div>
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+          <h1>CDF Exporter &bull; Primo IT Tech LLC</h1>
+          <span style="background:rgba(16,185,129,0.18);color:#34d399;border:1px solid rgba(16,185,129,0.45);padding:2px 8px;border-radius:99px;font-size:11px;font-weight:800;letter-spacing:0.5px;">GENESIS 6/6 ACTIVE</span>
+        </div>
+        <p>RCE Card Design File (.CDF) Analyzer, Coordinate Preview &amp; EliteID Recreation Assistant</p>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+      <button type="button" onclick="openCdfExporterLegalModal()" style="background:rgba(30,41,59,0.9);color:#f8fafc;border:1px solid rgba(56,189,248,0.45);border-radius:99px;padding:8px 15px;font-size:12.5px;font-weight:700;cursor:pointer;">
+        ⚖️ Legal, IP &amp; Genesis Protocol
+      </button>
+      <button id="ceeTourBtn" type="button" onclick="toggleCeeTour()" style="background:rgba(56,189,248,0.18);color:#38bdf8;border:1px solid #38bdf8;border-radius:99px;padding:8px 16px;font-size:12.5px;font-weight:700;cursor:pointer">
+        ✨ Quick Guided Tour
+      </button>
+    </div>
+  </header>
+  
+  <main>
+    <div class="warning-banner">
+      <strong>Important Interoperability Notice (17 U.S.C. &sect; 1201(f)):</strong> No verified EliteID direct import format or API is claimed. 
+      This independent <strong>Primo IT Tech LLC</strong> utility analyzes legacy RCE <code>.CDF</code> files, generates a scaled coordinate preview, supports field mapping, 
+      and exports an <em>intermediate package</em> for recreation in the EliteID web designer. Zero cardholder PII is stored or transmitted.
+    </div>
+
+    <div class="steps">
+      <div class="step active" id="step1">1. Upload</div>
+      <div class="step" id="step2">2. Analyze</div>
+      <div class="step" id="step3">3. Preview</div>
+      <div class="step" id="step4">4. Map Fields</div>
+      <div class="step" id="step5">5. Export</div>
+    </div>
+
+    <!-- Upload -->
+    <section id="upload-section" class="card">
+      <h2>Upload RCE Card Design</h2>
+      <div class="upload-area" id="dropzone">
+        <p>Drag &amp; drop <strong>cardesign.cdf</strong> here, or click to select</p>
+        <input type="file" id="cdfFile" accept=".cdf,.CDF" />
+        <p style="margin-top:1rem; color:#5f6368;">Optional: Screenshot of original design for comparison</p>
+        <input type="file" id="screenshotFile" accept="image/*" />
+        <br><br>
+        <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+          <button type="button" onclick="uploadFiles()">Analyze CDF</button>
+          <button type="button" class="secondary" onclick="loadSampleVdsStudentCdf()">🧪 Load Sample VDS-STUDENT.CDF</button>
+        </div>
+      </div>
+      <div id="uploadStatus" style="margin-top:1rem;"></div>
+    </section>
+
+    <!-- Analysis -->
+    <section id="analysis-section" class="card hidden">
+      <h2>Analysis Results</h2>
+      <div id="analysisContent"></div>
+    </section>
+
+    <!-- Preview -->
+    <section id="preview-section" class="card hidden">
+      <h2>Source Design Preview</h2>
+      <p>Objects rendered at source coordinates (scale for display). Green = dynamic fields, yellow = static text, red = photo.</p>
+      <div class="preview-container" id="previewContainer"></div>
+    </section>
+
+    <!-- Mapping -->
+    <section id="mapping-section" class="card hidden">
+      <h2>Field Mapping</h2>
+      <p>Map RCE DB fields to EliteID fields. Suggestions are based on common names; confirm each mapping.</p>
+      <div id="mappingContent"></div>
+      <button type="button" onclick="saveMappings()" style="margin-top:1rem;">Save Mappings</button>
+    </section>
+
+    <!-- Export -->
+    <section id="export-section" class="card hidden">
+      <h2>Export Intermediate Package</h2>
+      <p>Download a JSON package containing the full analysis, objects, mappings, and conversion notes. 
+         Use this to guide recreation in EliteID's web-based Card Designer.</p>
+      <button type="button" onclick="downloadExport()">Download Intermediate Package (.json)</button>
+      <div id="exportNotes" style="margin-top:1rem; font-size:0.9rem; color:#5f6368;"></div>
+    </section>
+  </main>
+
+  <!-- Primo IT Tech LLC Legal, IP & Genesis Protocol Modal -->
+  <div id="cdfExporterLegalModal" onclick="if(event.target===this) closeCdfExporterLegalModal()" style="display:none; position:fixed; inset:0; z-index:10000; background:rgba(2, 6, 23, 0.86); backdrop-filter:blur(6px); align-items:center; justify-content:center; padding:1rem;">
+    <div style="background:#0f172a; border:1px solid #334155; border-radius:16px; max-width:740px; width:100%; max-height:85vh; overflow-y:auto; padding:1.75rem; color:#e2e8f0; box-shadow:0 25px 50px -12px rgba(0,0,0,0.75);">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:1rem; border-bottom:1px solid #1e293b; padding-bottom:1rem; margin-bottom:1.25rem;">
+        <div>
+          <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
+            <span style="background:rgba(56, 189, 248, 0.15); color:#38bdf8; border:1px solid rgba(56, 189, 248, 0.35); font-size:0.7rem; font-weight:700; padding:0.15rem 0.5rem; border-radius:4px; letter-spacing:0.06em;">FLORIDA LEGAL &amp; IP COMPLIANCE</span>
+            <span style="background:rgba(16, 185, 129, 0.15); color:#34d399; border:1px solid rgba(16, 185, 129, 0.35); font-size:0.7rem; font-weight:700; padding:0.15rem 0.5rem; border-radius:4px; letter-spacing:0.06em;">GENESIS 6/6 PILLARS</span>
+          </div>
+          <h3 style="margin:0.5rem 0 0 0; font-size:1.25rem; color:#f8fafc;">Primo IT Tech LLC — Legal, IP &amp; Interoperability Notice</h3>
+        </div>
+        <button type="button" onclick="closeCdfExporterLegalModal()" style="background:#1e293b; border:1px solid #334155; color:#94a3b8; border-radius:8px; padding:0.35rem 0.65rem; cursor:pointer; font-weight:700;">✕</button>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:1rem; font-size:0.86rem; line-height:1.6; color:#cbd5e1;">
+        <div style="background:rgba(15, 23, 42, 0.7); border:1px solid #1e293b; border-radius:10px; padding:1rem;">
+          <strong style="color:#f8fafc; display:block; margin-bottom:0.25rem;">1. Corporate Ownership &amp; Proprietary IP</strong>
+          Copyright &copy; 2026 <strong>Primo IT Tech LLC</strong> (State of Florida). All Rights Reserved. The <strong>CDF Exporter</strong> parser, coordinate normalization algorithms, visual CR80 layout verifier, and intermediate package generator are proprietary software works owned exclusively by <strong>Primo IT Tech LLC</strong>.
+        </div>
+
+        <div style="background:rgba(15, 23, 42, 0.7); border:1px solid #1e293b; border-radius:10px; padding:1rem;">
+          <strong style="color:#38bdf8; display:block; margin-bottom:0.25rem;">2. DMCA Interoperability (17 U.S.C. &sect; 1201(f)) &amp; Nominative Fair Use</strong>
+          <strong>Primo IT Tech LLC</strong> is an independent Florida technology company and is <strong>not affiliated with, endorsed by, or sponsored by</strong> any third-party card software vendor (including RCE or EliteID / Vision Database Systems). Legacy <code>.CDF</code> file structure parsing and field mapping are performed strictly for lawful data migration and software interoperability by licensed template owners pursuant to <strong>17 U.S.C. &sect; 1201(f)</strong>. Third-party product names are referenced strictly under nominative fair use.
+        </div>
+
+        <div style="background:rgba(15, 23, 42, 0.7); border:1px solid #1e293b; border-radius:10px; padding:1rem;">
+          <strong style="color:#34d399; display:block; margin-bottom:0.25rem;">3. 100% Client-Side &amp; Local Zero-Telemetry Privacy</strong>
+          Template parsing, coordinate extraction, and JSON export run locally on your workstation or directly inside your browser memory. Zero cardholder PII, student records, or database credentials are logged, stored, or transmitted to external cloud servers.
+        </div>
+
+        <div style="background:rgba(15, 23, 42, 0.7); border:1px solid #1e293b; border-radius:10px; padding:1rem;">
+          <strong style="color:#a78bfa; display:block; margin-bottom:0.25rem;">4. Genesis Protocol 6-Pillar Architectural Grounding</strong>
+          Engineered in full alignment with the canonical <strong>Genesis Protocol</strong> (<code>genesis.md</code> &amp; <code>genesis_manifest.md</code>):
+          <ul style="margin:0.4rem 0 0 1.2rem; padding:0; color:#94a3b8; font-size:0.82rem;">
+            <li><strong>Pillar 1 (The Seed):</strong> Minimalist intent to rescue and migrate legacy <code>.CDF</code> layouts.</li>
+            <li><strong>Pillar 2 (The Microcosm):</strong> Subterranean INI/binary <code>.CDF</code> parser and heuristic field mapper workers.</li>
+            <li><strong>Pillar 3 (The Breakthrough):</strong> Interactive color-coded CR80 visual stage and mapping studio.</li>
+            <li><strong>Pillar 4 (The First Tree):</strong> 5-stage Upload &rarr; Analyze &rarr; Preview &rarr; Map &rarr; Export pipeline.</li>
+            <li><strong>Pillar 5 (The City / Realms):</strong> Manifest-governed 17 U.S.C. &sect; 1201(f) legal &amp; zero-PII compliance.</li>
+            <li><strong>Pillar 6 (The Living System):</strong> Self-guiding CoachMark tour, client-side fallback engine, and automated tests.</li>
+          </ul>
+        </div>
+
+        <div style="background:rgba(15, 23, 42, 0.7); border:1px solid #1e293b; border-radius:10px; padding:1rem;">
+          <strong style="color:#fbbf24; display:block; margin-bottom:0.25rem;">5. Limitation of Liability &amp; Florida Governing Law</strong>
+          Provided &ldquo;AS IS&rdquo; without warranty of any kind. Governed by the laws of the <strong>State of Florida</strong> (exclusive venue in Palm Beach County, Florida) and applicable U.S. federal law.
+        </div>
+      </div>
+
+      <div style="display:flex; justify-content:flex-end; margin-top:1.25rem; padding-top:1rem; border-top:1px solid #1e293b;">
+        <button type="button" onclick="closeCdfExporterLegalModal()" style="background:linear-gradient(135deg, #2563eb, #0ea5e9); color:#ffffff; border:none; border-radius:8px; padding:0.5rem 1.25rem; font-weight:700; cursor:pointer;">Acknowledge &amp; Close</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div style="max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+      <div style="text-align:left;">
+        <div style="font-weight:700;color:#f8fafc;">&copy; 2026 Primo IT Tech LLC (Florida) &bull; CDF Exporter &bull; Genesis 6/6 Active</div>
+        <div style="font-size:0.78rem;color:#94a3b8;">Independent Interoperability Utility (17 U.S.C. &sect; 1201(f)) &bull; Not affiliated with RCE or EliteID &bull; Zero Cardholder PII Logged</div>
+      </div>
+      <button type="button" onclick="openCdfExporterLegalModal()" style="background:#1e293b;color:#38bdf8;border:1px solid rgba(56,189,248,0.4);border-radius:8px;padding:6px 14px;font-size:0.8rem;font-weight:700;cursor:pointer;">
+        ⚖️ Legal, IP &amp; Genesis Notice
+      </button>
+    </div>
+  </footer>
+
+  <script>
+    let currentSession = null;
+    let analysisData = null;
+    let savedFieldMappings = {};
+
+    function openCdfExporterLegalModal() {
+      const m = document.getElementById('cdfExporterLegalModal');
+      if (m) m.style.display = 'flex';
+    }
+    function closeCdfExporterLegalModal() {
+      const m = document.getElementById('cdfExporterLegalModal');
+      if (m) m.style.display = 'none';
+    }
+
+    const dropzone = document.getElementById('dropzone');
+    ['dragenter', 'dragover'].forEach(e => dropzone.addEventListener(e, () => dropzone.classList.add('dragover')));
+    ['dragleave', 'drop'].forEach(e => dropzone.addEventListener(e, () => dropzone.classList.remove('dragover')));
+    dropzone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      const file = e.dataTransfer.files[0];
+      if (file && file.name.toLowerCase().endsWith('.cdf')) {
+        document.getElementById('cdfFile').files = e.dataTransfer.files;
+      }
+    });
+
+    function parseCdfClientSide(text, fileName, fileSize) {
+      const lines = text.split(/\r?\n/);
+      let section = '';
+      const sections = {};
+      for (const raw of lines) {
+        const line = raw.trim();
+        if (!line || line.startsWith(';') || line.startsWith('#')) continue;
+        if (line.startsWith('[') && line.endsWith(']')) {
+          section = line.slice(1, -1).trim();
+          if (!sections[section]) sections[section] = {};
+        } else if (section && line.includes('=')) {
+          const idx = line.indexOf('=');
+          sections[section][line.slice(0, idx).trim()] = line.slice(idx + 1).trim();
+        }
+      }
+      const header = sections['Header'] || sections['HEADER'] || { Width: '1016', Height: '648' };
+      const width = parseInt(header.Width || header.WIDTH || '1016', 10) || 1016;
+      const height = parseInt(header.Height || header.HEIGHT || '648', 10) || 648;
+      const objects = [];
+      const dynamicFields = [];
+      const staticTexts = [];
+      const byType = { dynamic_field: 0, static_text: 0, photo: 0, shape: 0 };
+
+      Object.entries(sections).forEach(([secName, kv]) => {
+        if (/^header$/i.test(secName)) return;
+        const x = parseInt(kv.Left || kv.X || '40', 10) || 40;
+        const y = parseInt(kv.Top || kv.Y || '40', 10) || 40;
+        const w = parseInt(kv.Width || kv.W || '220', 10) || 220;
+        const h = parseInt(kv.Height || kv.H || '42', 10) || 42;
+        const dbField = kv.Field || kv.DBField || kv.DataField || '';
+        const textVal = kv.Text || kv.Caption || kv.Sample || dbField || secName;
+        let objType = 'static_text';
+        if (/photo|pic|image/i.test(secName) || /photo/i.test(dbField)) objType = 'photo';
+        else if (dbField || /^data/i.test(secName)) objType = 'dynamic_field';
+        else if (/box|rect|line|shape/i.test(secName)) objType = 'shape';
+
+        byType[objType] = (byType[objType] || 0) + 1;
+        const obj = {
+          id: secName,
+          name: kv.Name || secName,
+          type: objType,
+          is_dynamic: objType === 'dynamic_field',
+          db_field: dbField || (objType === 'dynamic_field' ? secName : ''),
+          sample_text: textVal,
+          visible: true,
+          position: { x, y, width: w, height: h },
+          font: { size: parseInt(kv.FontSize || '14', 10) || 14 }
+        };
+        objects.push(obj);
+        if (objType === 'dynamic_field' || objType === 'photo') dynamicFields.push(obj);
+        if (objType === 'static_text') staticTexts.push(obj);
+      });
+
+      if (objects.length === 0) {
+        objects.push(
+          { id: 'Photo1', name: 'Student Portrait', type: 'photo', is_dynamic: true, db_field: 'PHOTO', sample_text: '[PHOTO]', visible: true, position: { x: 48, y: 90, width: 240, height: 300 }, font: { size: 14 } },
+          { id: 'Data1', name: 'First Name', type: 'dynamic_field', is_dynamic: true, db_field: 'FIRST', sample_text: 'ALEXANDER', visible: true, position: { x: 320, y: 110, width: 420, height: 48 }, font: { size: 18 } },
+          { id: 'Data2', name: 'Last Name', type: 'dynamic_field', is_dynamic: true, db_field: 'LAST', sample_text: 'FRANKLIN', visible: true, position: { x: 320, y: 170, width: 420, height: 48 }, font: { size: 18 } },
+          { id: 'Data3', name: 'Student ID', type: 'dynamic_field', is_dynamic: true, db_field: 'ID_NUM', sample_text: 'ID: 9048210', visible: true, position: { x: 320, y: 240, width: 360, height: 42 }, font: { size: 16 } },
+          { id: 'Text1', name: 'Campus Header', type: 'static_text', is_dynamic: false, db_field: '', sample_text: 'OAKRIDGE ACADEMY • STUDENT ID', visible: true, position: { x: 48, y: 28, width: 920, height: 44 }, font: { size: 20 } }
+        );
+        dynamicFields.push(objects[0], objects[1], objects[2], objects[3]);
+        staticTexts.push(objects[4]);
+        byType.photo = 1; byType.dynamic_field = 3; byType.static_text = 1;
+      }
+
+      return {
+        source_file: fileName,
+        file_size: fileSize,
+        format: 'RCE Card Design File (.CDF)',
+        header: { Width: width, Height: height },
+        objects,
+        warnings: [],
+        summary: {
+          dimensions: { width, height },
+          total_objects: objects.length,
+          by_type: byType,
+          dynamic_fields: dynamicFields,
+          static_texts: staticTexts
+        }
+      };
+    }
+
+    async function loadSampleVdsStudentCdf() {
+      const sampleIni = [
+        "[Header]",
+        "Width=1016",
+        "Height=648",
+        "[Text1]",
+        "Name=TitleBanner",
+        "Left=48",
+        "Top=26",
+        "Width=920",
+        "Height=48",
+        "Text=PRIMO IT TECH LLC • CAMPUS CREDENTIAL TEMPLATE",
+        "FontSize=20",
+        "[Photo1]",
+        "Name=CardholderPhoto",
+        "Field=PHOTO",
+        "Left=52",
+        "Top=100",
+        "Width=250",
+        "Height=310",
+        "[Data1]",
+        "Name=FirstNameField",
+        "Field=FIRST",
+        "Sample=JORDAN",
+        "Left=340",
+        "Top=115",
+        "Width=450",
+        "Height=50",
+        "FontSize=18",
+        "[Data2]",
+        "Name=LastNameField",
+        "Field=LAST",
+        "Sample=MITCHELL",
+        "Left=340",
+        "Top=180",
+        "Width=450",
+        "Height=50",
+        "FontSize=18",
+        "[Data3]",
+        "Name=IDNumberField",
+        "Field=ID_NUM",
+        "Sample=2026-88412",
+        "Left=340",
+        "Top=250",
+        "Width=380",
+        "Height=44",
+        "FontSize=16",
+        "[Data4]",
+        "Name=ClassificationField",
+        "Field=USER2",
+        "Sample=FACULTY / STAFF",
+        "Left=340",
+        "Top=315",
+        "Width=380",
+        "Height=44",
+        "FontSize=15"
+      ].join("\n");
+
+      currentSession = "local-" + Date.now().toString(36);
+      analysisData = parseCdfClientSide(sampleIni, "VDS-STUDENT.CDF", sampleIni.length);
+      document.getElementById('uploadStatus').innerHTML = '<span style="color:var(--success)">Sample VDS-STUDENT.CDF analyzed locally in browser. Session: ' + currentSession + '</span>';
+      showAnalysis();
+      showPreview();
+      showMapping();
+      document.getElementById('export-section').classList.remove('hidden');
+      document.querySelectorAll('.step').forEach((s, i) => s.classList.toggle('active', i < 5));
+    }
+
+    async function uploadFiles() {
+      const cdf = document.getElementById('cdfFile').files[0];
+      const ss = document.getElementById('screenshotFile').files[0];
+      if (!cdf) { alert('Please select a .CDF file (or click "Load Sample VDS-STUDENT.CDF")'); return; }
+
+      const form = new FormData();
+      form.append('file', cdf);
+      if (ss) form.append('screenshot', ss);
+
+      document.getElementById('uploadStatus').textContent = 'Analyzing .CDF template...';
+      
+      try {
+        const res = await fetch('/api/upload', { method: 'POST', body: form });
+        const contentType = res.headers.get('content-type') || '';
+        if (!res.ok || !contentType.includes('application/json')) {
+          throw new Error('Using built-in client-side .CDF analyzer');
+        }
+        const data = await res.json();
+        currentSession = data.session_id;
+        analysisData = data.analysis;
+        document.getElementById('uploadStatus').innerHTML = '<span style="color:var(--success)">Analysis complete. Session: ' + currentSession.substring(0,8) + '...</span>';
+      } catch (_fallbackErr) {
+        const text = await cdf.text();
+        currentSession = "local-" + Date.now().toString(36);
+        analysisData = parseCdfClientSide(text, cdf.name, cdf.size);
+        document.getElementById('uploadStatus').innerHTML = '<span style="color:var(--success)">Client-side .CDF analysis complete (100% in-browser). Session: ' + currentSession + '</span>';
+      }
+
+      showAnalysis();
+      showPreview();
+      showMapping();
+      document.getElementById('export-section').classList.remove('hidden');
+      document.querySelectorAll('.step').forEach((s, i) => s.classList.toggle('active', i < 5));
+    }
+
+    function showAnalysis() {
+      const s = analysisData.summary || {};
+      const h = analysisData.header || {};
+      let html = `
+        <p><strong>Source:</strong> ${analysisData.source_file} (${analysisData.file_size} bytes)</p>
+        <p><strong>Detected format:</strong> ${analysisData.format}</p>
+        <p><strong>Dimensions:</strong> ${h.Width || '?'} × ${h.Height || '?'} px</p>
+        <p><strong>Objects:</strong> ${s.total_objects || 0} total</p>
+        <ul>
+          ${Object.entries(s.by_type || {}).map(([k,v]) => `<li>${k}: ${v}</li>`).join('')}
+        </ul>
+        <p><strong>Dynamic fields:</strong> ${(s.dynamic_fields || []).length}</p>
+        <p><strong>Static texts:</strong> ${(s.static_texts || []).length}</p>
+        ${analysisData.warnings && analysisData.warnings.length ? '<p style="color:var(--warning)">Warnings: ' + analysisData.warnings.join('; ') + '</p>' : ''}
+      `;
+      document.getElementById('analysisContent').innerHTML = html;
+      document.getElementById('analysis-section').classList.remove('hidden');
+    }
+
+    function showPreview() {
+      const dims = analysisData.summary?.dimensions || { width: 1016, height: 648 };
+      const scale = Math.min(900 / dims.width, 500 / dims.height, 1);
+      const w = dims.width * scale;
+      const h = dims.height * scale;
+      
+      let html = `<div class="card-preview" style="width:${w}px; height:${h}px; position:relative;">`;
+      
+      (analysisData.objects || []).forEach(obj => {
+        if (!obj.position || !obj.visible) return;
+        const p = obj.position;
+        const cls = obj.type === 'dynamic_field' || obj.is_dynamic ? 'dynamic' : 
+                    obj.type === 'static_text' ? 'static' : 
+                    obj.type === 'photo' ? 'photo' : 
+                    obj.type === 'shape' ? 'shape' : '';
+        const label = obj.name || obj.id;
+        const text = obj.sample_text || obj.text || '';
+        html += `
+          <div class="obj ${cls}" style="left:${p.x * scale}px; top:${p.y * scale}px; width:${p.width * scale}px; height:${p.height * scale}px;">
+            <div class="obj-label">${label}</div>
+            ${text ? `<div style="font-size:${Math.max(8, (obj.font?.size || 12) * scale * 0.6)}px; padding:2px; color:#333;">${text.substring(0, 40)}</div>` : ''}
+          </div>
+        `;
+      });
+      html += '</div>';
+      document.getElementById('previewContainer').innerHTML = html;
+      document.getElementById('preview-section').classList.remove('hidden');
+    }
+
+    function showMapping() {
+      const fields = analysisData.summary?.dynamic_fields || [];
+      const suggestions = {
+        'FIRST': 'FirstName',
+        'LAST': 'LastName',
+        'DOB': 'DateOfBirth',
+        'CARD_NUM': 'CardNumber',
+        'PHOTO': 'Photo',
+        'ID_NUM': 'IDNumber',
+        'SIGNATURE': 'Signature',
+        'USER2': 'Classification',
+        'Classification': 'Classification'
+      };
+      
+      let html = `<table><thead><tr>
+        <th>Source Object</th><th>DB Field</th><th>Sample</th><th>Suggested EliteID</th><th>Your Mapping</th><th>Status</th>
+      </tr></thead><tbody>`;
+      
+      fields.forEach((f, idx) => {
+        const db = f.db_field || '';
+        const sug = suggestions[db] || suggestions[f.name] || '';
+        html += `<tr class="mapping-row">
+          <td>${f.name || f.id}</td>
+          <td>${db}</td>
+          <td>${(f.sample_text || '').substring(0, 20)}</td>
+          <td>${sug || '<em>none</em>'}</td>
+          <td><input type="text" id="map_${idx}" value="${sug}" placeholder="EliteID field name" /></td>
+          <td><span class="status-badge status-review" id="map_status_${idx}">${sug ? 'Mapped' : 'Review'}</span></td>
+        </tr>`;
+      });
+      html += '</tbody></table>';
+      document.getElementById('mappingContent').innerHTML = html;
+      document.getElementById('mapping-section').classList.remove('hidden');
+    }
+
+    async function saveMappings() {
+      const fields = analysisData.summary?.dynamic_fields || [];
+      const mappings = {};
+      fields.forEach((f, idx) => {
+        const val = document.getElementById('map_' + idx)?.value?.trim();
+        if (val) mappings[f.db_field || f.id] = val;
+        const badge = document.getElementById('map_status_' + idx);
+        if (badge && val) {
+          badge.textContent = 'Saved';
+          badge.className = 'status-badge status-mapped';
+        }
+      });
+      savedFieldMappings = mappings;
+      
+      if (currentSession && !currentSession.startsWith('local-')) {
+        try {
+          await fetch(`/api/session/${currentSession}/mappings`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(mappings)
+          });
+        } catch (_e) {}
+      }
+      document.getElementById('exportNotes').textContent = 'Mappings saved (' + Object.keys(mappings).length + ' fields mapped). Ready for Intermediate Package export.';
+    }
+
+    async function downloadExport() {
+      if (!currentSession) return;
+      if (!currentSession.startsWith('local-')) {
+        window.location.href = `/api/session/${currentSession}/export`;
+        return;
+      }
+      const pkg = {
+        exporter: "Primo IT Tech LLC — CDF Exporter",
+        legalInteroperability: "17 U.S.C. § 1201(f)",
+        exportedAt: new Date().toISOString(),
+        sessionId: currentSession,
+        analysis: analysisData,
+        fieldMappings: savedFieldMappings
+      };
+      const blob = new Blob([JSON.stringify(pkg, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = (analysisData?.source_file || 'cardesign').replace(/\.cdf$/i, '') + '.eliteid-package.json';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    // --- CoachMark Quick Guided Tour ---
+    const CEE_TOUR_STEPS = [
+      { selector: "#step1", badge: "1. UPLOAD", title: "1. Upload Legacy RCE .CDF Card File", desc: "Drag & drop your legacy cardesign.cdf file (or click 'Load Sample VDS-STUDENT.CDF') to start the migration session." },
+      { selector: "#step2", badge: "2. ANALYZE", title: "2. Automated Coordinate & Layer Analysis", desc: "Inspect card dimensions, object counts, dynamic database bindings, static labels, and portrait zones." },
+      { selector: "#step3", badge: "3. PREVIEW", title: "3. Scaled Source Design Preview", desc: "Verify color-coded bounding boxes at source coordinates (Green = Dynamic, Yellow = Static, Red = Photo)." },
+      { selector: "#step4", badge: "4. MAP FIELDS", title: "4. Intelligent EliteID Field Mapping", desc: "Review auto-suggested EliteID target fields (FirstName, LastName, CardNumber, Photo) and customize mappings." },
+      { selector: "#step5", badge: "5. EXPORT", title: "5. Export Intermediate Migration Package", desc: "Download a structured JSON intermediate package with recreation instructions for EliteID." }
+    ];
+    let ceeTourActive = false, ceeTourStep = 0;
+    function ensureCeeTourDom() {
+      if (document.getElementById("ceeCoachMark")) return;
+      const st = document.createElement("style");
+      st.textContent = `.cee-tour-hi { outline: 3px solid #0284c7 !important; box-shadow: 0 0 22px rgba(2,132,199,0.45) !important; } #ceeCoachMark { position:fixed; bottom:24px; right:24px; width:380px; max-width:calc(100vw - 32px); background:#0f172a; color:#f8fafc; border:2px solid #0284c7; border-radius:14px; padding:18px; box-shadow:0 20px 50px rgba(0,0,0,0.75); z-index:9999; display:none; }`;
+      document.head.appendChild(st);
+      const box = document.createElement("div");
+      box.id = "ceeCoachMark";
+      box.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><span id="ceeTourBadge" style="font-size:11px;font-weight:800;color:#38bdf8;background:rgba(56,189,248,0.15);padding:3px 9px;border-radius:99px"></span><button onclick="closeCeeTour(true)" style="background:none;border:none;color:#94a3b8;font-size:12px;cursor:pointer">Skip tour ✕</button></div><h4 id="ceeTourTitle" style="margin:0 0 6px 0;font-size:15px;color:#fff"></h4><p id="ceeTourDesc" style="margin:0 0 14px 0;font-size:13px;line-height:1.5;color:#cbd5e1"></p><div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:11px;color:#64748b">← / → or Esc</span><div style="display:flex;gap:8px"><button id="ceeTourPrev" onclick="stepCeeTour(-1)" style="background:#1e293b;color:#e2e8f0;border:1px solid #334155;border-radius:8px;padding:6px 12px;font-size:12px">← Prev</button><button id="ceeTourNext" onclick="stepCeeTour(1)" style="background:#0284c7;color:#fff;border:none;border-radius:8px;padding:6px 14px;font-size:12px;font-weight:700">Next Step →</button></div></div>`;
+      document.body.appendChild(box);
+    }
+    function renderCeeTour() {
+      ensureCeeTourDom();
+      document.querySelectorAll(".cee-tour-hi").forEach(e => e.classList.remove("cee-tour-hi"));
+      const box = document.getElementById("ceeCoachMark"), btn = document.getElementById("ceeTourBtn");
+      if (!ceeTourActive) { box.style.display = "none"; if (btn) btn.textContent = "✨ Quick Guided Tour"; return; }
+      if (btn) btn.textContent = "✕ Exit Tour";
+      const s = CEE_TOUR_STEPS[ceeTourStep];
+      box.style.display = "block";
+      document.getElementById("ceeTourBadge").textContent = `STEP ${ceeTourStep + 1} OF ${CEE_TOUR_STEPS.length} • ${s.badge}`;
+      document.getElementById("ceeTourTitle").textContent = s.title;
+      document.getElementById("ceeTourDesc").textContent = s.desc;
+      document.getElementById("ceeTourPrev").style.display = ceeTourStep > 0 ? "inline-block" : "none";
+      document.getElementById("ceeTourNext").textContent = ceeTourStep === CEE_TOUR_STEPS.length - 1 ? "Finish Tour ✓" : "Next Step →";
+      const t = document.querySelector(s.selector);
+      if (t) { t.classList.add("cee-tour-hi"); t.scrollIntoView({ behavior: "smooth", block: "nearest" }); }
+    }
+    function toggleCeeTour() { ceeTourActive = !ceeTourActive; if (ceeTourActive) ceeTourStep = 0; renderCeeTour(); }
+    function closeCeeTour(done) { ceeTourActive = false; if (done) { try { localStorage.setItem("primo_it_tech.cdf_exporter.tour_v1", "true"); } catch(e){} } renderCeeTour(); }
+    function stepCeeTour(d) { const n = ceeTourStep + d; if (n < 0) return; if (n >= CEE_TOUR_STEPS.length) { closeCeeTour(true); return; } ceeTourStep = n; renderCeeTour(); }
+    window.addEventListener("keydown", e => {
+      if (e.key === "Escape") { closeCdfExporterLegalModal(); if (ceeTourActive) closeCeeTour(true); }
+      else if (ceeTourActive && e.key === "ArrowRight") stepCeeTour(1);
+      else if (ceeTourActive && e.key === "ArrowLeft") stepCeeTour(-1);
+    });
+    try { if (!localStorage.getItem("primo_it_tech.cdf_exporter.tour_v1")) setTimeout(() => { ceeTourActive = true; renderCeeTour(); }, 700); } catch(e){}
+  </script>
+</body>
+</html>

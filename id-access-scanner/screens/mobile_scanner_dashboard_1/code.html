@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed-dim": "#9accf8",
+                        "on-secondary": "#ffffff",
+                        "primary": "#2a6087",
+                        "on-primary-fixed-variant": "#0a4b71",
+                        "on-primary-fixed": "#001d31",
+                        "on-error": "#ffffff",
+                        "surface-tint": "#2d638a",
+                        "primary-fixed": "#cce5ff",
+                        "surface": "#f8f9ff",
+                        "secondary-container": "#e2e2e2",
+                        "on-primary": "#ffffff",
+                        "inverse-surface": "#213145",
+                        "on-tertiary": "#ffffff",
+                        "secondary": "#5e5e5e",
+                        "on-surface-variant": "#41474e",
+                        "error": "#ba1a1a",
+                        "primary-container": "#4679a2",
+                        "on-surface": "#0b1c30",
+                        "outline": "#72787f",
+                        "on-primary-container": "#fdfcff",
+                        "inverse-primary": "#9accf8",
+                        "on-secondary-fixed-variant": "#474747",
+                        "on-tertiary-container": "#fcfcfe",
+                        "tertiary-container": "#737576",
+                        "surface-container-low": "#eff4ff",
+                        "on-tertiary-fixed-variant": "#454749",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "secondary-fixed-dim": "#c6c6c6",
+                        "on-error-container": "#93000a",
+                        "surface-variant": "#d3e4fe",
+                        "surface-container-high": "#dce9ff",
+                        "on-background": "#0b1c30",
+                        "surface-container-highest": "#d3e4fe",
+                        "tertiary-fixed-dim": "#c6c6c8",
+                        "surface-bright": "#f8f9ff",
+                        "on-secondary-fixed": "#1b1b1b",
+                        "secondary-fixed": "#e2e2e2",
+                        "on-tertiary-fixed": "#1a1c1d",
+                        "on-secondary-container": "#646464",
+                        "background": "#f8f9ff",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed": "#e2e2e4",
+                        "surface-container": "#e5eeff",
+                        "outline-variant": "#c1c7cf",
+                        "surface-dim": "#cbdbf5",
+                        "tertiary": "#5a5c5e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "sm": "8px",
+                        "lg": "24px",
+                        "container-margin": "32px",
+                        "xl": "48px",
+                        "xs": "4px",
+                        "unit": "4px",
+                        "md": "16px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "title-sm": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "data-mono": ["Inter"]
+                    },
+                    "fontSize": {
+                        "title-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "data-mono": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .scanner-line {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #2a6087, transparent);
+            box-shadow: 0 0 15px #2a6087;
+            position: absolute;
+            width: 100%;
+            top: 50%;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background font-body-md text-on-background selection:bg-primary-fixed selection:text-on-primary-fixed overflow-x-hidden">
+<!-- Top Navigation Anchor -->
+<header class="bg-surface-bright flex justify-between items-center px-container-margin py-md w-full top-0 border-b border-outline-variant shadow-sm z-50">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="shield">shield</span>
+<h1 class="text-lg font-black uppercase text-slate-900 font-['Inter'] tracking-tight font-headline-md">PrimoIT Tech</h1>
+</div>
+<div class="flex items-center gap-3">
+<div class="h-8 w-8 rounded-full overflow-hidden border border-outline-variant bg-surface-container">
+<img alt="Guard Profile" class="w-full h-full object-cover" data-alt="Close-up professional portrait of a security officer in a modern dark blue uniform, looking authoritative yet approachable. The background is a slightly blurred high-tech security command center with soft cool-toned blue and white ambient lighting. The overall style is clean, corporate, and high-contrast, emphasizing reliability and professional vigilance." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdVu9LMtSdF0AbNkcKreEgq9udz7MFf8fqvaZYoUrXvu1N2K_7y_MBOWQlveXj8L3iWh9xK_0Hhyr-0h74UgzsUZ3UsW3R9J78ahCWx2im7-wJy8DEisaj9uG30XuGYi6lQEJWrJOVbb6wfRGHCEVsHgz2qvJ7H2LN1vsK-T0w6eG7DroEQeyGOHCCN6syACFe3xk_uYBhuGnpUa9jLDxcGgAuO1hutKMcb19TXtlLUa7cReKDgjaiAKhIcZS2lzIXGbkPdYYynpbX"/>
+</div>
+</div>
+</header>
+<main class="pb-24 max-w-screen-md mx-auto">
+<!-- Status Bar -->
+<section class="flex gap-4 px-container-margin py-sm bg-surface-container-low border-b border-outline-variant">
+<div class="flex items-center gap-1">
+<div class="w-2 h-2 rounded-full bg-[#10b981]"></div>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">CAM OK</span>
+</div>
+<div class="flex items-center gap-1">
+<div class="w-2 h-2 rounded-full bg-[#10b981]"></div>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">DB LINKED</span>
+</div>
+<div class="flex items-center gap-1">
+<div class="w-2 h-2 rounded-full bg-[#10b981]"></div>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">NET 4G</span>
+</div>
+</section>
+<!-- Viewfinder Section -->
+<section class="px-4 mt-4">
+<div class="relative aspect-[3/4] w-full rounded-xl overflow-hidden bg-slate-900 border-2 border-primary ring-4 ring-primary/10">
+<!-- Camera Feed Mockup -->
+<div class="absolute inset-0 bg-slate-950">
+<img alt="ID Card Scanner View" class="w-full h-full object-cover opacity-60" data-alt="A POV shot through a high-definition camera viewfinder focused on a generic ID document held in a professional workspace. The lighting is bright and industrial, characteristic of a high-security lobby. The scene is framed by digital scanning markers and technical overlays, maintaining a crisp, blue-tinted corporate aesthetic for technical accuracy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDZLfUiG9HM_yMMV-WPq0ISbo_RlJ8f-jkL28vTRypbqrrWiYMOOcalidrp-lhCWcAaXDdPMpPEnAUBn8OIKB8XGBWFxvINQRDnDrc_0AYyDs7T2vYQhNvqYnXpn54tB76mxTuloLS7Mg6fFhsFYbVAu7Sp8w3UL17wz-E0LgmLQ3LL88-QZ6K4SOzDegp-bjjAYJ9KcjFTiEL45jxSVFPiEUQVMLKQXA-PgJMH3s0MpDFu73HCpwfZsb0MyYFKpI_IUPf1KhPsHpn"/>
+</div>
+<!-- Scanning Overlay UI -->
+<div class="absolute inset-0 flex flex-col items-center justify-between p-8">
+<!-- Top Brackets -->
+<div class="w-full flex justify-between">
+<div class="w-12 h-12 border-t-4 border-l-4 border-primary-fixed-dim rounded-tl-lg"></div>
+<div class="w-12 h-12 border-t-4 border-r-4 border-primary-fixed-dim rounded-tr-lg"></div>
+</div>
+<div class="scanner-line"></div>
+<!-- Scanning Message -->
+<div class="bg-primary/90 text-on-primary px-6 py-2 rounded-full shadow-lg backdrop-blur-sm border border-primary-fixed-dim/30 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="qr_code_scanner">qr_code_scanner</span>
+<span class="font-title-sm text-title-sm tracking-widest">READY TO SCAN</span>
+</div>
+<!-- Bottom Brackets -->
+<div class="w-full flex justify-between">
+<div class="w-12 h-12 border-b-4 border-l-4 border-primary-fixed-dim rounded-bl-lg"></div>
+<div class="w-12 h-12 border-b-4 border-r-4 border-primary-fixed-dim rounded-br-lg"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Control Actions -->
+<section class="grid grid-cols-2 gap-4 px-4 mt-6">
+<button class="flex flex-col items-center justify-center gap-2 py-6 bg-slate-200 text-slate-400 rounded-xl cursor-not-allowed border border-slate-300">
+<span class="material-symbols-outlined text-[32px]" data-icon="verified_user">verified_user</span>
+<span class="font-label-caps text-label-caps">PERMIT</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-2 py-6 bg-slate-200 text-slate-400 rounded-xl cursor-not-allowed border border-slate-300">
+<span class="material-symbols-outlined text-[32px]" data-icon="block">block</span>
+<span class="font-label-caps text-label-caps">DENY</span>
+</button>
+</section>
+<!-- Recent Activity -->
+<section class="px-4 mt-8">
+<div class="flex items-center justify-between mb-4">
+<h2 class="font-label-caps text-label-caps text-secondary uppercase">Recent Activity</h2>
+<span class="text-primary font-label-caps text-label-caps cursor-pointer">VIEW LOGS</span>
+</div>
+<div class="space-y-2">
+<!-- Activity Card 1 -->
+<div class="bg-white p-4 rounded-lg border border-slate-200 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-green-50 border border-green-200 flex items-center justify-center text-green-600">
+<span class="material-symbols-outlined" data-icon="check_circle">check_circle</span>
+</div>
+<div>
+<p class="font-title-sm text-[14px] text-on-surface">ID VERIFIED: MARK V.</p>
+<p class="font-body-sm text-[12px] text-secondary">09:42 AM • Level 2 Clearance</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-300" data-icon="chevron_right">chevron_right</span>
+</div>
+<!-- Activity Card 2 -->
+<div class="bg-white p-4 rounded-lg border border-slate-200 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-red-50 border border-red-200 flex items-center justify-center text-red-600">
+<span class="material-symbols-outlined" data-icon="warning">warning</span>
+</div>
+<div>
+<p class="font-title-sm text-[14px] text-on-surface">DENIED: SARAH J.</p>
+<p class="font-body-sm text-[12px] text-secondary">09:15 AM • Expired Document</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-300" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Navigation Shell -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-sm py-sm bg-surface-container-lowest border-t border-outline-variant shadow-sm">
+<div class="flex flex-col items-center justify-center text-primary bg-surface-container-highest rounded-xl py-2 px-4 transition-transform duration-150 active:scale-95">
+<span class="material-symbols-outlined" data-icon="qr_code_scanner" style="font-variation-settings: 'FILL' 1;">qr_code_scanner</span>
+<span class="text-[10px] font-bold font-label-caps uppercase tracking-wider">Scan</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant py-2 px-4 hover:text-primary transition-transform duration-150 active:scale-95">
+<span class="material-symbols-outlined" data-icon="assignment_ind">assignment_ind</span>
+<span class="text-[10px] font-bold font-label-caps uppercase tracking-wider">Details</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant py-2 px-4 hover:text-primary transition-transform duration-150 active:scale-95">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="text-[10px] font-bold font-label-caps uppercase tracking-wider">Logs</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant py-2 px-4 hover:text-primary transition-transform duration-150 active:scale-95">
+<span class="material-symbols-outlined" data-icon="settings_input_component">settings_input_component</span>
+<span class="text-[10px] font-bold font-label-caps uppercase tracking-wider">Status</span>
+</div>
+</nav>
+</body></html>

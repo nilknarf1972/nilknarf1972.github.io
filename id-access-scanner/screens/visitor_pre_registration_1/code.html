@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Visitor Pre-Registration | SECURE-ID</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-fixed": "#1a1c1d",
+                      "on-tertiary-fixed-variant": "#454749",
+                      "on-secondary-container": "#646464",
+                      "on-primary-container": "#fdfcff",
+                      "surface-container-high": "#dce9ff",
+                      "secondary": "#5e5e5e",
+                      "secondary-container": "#e2e2e2",
+                      "error": "#ba1a1a",
+                      "primary": "#2a6087",
+                      "surface-tint": "#2d638a",
+                      "tertiary": "#5a5c5e",
+                      "on-secondary-fixed": "#1b1b1b",
+                      "on-surface": "#0b1c30",
+                      "outline-variant": "#c1c7cf",
+                      "error-container": "#ffdad6",
+                      "on-secondary-fixed-variant": "#474747",
+                      "surface-bright": "#f8f9ff",
+                      "surface-container-highest": "#d3e4fe",
+                      "inverse-primary": "#9accf8",
+                      "tertiary-fixed": "#e2e2e2",
+                      "on-error": "#ffffff",
+                      "inverse-surface": "#213145",
+                      "on-surface-variant": "#41474e",
+                      "primary-fixed": "#cce5ff",
+                      "tertiary-fixed-dim": "#c6c6c8",
+                      "primary-container": "#4679a2",
+                      "surface-variant": "#d3e4fe",
+                      "surface-container-low": "#eff4ff",
+                      "on-primary-fixed-variant": "#0a4b71",
+                      "on-secondary": "#ffffff",
+                      "tertiary-container": "#737576",
+                      "surface-container": "#e5eeff",
+                      "surface": "#f8f9ff",
+                      "on-background": "#0b1c30",
+                      "on-tertiary-container": "#fcfcfe",
+                      "on-primary-fixed": "#001d31",
+                      "inverse-on-surface": "#eaf1ff",
+                      "on-tertiary": "#ffffff",
+                      "primary-fixed-dim": "#9accf8",
+                      "background": "#f8f9ff",
+                      "secondary-fixed": "#e2e2e2",
+                      "outline": "#72787f",
+                      "surface-dim": "#cbdbf5",
+                      "secondary-fixed-dim": "#c6c6c6",
+                      "surface-container-lowest": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "on-error-container": "#93000a"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "gutter": "16px",
+                      "lg": "24px",
+                      "xs": "4px",
+                      "sm": "8px",
+                      "container-margin": "32px",
+                      "xl": "48px",
+                      "md": "16px",
+                      "unit": "4px"
+              },
+              "fontFamily": {
+                      "label-caps": ["Inter"],
+                      "data-mono": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "title-sm": ["Inter"],
+                      "display-lg": ["Inter"],
+                      "body-md": ["Inter"],
+                      "body-sm": ["Inter"]
+              },
+              "fontSize": {
+                      "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                      "data-mono": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "title-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                      "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #F4F4F6;
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-background overflow-hidden">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 right-0 z-50 flex justify-between items-center w-full px-6 py-3 bg-white border-b border-slate-200 h-16"><div class="flex items-center gap-4"><div class="text-xl font-black text-slate-900 tracking-tighter ml-0 lg:ml-0">PrimoIT Tech</div><div class="h-6 w-[1px] bg-slate-200 mx-2"></div><h2 class="text-lg font-semibold text-slate-700">Visitor Pre-Registration</h2></div><div class="flex items-center gap-4"><div class="relative flex items-center"><span class="material-symbols-outlined absolute left-3 text-slate-400">search</span><input class="pl-10 pr-4 py-1.5 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Search records..." type="text"/></div><div class="flex items-center gap-3 text-slate-500"><span class="material-symbols-outlined hover:text-primary cursor-pointer">notifications</span><span class="material-symbols-outlined hover:text-primary cursor-pointer">help</span><span class="material-symbols-outlined hover:text-primary cursor-pointer">account_circle</span></div></div></header>
+<!-- SideNavBar -->
+<aside class="flex flex-col h-full py-6 fixed left-0 top-0 z-40 bg-slate-50 w-64 border-r border-slate-200 pt-20">
+<div class="px-6 mb-8">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 rounded bg-primary flex items-center justify-center text-white"><span class="material-symbols-outlined">shield</span></div>
+<div>
+<h3 class="text-lg font-black text-slate-900 leading-tight">PrimoIT Tech</h3>
+<p class="text-[10px] uppercase tracking-widest text-slate-500">Vigilance Alpha-7</p>
+</div>
+</div>
+<div class="text-[11px] font-bold text-green-600 bg-green-50 px-2 py-1 rounded inline-block border border-green-200">System Status: Active</div>
+</div>
+<nav class="flex-1 px-2 space-y-1"><a class="text-slate-600 px-4 py-3 flex items-center gap-3 hover:bg-slate-200 hover:text-slate-900 font-inter font-medium text-sm uppercase tracking-wider transition-all duration-150" href="#"><span class="material-symbols-outlined">dashboard</span>Scanning Dashboard</a><a class="bg-blue-50 text-blue-700 border-r-4 border-blue-600 px-4 py-3 flex items-center gap-3 font-inter font-medium text-sm uppercase tracking-wider" href="#"><span class="material-symbols-outlined">person_add</span>Visitor Pre-Reg</a><a class="text-slate-600 px-4 py-3 flex items-center gap-3 hover:bg-slate-200 hover:text-slate-900 font-inter font-medium text-sm uppercase tracking-wider transition-all duration-150" href="#"><span class="material-symbols-outlined">history</span>Access Logs</a><a class="text-slate-600 px-4 py-3 flex items-center gap-3 hover:bg-slate-200 hover:text-slate-900 font-inter font-medium text-sm uppercase tracking-wider transition-all duration-150" href="#"><span class="material-symbols-outlined">sync</span>Sync &amp; Connectivity</a><a class="text-slate-600 px-4 py-3 flex items-center gap-3 hover:bg-slate-200 hover:text-slate-900 font-inter font-medium text-sm uppercase tracking-wider transition-all duration-150" href="#"><span class="material-symbols-outlined">settings</span>Admin Settings</a></nav>
+<div class="mt-auto px-4 py-4 border-t border-slate-200"><div class="flex items-center gap-3 px-2"><img alt="Officer Miller" class="w-10 h-10 rounded-full border border-slate-200" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDX2hzGGyNPDha1lZqMpOthRSvo1TpeDSXTjQCitVlVp-Df9-lXJEQ6YK6cQGKiDo9f0Kuf6zbhg1ERFs2vToWBVmr9t0G-qbSql9d60y0rovu1ZU1I-GEmqj-u4dqBa7N_eYekObeRmVfF-48XzbyYmTZ9eKBRHZenm2MkMiL11qm0VkL9GcL57R6vmJ8C7GrUe2oWCbT2migHmktNowmo8UIM8IXWTHE8NcsPlm0nsPzTWNrW6TqIGxJRJctahYyzES6q9E-ZtuB"/><div class="flex flex-col"><span class="text-sm font-bold text-slate-900 leading-none">Officer Miller</span><span class="text-[10px] text-primary font-bold uppercase tracking-tighter">Lead Guardian</span></div><button class="ml-auto text-slate-400 hover:text-error transition-colors"><span class="material-symbols-outlined text-xl">logout</span></button></div></div>
+</aside>
+<!-- Main Content -->
+<main class="ml-64 pt-16 h-screen overflow-y-auto">
+<div class="max-w-[1440px] mx-auto p-container-margin">
+<!-- Page Header -->
+<div class="mb-lg border-b border-slate-200 pb-sm">
+<h1 class="font-display-lg text-display-lg text-on-surface mb-xs">Visitor Pre-Registration</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Submit visitor details for scheduled access.</p>
+</div>
+<!-- Content Grid / Bento Layout -->
+<div class="grid grid-cols-12 gap-lg">
+<!-- Left: Form Sections -->
+<div class="col-span-12 lg:col-span-8 space-y-lg">
+<!-- Form Card: Personal Information -->
+<div class="bg-white p-lg border border-slate-200 shadow-sm">
+<div class="flex items-center gap-2 mb-md">
+<span class="material-symbols-outlined text-primary" data-icon="badge">badge</span>
+<h2 class="font-title-sm text-title-sm text-on-surface">Personal Information</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<div class="md:col-span-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant block mb-xs">FULL NAME</label>
+<input class="w-full border border-outline-variant bg-surface px-md py-sm font-body-md focus:border-primary focus:ring-0 outline-none transition-all" placeholder="e.g. Jonathan Archer" type="text"/>
+</div>
+<div>
+<label class="font-label-caps text-label-caps text-on-surface-variant block mb-xs">EMAIL ADDRESS</label>
+<input class="w-full border border-outline-variant bg-surface px-md py-sm font-body-md focus:border-primary focus:ring-0 outline-none transition-all" placeholder="j.archer@enterprise.com" type="email"/>
+</div>
+<div>
+<label class="font-label-caps text-label-caps text-on-surface-variant block mb-xs">PHONE NUMBER</label>
+<input class="w-full border border-outline-variant bg-surface px-md py-sm font-body-md focus:border-primary focus:ring-0 outline-none transition-all" placeholder="+1 (555) 0123-4567" type="tel"/>
+</div>
+</div>
+</div>
+<!-- Form Card: Visit Details -->
+<div class="bg-white p-lg border border-slate-200 shadow-sm">
+<div class="flex items-center gap-2 mb-md">
+<span class="material-symbols-outlined text-primary" data-icon="event_available">event_available</span>
+<h2 class="font-title-sm text-title-sm text-on-surface">Visit Details</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<div>
+<label class="font-label-caps text-label-caps text-on-surface-variant block mb-xs">DATE OF VISIT</label>
+<input class="w-full border border-outline-variant bg-surface px-md py-sm font-body-md focus:border-primary focus:ring-0 outline-none transition-all" type="date"/>
+</div>
+<div>
+<label class="font-label-caps text-label-caps text-on-surface-variant block mb-xs">ESTIMATED ARRIVAL TIME</label>
+<input class="w-full border border-outline-variant bg-surface px-md py-sm font-body-md focus:border-primary focus:ring-0 outline-none transition-all" type="time"/>
+</div>
+<div>
+<label class="font-label-caps text-label-caps text-on-surface-variant block mb-xs">PURPOSE OF VISIT</label>
+<select class="w-full border border-outline-variant bg-surface px-md py-sm font-body-md focus:border-primary focus:ring-0 outline-none transition-all appearance-none">
+<option>Standard Business Meeting</option>
+<option>Technical Maintenance</option>
+<option>Compliance Audit</option>
+<option>Facility Tour</option>
+<option>Other</option>
+</select>
+</div>
+<div>
+<label class="font-label-caps text-label-caps text-on-surface-variant block mb-xs">POINT OF CONTACT (EMPLOYEE)</label>
+<input class="w-full border border-outline-variant bg-surface px-md py-sm font-body-md focus:border-primary focus:ring-0 outline-none transition-all" placeholder="Search employee name..." type="text"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Right: ID Upload & Sidebar Actions -->
+<div class="col-span-12 lg:col-span-4 space-y-lg">
+<!-- ID Upload Card -->
+<div class="bg-white p-lg border border-slate-200 shadow-sm">
+<div class="flex items-center gap-2 mb-md">
+<span class="material-symbols-outlined text-primary" data-icon="upload_file">upload_file</span>
+<h2 class="font-title-sm text-title-sm text-on-surface">Identification</h2>
+</div>
+<div class="border-2 border-dashed border-outline-variant p-lg flex flex-col items-center justify-center bg-slate-50 hover:bg-slate-100 transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-4xl text-slate-400 group-hover:text-primary transition-colors mb-sm">add_a_photo</span>
+<p class="font-label-caps text-label-caps text-slate-500 mb-xs">UPLOAD ID DOCUMENT PHOTO</p>
+<p class="text-[10px] text-slate-400 text-center">Accepted: Passport, Driver's License, or Gov ID. High-resolution JPG/PNG only.</p>
+</div>
+<div class="mt-md p-sm bg-blue-50 border border-blue-100 flex gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="info" style="font-size: 20px;">info</span>
+<p class="text-[11px] text-primary-container leading-tight">Secure-ID uses encrypted processing for all document data. Sensitive info is purged 24h after visitor checkout.</p>
+</div>
+</div>
+<!-- Actions Card -->
+<div class="bg-white p-lg border border-slate-200 shadow-sm">
+<div class="flex flex-col gap-sm">
+<button class="w-full bg-primary text-on-primary font-label-caps text-label-caps py-md hover:bg-primary-container transition-all active:scale-[0.98] flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">how_to_reg</span>
+                                SUBMIT REGISTRATION
+                            </button>
+<button class="w-full border border-on-surface text-on-surface font-label-caps text-label-caps py-md hover:bg-slate-50 transition-all">
+                                CANCEL
+                            </button>
+</div>
+<p class="text-[10px] text-slate-400 mt-md text-center italic">By submitting, you agree to the PrimoIT Tech Security protocols and data processing terms.</p>
+</div>
+<!-- Visual Guidance Image -->
+<div class="relative group h-48 overflow-hidden bg-slate-900 border border-slate-200">
+<img class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700" data-alt="A high-contrast security verification station with sharp geometric lines and blue neon accents. The setting is a futuristic glass lobby with brushed metal finishes and soft, professional ambient lighting. A digital interface is visible in the background showing encrypted data streams and facial recognition metrics. The mood is highly authoritative, clean, and technologically advanced." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzZ1Se2VZYNy5D67E9UCGBzgql7JApv_lM15D_XO7DB6FN0RoHou_2Pqb-Gb6yN8GI1pKdDkN5_Ew5P2AHkU2us64i4wZEtrDbjm7lKvYBYofMQJBaJwS116MsyYYZyHKdllPY5MjLwU_UU-26pDCSOijjBMQMzWkjj3HDq0KoGrFwnCv_qxcygbtrbBeojfEgSurL0mCFEt9Tl9zZsDXWn2PaPN1_zxvaBhnS7MzPmf1x8OffNEro-Lf90iE0jOy4qIiRZYn65AYg"/>
+<div class="absolute inset-0 flex flex-col justify-end p-md bg-gradient-to-t from-slate-950 to-transparent">
+<h4 class="font-label-caps text-label-caps text-white">FACILITY PROTOCOL</h4>
+<p class="text-[11px] text-slate-300">All visitors must present valid ID upon arrival at the gate house.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Meta -->
+<footer class="mt-xl pt-lg border-t border-slate-200 flex justify-between items-center text-slate-400 font-label-caps text-[10px]">
+<div class="flex gap-lg">
+<span>TERMINAL ID: PR-11209-V</span>
+<span>SESSION TOKEN: 0x9823...AF2</span>
+</div>
+<div class="flex gap-lg">
+<a class="hover:text-primary transition-colors" href="#">SECURITY COMPLIANCE</a>
+<a class="hover:text-primary transition-colors" href="#">PRIVACY POLICY</a>
+</div>
+</footer>
+</div>
+</main>
+</body></html>

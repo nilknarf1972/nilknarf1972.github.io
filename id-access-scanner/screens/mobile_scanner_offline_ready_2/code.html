@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-container": "#fdfcff",
+                    "secondary-fixed-dim": "#c6c6c6",
+                    "error-container": "#ffdad6",
+                    "secondary-container": "#e2e2e2",
+                    "surface-bright": "#f8f9ff",
+                    "tertiary-fixed": "#e2e2e4",
+                    "on-surface-variant": "#41474e",
+                    "on-tertiary-fixed-variant": "#454749",
+                    "inverse-primary": "#9accf8",
+                    "surface-container-high": "#dce9ff",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-fixed-variant": "#474747",
+                    "surface-dim": "#cbdbf5",
+                    "primary-fixed-dim": "#9accf8",
+                    "on-tertiary-fixed": "#1a1c1d",
+                    "primary-fixed": "#cce5ff",
+                    "on-tertiary-container": "#fcfcfe",
+                    "secondary-fixed": "#e2e2e2",
+                    "inverse-on-surface": "#eaf1ff",
+                    "tertiary": "#5a5c5e",
+                    "surface-container": "#e5eeff",
+                    "on-surface": "#0b1c30",
+                    "on-secondary-fixed": "#1b1b1b",
+                    "on-primary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "surface-variant": "#d3e4fe",
+                    "error": "#ba1a1a",
+                    "on-background": "#0b1c30",
+                    "on-secondary-container": "#646464",
+                    "surface-container-highest": "#d3e4fe",
+                    "on-secondary": "#ffffff",
+                    "primary": "#2a6087",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-container": "#4679a2",
+                    "outline-variant": "#c1c7cf",
+                    "surface-tint": "#2d638a",
+                    "inverse-surface": "#213145",
+                    "surface-container-low": "#eff4ff",
+                    "outline": "#72787f",
+                    "surface": "#f8f9ff",
+                    "secondary": "#5e5e5e",
+                    "tertiary-fixed-dim": "#c6c6c8",
+                    "on-primary-fixed-variant": "#0a4b71",
+                    "on-primary-fixed": "#001d31",
+                    "background": "#f8f9ff",
+                    "tertiary-container": "#737576"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "xl": "48px",
+                    "sm": "8px",
+                    "md": "16px",
+                    "lg": "24px",
+                    "xs": "4px",
+                    "unit": "4px",
+                    "gutter": "16px",
+                    "container-margin": "32px"
+            },
+            "fontFamily": {
+                    "title-sm": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "label-caps": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "data-mono": ["Inter"]
+            },
+            "fontSize": {
+                    "title-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "data-mono": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col font-body-md">
+<!-- TopAppBar from JSON -->
+<header class="bg-slate-50 dark:bg-slate-950 flex justify-between items-center px-4 py-3 w-full top-0 border-b border-slate-200 dark:border-slate-800 sticky z-40">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined dark:text-blue-400 text-primary" data-icon="shield">shield</span>
+<h1 class="font-['Inter'] font-bold tracking-tight text-lg font-black uppercase text-slate-900 dark:text-white">PrimoIT Tech</h1>
+</div>
+<div class="h-8 w-8 rounded-full bg-primary-container flex items-center justify-center overflow-hidden border border-outline-variant">
+<img alt="Guard Profile" class="w-full h-full object-cover" data-alt="A professional close-up portrait of a security personnel wearing a dark tactical uniform with a subtle badge. The lighting is crisp and cinematic, emphasizing a serious and focused expression. The background is a blurred high-tech security monitoring room with dim blue and grey tones. The overall aesthetic is authoritative, modern, and high-contrast." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjLZ5vEiqvY8dXdLXfYhbzhfZm63n_95E7018Yt0s7LzU2gL13HS7kidX1kGuLr3h6G3-tHqmDFvWoJ0CdUfaDXZNGwpmGB9DEleFn0qun3sdX31EBGnVn05H5GBy8B2kI2T-4vMB-YPDIS4TGGO5bvOhk2JLnYh8SxBVaIDQvj8lja4KaScuMZb2dyJU6ki1fwtS35otxb3p-T0K1ua1ZWpSFdZ08riFYTKsl3muBPtDPlFoCrk_LYRoPq3061liSBjGMUe7h2-OA"/>
+</div>
+</header>
+<!-- Offline Banner -->
+<div class="border-b border-amber-200 px-4 py-2 flex items-center justify-center gap-2 bg-tertiary-fixed">
+<span class="material-symbols-outlined text-amber-700 text-sm" data-icon="cloud_off">cloud_off</span>
+<span class="font-label-caps text-[10px] tracking-widest uppercase text-on-tertiary-fixed">Offline Mode Active - Data Saving Locally</span>
+</div>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col p-4 pb-24 max-w-md mx-auto w-full">
+<!-- Mode Toggle Section -->
+<section class="mb-6">
+<div class="bg-surface-container-low rounded-xl p-1 flex shadow-sm border border-outline-variant">
+<button class="flex-1 py-3 px-4 rounded-lg bg-white shadow-sm flex items-center justify-center gap-2 border border-slate-200">
+<span class="material-symbols-outlined text-primary" data-icon="login">login</span>
+<span class="font-label-caps text-on-surface">CHECK-IN</span>
+</button>
+<button class="flex-1 py-3 px-4 rounded-lg flex items-center justify-center gap-2 opacity-60">
+<span class="material-symbols-outlined text-secondary" data-icon="logout">logout</span>
+<span class="font-label-caps text-on-surface">CHECK-OUT</span>
+</button>
+</div>
+</section>
+<!-- Scanning Viewport Component -->
+<section class="flex-1 relative mb-6">
+<div class="h-full min-h-[320px] rounded-2xl bg-slate-900 overflow-hidden relative border-4 border-slate-800 flex flex-col items-center justify-center">
+<!-- Camera Feed Simulation -->
+<div class="absolute inset-0 opacity-40">
+<img class="w-full h-full object-cover" data-alt="A dark, abstract background with smooth gradients of deep charcoal and midnight blue. The scene is illuminated by thin, sharp laser-like lines of vibrant cyan, creating a high-tech, digital scanning aesthetic. The mood is precise, secure, and technologically advanced, echoing a sophisticated biometric or document scanning interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvDBsSpqR9rGjvFfRV6Zv4lvBGnMBPvkrdNj_mWwqUzHKeM8ACwzaNWXoW3fVhexm4_G1C0WBF-nVl_QzIM0pAZmZuEEHcf3LsXirTOcekI7BP58NWSqkeICEjeiVxnYs-DJ6L6Fy-iUAkJQChVj_RvewgcWJPr8TrP3VhAOUgLdkisVGlMWEInKicBm9wT9pSdqqgnHDskN8qVwsq2MZLao0v168l1E-2LaafrOsox3JFaMqeJoATXK2SUxUv_rUd8umxx33NmRYa"/>
+</div>
+<!-- Scanner Reticle -->
+<div class="z-10 relative w-64 h-64 border-2 border-dashed border-white/30 rounded-3xl flex items-center justify-center">
+<div class="absolute -top-1 -left-1 w-8 h-8 border-t-4 border-l-4 border-blue-400 rounded-tl-lg"></div>
+<div class="absolute -top-1 -right-1 w-8 h-8 border-t-4 border-r-4 border-blue-400 rounded-tr-lg"></div>
+<div class="absolute -bottom-1 -left-1 w-8 h-8 border-b-4 border-l-4 border-blue-400 rounded-bl-lg"></div>
+<div class="absolute -bottom-1 -right-1 w-8 h-8 border-b-4 border-r-4 border-blue-400 rounded-br-lg"></div>
+<span class="material-symbols-outlined text-white/20 text-6xl" data-icon="qr_code_2">qr_code_2</span>
+</div>
+<!-- Bottom Hint -->
+<div class="absolute bottom-6 left-0 right-0 text-center z-10 px-8">
+<p class="text-white font-body-sm bg-black/40 backdrop-blur-md py-2 rounded-full border border-white/10">Align ID card within the frame</p>
+</div>
+</div>
+</section>
+<!-- Recent Activity / Pending Sync List -->
+<section class="space-y-3">
+<h2 class="font-label-caps text-secondary mb-2">RECENT PENDING SCANS</h2>
+<!-- Pending Item 1 -->
+<div class="bg-white border border-slate-200 rounded-xl p-4 flex items-center gap-4 shadow-sm">
+<div class="w-12 h-12 rounded-lg bg-slate-100 flex-shrink-0 overflow-hidden border border-slate-200">
+<img alt="ID Scan" class="w-full h-full object-cover grayscale opacity-80" data-alt="A focused close-up of a government-issued identification card being scanned. The card shows a male profile picture and encrypted data strings. The lighting is focused and professional, highlighting the card's security features like holograms and fine print. The overall color palette is clinical and high-contrast, fitting a secure professional environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBc4dOhw_zpmA7McoXHRMWfLBYonjiPHGnLs957xr8QUo7eeF4cfZRAEHJnJN7B9lAqvZAGKR70e-pXXc-zfW7DeOkrmN1SJuzeMUY8fYuyCUccEuZNBuoidDxwa1Id4hImqYo_boQwQiycHoSYgKqxi4C_K2wr8ybZYzDs1w5OUjF9z8vFIKGfxoE_eraNDTb_2OlOgesuLWGsHOx7PCnkwoRzx7A6RhwaCOBd27RV3ZhqL0JpCN32FWpT2L2YTV6ehJJ2CsR1Y9Pq"/>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<span class="font-title-sm text-sm">MARCUS VANCE</span>
+<div class="flex items-center gap-1 text-amber-600">
+<span class="material-symbols-outlined text-sm" data-icon="sync_problem">sync_problem</span>
+<span class="font-label-caps text-[9px]">PENDING</span>
+</div>
+</div>
+<p class="font-data-mono text-[11px] text-secondary">ID: 8849-XXXX-210 | 14:32</p>
+</div>
+</div>
+<!-- Success Scanned Item -->
+<div class="bg-white border border-slate-200 rounded-xl p-4 flex items-center gap-4 shadow-sm opacity-60">
+<div class="w-12 h-12 rounded-lg bg-slate-100 flex-shrink-0 overflow-hidden border border-slate-200">
+<img alt="ID Scan" class="w-full h-full object-cover grayscale opacity-80" data-alt="A professional ID card scan featuring a female profile with clear typography and security watermarks. The card is held against a clean, neutral background with high-key lighting that ensures every detail is legible. The mood is secure and administrative, maintaining a corporate high-contrast aesthetic consistent with a modern security application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnYqE7pi54z-vqGOM8aHFIqKz6QoNF6M-SB7bGZoU6ngKvek18BiVO6ZAlgSOW7CczbXuGHWXfcAiz-VULMUpC_LELLvMq1EiD3UdOvRzrIt6cs32V3mBXVr1P023sShNAqHJ02psp52DYUXeCFjKBKyuF3Jm5-NI4QZiMJEzmIjDx23U4no2D-81nj4dVW8yiGgzyxsFtTwzGIJBvVmTNW7YmNzHubYiDYbwGt-4EHqQRD5xrbXZIqiUi2qy-zMhbqemuM52vQzHS"/>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<span class="font-title-sm text-sm">ELARA JENSEN</span>
+<div class="flex items-center gap-1 text-blue-600">
+<span class="material-symbols-outlined text-sm" data-icon="cloud_done">cloud_done</span>
+<span class="font-label-caps text-[9px]">SYNCED</span>
+</div>
+</div>
+<p class="font-data-mono text-[11px] text-secondary">ID: 1029-XXXX-045 | 14:15</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Sync Action Button (Contextual for Status/Offline) -->
+<div class="fixed bottom-24 right-4 z-50">
+<button class="w-16 h-16 rounded-full text-white shadow-xl flex items-center justify-center border-4 border-white active:scale-95 transition-transform duration-150 bg-primary">
+<span class="material-symbols-outlined text-3xl" data-icon="sync">sync</span>
+</button>
+</div>
+<!-- BottomNavBar from JSON -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-2 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-lg py-1 px-3 active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined" data-icon="qr_code_scanner">qr_code_scanner</span>
+<span class="text-[10px] font-bold font-['Inter'] uppercase tracking-wider">Scan</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant py-1 px-3 hover:text-primary active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined" data-icon="assignment_ind">assignment_ind</span>
+<span class="text-[10px] font-bold font-['Inter'] uppercase tracking-wider">Details</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant py-1 px-3 hover:text-primary active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="text-[10px] font-bold font-['Inter'] uppercase tracking-wider">Logs</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant py-1 px-3 hover:text-primary active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined" data-icon="settings_input_component">settings_input_component</span>
+<span class="text-[10px] font-bold font-['Inter'] uppercase tracking-wider">Status</span>
+</div>
+</nav>
+</body></html>

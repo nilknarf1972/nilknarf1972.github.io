@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-container": "#fdfcff",
+                    "secondary-fixed-dim": "#c6c6c6",
+                    "error-container": "#ffdad6",
+                    "secondary-container": "#e2e2e2",
+                    "surface-bright": "#f8f9ff",
+                    "tertiary-fixed": "#e2e2e4",
+                    "on-surface-variant": "#41474e",
+                    "on-tertiary-fixed-variant": "#454749",
+                    "inverse-primary": "#9accf8",
+                    "surface-container-high": "#dce9ff",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-fixed-variant": "#474747",
+                    "surface-dim": "#cbdbf5",
+                    "primary-fixed-dim": "#9accf8",
+                    "on-tertiary-fixed": "#1a1c1d",
+                    "primary-fixed": "#cce5ff",
+                    "on-tertiary-container": "#fcfcfe",
+                    "secondary-fixed": "#e2e2e2",
+                    "inverse-on-surface": "#eaf1ff",
+                    "tertiary": "#5a5c5e",
+                    "surface-container": "#e5eeff",
+                    "on-surface": "#0b1c30",
+                    "on-secondary-fixed": "#1b1b1b",
+                    "on-primary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "surface-variant": "#d3e4fe",
+                    "error": "#ba1a1a",
+                    "on-background": "#0b1c30",
+                    "on-secondary-container": "#646464",
+                    "surface-container-highest": "#d3e4fe",
+                    "on-secondary": "#ffffff",
+                    "primary": "#2a6087",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-container": "#4679a2",
+                    "outline-variant": "#c1c7cf",
+                    "surface-tint": "#2d638a",
+                    "inverse-surface": "#213145",
+                    "surface-container-low": "#eff4ff",
+                    "outline": "#72787f",
+                    "surface": "#f8f9ff",
+                    "secondary": "#5e5e5e",
+                    "tertiary-fixed-dim": "#c6c6c8",
+                    "on-primary-fixed-variant": "#0a4b71",
+                    "on-primary-fixed": "#001d31",
+                    "background": "#f8f9ff",
+                    "tertiary-container": "#737576"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "xl": "48px",
+                    "sm": "8px",
+                    "md": "16px",
+                    "lg": "24px",
+                    "xs": "4px",
+                    "unit": "4px",
+                    "gutter": "16px",
+                    "container-margin": "32px"
+            },
+            "fontFamily": {
+                    "title-sm": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "label-caps": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "data-mono": ["Inter"]
+            },
+            "fontSize": {
+                    "title-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "data-mono": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background">
+<!-- TopAppBar -->
+<header class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center w-full px-6 h-16 fixed top-0 z-50">
+<div class="flex items-center gap-4"><h1 class="text-xl font-bold text-slate-900 dark:text-white font-inter">Sync &amp; Connectivity</h1></div>
+<div class="flex items-center gap-lg">
+<div class="relative hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-lg text-body-sm focus:ring-2 focus:ring-primary focus:outline-none" placeholder="Search systems..." type="text"/>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-2 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors rounded-full">
+<span class="material-symbols-outlined text-slate-500">notifications</span>
+</button>
+<button class="p-2 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors rounded-full">
+<span class="material-symbols-outlined text-slate-500">help</span>
+</button>
+<div class="h-8 w-8 rounded-full overflow-hidden border border-outline-variant">
+<img alt="Security Officer Profile" data-alt="A professional security officer portrait with a focused and authoritative expression. He is wearing a dark navy tactical uniform against a clean, softly lit corporate architectural background. The image has a cool color temperature with crisp lighting that emphasizes his professional and vigilant demeanor, aligning with a high-security modern dashboard aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFVnK7FVxaNdepEekMenqUJK3tgNXFEjYJOpyxNX0Uy2t-EQ4wcnIRmKfmMRS7z6ejhV7ybmmF_bdiNr8VmTClLZWRNpI0c9w9GFEI7L3qUqqJ1lrtaLq_ONwVgb1Pd8KgRzyJzMltkWA3Oo9_ut0NbIIEee5gJ-pM0FsVChQvVZMxSrNTG5EILbEdkuBqayXdWUr-5u6Vh-Z_UA9SDCkUl8whyHCJFP3fe4XXd_N5NnHli3UE3pOEWx0Tq9freNeJiJv9NY7znHCY"/>
+</div>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full flex flex-col z-40 bg-white dark:bg-slate-900 h-screen w-64 border-r border-slate-200 dark:border-slate-800 pt-16">
+<div class="p-lg flex flex-col gap-xs">
+<div class="flex items-center gap-md mb-lg">
+<div class="bg-primary p-2 rounded">
+<span class="material-symbols-outlined text-white" data-weight="fill" style="font-variation-settings: 'FILL' 1;">security</span>
+</div>
+<div>
+<h2 class="text-lg font-bold text-slate-900 dark:text-white font-inter">PrimoIT Tech</h2>
+<p class="text-xs font-label-caps text-slate-500">Vigilant Security</p>
+</div>
+</div>
+<nav class="flex flex-col gap-xs"><a class="flex items-center gap-md px-md py-sm text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors font-inter text-sm font-semibold rounded" href="#">
+<span class="material-symbols-outlined">qr_code_scanner</span>
+<span>Scanning Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors font-inter text-sm font-semibold rounded" href="#">
+<span class="material-symbols-outlined">person_add</span>
+<span>Visitor Pre-Reg</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors font-inter text-sm font-semibold rounded" href="#">
+<span class="material-symbols-outlined">history</span>
+<span>Access Logs</span>
+</a>
+<a class="bg-slate-100 dark:bg-slate-800 text-blue-600 dark:text-blue-400 border-l-4 border-blue-600 flex items-center gap-md px-md py-sm font-inter text-sm font-semibold rounded" href="#">
+<span class="material-symbols-outlined">sync</span>
+<span>Sync &amp; Connectivity</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors font-inter text-sm font-semibold rounded" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Admin Settings</span>
+</a></nav>
+</div>
+<div class="mt-auto p-lg border-t border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-md">
+<div class="h-10 w-10 rounded-full overflow-hidden border border-outline-variant">
+<img alt="Officer Miller" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFVnK7FVxaNdepEekMenqUJK3tgNXFEjYJOpyxNX0Uy2t-EQ4wcnIRmKfmMRS7z6ejhV7ybmmF_bdiNr8VmTClLZWRNpI0c9w9GFEI7L3qUqqJ1lrtaLq_ONwVgb1Pd8KgRzyJzMltkWA3Oo9_ut0NbIIEee5gJ-pM0FsVChQvVZMxSrNTG5EILbEdkuBqayXdWUr-5u6Vh-Z_UA9SDCkUl8whyHCJFP3fe4XXd_N5NnHli3UE3pOEWx0Tq9freNeJiJv9NY7znHCY"/>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Officer Miller</p>
+<p class="text-xs font-label-caps text-on-surface-variant">Lead Guardian</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="ml-64 pt-16 min-h-screen">
+<div class="max-w-[1440px] mx-auto p-xl">
+<!-- Header Section -->
+<div class="flex justify-between items-end mb-lg">
+<div>
+<h1 class="text-display-lg font-display-lg text-on-surface">Sync &amp; Connectivity</h1>
+<p class="text-body-md text-on-surface-variant">Manage offline data reconciliation and node integrity checks.</p>
+</div>
+<button class="bg-primary text-white px-lg h-10 flex items-center gap-md rounded font-bold hover:opacity-90 transition-all active:scale-95">
+<span class="material-symbols-outlined">sync</span>
+<span>Reconcile &amp; Sync</span>
+</button>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-lg">
+<!-- Connectivity Health Nodes (Row 1) -->
+<div class="col-span-12 grid grid-cols-1 md:grid-cols-4 gap-lg mb-sm">
+<div class="bg-white p-md border border-outline-variant rounded-lg flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<span class="text-label-caps text-on-surface-variant uppercase">Gate Alpha-1</span>
+<span class="material-symbols-outlined text-primary">wifi</span>
+</div>
+<div class="mt-lg">
+<p class="text-headline-md font-headline-md text-on-surface">98%</p>
+<p class="text-body-sm text-on-surface-variant">Stable Connection</p>
+</div>
+</div>
+<div class="bg-white p-md border border-outline-variant rounded-lg flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<span class="text-label-caps text-on-surface-variant uppercase">West Perimeter</span>
+<span class="material-symbols-outlined text-primary">wifi</span>
+</div>
+<div class="mt-lg">
+<p class="text-headline-md font-headline-md text-on-surface">100%</p>
+<p class="text-body-sm text-on-surface-variant">Stable Connection</p>
+</div>
+</div>
+<div class="bg-white p-md border border-outline-variant rounded-lg flex flex-col justify-between border-l-4 border-l-error">
+<div class="flex justify-between items-start">
+<span class="text-label-caps text-on-surface-variant uppercase">Loading Dock 4</span>
+<span class="material-symbols-outlined text-error">wifi_off</span>
+</div>
+<div class="mt-lg">
+<p class="text-headline-md font-headline-md text-error">OFFLINE</p>
+<p class="text-body-sm text-on-surface-variant">Last Sync: 12m ago</p>
+</div>
+</div>
+<div class="bg-white p-md border border-outline-variant rounded-lg flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<span class="text-label-caps text-on-surface-variant uppercase">Main Lobby</span>
+<span class="material-symbols-outlined text-primary">wifi</span>
+</div>
+<div class="mt-lg">
+<p class="text-headline-md font-headline-md text-on-surface">84%</p>
+<p class="text-body-sm text-on-surface-variant">Intermittent Signal</p>
+</div>
+</div>
+</div>
+<!-- Offline Queue Section -->
+<div class="col-span-12 lg:col-span-8 bg-white border border-outline-variant rounded-lg overflow-hidden flex flex-col">
+<div class="p-md border-b border-outline-variant flex justify-between items-center bg-surface-container-lowest">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-surface">list_alt</span>
+<h3 class="text-title-sm font-title-sm text-on-surface">Offline Queue</h3>
+</div>
+<span class="bg-error-container text-on-error-container px-sm py-xs text-label-caps rounded">42 Pending Records</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container-low border-b border-outline-variant">
+<tr>
+<th class="px-md py-sm text-label-caps text-on-surface-variant">Timestamp</th>
+<th class="px-md py-sm text-label-caps text-on-surface-variant">Entity ID / Name</th>
+<th class="px-md py-sm text-label-caps text-on-surface-variant">Action</th>
+<th class="px-md py-sm text-label-caps text-on-surface-variant">Source Node</th>
+<th class="px-md py-sm text-label-caps text-on-surface-variant text-right">Conflict Risk</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-md py-md text-data-mono">14:22:15</td>
+<td class="px-md py-md">
+<div class="flex items-center gap-md">
+<div class="h-10 w-10 bg-surface-container-high rounded flex items-center justify-center overflow-hidden border border-outline-variant">
+<img alt="ID Scan" data-alt="A high-resolution facial identification photograph of a young man with a neutral expression, captured in a clinical, brightly lit environment. The image is cropped in a professional security square format with subtle blue-toned lighting overlays to suggest a digital scanning process in progress, matching the authoritative corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAi9ehK3rWyA5zDCwmiZD8fkR0p_x-6SpdqR0xICbkI-MH8xQwgsz8mYOF_Rr6IDcvP8yz8GU2e6LS94cRLriAPTQB_-XGP6d6D1X7r8ZvUFrCd7CvNf5wgBVCDvhY1SwVrsnCbO_FJB85NbxfoqfmlSq2xfjymvbqo7Zsi_cDZa0csdhBqFQpUU_4m0oLIs1ykELVZODXf44lTdMyPoo2ep7AzDyFOWtNwP2wO8QTCZYeU1wSjdoFkaQuaMCJovx1KY-_OnJWEgaF5"/>
+</div>
+<div>
+<p class="text-body-md font-bold text-on-surface">Marcus Thorne</p>
+<p class="text-body-sm text-on-surface-variant">UID: 9823-XP</p>
+</div>
+</div>
+</td>
+<td class="px-md py-md">
+<span class="bg-on-secondary-container text-on-primary-container px-sm py-xs text-[10px] font-bold rounded uppercase">Check-In</span>
+</td>
+<td class="px-md py-md text-body-sm text-on-surface-variant">Gate Alpha-1</td>
+<td class="px-md py-md text-right">
+<span class="text-on-surface-variant text-label-caps">Low</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-md py-md text-data-mono">14:28:42</td>
+<td class="px-md py-md">
+<div class="flex items-center gap-md">
+<div class="h-10 w-10 bg-surface-container-high rounded flex items-center justify-center overflow-hidden border border-outline-variant">
+<img alt="ID Scan" data-alt="A clear, professional identification photo of a woman in a business casual environment. Her expression is focused and calm. The portrait has balanced studio lighting that eliminates harsh shadows, emphasizing clarity and verification accuracy for a security database system within a modern, light-themed user interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAntvtnsF45oHp1liHIJixnyBx9uINR0kuB5keBHdqcI7rttigK7ZcfEop2hJaJndUNjmGcG5PsnP66zQuVIJO1uZkDY3iRD04KNxHvUbuq5xahRq-SoEWi26cKpJhWumJUerUX9jzWHqelbJ0MJvU-7E5Nrm3_zuQNX8hq1vFmL6QSNdlG55KmwmpeVL_11s2XA74H0K_J55PdpjRNIM_L01TxoHt4tS8Ews9z8LcDPSzU-8LLV5O29BHLxZjgyzw1bDZHfFHG82Li"/>
+</div>
+<div>
+<p class="text-body-md font-bold text-on-surface">Elena Rodriguez</p>
+<p class="text-body-sm text-on-surface-variant">UID: 4410-ST</p>
+</div>
+</div>
+</td>
+<td class="px-md py-md">
+<span class="bg-primary text-white px-sm py-xs text-[10px] font-bold rounded uppercase">Check-Out</span>
+</td>
+<td class="px-md py-md text-body-sm text-on-surface-variant">Loading Dock 4</td>
+<td class="px-md py-md text-right">
+<span class="text-error font-bold text-label-caps">High</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-md py-md text-data-mono">14:41:09</td>
+<td class="px-md py-md">
+<div class="flex items-center gap-md">
+<div class="h-10 w-10 bg-surface-container-high rounded flex items-center justify-center overflow-hidden border border-outline-variant">
+<img alt="ID Scan" data-alt="A professional security identification headshot of an adult male. He is looking directly at the camera with a neutral expression. The image is set against a pale blue background with high-contrast, sharp detailing of facial features, designed for biometric verification software in a sterile, modern office setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnxswFYYUvFu7m1_kV7Pn4EINTanv1a1IqzxnNb_OFpxVgezjRBBm7JrQQMuhZTvmGqVJ5zhf7JneePbKaBIDrw0dwjh5aROWX-h57_RsEif78d3dYowDi_M0Ok6PXVdkwtrNUogDTmKWUMtHn0JvpEzduMo6nenHms4FE9gk6nrJ265MYQ4BWooioBuY232RVX0xIxSS2J0cSnAS6OWJpR-ncmTMpKcr0Mm04IJiJhAO6KZ5FZLOcKvkYdZEkCyxdpD96MH_Qr5eB"/>
+</div>
+<div>
+<p class="text-body-md font-bold text-on-surface">Jameson Wu</p>
+<p class="text-body-sm text-on-surface-variant">UID: 2199-QL</p>
+</div>
+</div>
+</td>
+<td class="px-md py-md">
+<span class="bg-on-secondary-container text-on-primary-container px-sm py-xs text-[10px] font-bold rounded uppercase">Check-In</span>
+</td>
+<td class="px-md py-md text-body-sm text-on-surface-variant">Gate Alpha-1</td>
+<td class="px-md py-md text-right">
+<span class="text-on-surface-variant text-label-caps">Low</span>
+</td>
+</tr>
+<!-- More items omitted for brevity but UI is structured to scroll -->
+</tbody>
+</table>
+</div>
+<div class="p-md bg-surface-container-low border-t border-outline-variant mt-auto flex justify-center">
+<button class="text-primary font-bold text-label-caps hover:underline">View All 42 Offline Scans</button>
+</div>
+</div>
+<!-- Sync History & conflict Resolution -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-lg">
+<!-- Conflict Alert Card -->
+<div class="bg-error-container p-md rounded-lg border-2 border-error/20">
+<div class="flex items-start gap-md">
+<span class="material-symbols-outlined text-error mt-xs" style="font-variation-settings: 'FILL' 1;">warning</span>
+<div>
+<h4 class="text-title-sm font-bold text-on-error-container">Sync Conflicts (3)</h4>
+<p class="text-body-sm text-on-error-container/80 mb-md">Mismatched timestamps found between local and server logs for 3 entries.</p>
+<button class="w-full py-sm bg-error text-white font-bold rounded hover:bg-error/90 transition-colors">Review Conflicts</button>
+</div>
+</div>
+</div>
+<!-- Sync History Log -->
+<div class="bg-white border border-outline-variant rounded-lg p-md flex-1">
+<div class="flex items-center justify-between mb-lg">
+<h3 class="text-title-sm font-title-sm text-on-surface">Sync History</h3>
+<button class="text-on-surface-variant hover:text-primary">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+<div class="space-y-lg">
+<div class="relative pl-lg before:content-[''] before:absolute before:left-0 before:top-2 before:w-2 before:h-2 before:bg-primary before:rounded-full before:z-10 after:content-[''] after:absolute after:left-[3px] after:top-4 after:bottom-[-20px] after:w-[2px] after:bg-outline-variant">
+<div class="flex justify-between items-start mb-xs">
+<p class="text-body-md font-bold text-on-surface">Sync Completed</p>
+<span class="text-data-mono text-xs text-on-surface-variant">Today, 11:05</span>
+</div>
+<p class="text-body-sm text-on-surface-variant">154 records reconciled successfully. No errors detected.</p>
+</div>
+<div class="relative pl-lg before:content-[''] before:absolute before:left-0 before:top-2 before:w-2 before:h-2 before:bg-primary before:rounded-full before:z-10 after:content-[''] after:absolute after:left-[3px] after:top-4 after:bottom-[-20px] after:w-[2px] after:bg-outline-variant">
+<div class="flex justify-between items-start mb-xs">
+<p class="text-body-md font-bold text-on-surface">Sync Completed</p>
+<span class="text-data-mono text-xs text-on-surface-variant">Yesterday, 18:40</span>
+</div>
+<p class="text-body-sm text-on-surface-variant">210 records reconciled. 1 conflict resolved manually by 'Officer Smith'.</p>
+</div>
+<div class="relative pl-lg before:content-[''] before:absolute before:left-0 before:top-2 before:w-2 before:h-2 before:bg-error before:rounded-full before:z-10">
+<div class="flex justify-between items-start mb-xs">
+<p class="text-body-md font-bold text-on-surface">Sync Failed</p>
+<span class="text-data-mono text-xs text-on-surface-variant">Yesterday, 14:12</span>
+</div>
+<p class="text-body-sm text-on-surface-variant">Connection timeout at West Perimeter Node. Data integrity verified via local backup.</p>
+</div>
+</div>
+<button class="w-full mt-xl py-sm border border-outline text-on-surface font-bold rounded hover:bg-surface-container-low transition-colors">Download Detailed Log</button>
+</div>
+</div>
+</div>
+<!-- Full-Width System Info Strip -->
+<div class="mt-xl p-lg bg-inverse-surface text-inverse-on-surface rounded-lg flex flex-wrap items-center justify-between gap-lg">
+<div class="flex items-center gap-xl">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary-fixed-dim">database</span>
+<div>
+<p class="text-label-caps opacity-70">Local Database</p>
+<p class="font-bold">4.2 GB / 10 GB</p>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary-fixed-dim">lan</span>
+<div>
+<p class="text-label-caps opacity-70">Uptime</p>
+<p class="font-bold">99.98%</p>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary-fixed-dim">verified_user</span>
+<div>
+<p class="text-label-caps opacity-70">Integrity Protocol</p>
+<p class="font-bold">SHA-256 ACTIVE</p>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="text-right">
+<p class="text-xs font-label-caps opacity-70">Last Verified Integrity Check</p>
+<p class="text-sm font-bold">14:00 PM (8m ago)</p>
+</div>
+<div class="h-10 w-10 bg-primary/20 rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-primary-fixed-dim">check_circle</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

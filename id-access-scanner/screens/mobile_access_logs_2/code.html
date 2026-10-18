@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-fixed-dim": "#9accf8",
+                      "on-secondary": "#ffffff",
+                      "primary": "#2a6087",
+                      "on-primary-fixed-variant": "#0a4b71",
+                      "on-primary-fixed": "#001d31",
+                      "on-error": "#ffffff",
+                      "surface-tint": "#2d638a",
+                      "primary-fixed": "#cce5ff",
+                      "surface": "#f8f9ff",
+                      "secondary-container": "#e2e2e2",
+                      "on-primary": "#ffffff",
+                      "inverse-surface": "#213145",
+                      "on-tertiary": "#ffffff",
+                      "secondary": "#5e5e5e",
+                      "on-surface-variant": "#41474e",
+                      "error": "#ba1a1a",
+                      "primary-container": "#4679a2",
+                      "on-surface": "#0b1c30",
+                      "outline": "#72787f",
+                      "on-primary-container": "#fdfcff",
+                      "inverse-primary": "#9accf8",
+                      "on-secondary-fixed-variant": "#474747",
+                      "on-tertiary-container": "#fcfcfe",
+                      "tertiary-container": "#737576",
+                      "surface-container-low": "#eff4ff",
+                      "on-tertiary-fixed-variant": "#454749",
+                      "surface-container-lowest": "#ffffff",
+                      "inverse-on-surface": "#eaf1ff",
+                      "secondary-fixed-dim": "#c6c6c6",
+                      "on-error-container": "#93000a",
+                      "surface-variant": "#d3e4fe",
+                      "surface-container-high": "#dce9ff",
+                      "on-background": "#0b1c30",
+                      "surface-container-highest": "#d3e4fe",
+                      "tertiary-fixed-dim": "#c6c6c8",
+                      "surface-bright": "#f8f9ff",
+                      "on-secondary-fixed": "#1b1b1b",
+                      "secondary-fixed": "#e2e2e2",
+                      "on-tertiary-fixed": "#1a1c1d",
+                      "on-secondary-container": "#646464",
+                      "background": "#f8f9ff",
+                      "error-container": "#ffdad6",
+                      "tertiary-fixed": "#e2e2e4",
+                      "surface-container": "#e5eeff",
+                      "outline-variant": "#c1c7cf",
+                      "surface-dim": "#cbdbf5",
+                      "tertiary": "#5a5c5e"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "sm": "8px",
+                      "lg": "24px",
+                      "container-margin": "32px",
+                      "xl": "48px",
+                      "xs": "4px",
+                      "unit": "4px",
+                      "md": "16px",
+                      "gutter": "16px"
+              },
+              "fontFamily": {
+                      "title-sm": ["Inter"],
+                      "body-sm": ["Inter"],
+                      "label-caps": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "body-md": ["Inter"],
+                      "display-lg": ["Inter"],
+                      "data-mono": ["Inter"]
+              },
+              "fontSize": {
+                      "title-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                      "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "data-mono": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #f8f9ff;
+            font-family: 'Inter', sans-serif;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- Top App Bar -->
+<header class="bg-surface-container-lowest flex justify-between items-center px-4 py-3 w-full sticky top-0 z-50 border-b border-outline-variant">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="shield">shield</span>
+<h1 class="text-lg font-black uppercase text-on-surface tracking-tight">PrimoIT Tech</h1>
+</div>
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container border border-outline-variant">
+<img alt="Guard Profile" class="w-full h-full object-cover" data-alt="A professional security officer portrait with a neutral expression, photographed in a high-key studio environment. The image uses a clean, corporate style with a minimalist light gray background. The lighting is crisp and clear, highlighting the professional attire in shades of deep navy and charcoal, perfectly aligning with a modern digital security application aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuByIosCTkDwZiXDbZIa8RpwbNfvVSXlnjbDf2MnU8zyajYmZ1g2m6zWe2lydd_KxHg_H5bsX98F6D4ksB8Fr1S0kaCAUjREpGI5dXux3dd5Ps7tonjvCvB8nauue-WFsbb5poJwJ708RJHs4Iyen6U31Mmtk92-5jwKgK3AIuTr8ajbBoB1lhv71C7UI6RRgS8ewicE0E1jIGG1MHL0C55Hw9sbQh6HmOlQxX7rn82ih1tK5Oj4KW2qpg44Iu4OT52k27QH9BJULgl0"/>
+</div>
+</header>
+<main class="pb-24 pt-4 px-4 max-w-md mx-auto">
+<!-- Summary Cards Section -->
+<section class="grid grid-cols-2 gap-md mb-lg">
+<div class="bg-surface-container-lowest border border-outline-variant p-md flex flex-col gap-xs rounded-lg">
+<span class="font-label-caps text-label-caps text-on-surface-variant">TOTAL SCANS</span>
+<div class="flex items-baseline gap-xs">
+<span class="font-display-lg text-display-lg text-primary">1,284</span>
+<span class="font-label-caps text-[10px] text-primary bg-primary-fixed px-1 rounded">+12%</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-md flex flex-col gap-xs rounded-lg">
+<span class="font-label-caps text-label-caps text-on-surface-variant">DENIALS</span>
+<div class="flex items-baseline gap-xs">
+<span class="font-display-lg text-display-lg text-error">42</span>
+<span class="font-label-caps text-[10px] text-error bg-error-container px-1 rounded">FLAG</span>
+</div>
+</div>
+</section>
+<!-- Search and Filters -->
+<section class="flex flex-col gap-sm mb-md">
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-outline" data-icon="search">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-lg font-body-sm text-body-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="Search by name or ID..." type="text"/>
+</div>
+<div class="flex gap-xs overflow-x-auto hide-scrollbar pb-1">
+<button class="flex items-center gap-1 bg-primary text-on-primary px-3 py-1.5 rounded-full font-label-caps text-[10px]">
+                    TODAY
+                    <span class="material-symbols-outlined text-[14px]" data-icon="close">close</span>
+</button>
+<button class="flex items-center gap-1 bg-secondary-container text-on-secondary-container px-3 py-1.5 rounded-full font-label-caps text-[10px] border border-outline-variant">
+                    RESULT TYPE
+                    <span class="material-symbols-outlined text-[14px]" data-icon="expand_more">expand_more</span>
+</button>
+<button class="flex items-center gap-1 bg-secondary-container text-on-secondary-container px-3 py-1.5 rounded-full font-label-caps text-[10px] border border-outline-variant">
+                    SECURITY LEVEL
+                    <span class="material-symbols-outlined text-[14px]" data-icon="expand_more">expand_more</span>
+</button>
+</div>
+</section>
+<!-- High-Density Logs List -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden">
+<div class="px-md py-sm bg-surface-container-low border-b border-outline-variant">
+<span class="font-label-caps text-label-caps text-on-surface-variant">RECENT SCAN EVENTS</span>
+</div>
+<ul class="divide-y divide-outline-variant">
+<!-- Log Entry 1: Denied -->
+<li class="p-md flex items-center justify-between hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-md">
+<div class="relative w-10 h-10 rounded-full border border-outline-variant overflow-hidden">
+<img alt="Scan Subject" class="w-full h-full object-cover" data-alt="A focused headshot of a male with a serious expression, presented in a crisp architectural setting. The lighting is directional and sharp, creating high contrast and deep shadows that evoke a professional security atmosphere. The color palette is dominated by muted grays and deep blues, fitting a corporate digital security interface's clean and rigid visual language." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1HyD1j7jh_ih9aCZpCL_OBxQ8voT5mAihp65LUkFb6KXQCg1QXndLBrmEtsxpEn1wPQFbPVHKokiaUBYRbwOZ6AHHftKJSJ0IFmkQy4pqgFWG1nqEeklBhfUD-tTaJkAMojYnEqmgfn0Fx-MdOYBJEzR4Rdkj-oOt4K6ul2ZUt6KmHKQn8ysthSJWc3eVuQpmIqm9v-QfBtRo-H1B4Mvf5cPOtZUYfp01F3ZE6_nU8RrndpZzaKPApXnudrbM7SBvcL0hQmLZ6XW9"/>
+</div>
+<div class="flex flex-col">
+<span class="font-title-sm text-body-md text-on-surface leading-tight">Marcus Thorne</span>
+<span class="font-data-mono text-[12px] text-outline">ID: VG-9921 • 14:22:10</span>
+</div>
+</div>
+<div class="flex flex-col items-end gap-1">
+<span class="bg-error-container text-on-error-container px-2 py-0.5 rounded-sm font-label-caps text-[10px] tracking-widest">DENIED</span>
+<span class="text-[10px] text-error font-medium uppercase">REASON: EXPIRED</span>
+</div>
+</li>
+<!-- Log Entry 2: Permitted -->
+<li class="p-md flex items-center justify-between hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-md">
+<div class="relative w-10 h-10 rounded-full border border-outline-variant overflow-hidden">
+<img alt="Scan Subject" class="w-full h-full object-cover" data-alt="A brightly lit portrait of a professional woman with a welcoming yet formal appearance. The background is a minimalist corporate office setting with soft-focus glass panels. The aesthetic is clean, high-contrast, and modern, using a light-mode palette of pristine whites and soft grays to denote an authorized and verified security status." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCojHUwHikWwIx2jVTD-V5TOHcO_Vby7RiSrOlB0QxocAEKF_1q8zMInaEFbCEI-EZelrUVCVR2RlGjy4nB9QBitO9uhtMpC2fGmQLP04odSyzUokKc124XMWVqPguUW1YA0oWE3mM6fmrfexUOD8uyxxW5SyCpMT-_Spw_YT1Vm9twDRW3iAl90ocrhDgqkCdm5ZQnXRRQ5ZnO4wcYf9wCzlcdwthhE67BptZIckCBLZ613gJfb4h7J1oyjMBLQtsWZrXG142Mf_wY"/>
+</div>
+<div class="flex flex-col">
+<span class="font-title-sm text-body-md text-on-surface leading-tight">Elena Vance</span>
+<span class="font-data-mono text-[12px] text-outline">ID: VG-4820 • 14:15:45</span>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="bg-primary-container text-on-primary-container px-2 py-0.5 rounded-sm font-label-caps text-[10px] tracking-widest">PERMIT</span>
+<span class="text-[10px] text-on-surface-variant font-medium uppercase mt-1">LVL 4 CLEARANCE</span>
+</div>
+</li>
+<!-- Log Entry 3: Flagged -->
+<li class="p-md flex items-center justify-between hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-md">
+<div class="relative w-10 h-10 rounded-full border border-outline-variant overflow-hidden">
+<img alt="Scan Subject" class="w-full h-full object-cover" data-alt="A portrait of a man looking off-camera with a neutral, observant expression. The scene is illuminated by cool, low-key lighting typical of an advanced technological facility. The overall style is professional and precise, utilizing a palette of deep slate and industrial blue to maintain a sense of high-stakes security monitoring and vigilance." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOKqyxRTMW3ejz2Msa0y3tnsaR649bh3uK_H0I7fXI8uux6h6nrTkhtFkn-sDvBvQrcjVqRNmhB4RgcRrHaZvKgyVSUd-7HG4DsHK3hgaT9rPPyaiBFwQ1TyBX06aWNOUgspYyLjtMzSIYvJPXE_v4DY0Mru7QGSuMpf64zdSu7rMrvftvlv7ZO7txKG3uSvy6vjq0qwKmcA3Usd66EXh0-b4JNR5pEx-6QCSUjuSEgWYRGxUBIhC2N-Qd9gPrZObkQYy1R5OgBESJ"/>
+</div>
+<div class="flex flex-col">
+<span class="font-title-sm text-body-md text-on-surface leading-tight">Julian Reed</span>
+<span class="font-data-mono text-[12px] text-outline">ID: VG-1102 • 13:58:22</span>
+</div>
+</div>
+<div class="flex flex-col items-end gap-1">
+<span class="bg-secondary text-on-secondary px-2 py-0.5 rounded-sm font-label-caps text-[10px] tracking-widest">FLAGGED</span>
+<span class="text-[10px] text-on-surface-variant font-medium uppercase">GUEST PASS</span>
+</div>
+</li>
+<!-- Log Entry 4: Permitted -->
+<li class="p-md flex items-center justify-between hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-md">
+<div class="relative w-10 h-10 rounded-full border border-outline-variant overflow-hidden">
+<img alt="Scan Subject" class="w-full h-full object-cover" data-alt="A sharp, clear portrait of a professional corporate worker in a well-lit office foyer. The environment is minimalist and bright, emphasizing a high-contrast utility style. The color scheme is professional, featuring whites, light grays, and corporate blues, ensuring the subject appears clearly identified and authorized for secure facility access." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQTQZUlR62zvf9Bwk64OK1_O_886gMF6nMSHTX9ed9aGDQkGrpHOf3Shqi5yibeKnHz8-dmbhpVlk0dDj3L8zrTU-fca890J9kZt-dncenpbf2tQ2OIHatc4SMQ8eEDHJHy_0R3i2uHll0CzJceQgz2ofkXX_zsry1k0aEZkO0rMYWFfkE_W1rRwJf4I8CQWJ74UVsB9LLdp5b7_0dRSWm0IjSWMLSa0SSS9fZk2wZEephxI8s67SL82o_547cTwNbVYJ2-nopeVg4"/>
+</div>
+<div class="flex flex-col">
+<span class="font-title-sm text-body-md text-on-surface leading-tight">Sarah Chen</span>
+<span class="font-data-mono text-[12px] text-outline">ID: VG-8839 • 13:45:10</span>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="bg-primary-container text-on-primary-container px-2 py-0.5 rounded-sm font-label-caps text-[10px] tracking-widest">PERMIT</span>
+<span class="text-[10px] text-on-surface-variant font-medium uppercase mt-1">EXECUTIVE ACCESS</span>
+</div>
+</li>
+<!-- Log Entry 5: Denied -->
+<li class="p-md flex items-center justify-between hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-md">
+<div class="relative w-10 h-10 rounded-full border border-outline-variant overflow-hidden">
+<img alt="Scan Subject" class="w-full h-full object-cover" data-alt="A portrait of a male subject in formal wear, lit with strong, high-contrast side lighting that creates a dramatic and authoritative mood. The background is a simple, dark textured wall that emphasizes the subject. The visual style is crisp and meticulously detailed, aligning with a high-security professional dashboard's focus on clear identification and status monitoring." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBelW4QfIKiCCJUrCh24T7lV8e_k9JUlL3t7RFgWg1FQVMvygKSeptzZtBecSt58rJE5LruahUUnpx6JqCsWk4jWlyzhe7-E1FZjQVZgQj7adI4aA-4F4G3rFscQYXnbQH8M1-9hhw52DBffuKalirkxYvpNGAobwe14-aZJYW6DaBUpnA3tMAZ3X7fxWDziHoEWLK00BdLMhDagxK6kToc9T9p4_ZVfrIB3_-gAHeTRjIHqnozCTOnJxHjsAyuiwUQwtTFoTKhXQaB"/>
+</div>
+<div class="flex flex-col">
+<span class="font-title-sm text-body-md text-on-surface leading-tight">David Miller</span>
+<span class="font-data-mono text-[12px] text-outline">ID: VG-2031 • 13:20:05</span>
+</div>
+</div>
+<div class="flex flex-col items-end gap-1">
+<span class="bg-error-container text-on-error-container px-2 py-0.5 rounded-sm font-label-caps text-[10px] tracking-widest">DENIED</span>
+<span class="text-[10px] text-error font-medium uppercase">REASON: BLACKLIST</span>
+</div>
+</li>
+</ul>
+</div>
+</main>
+<!-- Bottom Nav Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-2 bg-surface-container-lowest border-t border-outline-variant shadow-sm">
+<div class="flex flex-col items-center justify-center text-secondary py-1 px-3 hover:text-primary active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined text-[24px]">qr_code_scanner</span>
+<span class="font-label-caps text-[10px] uppercase tracking-wider">Scan</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary py-1 px-3 hover:text-primary active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined text-[24px]">assignment_ind</span>
+<span class="font-label-caps text-[10px] uppercase tracking-wider">Details</span>
+</div>
+<!-- Active Tab: Logs -->
+<div class="flex flex-col items-center justify-center bg-primary-fixed text-on-primary-fixed rounded-lg py-1 px-3 active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">history</span>
+<span class="font-label-caps text-[10px] uppercase tracking-wider">Logs</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary py-1 px-3 hover:text-primary active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined text-[24px]">settings_input_component</span>
+<span class="font-label-caps text-[10px] uppercase tracking-wider">Status</span>
+</div>
+</nav>
+</body></html>

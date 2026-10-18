@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PrimoIT Tech | Security Clearance</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed": "#1a1c1d",
+                    "on-primary-container": "#fdfcff",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-container": "#e2e2e2",
+                    "on-secondary": "#ffffff",
+                    "surface-container-highest": "#d3e4fe",
+                    "on-tertiary-fixed-variant": "#454749",
+                    "on-tertiary-container": "#fcfcfe",
+                    "secondary-fixed-dim": "#c6c6c6",
+                    "on-primary-fixed": "#001d31",
+                    "on-primary": "#ffffff",
+                    "outline-variant": "#c1c7cf",
+                    "inverse-surface": "#213145",
+                    "surface-container-high": "#dce9ff",
+                    "surface-variant": "#d3e4fe",
+                    "tertiary-container": "#737576",
+                    "tertiary": "#5a5c5e",
+                    "primary-fixed-dim": "#9accf8",
+                    "on-surface-variant": "#41474e",
+                    "tertiary-fixed-dim": "#c6c6c8",
+                    "outline": "#72787f",
+                    "on-tertiary": "#ffffff",
+                    "surface-tint": "#2d638a",
+                    "on-secondary-fixed": "#1b1b1b",
+                    "surface-dim": "#cbdbf5",
+                    "on-secondary-fixed-variant": "#474747",
+                    "surface-container-low": "#eff4ff",
+                    "surface-container": "#e5eeff",
+                    "on-primary-fixed-variant": "#0a4b71",
+                    "inverse-primary": "#9accf8",
+                    "primary-container": "#4679a2",
+                    "background": "#f8f9ff",
+                    "inverse-on-surface": "#eaf1ff",
+                    "on-surface": "#0b1c30",
+                    "primary": "#2a6087",
+                    "primary-fixed": "#cce5ff",
+                    "secondary-fixed": "#e2e2e2",
+                    "on-background": "#0b1c30",
+                    "secondary": "#5e5e5e",
+                    "on-error-container": "#93000a",
+                    "surface-bright": "#f8f9ff",
+                    "surface": "#f8f9ff",
+                    "error-container": "#ffdad6",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed": "#e2e2e4",
+                    "on-secondary-container": "#646464"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "lg": "24px",
+                    "gutter": "16px",
+                    "xs": "4px",
+                    "xl": "48px",
+                    "unit": "4px",
+                    "sm": "8px",
+                    "md": "16px",
+                    "container-margin": "32px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "title-sm": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "data-mono": ["Inter"],
+                    "label-caps": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "title-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "data-mono": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background font-body-md text-on-background overflow-x-hidden">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full flex flex-col z-40 bg-white dark:bg-slate-900 h-screen w-64 border-r border-slate-200 dark:border-slate-800 flat no shadows">
+<div class="p-6 flex items-center gap-3">
+<div class="w-10 h-10 bg-primary flex items-center justify-center rounded">
+<span class="material-symbols-outlined text-white" data-icon="shield">shield</span>
+</div>
+<div>
+<h1 class="text-lg font-bold text-slate-900 dark:text-white font-inter">PrimoIT Tech</h1>
+<p class="text-xs text-slate-500 font-inter font-semibold">Vigilant Security</p>
+</div>
+</div>
+<nav class="flex-1 mt-4 px-3 space-y-1">
+<a class="flex items-center gap-3 px-3 py-3 font-inter text-sm font-semibold bg-slate-100 dark:bg-slate-800 text-blue-600 dark:text-blue-400 border-l-4 border-blue-600" href="#">
+<span class="material-symbols-outlined" data-icon="qr_code_scanner">qr_code_scanner</span>
+                Scanning Dashboard
+            </a>
+<a class="flex items-center gap-3 px-3 py-3 font-inter text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+<span class="material-symbols-outlined" data-icon="person_add">person_add</span>
+                Visitor Pre-Reg
+            </a>
+<a class="flex items-center gap-3 px-3 py-3 font-inter text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+                Access Logs
+            </a>
+<a class="flex items-center gap-3 px-3 py-3 font-inter text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+<span class="material-symbols-outlined" data-icon="settings_accessibility">settings_accessibility</span>
+                Admin Settings
+            </a>
+</nav>
+<div class="p-6 mt-auto border-t border-slate-100 dark:border-slate-800">
+<div class="flex items-center gap-3">
+<img alt="Security Officer Profile" class="w-8 h-8 rounded-full object-cover" data-alt="A professional security officer portrait in a modern, well-lit corporate setting. The lighting is crisp and cool-toned, reflecting a high-security environment with a subtle blue and white color palette. The officer is wearing a clean, dark uniform, projecting authority and alertness. High resolution digital photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA636VistnjLaGnDOVXT6U6woqEY95cq_tufaLNI4tlTrJPDcyt-9Ll4nQ2Cexiw9dEjx6vrslYjoP1Ryqd7LfKDU5zjGJ_n5NJpBqFckRr-4EfPElhtrpaYc4fDxFqyQLQ1IJFquQWAvAFsq_jO6v0kUQ3OziAAL7R539XcAB7AddZEPEWk8ML9xwlmRxfFWJevyZgBGBpAf4_XEt_pKQKebtcOr4SmrCvyyneD3-dMOsZzDgnlF44DduoKGwnjgw4rq8PQ9Yin0rE"/>
+<div>
+<p class="text-xs font-bold text-on-surface">Officer Marcus</p>
+<p class="text-[10px] text-slate-500 uppercase">Sector 4-B</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="pl-64 min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center w-full px-6 h-16 sticky top-0 z-30">
+<div class="flex items-center gap-4">
+<h2 class="font-inter uppercase tracking-wider font-bold text-xl font-black text-slate-900 dark:text-white">Verification Center</h2>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 material-symbols-outlined" data-icon="search">search</span>
+<input class="bg-slate-50 dark:bg-slate-800 border-none rounded-lg pl-10 pr-4 py-1.5 text-sm w-64 focus:ring-2 focus:ring-primary/20" placeholder="Search logs..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-slate-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-slate-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Content Canvas -->
+<section class="p-lg flex-1">
+<div class="max-w-[1440px] mx-auto grid grid-cols-12 gap-lg">
+<!-- Verification Status Header (Full Width Row) -->
+<div class="col-span-12">
+<div class="bg-white border border-outline-variant p-md flex items-center justify-between rounded-lg">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-green-600 text-3xl" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+<div>
+<h3 class="font-headline-md text-on-surface">Active Scan Detected</h3>
+<p class="text-body-sm text-slate-500">Document matched against central visitor registry</p>
+</div>
+</div>
+<div class="bg-green-100 text-green-800 px-4 py-2 rounded-full flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-green-600 animate-pulse"></span>
+<span class="font-label-caps uppercase">Badge Valid</span>
+</div>
+</div>
+</div>
+<!-- Left Column: Visual Verification -->
+<div class="col-span-12 lg:col-span-7 flex flex-col gap-gutter">
+<!-- ID Comparison Module -->
+<div class="bg-white border border-outline-variant rounded-lg overflow-hidden flex flex-col">
+<div class="p-md border-b border-outline-variant flex justify-between items-center bg-slate-50">
+<span class="font-label-caps uppercase text-slate-500">Visual Comparison Analysis</span>
+<span class="text-[11px] font-bold text-primary px-2 py-0.5 border border-primary/20 rounded">98.4% Match Score</span>
+</div>
+<div class="grid grid-cols-2 divide-x divide-outline-variant">
+<!-- Live Capture -->
+<div class="p-md space-y-md">
+<span class="font-label-caps text-xs text-slate-400">Live Camera Feed (Station 04)</span>
+<div class="relative aspect-[4/5] bg-slate-100 overflow-hidden border border-black/5 rounded">
+<img alt="Live Profile Photo" class="w-full h-full object-cover grayscale-[20%] brightness-[1.05]" data-alt="A sharp, high-resolution portrait of a male professional captured in a bright corporate entryway. The lighting is direct and surgical, typical of a high-end security identification camera. The background is a slightly blurred architectural glass and steel structure. The subject is looking directly into the lens with a neutral expression. Modern digital surveillance aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJK-BuT0_B5Nuv4VGtIn96p2hlu8i9IqYniEGOqw6b4-4E09WMMmn5prwEnY4PpRtRmGpjA492otjg99epa8NyZ-9w2-FJ1E9wSuFLeH82TGSG7x4qoQ4X7NBVZxqAZpY91DJKKOk7NUkCRJ8X0RcpKKu0sy9Mejm5er6gZ2qjCXyjszYCEjtetOwxL31ol1LdBndFCuML7iMFxKQ0Y8ywC6-GIEP0Os-OCyWGlISdY7zjofoKWENmKLtZTkhZFdqkxJ5vvCuZnas5"/>
+<div class="absolute inset-0 border-[2px] border-primary/30 pointer-events-none"></div>
+<div class="absolute bottom-2 left-2 bg-black/60 text-white text-[10px] px-2 py-1 backdrop-blur-md">LIVE RECOGNITION ACTIVE</div>
+</div>
+</div>
+<!-- Document Scan -->
+<div class="p-md space-y-md">
+<span class="font-label-caps text-xs text-slate-400">Government ID Scan (Original)</span>
+<div class="relative aspect-[4/5] bg-slate-100 overflow-hidden border border-black/5 rounded group cursor-zoom-in">
+<img alt="ID Document Scan" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A clean, flat-lay scan of a professional identification card. The card features a clear portrait photo, holographic security elements that catch the light, and high-contrast typography. The image is crisp and detailed, showcasing the micro-printing and document textures. The overall mood is sterile and clinical, emphasizing forensic accuracy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHtYN2JWEtEHpYjCXdL4ou4jjw1Wf-Irds1eGKn7UhDDWnq07FZgj2jOO_iIoW55ePamUUhoKK_3VFT54_BDReqFV7irhAhysn7bGIU8MYL7jOFW3oCeaagKibajhkxdX45dztB-KQXZ4VOUzuR7OM5_hEO0IuScQuaQ5e9uad11Da8rM3TAPmW9ygIxvXOMjNrgFgojOUtKQZ5Xxymr8SkPZihgoPs80Vrkg83bFlBHFEuRvE1rnWaB_WvS6jtYSs9ZvcoUTl9n27"/>
+<div class="absolute inset-0 border-inner border-black/10 pointer-events-none"></div>
+<div class="absolute bottom-2 left-2 bg-slate-700/80 text-white text-[10px] px-2 py-1 backdrop-blur-md">ARCHIVE DATA</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Security Notes -->
+<div class="bg-white border border-outline-variant p-md rounded-lg">
+<h4 class="font-label-caps text-slate-400 mb-sm">Access Observations</h4>
+<div class="space-y-sm">
+<div class="flex gap-sm p-sm bg-surface-container-low rounded">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="info">info</span>
+<p class="text-body-sm">Visitor is carrying equipment case (ID: EQ-992). Verified by pre-reg notes.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Visitor Data & Actions -->
+<div class="col-span-12 lg:col-span-5 flex flex-col gap-gutter">
+<!-- Visitor Details Card -->
+<div class="bg-white border border-outline-variant rounded-lg overflow-hidden">
+<div class="bg-primary px-md py-sm">
+<h3 class="text-white font-title-sm">Visitor Information</h3>
+</div>
+<div class="p-md space-y-lg">
+<div class="grid grid-cols-1 gap-md">
+<div>
+<label class="font-label-caps text-slate-400 block mb-xs">Full Name</label>
+<p class="font-headline-md text-on-surface">Alexander Vance Sterling</p>
+</div>
+<div class="grid grid-cols-2 gap-md">
+<div>
+<label class="font-label-caps text-slate-400 block mb-xs">ID Number</label>
+<p class="font-data-mono text-on-surface tracking-widest">SV-992-0012-X</p>
+</div>
+<div>
+<label class="font-label-caps text-slate-400 block mb-xs">Company</label>
+<p class="text-body-md font-semibold text-on-surface">Vanguard Logistics</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-md">
+<div>
+<label class="font-label-caps text-slate-400 block mb-xs">Access Level</label>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-blue-600"></span>
+<p class="text-body-md font-bold text-on-surface">Level 4 (Sensitive)</p>
+</div>
+</div>
+<div>
+<label class="font-label-caps text-slate-400 block mb-xs">Expiration Date</label>
+<p class="text-body-md font-semibold text-on-surface">Dec 31, 2025</p>
+</div>
+</div>
+</div>
+<div class="pt-md border-t border-outline-variant space-y-sm">
+<label class="font-label-caps text-slate-400 block">Current Permissions</label>
+<div class="flex flex-wrap gap-2">
+<span class="bg-slate-100 text-slate-700 px-3 py-1 rounded text-[11px] font-bold border border-slate-200 uppercase">Server Room A</span>
+<span class="bg-slate-100 text-slate-700 px-3 py-1 rounded text-[11px] font-bold border border-slate-200 uppercase">Executive Suite</span>
+<span class="bg-slate-100 text-slate-700 px-3 py-1 rounded text-[11px] font-bold border border-slate-200 uppercase">Logistics Hub</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Panel -->
+<div class="mt-auto space-y-md">
+<div class="grid grid-cols-2 gap-md">
+<button class="bg-white border-2 border-slate-900 text-slate-900 font-inter font-bold h-16 flex items-center justify-center gap-2 hover:bg-slate-900 hover:text-white transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined" data-icon="block">block</span>
+                                DENY ENTRY
+                            </button>
+<button class="bg-primary text-white font-inter font-bold h-16 flex items-center justify-center gap-2 hover:bg-primary-container transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                PERMIT ENTRY
+                            </button>
+</div>
+<button class="w-full text-slate-500 font-label-caps py-2 hover:text-primary transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="flag">flag</span>
+                            FLAG FOR SUPERVISOR REVIEW
+                        </button>
+</div>
+<!-- Recent Activity Mini-List -->
+<div class="bg-white border border-outline-variant rounded-lg p-md">
+<h4 class="font-label-caps text-slate-400 mb-md">Vistor Entry History</h4>
+<div class="space-y-md">
+<div class="flex justify-between items-center text-body-sm">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-slate-400 text-sm" data-icon="login">login</span>
+<span>Main Entrance North</span>
+</div>
+<span class="font-data-mono text-slate-500 text-xs">08:12 AM - Oct 23</span>
+</div>
+<div class="flex justify-between items-center text-body-sm">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-slate-400 text-sm" data-icon="logout">logout</span>
+<span>Main Entrance South</span>
+</div>
+<span class="font-data-mono text-slate-500 text-xs">05:45 PM - Oct 22</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Visual Polish: Status Line -->
+<div class="fixed bottom-0 left-64 right-0 h-1 bg-gradient-to-r from-green-500 to-primary z-50"></div>
+</body></html>

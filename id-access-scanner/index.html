@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Primo IT Tech LLC — ID-Access Scanner UI Suite (24 Interactive Screens)</title>
+  <style>
+    body { margin:0; background:#0f172a; color:#f8fafc; font-family:system-ui,-apple-system,sans-serif; display:flex; flex-direction:column; height:100vh; }
+    header { display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between; padding:12px 20px; background:#1e293b; border-bottom:1px solid #334155; }
+    select { background:#0f172a; color:#38bdf8; border:1px solid #38bdf8; border-radius:8px; padding:8px 12px; font-size:14px; font-weight:600; }
+    iframe { flex:1; width:100%; border:none; background:#fff; }
+    a.btn { color:#f8fafc; background:#2563eb; padding:8px 14px; border-radius:8px; text-decoration:none; font-size:13px; font-weight:600; }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <strong style="font-size:16px;color:#38bdf8;">🪪 ID-Access Scanner / PocketTracker v2.5</strong>
+      <span style="color:#94a3b8;font-size:13px;margin-left:8px;">Interactive 24-Screen Mobile &amp; Desktop Preview</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <label for="screenSelect" style="font-size:13px;color:#cbd5e1;">Screen:</label>
+      <select id="screenSelect" onchange="document.getElementById('previewFrame').src = this.value;">
+        <option value="screens/access_logs_1/code.html">Access Logs 1</option><option value="screens/access_logs_2/code.html">Access Logs 2</option><option value="screens/access_logs_occupancy_sync_1/code.html">Access Logs Occupancy Sync 1</option><option value="screens/access_logs_occupancy_sync_2/code.html">Access Logs Occupancy Sync 2</option><option value="screens/admin_settings_1/code.html">Admin Settings 1</option><option value="screens/admin_settings_2/code.html">Admin Settings 2</option><option value="screens/mobile_access_logs_1/code.html">Mobile Access Logs 1</option><option value="screens/mobile_access_logs_2/code.html">Mobile Access Logs 2</option><option value="screens/mobile_scanner_dashboard_1/code.html">Mobile Scanner Dashboard 1</option><option value="screens/mobile_scanner_dashboard_2/code.html">Mobile Scanner Dashboard 2</option><option value="screens/mobile_scanner_offline_ready_1/code.html">Mobile Scanner Offline Ready 1</option><option value="screens/mobile_scanner_offline_ready_2/code.html">Mobile Scanner Offline Ready 2</option><option value="screens/mobile_system_status_1/code.html">Mobile System Status 1</option><option value="screens/mobile_system_status_2/code.html">Mobile System Status 2</option><option value="screens/mobile_test_screen/code.html">Mobile Test Screen</option><option value="screens/mobile_verification_detail_1/code.html">Mobile Verification Detail 1</option><option value="screens/mobile_verification_detail_2/code.html">Mobile Verification Detail 2</option><option value="screens/scanning_dashboard_1/code.html">Scanning Dashboard 1</option><option value="screens/scanning_dashboard_2/code.html">Scanning Dashboard 2</option><option value="screens/scanning_dashboard_check_in_out_1/code.html">Scanning Dashboard Check In Out 1</option><option value="screens/scanning_dashboard_check_in_out_2/code.html">Scanning Dashboard Check In Out 2</option><option value="screens/sentinel_verify/code.html">Sentinel Verify</option><option value="screens/sync_offline_management_1/code.html">Sync Offline Management 1</option><option value="screens/sync_offline_management_2/code.html">Sync Offline Management 2</option><option value="screens/verification_detail_1/code.html">Verification Detail 1</option><option value="screens/verification_detail_2/code.html">Verification Detail 2</option><option value="screens/visitor_pre_registration_1/code.html">Visitor Pre Registration 1</option><option value="screens/visitor_pre_registration_2/code.html">Visitor Pre Registration 2</option>
+      </select>
+      <a class="btn" href="../">← All Primo IT Tech Repos</a>
+    </div>
+  </header>
+  <iframe id="previewFrame" src="screens/access_logs_1/code.html"></iframe>
+</body>
+</html>

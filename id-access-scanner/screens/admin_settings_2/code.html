@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PrimoIT Tech - Admin Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-primary": "#9accf8",
+                        "on-tertiary-fixed-variant": "#454749",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-error": "#ffffff",
+                        "secondary": "#5e5e5e",
+                        "primary-fixed": "#cce5ff",
+                        "surface-container-low": "#eff4ff",
+                        "inverse-surface": "#213145",
+                        "secondary-fixed": "#e2e2e2",
+                        "on-tertiary-fixed": "#1a1c1d",
+                        "on-surface-variant": "#41474e",
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#fdfcff",
+                        "error-container": "#ffdad6",
+                        "on-background": "#0b1c30",
+                        "secondary-fixed-dim": "#c6c6c6",
+                        "on-primary-fixed-variant": "#0a4b71",
+                        "secondary-container": "#e2e2e2",
+                        "tertiary-fixed": "#e2e2e4",
+                        "primary-fixed-dim": "#9accf8",
+                        "on-surface": "#0b1c30",
+                        "background": "#f8f9ff",
+                        "surface": "#f8f9ff",
+                        "surface-container": "#e5eeff",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#4679a2",
+                        "outline": "#72787f",
+                        "surface-container-highest": "#d3e4fe",
+                        "surface-variant": "#d3e4fe",
+                        "on-secondary-fixed": "#1b1b1b",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed-variant": "#474747",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed-dim": "#c6c6c8",
+                        "tertiary": "#5a5c5e",
+                        "on-tertiary-container": "#fcfcfe",
+                        "primary": "#2a6087",
+                        "surface-bright": "#f8f9ff",
+                        "outline-variant": "#c1c7cf",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#001d31",
+                        "on-secondary-container": "#646464",
+                        "surface-container-high": "#dce9ff",
+                        "surface-tint": "#2d638a",
+                        "tertiary-container": "#737576",
+                        "surface-dim": "#cbdbf5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "gutter": "16px",
+                        "lg": "24px",
+                        "xl": "48px",
+                        "container-margin": "32px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "data-mono": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "title-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "data-mono": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "title-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-slate-200 flex justify-between items-center w-full px-6 h-16">
+<div class="flex items-center gap-4">
+<h1 class="text-lg font-bold text-slate-900 font-inter">System Administration</h1>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex items-center gap-4">
+<button class="material-symbols-outlined text-slate-500 hover:bg-slate-50 transition-colors p-2 rounded">search</button>
+<button class="material-symbols-outlined text-slate-500 hover:bg-slate-50 transition-colors p-2 rounded">notifications</button>
+<button class="material-symbols-outlined text-slate-500 hover:bg-slate-50 transition-colors p-2 rounded">help</button>
+</div>
+<div class="flex items-center gap-3 pl-4 border-l border-slate-200">
+<img alt="Lead Guardian Miller" class="w-8 h-8 rounded-full border border-slate-200" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQxoa-vzW-sA9MxRgUbkFwt5wbXl-vLSyv_9UMXvqDt-_Qabte4ubn1xBa5RGiVjPJjNML3gAtgG0zwe6sHfCOaPY1WL8uvpjrXIhEyHbT6xuZTvdcihs5aVGx9ZCrYBslgQaVTAfLwGuJMY7DMQaiwCbaRdMKJoU53fw_Urcf72zoVeMpRCYAOgtRRGrNygR0PcJ7-ovPnP43Z7NwRpBanXSHsCacdIV_LaaajfWL2LPH2Y9fHoCP7T8r2m2bReUP2ehqXa7B9xWh"/>
+<div class="hidden sm:block">
+<p class="font-inter text-sm font-semibold text-slate-900">Officer Miller</p>
+<p class="text-[10px] text-slate-500 font-inter font-medium leading-none">Lead Guardian</p>
+</div>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full flex flex-col z-40 bg-white w-64 border-r border-slate-200 pt-16">
+<div class="p-6">
+<div class="flex items-center gap-3 mb-1">
+<div class="w-8 h-8 bg-primary rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-lg" style="font-variation-settings: 'FILL' 1;">shield</span>
+</div>
+<div>
+<h2 class="text-lg font-bold text-slate-900 font-inter">PrimoIT Tech</h2>
+<p class="text-xs text-slate-500 font-inter">Vigilant Security</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-50 transition-transform duration-100 font-inter text-sm font-semibold" href="#">
+<span class="material-symbols-outlined">qr_code_scanner</span>
+                Scanning Dashboard
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-50 transition-transform duration-100 font-inter text-sm font-semibold" href="#">
+<span class="material-symbols-outlined">person_add</span>
+                Visitor Pre-Reg
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-50 transition-transform duration-100 font-inter text-sm font-semibold" href="#">
+<span class="material-symbols-outlined">history</span>
+                Access Logs
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-50 transition-transform duration-100 font-inter text-sm font-semibold" href="#">
+<span class="material-symbols-outlined">sync</span>
+                Sync &amp; Connectivity
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 bg-slate-100 text-blue-600 border-l-4 border-blue-600 transition-transform duration-100 font-inter text-sm font-semibold" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Admin Settings
+            </a>
+</nav>
+<div class="p-4 border-t border-slate-100">
+<div class="bg-slate-50 p-3 rounded">
+<p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 font-label-caps">System Status</p>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
+<span class="text-xs font-semibold text-slate-700">Network Operational</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-16 min-h-screen">
+<div class="max-w-[1440px] mx-auto p-lg space-y-lg">
+<!-- Page Header -->
+<div class="flex justify-between items-end">
+<div>
+<h1 class="font-headline-md text-headline-md text-on-surface">System Administration</h1>
+<p class="font-body-md text-body-md text-slate-500">Global security parameters and hardware configuration</p>
+</div>
+<div class="flex gap-4">
+<button class="h-10 px-6 border-2 border-slate-900 font-bold text-slate-900 flex items-center gap-2 hover:bg-slate-50 transition-all font-inter">
+<span class="material-symbols-outlined text-sm">download</span>
+                        EXPORT CONFIG
+                    </button>
+<button class="h-10 px-6 bg-[#2a6087] font-bold text-white flex items-center gap-2 hover:opacity-90 transition-all font-inter">
+<span class="material-symbols-outlined text-sm">save</span>
+                        SAVE ALL CHANGES
+                    </button>
+</div>
+</div>
+<!-- Bento Grid Layout for Settings -->
+<div class="grid grid-cols-12 gap-lg">
+<!-- Section 1: Access Rule Configuration (Large) -->
+<div class="col-span-12 lg:col-span-8 bg-white border border-slate-200 p-md">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-title-sm text-title-sm text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">gavel</span>
+                            Access Rule Configuration
+                        </h3>
+<button class="text-primary font-bold text-sm hover:underline font-inter">+ ADD RULE</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50 border-b border-slate-200">
+<th class="p-sm font-label-caps text-label-caps text-slate-500 uppercase">Visitor Type</th>
+<th class="p-sm font-label-caps text-label-caps text-slate-500 uppercase">Time Window</th>
+<th class="p-sm font-label-caps text-label-caps text-slate-500 uppercase">Logic</th>
+<th class="p-sm font-label-caps text-label-caps text-slate-500 uppercase">Priority</th>
+<th class="p-sm font-label-caps text-label-caps text-slate-500 uppercase">Status</th>
+<th class="p-sm font-label-caps text-label-caps text-slate-500 uppercase"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100">
+<tr class="hover:bg-slate-50 transition-colors">
+<td class="p-sm font-body-md">Contractor (Tier 1)</td>
+<td class="p-sm font-body-md text-slate-500">07:00 - 19:00</td>
+<td class="p-sm"><span class="bg-emerald-100 text-emerald-800 px-2 py-1 rounded-sm text-xs font-bold font-inter">PERMIT</span></td>
+<td class="p-sm font-data-mono">10</td>
+<td class="p-sm">
+<div class="w-8 h-4 bg-primary rounded-full relative">
+<div class="absolute right-0.5 top-0.5 w-3 h-3 bg-white rounded-full"></div>
+</div>
+</td>
+<td class="p-sm text-right">
+<button class="material-symbols-outlined text-slate-400">edit</button>
+</td>
+</tr>
+<tr class="bg-slate-50 hover:bg-slate-100 transition-colors">
+<td class="p-sm font-body-md">Delivery/Logistics</td>
+<td class="p-sm font-body-md text-slate-500">24 Hours</td>
+<td class="p-sm"><span class="bg-slate-200 text-slate-800 px-2 py-1 rounded-sm text-xs font-bold font-inter">SCREENING</span></td>
+<td class="p-sm font-data-mono">05</td>
+<td class="p-sm">
+<div class="w-8 h-4 bg-primary rounded-full relative">
+<div class="absolute right-0.5 top-0.5 w-3 h-3 bg-white rounded-full"></div>
+</div>
+</td>
+<td class="p-sm text-right">
+<button class="material-symbols-outlined text-slate-400">edit</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 transition-colors">
+<td class="p-sm font-body-md">VIP/Executive</td>
+<td class="p-sm font-body-md text-slate-500">24 Hours</td>
+<td class="p-sm"><span class="bg-emerald-100 text-emerald-800 px-2 py-1 rounded-sm text-xs font-bold font-inter">PERMIT</span></td>
+<td class="p-sm font-data-mono">50</td>
+<td class="p-sm">
+<div class="w-8 h-4 bg-primary rounded-full relative">
+<div class="absolute right-0.5 top-0.5 w-3 h-3 bg-white rounded-full"></div>
+</div>
+</td>
+<td class="p-sm text-right">
+<button class="material-symbols-outlined text-slate-400">edit</button>
+</td>
+</tr>
+<tr class="bg-slate-50 hover:bg-slate-100 transition-colors">
+<td class="p-sm font-body-md">Terminated Personnel</td>
+<td class="p-sm font-body-md text-slate-500">N/A</td>
+<td class="p-sm"><span class="bg-error-container text-on-error-container px-2 py-1 rounded-sm text-xs font-bold font-inter">DENY</span></td>
+<td class="p-sm font-data-mono">99</td>
+<td class="p-sm">
+<div class="w-8 h-4 bg-primary rounded-full relative">
+<div class="absolute right-0.5 top-0.5 w-3 h-3 bg-white rounded-full"></div>
+</div>
+</td>
+<td class="p-sm text-right">
+<button class="material-symbols-outlined text-slate-400">edit</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Section 2: Security Zone Definitions (Medium) -->
+<div class="col-span-12 lg:col-span-4 bg-white border border-slate-200 p-md">
+<h3 class="font-title-sm text-title-sm text-on-surface flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary">meeting_room</span>
+                        Security Zones
+                    </h3>
+<div class="space-y-sm">
+<div class="p-sm border border-slate-100 bg-slate-50 flex items-center justify-between group hover:border-primary transition-all">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary">pin_drop</span>
+<div>
+<p class="font-inter font-bold text-sm text-slate-900">Main Lobby</p>
+<p class="text-xs text-slate-500">Tier 1 Verification Required</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-300 group-hover:text-slate-900 cursor-pointer">settings</span>
+</div>
+<div class="p-sm border border-slate-100 bg-slate-50 flex items-center justify-between group hover:border-primary transition-all">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary">local_shipping</span>
+<div>
+<p class="font-inter font-bold text-sm text-slate-900">Loading Dock</p>
+<p class="text-xs text-slate-500">Bio-Scan + QR Required</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-300 group-hover:text-slate-900 cursor-pointer">settings</span>
+</div>
+<div class="p-sm border border-slate-100 bg-slate-50 flex items-center justify-between group hover:border-primary transition-all">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary">dns</span>
+<div>
+<p class="font-inter font-bold text-sm text-slate-900">Data Center</p>
+<p class="text-xs text-slate-500">Multi-Factor Escalation</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-300 group-hover:text-slate-900 cursor-pointer">settings</span>
+</div>
+<div class="p-sm border border-slate-100 bg-slate-50 flex items-center justify-between group hover:border-primary transition-all">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary">park</span>
+<div>
+<p class="font-inter font-bold text-sm text-slate-900">Employee Garden</p>
+<p class="text-xs text-slate-500">Standard Badge Entry</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-300 group-hover:text-slate-900 cursor-pointer">settings</span>
+</div>
+</div>
+<button class="w-full mt-4 py-2 border border-dashed border-slate-300 text-slate-400 font-bold text-xs hover:border-primary hover:text-primary transition-all uppercase tracking-widest font-label-caps">Create New Zone</button>
+</div>
+<!-- Section 3: Hardware Management (Full Width Grid) -->
+<div class="col-span-12 bg-white border border-slate-200 p-md">
+<h3 class="font-title-sm text-title-sm text-on-surface flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary">router</span>
+                        Hardware Management
+                    </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-md">
+<!-- QR Scanner -->
+<div class="border border-slate-100 p-md space-y-md">
+<div class="flex justify-between items-start">
+<div class="bg-slate-50 p-2 rounded-sm">
+<span class="material-symbols-outlined text-primary" data-icon="qr_code">qr_code</span>
+</div>
+<span class="text-[10px] font-bold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded uppercase font-inter">Online</span>
+</div>
+<div>
+<h4 class="font-inter font-bold text-slate-900">Main QR Scanner</h4>
+<p class="text-xs text-slate-500">Model: Sent-X400 (v2.4)</p>
+</div>
+<div class="space-y-sm">
+<div class="flex justify-between text-xs font-semibold text-slate-600">
+<span>Sensitivity</span>
+<span>85%</span>
+</div>
+<div class="w-full h-1 bg-slate-100 rounded-full overflow-hidden">
+<div class="w-[85%] h-full bg-primary"></div>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex-1 py-1.5 bg-slate-900 text-white text-xs font-bold uppercase font-inter">REBOOT</button>
+<button class="material-symbols-outlined p-1 border border-slate-200 text-slate-500 hover:text-primary">tune</button>
+</div>
+</div>
+<!-- RFID Reader -->
+<div class="border border-slate-100 p-md space-y-md">
+<div class="flex justify-between items-start">
+<div class="bg-slate-50 p-2 rounded-sm">
+<span class="material-symbols-outlined text-primary" data-icon="contactless">contactless</span>
+</div>
+<span class="text-[10px] font-bold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded uppercase font-inter">Online</span>
+</div>
+<div>
+<h4 class="font-inter font-bold text-slate-900">Dock RFID Node</h4>
+<p class="text-xs text-slate-500">Model: RFID-Master (v1.1)</p>
+</div>
+<div class="space-y-sm">
+<div class="flex justify-between text-xs font-semibold text-slate-600">
+<span>Frequency Range</span>
+<span>13.56 MHz</span>
+</div>
+<div class="w-full h-1 bg-slate-100 rounded-full overflow-hidden">
+<div class="w-[40%] h-full bg-primary"></div>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex-1 py-1.5 bg-slate-900 text-white text-xs font-bold uppercase font-inter">REBOOT</button>
+<button class="material-symbols-outlined p-1 border border-slate-200 text-slate-500 hover:text-primary">tune</button>
+</div>
+</div>
+<!-- Camera Feed -->
+<div class="border border-slate-100 p-md space-y-md">
+<div class="flex justify-between items-start">
+<div class="bg-slate-50 p-2 rounded-sm">
+<span class="material-symbols-outlined text-primary" data-icon="videocam">videocam</span>
+</div>
+<span class="text-[10px] font-bold bg-error-container text-on-error-container px-2 py-0.5 rounded uppercase font-inter">Signal Loss</span>
+</div>
+<div>
+<h4 class="font-inter font-bold text-slate-900">South Gate CCTV</h4>
+<p class="text-xs text-slate-500">Model: Eye-Shield 4K</p>
+</div>
+<div class="bg-slate-200 aspect-video rounded-sm flex items-center justify-center relative overflow-hidden">
+<div class="absolute inset-0 opacity-20 bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:4px_4px]"></div>
+<span class="material-symbols-outlined text-slate-400 text-3xl">videocam_off</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex-1 py-1.5 bg-primary text-white text-xs font-bold uppercase font-inter">RECONNECT</button>
+<button class="material-symbols-outlined p-1 border border-slate-200 text-slate-500 hover:text-primary">tune</button>
+</div>
+</div>
+<!-- Biometric Hub -->
+<div class="border border-slate-100 p-md space-y-md">
+<div class="flex justify-between items-start">
+<div class="bg-slate-50 p-2 rounded-sm">
+<span class="material-symbols-outlined text-primary" data-icon="fingerprint">fingerprint</span>
+</div>
+<span class="text-[10px] font-bold bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded uppercase font-inter">Standby</span>
+</div>
+<div>
+<h4 class="font-inter font-bold text-slate-900">Vault Bio-Entry</h4>
+<p class="text-xs text-slate-500">Model: BioGate Pro</p>
+</div>
+<div class="space-y-sm">
+<div class="flex justify-between text-xs font-semibold text-slate-600">
+<span>Matching Engine</span>
+<span>99.9% Acc</span>
+</div>
+<div class="w-full h-1 bg-slate-100 rounded-full overflow-hidden">
+<div class="w-full h-full bg-emerald-500"></div>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex-1 py-1.5 bg-slate-900 text-white text-xs font-bold uppercase font-inter">TEST</button>
+<button class="material-symbols-outlined p-1 border border-slate-200 text-slate-500 hover:text-primary">tune</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 4: User Management (Large Table Area) -->
+<div class="col-span-12 bg-white border border-slate-200 p-md">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-title-sm text-title-sm text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">badge</span>
+                            User Management
+                        </h3>
+<div class="flex gap-2">
+<div class="relative">
+<input class="h-9 pl-9 pr-4 text-xs border border-slate-200 rounded-sm focus:ring-1 focus:ring-primary font-inter" placeholder="Search personnel..." type="text"/>
+<span class="material-symbols-outlined absolute left-2 top-2 text-slate-400 text-lg">search</span>
+</div>
+<button class="h-9 px-4 bg-slate-900 text-white text-xs font-bold flex items-center gap-2 uppercase font-inter">
+<span class="material-symbols-outlined text-sm">person_add</span>
+                                Add Officer
+                            </button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-md">
+<!-- User Card 1 -->
+<div class="p-sm border border-slate-100 flex gap-4 items-center">
+<img alt="Officer Sarah Jenkins" class="w-12 h-12 rounded-full object-cover" data-alt="A close-up portrait of a female security administrator with short dark hair, wearing a professional gray corporate security polo. She is in a high-tech control room with soft blue monitor glows in the background. The mood is serious and professional, utilizing high-contrast lighting that emphasizes the clean, modern aesthetic of the PrimoIT Tech brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBM2EqxOebbeSkLF58zfPTTfvHCQM04tABvrFFii46J4lBGAidnJ1bNbLdm6bFDr-omnk8eNA_YzJ4MLBCdbHAB3eOQGzskTItLDfgPoGIsHOsbNEXCeCSwHmQXJrLvCjKBZ5ajlZPjFLxU_tSXk3QhicCn5_CId38REW8DANPMBzyObpv_puJT2EtS4Dz0Hvz49O5Q-DDBfUCRh8D70XNbxaQRC9J4PE8YDrobMygyVBJccMOyhykkeWpnL6Fxl_cQ7nLlGVxxZjrg"/>
+<div class="flex-1">
+<p class="font-inter font-bold text-slate-900">Officer Sarah Jenkins</p>
+<p class="text-xs text-slate-500 font-inter">Security Superuser</p>
+<div class="mt-1 flex gap-1">
+<span class="text-[9px] font-bold bg-slate-900 text-white px-1.5 py-0.5 rounded uppercase">Full Access</span>
+<span class="text-[9px] font-bold bg-primary-container text-white px-1.5 py-0.5 rounded uppercase">Hardware Admin</span>
+</div>
+</div>
+<button class="material-symbols-outlined text-slate-400">more_vert</button>
+</div>
+<!-- User Card 2 -->
+<div class="p-sm border border-slate-100 flex gap-4 items-center">
+<img alt="Marcus Thorne" class="w-12 h-12 rounded-full object-cover" data-alt="A portrait of a male security officer with a sharp beard and professional demeanor. He wears a dark tactical uniform with visible PrimoIT Tech branding patches. The background is a brightly lit, minimalist office hallway with glass partitions. The lighting is crisp and cool-toned, reflecting a high-security, authoritative professional environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEYTWfpCe4slAAWaYNfhHeq8WHZMn1puD7V6F1EdcH93BLyZY82onP6Ny1qDG--uDq0WbhCgwNvWxG3F2hYEVWuB6vd7tc-_b6cXiMqFARSPqAKfeL5EB059VajA3vx-6qEVVEM6zHyjnjvwWMO00muIhWW_P2mlDR42s8rl3bnGu7BAnXzvLfBtm6gPmknzYzmZW_eowWeQUZbiUMMBnqpSeEbduXs2SIjLMhnaHNV8WahRXONpSFurkUr8oQ99EobD7qGps9bWUA"/>
+<div class="flex-1">
+<p class="font-inter font-bold text-slate-900">Officer Marcus Thorne</p>
+<p class="text-xs text-slate-500 font-inter">Standard Operator</p>
+<div class="mt-1 flex gap-1">
+<span class="text-[9px] font-bold bg-slate-200 text-slate-800 px-1.5 py-0.5 rounded uppercase">Scan Only</span>
+</div>
+</div>
+<button class="material-symbols-outlined text-slate-400">more_vert</button>
+</div>
+<!-- User Card 3 -->
+<div class="p-sm border border-slate-100 flex gap-4 items-center">
+<img alt="Elena Rodriguez" class="w-12 h-12 rounded-full object-cover" data-alt="A professional portrait of a Hispanic female security specialist with tied-back hair. She is wearing a navy blue blazer over a crisp white shirt. The background is a clean, modern corporate environment with neutral tones. The lighting is soft and flattering yet retains a clear, vigilant, and authoritative quality suitable for high-level security management." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzWSi8yM67zDmalOHZYP9TIdTeTnKPkuNSvZpK6itidg36y5VJGEQ9l95Nijg7_jlhNlseCuyUCeFL-OGYQ-iBT7NA2WYFwOTVZKlME9egHQPZiWSU5n1tUG9js9VU3dQUttF4L3YcDDu90CmaxmtmaD34Q2A_P0UM4RWsa-FPW13XJIGeQpmH3S5mZvFj1drNuQ2fFOdRfX8h2XQ1X5fv41GMA8ZE8_qQ3QgmpHk9U9Bq2WgmVsJBaxx5biNESqGycr9T-zBE5mz_"/>
+<div class="flex-1">
+<p class="font-inter font-bold text-slate-900">Elena Rodriguez</p>
+<p class="text-xs text-slate-500 font-inter">Shift Supervisor</p>
+<div class="mt-1 flex gap-1">
+<span class="text-[9px] font-bold bg-slate-900 text-white px-1.5 py-0.5 rounded uppercase">Edit Logs</span>
+<span class="text-[9px] font-bold bg-primary-container text-white px-1.5 py-0.5 rounded uppercase">Visitor Auth</span>
+</div>
+</div>
+<button class="material-symbols-outlined text-slate-400">more_vert</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- FAB for Quick Actions - Suppressed on Settings per guidelines, but adding here as a template if needed elsewhere -->
+<!-- <button class="fixed bottom-8 right-8 w-14 h-14 bg-primary text-white rounded-full shadow-lg flex items-center justify-center hover:scale-105 transition-transform">
+        <span class="material-symbols-outlined text-3xl">add</span>
+    </button> -->
+</body></html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PPKiosk — Enterprise Self-Service Check-In & Badge Kiosk — Primo IT Tech LLC</title>
+  <style>
+    :root { --bg:#0b0f19; --panel:#111827; --border:#1e293b; --text:#f8fafc; --muted:#94a3b8; --accent:#0284c7; --glow:#38bdf8; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:'Segoe UI',system-ui,sans-serif; background:var(--bg); color:var(--text); min-height:100vh; display:flex; flex-direction:column; }
+    header { background:#0f172a; border-bottom:1px solid var(--border); padding:18px 28px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; }
+    .brand-pill { display:inline-block; font-size:11px; font-weight:800; letter-spacing:0.8px; color:var(--glow); background:rgba(56,189,248,0.12); border:1px solid rgba(56,189,248,0.3); padding:3px 10px; border-radius:99px; margin-bottom:6px; }
+    h1 { font-size:20px; font-weight:800; color:#fff; }
+    .sub { font-size:13px; color:var(--muted); margin-top:3px; }
+    .header-actions { display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+    .btn { background:#1e293b; color:#e2e8f0; border:1px solid #334155; border-radius:99px; padding:8px 16px; font-size:12.5px; font-weight:700; cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; gap:6px; transition:all 0.15s; }
+    .btn:hover { border-color:var(--glow); color:#fff; }
+    .btn-tour { background:rgba(56,189,248,0.16); color:var(--glow); border:1px solid var(--accent); }
+    main { max-width:1280px; width:100%; margin:0 auto; padding:28px; flex:1; }
+    .cli-bar { background:#0f172a; border:1px solid var(--border); border-radius:10px; padding:12px 18px; margin-bottom:22px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; font-size:13px; }
+    .cli-bar code { font-family:'Consolas',monospace; color:#34d399; background:#020617; padding:4px 10px; border-radius:6px; border:1px solid #1e293b; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:18px; }
+    .card { background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:20px; transition:all 0.2s ease; }
+    .card-badge { display:inline-block; font-size:10.5px; font-weight:800; color:var(--glow); background:rgba(56,189,248,0.12); padding:3px 9px; border-radius:6px; margin-bottom:10px; }
+    .card h3 { font-size:16px; margin-bottom:8px; color:#fff; }
+    .card p { font-size:13.5px; line-height:1.55; color:var(--muted); }
+    .tour-hi { outline:2px solid var(--glow) !important; box-shadow:0 0 28px rgba(56,189,248,0.38) !important; transform:translateY(-2px); }
+    footer { border-top:1px solid var(--border); padding:16px 28px; text-align:center; font-size:12px; color:#64748b; background:#0f172a; }
+    #coachMark { position:fixed; bottom:24px; right:24px; width:390px; max-width:calc(100vw - 32px); background:#0f172a; color:#f8fafc; border:2px solid var(--accent); border-radius:14px; padding:18px; box-shadow:0 22px 55px rgba(0,0,0,0.8); z-index:9999; display:none; }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <span class="brand-pill">PRIMO IT TECH LLC • GENESIS PROTOCOL ALIGNED</span>
+      <h1>PPKiosk — Enterprise Self-Service Check-In & Badge Kiosk</h1>
+      <div class="sub">Locked-Down Touch Kiosk Terminal, Barcode/QR Check-In & Instant Visitor Pass Issuer</div>
+    </div>
+    <div class="header-actions">
+      <button id="tourBtn" class="btn btn-tour" onclick="toggleTour()">✨ Quick Guided Tour</button>
+      <a class="btn" href="https://github.com/nilknarf1972/PPKiosk" target="_blank" rel="noopener">🔗 GitHub Repo</a>
+    </div>
+  </header>
+  <main>
+    <div class="cli-bar">
+      <span><strong>Local Quick-Start Command:</strong> <code>npx serve .</code></span>
+      <span style="color:#94a3b8">Use <strong>← / →</strong> arrow keys or click <strong>✨ Quick Guided Tour</strong> anytime</span>
+    </div>
+    <div class="grid">
+      <section class="card" id="sec-touch">
+        <div class="card-badge">1. TOUCH TERMINAL</div>
+        <h3>1. Full-Screen Locked-Down Kiosk Interface</h3>
+        <p>High-contrast touch UI engineered for lobby tablets and pedestal kiosks with automatic idle attract loop and session timeout.</p>
+      </section>      <section class="card" id="sec-scan">
+        <div class="card-badge">2. QR / ID SCAN</div>
+        <h3>2. Optical Barcode, QR & Driver's License Check-In</h3>
+        <p>Reads visitor pre-registration QR codes or PDF417 IDs in under 300ms for touchless arrival confirmation.</p>
+      </section>      <section class="card" id="sec-photo">
+        <div class="card-badge">3. PORTRAIT CAPTURE</div>
+        <h3>3. Live Webcam Portrait & NDA Signature Capture</h3>
+        <p>Captures visitor badge photo with auto-crop face framing and digital safety/NDA acknowledgment.</p>
+      </section>      <section class="card" id="sec-print">
+        <div class="card-badge">4. BADGE PRINT</div>
+        <h3>4. Instant Thermal / CR80 Visitor Pass Printing</h3>
+        <p>Dispatches formatted visitor badges with expiration timestamps and host department routing.</p>
+      </section>      <section class="card" id="sec-notify">
+        <div class="card-badge">5. HOST ALERT</div>
+        <h3>5. Real-Time Host Notification & Audit Ledger</h3>
+        <p>Notifies hosts via webhook/email/SMS upon visitor check-in and logs entry/exit events.</p>
+      </section>
+    </div>
+  </main>
+  <footer>
+    © 2026 Primo IT Tech LLC • Managing Member: Keith Franklin • Built with the ID-Access-Scanner CoachMark Guided Tour Engine
+  </footer>
+  <div id="coachMark" role="dialog" aria-label="Quick Guided Tour">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <span id="tourBadge" style="font-size:11px;font-weight:800;color:#38bdf8;background:rgba(56,189,248,0.15);padding:3px 9px;border-radius:99px"></span>
+      <button onclick="closeTour(true)" style="background:none;border:none;color:#94a3b8;font-size:12px;cursor:pointer">Skip tour ✕</button>
+    </div>
+    <h4 id="tourTitle" style="margin:0 0 6px 0;font-size:15px;color:#fff"></h4>
+    <p id="tourDesc" style="margin:0 0 14px 0;font-size:13px;line-height:1.5;color:#cbd5e1"></p>
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <span style="font-size:11px;color:#64748b;font-weight:600">← / → or Esc</span>
+      <div style="display:flex;gap:8px">
+        <button id="tourPrev" class="btn" onclick="stepTour(-1)" style="padding:6px 12px;border-radius:8px">← Prev</button>
+        <button id="tourNext" class="btn btn-tour" onclick="stepTour(1)" style="background:linear-gradient(135deg,#0284c7,#2563eb);color:#fff;border:none;padding:6px 14px;border-radius:8px">Next Step →</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    const STEPS = [{ selector: "#sec-touch", badge: "1. TOUCH TERMINAL", title: "1. Full-Screen Locked-Down Kiosk Interface", desc: "High-contrast touch UI engineered for lobby tablets and pedestal kiosks with automatic idle attract loop and session timeout." },
+        { selector: "#sec-scan", badge: "2. QR / ID SCAN", title: "2. Optical Barcode, QR & Driver's License Check-In", desc: "Reads visitor pre-registration QR codes or PDF417 IDs in under 300ms for touchless arrival confirmation." },
+        { selector: "#sec-photo", badge: "3. PORTRAIT CAPTURE", title: "3. Live Webcam Portrait & NDA Signature Capture", desc: "Captures visitor badge photo with auto-crop face framing and digital safety/NDA acknowledgment." },
+        { selector: "#sec-print", badge: "4. BADGE PRINT", title: "4. Instant Thermal / CR80 Visitor Pass Printing", desc: "Dispatches formatted visitor badges with expiration timestamps and host department routing." },
+        { selector: "#sec-notify", badge: "5. HOST ALERT", title: "5. Real-Time Host Notification & Audit Ledger", desc: "Notifies hosts via webhook/email/SMS upon visitor check-in and logs entry/exit events." }];
+    let active = false, step = 0;
+    const STORAGE_KEY = "primoit.ppkiosk.tour_completed_v1";
+    function renderTour() {
+      document.querySelectorAll(".tour-hi").forEach(el => el.classList.remove("tour-hi"));
+      const box = document.getElementById("coachMark"), btn = document.getElementById("tourBtn");
+      if (!active) { box.style.display = "none"; btn.textContent = "✨ Quick Guided Tour"; return; }
+      btn.textContent = "✕ Exit Tour";
+      const s = STEPS[step];
+      box.style.display = "block";
+      document.getElementById("tourBadge").textContent = "STEP " + (step + 1) + " OF " + STEPS.length + " • " + s.badge;
+      document.getElementById("tourTitle").textContent = s.title;
+      document.getElementById("tourDesc").textContent = s.desc;
+      document.getElementById("tourPrev").style.display = step > 0 ? "inline-flex" : "none";
+      document.getElementById("tourNext").textContent = step === STEPS.length - 1 ? "Finish Tour ✓" : "Next Step →";
+      const t = document.querySelector(s.selector);
+      if (t) { t.classList.add("tour-hi"); t.scrollIntoView({ behavior: "smooth", block: "nearest" }); }
+    }
+    function toggleTour() { active = !active; if (active) step = 0; renderTour(); }
+    function closeTour(done) { active = false; if (done) { try { localStorage.setItem(STORAGE_KEY, "true"); } catch(e){} } renderTour(); }
+    function stepTour(d) { const n = step + d; if (n < 0) return; if (n >= STEPS.length) { closeTour(true); return; } step = n; renderTour(); }
+    window.addEventListener("keydown", e => { if (!active) return; if (e.key === "Escape") closeTour(true); else if (e.key === "ArrowRight") stepTour(1); else if (e.key === "ArrowLeft") stepTour(-1); });
+    try { if (!localStorage.getItem(STORAGE_KEY)) setTimeout(() => { active = true; renderTour(); }, 600); } catch(e){}
+  </script>
+</body>
+</html>

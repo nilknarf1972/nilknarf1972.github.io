@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#2a6087",
+                        "on-primary-fixed-variant": "#0a4b71",
+                        "on-primary-fixed": "#001d31",
+                        "primary-fixed-dim": "#9accf8",
+                        "on-secondary": "#ffffff",
+                        "surface": "#f8f9ff",
+                        "secondary-container": "#e2e2e2",
+                        "on-primary": "#ffffff",
+                        "inverse-surface": "#213145",
+                        "on-error": "#ffffff",
+                        "surface-tint": "#2d638a",
+                        "primary-fixed": "#cce5ff",
+                        "primary-container": "#4679a2",
+                        "on-tertiary": "#ffffff",
+                        "secondary": "#5e5e5e",
+                        "on-surface-variant": "#41474e",
+                        "error": "#ba1a1a",
+                        "outline": "#72787f",
+                        "on-primary-container": "#fdfcff",
+                        "inverse-primary": "#9accf8",
+                        "on-secondary-fixed-variant": "#474747",
+                        "on-surface": "#0b1c30",
+                        "on-tertiary-container": "#fcfcfe",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "tertiary-container": "#737576",
+                        "surface-container-low": "#eff4ff",
+                        "on-tertiary-fixed-variant": "#454749",
+                        "secondary-fixed-dim": "#c6c6c6",
+                        "surface-variant": "#d3e4fe",
+                        "surface-container-high": "#dce9ff",
+                        "on-error-container": "#93000a",
+                        "on-background": "#0b1c30",
+                        "surface-container-highest": "#d3e4fe",
+                        "surface-bright": "#f8f9ff",
+                        "tertiary-fixed-dim": "#c6c6c8",
+                        "on-tertiary-fixed": "#1a1c1d",
+                        "on-secondary-container": "#646464",
+                        "on-secondary-fixed": "#1b1b1b",
+                        "secondary-fixed": "#e2e2e2",
+                        "background": "#f8f9ff",
+                        "outline-variant": "#c1c7cf",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed": "#e2e2e4",
+                        "surface-container": "#e5eeff",
+                        "surface-dim": "#cbdbf5",
+                        "tertiary": "#5a5c5e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "xl": "48px",
+                        "xs": "4px",
+                        "unit": "4px",
+                        "md": "16px",
+                        "gutter": "16px",
+                        "lg": "24px",
+                        "container-margin": "32px",
+                        "sm": "8px"
+                    },
+                    "fontFamily": {
+                        "data-mono": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "title-sm": ["Inter"],
+                        "body-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "data-mono": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "title-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full flex flex-col z-40 bg-white dark:bg-slate-900 h-screen w-64 border-r border-slate-200 dark:border-slate-800 font-inter text-sm font-semibold">
+<div class="p-lg flex items-center gap-md">
+<div class="w-10 h-10 bg-primary flex items-center justify-center rounded">
+<span class="material-symbols-outlined text-white" data-icon="security">security</span>
+</div>
+<div>
+<h2 class="text-lg font-bold text-slate-900 dark:text-white leading-tight">PrimoIT Tech</h2>
+<p class="text-xs text-slate-500 font-normal">Vigilant Security</p>
+</div>
+</div>
+<nav class="mt-lg flex-1"><div class="px-md mb-xs">
+<a class="flex items-center gap-md px-md py-sm text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="qr_code_scanner">qr_code_scanner</span>
+<span>Scanning Dashboard</span>
+</a>
+</div>
+<div class="px-md mb-xs">
+<a class="flex items-center gap-md px-md py-sm text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="person_add">person_add</span>
+<span>Visitor Pre-Reg</span>
+</a>
+</div>
+<div class="px-md mb-xs">
+<a class="flex items-center gap-md px-md py-sm bg-slate-100 dark:bg-slate-800 text-blue-600 dark:text-blue-400 border-l-4 border-blue-600 transition-transform duration-100" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span>Access Logs</span>
+</a>
+</div>
+<div class="px-md mb-xs">
+<a class="flex items-center gap-md px-md py-sm text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="sync">sync</span>
+<span>Sync &amp; Connectivity</span>
+</a>
+</div>
+<div class="px-md mb-xs">
+<a class="flex items-center gap-md px-md py-sm text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="settings_accessibility">settings_accessibility</span>
+<span>Admin Settings</span>
+</a>
+</div></nav>
+<div class="p-lg border-t border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-sm">
+<img alt="Security Officer" class="w-8 h-8 rounded-full border border-slate-300" data-alt="A professional security officer portrait in a well-lit modern corporate environment. The officer is wearing a crisp dark uniform with subtle silver insignia. The lighting is direct but soft, emphasizing a sense of authority and professional readiness. The background consists of slightly out-of-focus brushed steel and glass architectural elements consistent with a high-security facility." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDweQY4n-2PaD67fquLi1U3RKtvK22kIq4Y8c1Yatw_3TcihegzQBrjCm-h8Nk-WhY4gr3y6_O3Qrfdkw_sKobFdYNCvFOAK_c1NYu0RCGD9XmbeUu15QtoMUcIcT3pagiRqR5qppkcDz4qBIR4pbj0ZiHxLmbP8CkB0MF4v88yIt52DXxrgYLBYxsQER-ELQKQ78oGDwoBzFe5CaurOWBQU4rwpluNQSAPQGP0QCA5cverlqOPXNppUPI9teYwVjywQuUmoGPwlKcT"/>
+<div class="flex-1 overflow-hidden">
+<p class="text-xs font-bold truncate">Officer Miller</p>
+<p class="text-[10px] text-slate-500 truncate uppercase">Rank: Lead Guardian</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 ml-64 flex flex-col min-h-screen">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-30 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center w-full px-6 h-16">
+<div class="flex items-center gap-md">
+<h1 class="font-inter uppercase tracking-wider font-bold text-slate-900 dark:text-white">Access Logs</h1>
+<div class="h-6 w-[1px] bg-slate-200 mx-md"></div>
+<nav class="hidden md:flex items-center gap-lg">
+<a class="font-label-caps text-label-caps text-blue-600 dark:text-blue-400 border-b-2 border-blue-600 py-5" href="#">Real-time Feed</a>
+<a class="font-label-caps text-label-caps text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors py-5" href="#">Historical Archive</a>
+<a class="font-label-caps text-label-caps text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors py-5" href="#">Audit Trails</a>
+</nav>
+</div>
+<div class="flex items-center gap-lg">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-slate-400 text-sm" data-icon="search">search</span>
+<input class="pl-xl pr-md py-xs bg-surface-container-low border border-outline-variant text-body-sm font-body-sm w-64 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="Search Global ID Database..." type="text"/>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-xs hover:bg-slate-50 dark:hover:bg-slate-800 rounded transition-colors relative">
+<span class="material-symbols-outlined text-slate-600" data-icon="notifications">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="p-xs hover:bg-slate-50 dark:hover:bg-slate-800 rounded transition-colors">
+<span class="material-symbols-outlined text-slate-600" data-icon="help">help</span>
+</button>
+<button class="p-xs hover:bg-slate-50 dark:hover:bg-slate-800 rounded transition-colors">
+<span class="material-symbols-outlined text-slate-600" data-icon="account_circle">account_circle</span>
+</button></div>
+</div>
+</header>
+<!-- Workspace Container -->
+<div class="p-lg max-w-[1440px] mx-auto w-full flex-1">
+<!-- Filters and Actions Header -->
+<section class="mb-lg bg-white p-md rounded border border-slate-200 shadow-sm flex flex-col gap-md">
+<div class="flex items-center justify-between">
+<h3 class="font-title-sm text-title-sm text-on-surface uppercase tracking-tight flex items-center gap-sm">
+<span class="material-symbols-outlined" data-icon="filter_alt">filter_alt</span>
+                        Log Filters
+                    </h3>
+<div class="flex items-center gap-sm">
+<button class="flex items-center gap-xs px-md py-xs border-2 border-black font-label-caps text-label-caps hover:bg-slate-50 transition-all uppercase">
+<span class="material-symbols-outlined text-[18px]" data-icon="file_download">file_download</span>
+                            Export CSV
+                        </button>
+<button class="flex items-center gap-xs px-md py-xs bg-primary text-white font-label-caps text-label-caps hover:opacity-90 transition-all uppercase">
+<span class="material-symbols-outlined text-[18px]" data-icon="print">print</span>
+                            Print Report
+                        </button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-md">
+<!-- Search Field -->
+<div class="flex flex-col gap-xs lg:col-span-1">
+<label class="font-label-caps text-label-caps text-slate-500 uppercase">Search Identity</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-slate-400" data-icon="person_search">person_search</span>
+<input class="w-full pl-xl pr-sm py-sm border border-slate-300 text-body-sm font-body-sm focus:border-primary focus:ring-0 outline-none" placeholder="Name, ID, or Email" type="text"/>
+</div>
+</div>
+<!-- Date Range -->
+<div class="flex flex-col gap-xs lg:col-span-1">
+<label class="font-label-caps text-label-caps text-slate-500 uppercase">Date Range</label>
+<select class="w-full px-sm py-sm border border-slate-300 text-body-sm font-body-sm appearance-none bg-white">
+<option>Last 24 Hours</option>
+<option>Last 7 Days</option>
+<option>Current Month</option>
+<option>Custom Range...</option>
+</select>
+</div>
+<!-- Scan Status -->
+<div class="flex flex-col gap-xs">
+<label class="font-label-caps text-label-caps text-slate-500 uppercase">Scan Result</label>
+<select class="w-full px-sm py-sm border border-slate-300 text-body-sm font-body-sm bg-white">
+<option>All Results</option>
+<option>Permit Only</option>
+<option>Denied Only</option>
+<option>Flagged for Review</option>
+</select>
+</div>
+<!-- Security Zone -->
+<div class="flex flex-col gap-xs">
+<label class="font-label-caps text-label-caps text-slate-500 uppercase">Security Zone</label>
+<select class="w-full px-sm py-sm border border-slate-300 text-body-sm font-body-sm bg-white">
+<option>All Points</option>
+<option>Main Lobby (Point A)</option>
+<option>Loading Dock (Point B)</option>
+<option>Staff Entrance (Point C)</option>
+<option>Server Room Vault</option>
+</select>
+</div>
+<!-- Clear Filters -->
+<div class="flex items-end">
+<button class="w-full py-sm text-primary font-label-caps text-label-caps hover:bg-primary-container/10 transition-colors uppercase flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[18px]" data-icon="restart_alt">restart_alt</span>
+                            Reset All
+                        </button>
+</div>
+</div>
+</section>
+<!-- Data Table Module -->
+<div class="bg-white border border-slate-200 shadow-sm overflow-hidden flex flex-col">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50 border-b border-slate-200">
+<th class="p-md font-label-caps text-label-caps text-slate-600 uppercase tracking-wider">Timestamp</th>
+<th class="p-md font-label-caps text-label-caps text-slate-600 uppercase tracking-wider">Identity</th>
+<th class="p-md font-label-caps text-label-caps text-slate-600 uppercase tracking-wider">ID Number</th>
+<th class="p-md font-label-caps text-label-caps text-slate-600 uppercase tracking-wider">Status</th>
+<th class="p-md font-label-caps text-label-caps text-slate-600 uppercase tracking-wider">Entry Point</th>
+<th class="p-md font-label-caps text-label-caps text-slate-600 uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="text-body-sm font-body-sm">
+<!-- Row 1: Permit -->
+<tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors cursor-pointer group">
+<td class="p-md font-data-mono text-data-mono text-slate-500">2023-10-24 09:14:02</td>
+<td class="p-md">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 bg-slate-200 overflow-hidden">
+<img alt="Visitor" data-alt="A detailed digital passport-style portrait of a middle-aged businessman with short gray hair. He is wearing a formal navy blue suit. The lighting is sharp and clinical against a neutral gray studio background, designed to simulate a high-resolution security camera still for identity verification. The atmosphere is neutral and professional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVM82f4JGJQ7azmhX9aIXFbQ67sk-pQpRS3KrvchoeI0C6MnfveUHB9-shmChKQge-GKL90vF1uOS79prqsY8X5ZixSBtPlHyNnKqApuu-2niG9lmbNLwo8bENv1VRxBkTiMwg63V1qWE5k3trsPJXzeu4wQtU0OHEU6PPTTt7TqFk0cHWQdJpxLO81wl3JmUxoMjRXxvI0Udv4zQmgPm4rvDVgVbtHCzu5d4ahKqpBNqnGypnGrn72btQbyheOMgssEEw8OFeubcW"/>
+</div>
+<span class="font-semibold text-on-surface">Marcus Sterling</span>
+</div>
+</td>
+<td class="p-md font-data-mono text-data-mono text-slate-600">DL-774-8892-CA</td>
+<td class="p-md">
+<span class="px-sm py-xs bg-green-100 text-green-800 font-label-caps text-[10px] rounded flex items-center gap-xs w-fit">
+<span class="material-symbols-outlined text-[14px]" data-icon="check_circle" data-weight="fill">check_circle</span>
+                                        PERMIT
+                                    </span>
+</td>
+<td class="p-md text-slate-600">Main Lobby - North</td>
+<td class="p-md text-right">
+<button class="opacity-0 group-hover:opacity-100 transition-opacity p-xs hover:bg-slate-200 rounded">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 2: Deny -->
+<tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors cursor-pointer group bg-slate-50/30">
+<td class="p-md font-data-mono text-data-mono text-slate-500">2023-10-24 09:12:44</td>
+<td class="p-md">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 bg-slate-200 overflow-hidden">
+<img alt="Visitor" data-alt="A high-contrast identity photograph of a young woman with dark braided hair. She is wearing a professional cream-colored blazer. The image style is bright and extremely sharp, mimicking a modern biometric scanning interface. The lighting is overhead and even, casting no deep shadows, ensuring all facial features are clearly visible for automated recognition systems." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzpA6p6o3mhiJg-JqTLCj7CNhweC29xXkejaNMoIUFcLpmofD5WPRDBsrYvv1xHOgQ3GVoPC2xOpEvNPk8EVQHXEkuY3jcN2mZ4Kz4Ej7hJhZ9peUSTswJh2YLsInJSNLxSkSSVNeiQFBnBJwRugX8wHXgPHHSBXTFJrCAt-mWk9LZqTR50GpNpzzNREOdHIVe0R9npa9cUaenVrG0Fkex3fsw-7g_Lmp3KszB_5fbryKO5qBTxW1W_ePS6CHB3t4S3qGVZkfK4u6u"/>
+</div>
+<span class="font-semibold text-on-surface">Elena Rodriguez</span>
+</div>
+</td>
+<td class="p-md font-data-mono text-data-mono text-slate-600">PP-US-99120443</td>
+<td class="p-md">
+<span class="px-sm py-xs bg-red-100 text-red-800 font-label-caps text-[10px] rounded flex items-center gap-xs w-fit">
+<span class="material-symbols-outlined text-[14px]" data-icon="cancel" data-weight="fill">cancel</span>
+                                        DENY
+                                    </span>
+</td>
+<td class="p-md text-slate-600">Staff Entrance - Gate 4</td>
+<td class="p-md text-right">
+<button class="opacity-0 group-hover:opacity-100 transition-opacity p-xs hover:bg-slate-200 rounded">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 3: Flagged -->
+<tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors cursor-pointer group">
+<td class="p-md font-data-mono text-data-mono text-slate-500">2023-10-24 09:10:15</td>
+<td class="p-md">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 bg-slate-200 overflow-hidden">
+<img alt="Visitor" data-alt="A clean, professionally framed headshot of a man with light stubble and styled brown hair. He is wearing a simple black polo shirt. The background is a soft, out-of-focus office setting with blue and white tones. The lighting is warm yet crisp, emphasizing the texture of the skin and hair, consistent with a digital ID card previewer." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2GAX7V1Mlwd63wRIdeoJKJYGV6T8HvMtkXioes8K7x29STgRP7mMUvszCA54kQdpxBo9ewTQ25SiZRHthfn-_1RLD4LKBnpmmx78hG_yQKJNGLQ58LaPkXxkuPa7HDRv2KsnZN64xZWVxOg87rZnBuktsEGMg8kc6P7BPp1AJcZkwQLwxUOBJM4Koahaf6MK5IzOZpDC4QM1DUJxSbwrr33EMybSd4-cdEPo75ATpv4sJyXA0JNvpkZFFUezghT50todnjiPoot6N"/>
+</div>
+<span class="font-semibold text-on-surface">Jonathan Vance</span>
+</div>
+</td>
+<td class="p-md font-data-mono text-data-mono text-slate-600">DL-441-2093-NY</td>
+<td class="p-md">
+<span class="px-sm py-xs bg-yellow-100 text-yellow-800 font-label-caps text-[10px] rounded flex items-center gap-xs w-fit">
+<span class="material-symbols-outlined text-[14px]" data-icon="warning" data-weight="fill">warning</span>
+                                        FLAGGED
+                                    </span>
+</td>
+<td class="p-md text-slate-600">Loading Dock - B</td>
+<td class="p-md text-right">
+<button class="opacity-0 group-hover:opacity-100 transition-opacity p-xs hover:bg-slate-200 rounded">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Zebra Stripe Row 4 -->
+<tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors cursor-pointer group bg-slate-50/30">
+<td class="p-md font-data-mono text-data-mono text-slate-500">2023-10-24 09:08:41</td>
+<td class="p-md">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 bg-slate-200 overflow-hidden flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-400" data-icon="person">person</span>
+</div>
+<span class="font-semibold text-on-surface">Sarah Jenkins</span>
+</div>
+</td>
+<td class="p-md font-data-mono text-data-mono text-slate-600">DL-118-9003-TX</td>
+<td class="p-md">
+<span class="px-sm py-xs bg-green-100 text-green-800 font-label-caps text-[10px] rounded flex items-center gap-xs w-fit">
+<span class="material-symbols-outlined text-[14px]" data-icon="check_circle" data-weight="fill">check_circle</span>
+                                        PERMIT
+                                    </span>
+</td>
+<td class="p-md text-slate-600">Main Lobby - North</td>
+<td class="p-md text-right">
+<button class="opacity-0 group-hover:opacity-100 transition-opacity p-xs hover:bg-slate-200 rounded">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors cursor-pointer group">
+<td class="p-md font-data-mono text-data-mono text-slate-500">2023-10-24 09:05:22</td>
+<td class="p-md">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 bg-slate-200 overflow-hidden">
+<img alt="Visitor" data-alt="A portrait of a young man with a slight smile and casual appearance. He is wearing a gray sweatshirt. The image is clear and well-lit with natural light coming from the side. The overall aesthetic is clean and modern, suitable for a security system's identity record which prioritizes clarity and facial recognition readiness in a contemporary setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7LbdUeueq4eEvN2IfCh0hq_S21LLVty9lpAipQ_YK7kLoRjMiIQWE2EhicLGk10nXggARtW3l0RSLiXUQeuyWGZtPHGOuL-rr-M4WQJXf-GMgyj22ZrePHaqHijEpIqn4uR7Adfn6pgcAkB7oL1AwL-_dBa-YJaZwW8vbfETSrBi-ZCKpzlRubByzXBelDauOJtEnfdwFkVoXZXzmajWyfhTnPZokcipKMJsDfj7MCBxGurpsGp9-FDrCCb9Hx04dPubinN9ves3l"/>
+</div>
+<span class="font-semibold text-on-surface">Aiden Brooks</span>
+</div>
+</td>
+<td class="p-md font-data-mono text-data-mono text-slate-600">ID-VA-2283100</td>
+<td class="p-md">
+<span class="px-sm py-xs bg-green-100 text-green-800 font-label-caps text-[10px] rounded flex items-center gap-xs w-fit">
+<span class="material-symbols-outlined text-[14px]" data-icon="check_circle" data-weight="fill">check_circle</span>
+                                        PERMIT
+                                    </span>
+</td>
+<td class="p-md text-slate-600">Server Room Vault</td>
+<td class="p-md text-right">
+<button class="opacity-0 group-hover:opacity-100 transition-opacity p-xs hover:bg-slate-200 rounded">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="p-md bg-slate-50 flex items-center justify-between border-t border-slate-200">
+<span class="text-body-sm font-body-sm text-slate-500">Showing 1 to 5 of 1,248 entries</span>
+<div class="flex items-center gap-xs">
+<button class="p-xs hover:bg-slate-200 rounded disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined" data-icon="first_page">first_page</span>
+</button>
+<button class="p-xs hover:bg-slate-200 rounded disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span>
+</button>
+<div class="flex items-center gap-xs px-md">
+<button class="w-8 h-8 flex items-center justify-center bg-primary text-white rounded font-data-mono text-data-mono">1</button>
+<button class="w-8 h-8 flex items-center justify-center hover:bg-slate-200 rounded font-data-mono text-data-mono">2</button>
+<button class="w-8 h-8 flex items-center justify-center hover:bg-slate-200 rounded font-data-mono text-data-mono">3</button>
+<span class="px-xs text-slate-400">...</span>
+<button class="w-8 h-8 flex items-center justify-center hover:bg-slate-200 rounded font-data-mono text-data-mono">250</button>
+</div>
+<button class="p-xs hover:bg-slate-200 rounded">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+<button class="p-xs hover:bg-slate-200 rounded">
+<span class="material-symbols-outlined" data-icon="last_page">last_page</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Dashboard Summary Widgets (Asymmetric Grid) -->
+<div class="mt-lg grid grid-cols-1 md:grid-cols-3 gap-lg">
+<div class="bg-white p-md border border-slate-200 shadow-sm flex flex-col justify-between h-32">
+<div>
+<p class="font-label-caps text-label-caps text-slate-500 uppercase">Daily Denial Rate</p>
+<h4 class="text-display-lg font-display-lg text-red-600">3.4%</h4>
+</div>
+<div class="flex items-center gap-xs text-xs text-green-600 font-semibold">
+<span class="material-symbols-outlined text-sm" data-icon="trending_down">trending_down</span>
+                        0.8% lower than yesterday
+                    </div>
+</div>
+<div class="bg-white p-md border border-slate-200 shadow-sm flex flex-col justify-between h-32">
+<div>
+<p class="font-label-caps text-label-caps text-slate-500 uppercase">Active Alerts</p>
+<h4 class="text-display-lg font-display-lg text-on-surface">12</h4>
+</div>
+<div class="flex items-center gap-xs text-xs text-yellow-600 font-semibold">
+<span class="material-symbols-outlined text-sm" data-icon="priority_high">priority_high</span>
+                        3 require immediate supervisor review
+                    </div>
+</div>
+<div class="bg-primary p-md border border-primary shadow-sm flex flex-col justify-between h-32 text-white">
+<div>
+<p class="font-label-caps text-label-caps opacity-80 uppercase">Total Scans Today</p>
+<h4 class="text-display-lg font-display-lg">2,841</h4>
+</div>
+<div class="flex items-center gap-xs text-xs font-semibold">
+<span class="material-symbols-outlined text-sm" data-icon="flash_on">flash_on</span>
+                        System Operating at Peak Efficiency
+                    </div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="p-lg border-t border-slate-200 bg-white flex justify-between items-center">
+<p class="text-body-sm font-body-sm text-slate-500">
+                PrimoIT Tech v4.2.0 • Security Node: <span class="font-data-mono">SV-NODE-772</span>
+</p>
+<div class="flex items-center gap-lg">
+<a class="text-body-sm font-body-sm text-primary hover:underline" href="#">Privacy Policy</a>
+<a class="text-body-sm font-body-sm text-primary hover:underline" href="#">Compliance Docs</a>
+<span class="text-body-sm font-body-sm text-slate-400">© 2023 PrimoIT Tech Systems Group</span>
+</div>
+</footer>
+</main>
+</body></html>
